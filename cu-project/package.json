@@ -22,14 +22,13 @@
     "zustand": "^3.7.1"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^2.6.2",
+    "@graphql-codegen/cli": "^1.9.0",
     "@graphql-codegen/typescript": "^2.4.7",
     "@types/apollo-upload-client": "^17.0.0",
     "@types/node": "^17.0.21",
     "@types/react": "^17.0.40",
     "@typescript-eslint/eslint-plugin": "^5.14.0",
     "@typescript-eslint/parser": "^5.14.0",
-    "ansi-regex": "^6.0.1",
     "eslint": "^7.32.0",
     "eslint-config-next": "12.1.0",
     "eslint-config-prettier": "^8.5.0",
