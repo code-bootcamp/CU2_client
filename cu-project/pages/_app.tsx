@@ -9,7 +9,7 @@ import { createUploadLink } from "apollo-upload-client";
 import "../styles/globals.css";
 import { Global } from "@emotion/react";
 import { globalStyles } from "../src/commons/styles/globalStyles";
-import Layout from "../src/commons/layout";
+import Layout from "../src/components/commons/layout";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const uploadLink = createUploadLink({
