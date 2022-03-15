@@ -1,53 +1,38 @@
-// #region Login
-export interface ILoginUIProps {
+// #region commons
+export interface ILoginUIProps {}
+export interface ILoginProps {}
 
-}
-export interface ILoginProps{
-    
-}
+export interface IRegisterUIProps {}
+export interface IRegisterProps {}
 // #endregion
 
-// #region Register
-export interface IRegisterUIProps {
+// #region CodingUs
+export interface ICodingUsBlogProps {}
+export interface ICodingUsBlogUIProps {}
 
-}
-export interface IRegisterProps{
+export interface ICodingUsMainProps {}
+export interface ICodingUsMainUIProps {}
 
-}
+export interface ICodingUsStackProps {}
+export interface ICodingUsStackUIProps {}
+
+export interface ICodingUsRankProps {}
+export interface ICodingUsRankUIProps {}
 // #endregion
 
-// #region CodingUsBlog
-export interface ICodingUsBlogProps {
+// #region CoachingUs
+export interface ICoachingUsCommentsProps {}
+export interface ICoachingUsCommentsUIProps {}
 
-}
-export interface ICodingUsBlogUIProps{
+export interface ICoachingUsMainProps {}
+export interface ICoachingUsMainUIProps {}
 
-}
+export interface ICoachingUsProfileProps {}
+export interface ICoachingUsProfileUIProps {}
+
+export interface ICoachingUsQuestionProps {}
+export interface ICoachingUsQuestionUIProps {}
 // #endregion
 
-// #region CodingUsMain
-export interface ICodingUsMainProps {
-
-}
-export interface ICodingUsMainUIProps{
-
-}
-// #endregion
-
-// #region CodingUsStack
-export interface ICodingUsStackProps {
-
-}
-export interface ICodingUsStackUIProps{
-
-}
-// #endregion
-
-// #region CodingUsRank
-export interface ICodingUsRankProps {
-
-}
-export interface ICodingUsRankUIProps{
-
-}
+// #region MyPage
 // #endregion
