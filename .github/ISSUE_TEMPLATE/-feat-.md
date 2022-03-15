@@ -1,8 +1,8 @@
 ---
 name: "[FEAT]"
 about: 새로운 기능 추가
-title: ''
-labels: ''
+title: "[FEAT]"
+labels: feature
 assignees: ''
 
 ---
