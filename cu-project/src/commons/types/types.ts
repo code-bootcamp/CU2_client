@@ -1,9 +1,12 @@
-// #region commons
+// #region Commons
 export interface ILoginUIProps {}
 export interface ILoginProps {}
 
 export interface IRegisterUIProps {}
 export interface IRegisterProps {}
+
+export interface ISearchUIProps {}
+export interface ISearchProps {}
 // #endregion
 
 // #region CodingUs
@@ -35,4 +38,6 @@ export interface ICoachingUsQuestionUIProps {}
 // #endregion
 
 // #region MyPage
+export interface IMyPageProps {}
+export interface IMyPageUIProps {}
 // #endregion

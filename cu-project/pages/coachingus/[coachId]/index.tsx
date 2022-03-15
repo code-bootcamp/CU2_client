@@ -1,6 +1,5 @@
-import CoachingUsCoach from "../../../src/components/units/coachingus/profile/CoachingUsCoach.Container";
+import CoachingUsProfile from "../../../src/components/units/coachingus/profile/CoachingUsProfile.Container";
 
-export default function CoachProfilePage () {
-    
-    return <CoachingUsProfile/>
+export default function CoachProfilePage() {
+  return <CoachingUsProfile />;
 }
