@@ -8,14 +8,21 @@ import { AppProps } from "next/app";
 import { createUploadLink } from "apollo-upload-client";
 import "../styles/globals.css";
 import { Global } from "@emotion/react";
+import { onError } from "@apollo/client/link/error";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 import Layout from "../src/components/commons/layout";
+import { useRouter } from "next/router";
+import { createContext, useEffect, useState } from "react";
+import { getAccessToken } from "../src/commons/libraries/getAccessToken";
+
+export const GlobalContext = createContext({});
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const [accessToken, setAccessToken] = useState("");
   const temp = accessToken;
-  const [userInfo, setUserInfo] = useState<IUserInfo>({});
+  const [userInfo, setUserInfo] = useState({});
+
   const value = {
     accessToken,
     setAccessToken,
@@ -74,12 +81,14 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [router, setAccessToken]);
 
   return (
-    <ApolloProvider client={client}>
-      <Global styles={globalStyles} />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ApolloProvider>
+    <GlobalContext.Provider value={value}>
+      <ApolloProvider client={client}>
+        <Global styles={globalStyles} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ApolloProvider>
+    </GlobalContext.Provider>
   );
 }
 
