@@ -1,7 +1,7 @@
 ---
 name: "[FIX]"
 about: '기존 기능 수정 '
-title: ''
+title: "[FIX]"
 labels: ''
 assignees: ''
 
