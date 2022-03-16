@@ -1,7 +1,13 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-type IPage = "/coachingus" | "/codingus" | "/login" | "/mypage" | "/register" | "/search";
+type IPage =
+  | "/coachingus"
+  | "/codingus"
+  | "/login"
+  | "/mypage"
+  | "/register"
+  | "/search";
 
 export function useMoveToPage() {
   const router = useRouter();
