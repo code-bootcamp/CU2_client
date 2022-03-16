@@ -73,7 +73,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }, [router, setAccessToken]);
 
-
   return (
     <ApolloProvider client={client}>
       <Global styles={globalStyles} />
