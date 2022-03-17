@@ -14,7 +14,9 @@ export interface ICodingUsBlogProps {}
 export interface ICodingUsBlogUIProps {}
 
 export interface ICodingUsMainProps {}
-export interface ICodingUsMainUIProps {}
+export interface ICodingUsMainUIProps {
+    moveToPage: (page: string) => void;
+}
 
 export interface ICodingUsStackProps {}
 export interface ICodingUsStackUIProps {}
