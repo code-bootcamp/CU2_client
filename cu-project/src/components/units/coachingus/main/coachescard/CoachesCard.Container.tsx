@@ -1,8 +1,8 @@
-import { ICoachingUsMainProps } from "../../../../commons/types/types";
-import CoachingUsMainUI from "./CoachesCard.Presenter";
-import {} from "./CoachingUsMain.Queries";
-export default function CoachingUsMain(props: ICoachingUsMainProps) {
-  const recommendCoachList = [
+import { ICoachingUsMainProps } from "../../../../../commons/types/types";
+import CoachesCardUI from "./CoachesCard.Presenter";
+import {} from "../CoachingUsMain.Queries";
+export default function CoachesCardPage(props: ICoachingUsMainProps) {
+  const coachesList = [
     {
       id: 0,
       corName: "우아한 형제들",
@@ -35,11 +35,47 @@ export default function CoachingUsMain(props: ICoachingUsMainProps) {
         picture: "이미지! 입니다!",
         name: "최  건",
         tags: ["배달", "하러", "가즈아"],
-        followers: 12,
+        followers: 112412,
         score: 2513,
+      },
+    },
+    {
+      id: 3,
+      corName: "코캠과아이들",
+      subCorName: "코딩교육",
+      profile: {
+        picture: "이미지! 입니다!",
+        name: "손설희",
+        tags: ["교육", "IT"],
+        followers: 112341242,
+        score: 3,
+      },
+    },
+    {
+      id: 4,
+      corName: "우아한 청년들",
+      subCorName: "배달!",
+      profile: {
+        picture: "이미지! 입니다!",
+        name: "남광후",
+        tags: ["배달", "하러", "가즈아"],
+        followers: 11312,
+        score: 25113,
+      },
+    },
+    {
+      id: 5,
+      corName: "우아한 청년들",
+      subCorName: "배달배달",
+      profile: {
+        picture: "이미지! 입니다!",
+        name: "최  건",
+        tags: ["배달", "하러", "가즈아"],
+        followers: 1200,
+        score: 287513,
       },
     },
   ];
 
-  return <CoachingUsMainUI recommendCoachList={recommendCoachList} />;
+  return <CoachesCardUI coachesList={coachesList} />;
 }

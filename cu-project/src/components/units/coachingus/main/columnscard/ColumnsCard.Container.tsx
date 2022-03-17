@@ -41,5 +41,5 @@ export default function CoachingUsMain(props: ICoachingUsMainProps) {
     },
   ];
 
-  return <CoachingUsMainUI recommendCoachList={recommendCoachList} />;
+  return <CoachingUsMainUI CoachesList={CoachesList} />;
 }

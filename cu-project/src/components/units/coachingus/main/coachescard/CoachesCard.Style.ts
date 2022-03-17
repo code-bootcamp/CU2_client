@@ -1,51 +1,36 @@
 import styled from "@emotion/styled";
 
-export const Wrapper = styled.div`
-  min-width: 100vw;
-  min-height: 100vh;
-  box-sizing: border-box;
-  margin: 0;
+// ContainerCoachesList 영역
+
+export const ContainerCoaches = styled.div`
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 40px 0;
-`;
-
-export const LandingBody = styled.div`
-  display: flex;
-  width: 95%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const SearchBar = styled.div`
-  height: 30px;
-  width: 70%;
-  border-radius: 20px;
-  background-color: #afa9a9;
-`;
-
-// RecommnedCoachList 영역
-
-export const ContainerRecommendCoach = styled.div`
-  display: flex;
-  width: 95%;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   min-height: 200px;
-  background-color: #333333;
   padding: 30px 25px;
-  p {
-    color: white;
-    font-size: 25px;
-    font-weight: 500;
-  }
 `;
 
+export const CoachesTitle = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid #c4c4c4;
+  font-size: 25px;
+  font-weight: 500;
+  padding-bottom: 10px;
+  color: black;
+`;
+export const MoreCoachesListBtn = styled.div`
+  font-size: 14px;
+  font-weight: lighter;
+  cursor: pointer;
+`;
 export const ContainerRecommendCoachBody = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `;
 
 export const RecommendCoach = styled.div`
@@ -55,10 +40,11 @@ export const RecommendCoach = styled.div`
   justify-content: flex-start;
   background-color: white;
   border-radius: 20px;
+  border: 1px solid #c4c4c4;
   padding: 15px 20px;
   width: 230px;
   height: 350px;
-  margin: 0 15px; ;
+  margin: 20px 15px; ;
 `;
 export const RecommendCoachHeader = styled.div`
   width: 100%;
@@ -124,36 +110,4 @@ export const CoachInfoFollower = styled.div`
 `;
 export const CoachInfoScore = styled.div`
   display: flex;
-`;
-export const ContainerCoaches = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 95%;
-  min-height: 200px;
-  border-radius: 20px;
-  padding: 30px 25px;
-`;
-export const ContainerColumns = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 95%;
-  min-height: 200px;
-  border-radius: 20px;
-  padding: 30px 25px;
-`;
-
-// Sidebar 영역
-export const LeftSideBar = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  min-width: 300px;
-`;
-
-export const RightSideBar = styled.div`
-  height: 100%;
-  min-width: 300px;
 `;
