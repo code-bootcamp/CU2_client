@@ -2,10 +2,11 @@ import styled from "@emotion/styled";
 
 export const SideBarContainer = styled.div`
   width: 200px;
-  height: 200px;
+
   min-height: 200px;
   margin: 0px 10px 0px 10px;
   border-radius: 15px;
+
   background-color: #f6f5f5;
 
   position: fixed;
@@ -26,10 +27,22 @@ export const SideBarContainerHeader = styled.div`
 `;
 
 export const SideBarContainerBody = styled.div`
+  padding: 15px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 80%;
   color: #c4c4c4;
+`;
+export const FavorList = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 2rem;
+  border-radius: 10px;
+  color: black;
+  border: 1px solid #c4c4c4;
+  margin: 5px 0;
 `;
