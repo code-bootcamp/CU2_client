@@ -1,13 +1,44 @@
+import {
+  FieldValues,
+  FormState,
+  UseFormHandleSubmit,
+  UseFormRegister,
+} from "react-hook-form";
 import { CheckboxChangeEvent } from "antd/lib/checkbox/Checkbox";
 import { ChangeEvent } from "react";
 
-// #region Commons
-export interface ILoginUIProps {}
+// #region Login && Register
+export interface FormValues {
+  name?: string;
+  email?: string;
+  password?: string;
+  checkPassword?: string;
+}
+
+export interface ILoginUIProps {
+  register: UseFormRegister<FieldValues>;
+  formState: FormState<FieldValues>;
+  handleSubmit: UseFormHandleSubmit<FieldValues>;
+  onClickLogin: (data: FormValues) => void;
+}
 export interface ILoginProps {}
 
-export interface IRegisterUIProps {}
+export interface IRegisterUIProps {
+  register: UseFormRegister<FieldValues>;
+  formState: FormState<FieldValues>;
+  handleSubmit: UseFormHandleSubmit<FieldValues>;
+  onClickRegister: (data: FormValues) => void;
+}
 export interface IRegisterProps {}
 
+// #endregion
+
+// #region Find
+export interface IFindUIProps {}
+export interface IFindProps {}
+// #endregion
+
+// #region Search
 export interface ISearchUIProps {}
 export interface ISearchProps {}
 // #endregion
@@ -51,4 +82,21 @@ export interface ICoachingUsQuestionUIProps {}
 // #region MyPage
 export interface IMyPageProps {}
 export interface IMyPageUIProps {}
+// #endregion
+
+// #region MainPage
+export interface MainPageProps {}
+export interface MainPageUIProps {
+  blogSettings: {
+    infinite: boolean;
+    slidesToShow: number;
+    slidesToScroll: number;
+    arrows: boolean;
+    nextArrow: any;
+    prevArrow: any;
+  };
+  SampleNextArrow: any;
+  SamplePrevArrow: any;
+}
+
 // #endregion

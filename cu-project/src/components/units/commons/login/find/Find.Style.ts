@@ -11,19 +11,14 @@ export const Wrapper = styled.div`
   justify-content: center;
 `;
 
-export const RegisterForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-`;
+export const Head = styled.div``;
 
-export const Logo = styled.img`
-  width: 100px;
-`;
-
-export const RegisterLabel = styled.label`
+export const FindLabel = styled.label`
   display: flex;
   flex-direction: column;
 `;
 
-export const RegisterInput = styled.input``;
+export const InputBox = styled.input``;
+
+export const AuthBox = styled.div``;
+export const InputAuthBox = styled.input``;

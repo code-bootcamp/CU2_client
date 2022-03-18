@@ -11,14 +11,24 @@ import { Global } from "@emotion/react";
 import { onError } from "@apollo/client/link/error";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 import Layout from "../src/components/commons/layout";
-import { useRouter } from "next/router";
-import { createContext, useEffect, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import { getAccessToken } from "../src/commons/libraries/getAccessToken";
 
-export const GlobalContext = createContext({});
+// app.tsx 타입 추가
+interface IGlobalContext {
+  accessToken?: string;
+  setAccessToken?: Dispatch<SetStateAction<string>>;
+}
+
+export const GlobalContext = createContext<IGlobalContext>({});
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter();
   const [accessToken, setAccessToken] = useState("");
   const temp = accessToken;
   const [userInfo, setUserInfo] = useState({});
@@ -70,7 +80,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   useEffect(() => {
-    // console.log("먼저 실행되어야 하는 거");
     getAccessToken().then((newAccessToken) => {
       setAccessToken(newAccessToken);
     });
@@ -78,7 +87,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     if (localStorage.getItem("userInfo")) {
       setUserInfo(JSON.parse(localStorage.getItem("userInfo") || "{}"));
     }
-  }, [router, setAccessToken]);
+  }, []);
 
   return (
     <GlobalContext.Provider value={value}>
