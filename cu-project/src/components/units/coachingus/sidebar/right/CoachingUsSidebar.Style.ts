@@ -9,7 +9,7 @@ export const SideBarContainer = styled.div`
   background-color: #f6f5f5;
 
   position: sticky;
-  top: 3%;
+  top: 10%;
 `;
 
 export const SideBarContainerHeader = styled.div`
