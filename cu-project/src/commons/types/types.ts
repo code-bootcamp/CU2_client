@@ -1,3 +1,6 @@
+import { CheckboxChangeEvent } from "antd/lib/checkbox/Checkbox";
+import { ChangeEvent } from "react";
+
 // #region Commons
 export interface ILoginUIProps {}
 export interface ILoginProps {}
@@ -26,11 +29,17 @@ export interface ICodingUsRankUIProps {}
 // #endregion
 
 // #region CoachingUs
-export interface ICoachingUsCommentsProps {}
-export interface ICoachingUsCommentsUIProps {}
+export interface ICoachingUsLandingProps {}
+export interface ICoachingUsLandingUIProps {
+  corList: string[];
+  onChangeCheckBox: (event: CheckboxChangeEvent) => void;
+}
 
 export interface ICoachingUsMainProps {}
 export interface ICoachingUsMainUIProps {}
+
+export interface ICoachingUsCommentsProps {}
+export interface ICoachingUsCommentsUIProps {}
 
 export interface ICoachingUsProfileProps {}
 export interface ICoachingUsProfileUIProps {}
