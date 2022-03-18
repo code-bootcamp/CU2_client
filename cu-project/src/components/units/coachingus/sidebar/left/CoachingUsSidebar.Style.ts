@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const SideBarContainer = styled.div`
   width: 200px;
 
-  min-height: 200px;
+  min-height: fit-content;
   margin: 0px 10px 0px 10px;
   border-radius: 15px;
 
@@ -32,9 +32,11 @@ export const SideBarContainerBody = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 80%;
+  height: 100%;
   color: #c4c4c4;
 `;
+export const SideBarText = styled.div``;
+
 export const FavorList = styled.div`
   display: flex;
   align-items: center;

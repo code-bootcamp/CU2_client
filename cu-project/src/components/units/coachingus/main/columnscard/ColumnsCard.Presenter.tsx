@@ -1,7 +1,7 @@
 import { ICoachingUsMainUIProps } from "../../../../../commons/types/types";
 import Blank from "../../../../commons/Blank";
 import * as S from "./ColumnsCard.Style";
-import getMoney from "../../../../commons/hooks/getMoney";
+import getMoney from "../../../../../commons/libraries/getMoney";
 
 export default function ColumnsCardUI(props: ICoachingUsMainUIProps) {
   return (
