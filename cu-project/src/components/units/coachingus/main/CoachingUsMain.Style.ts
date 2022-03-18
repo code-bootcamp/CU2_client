@@ -6,11 +6,15 @@ export const Wrapper = styled.div`
   box-sizing: border-box;
   margin: 0;
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
   padding: 40px 0;
 `;
 
+export const CoachingUsMainBody = styled.div`
+  display: flex;
+`;
 export const LandingBody = styled.div`
   display: flex;
   width: 95%;
@@ -55,6 +59,7 @@ export const LeftSideBar = styled.div`
 `;
 
 export const RightSideBar = styled.div`
-  height: 100%;
+  display: flex;
+  /* height: 100%; */
   min-width: 300px;
 `;
