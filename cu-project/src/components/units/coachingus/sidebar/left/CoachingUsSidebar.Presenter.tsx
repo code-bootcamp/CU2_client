@@ -13,10 +13,10 @@ export default function CoachingUsSidebarUIUI(props) {
             ))}{" "}
           </>
         ) : (
-          <>
+          <S.SideBarText>
             <p>관심카테고리를</p>
             <p>설정해주세요!</p>
-          </>
+          </S.SideBarText>
         )}
       </S.SideBarContainerBody>
     </S.SideBarContainer>
