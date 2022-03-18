@@ -30,6 +30,7 @@ export const MoreCoachesListBtn = styled.div`
 `;
 export const ContainerCoachesListBody = styled.div`
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
 `;
 
@@ -44,7 +45,9 @@ export const CoachList = styled.div`
   padding: 15px 20px;
   width: 230px;
   height: 350px;
-  margin: 20px 15px; ;
+  margin: 20px 15px;
+
+  box-shadow: 0px 4px 4px 0px #00000040;
 `;
 export const CoachListHeader = styled.div`
   width: 100%;

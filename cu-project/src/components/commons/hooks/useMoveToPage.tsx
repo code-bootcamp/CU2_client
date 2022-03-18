@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 
 type IPage =
   | "/coachingus"
+  | "/coachingus/coach"
+  | "/coachingus/column"
+  | "/coachingus/coach-register"
   | "/codingus"
   | "/login"
   | "/mypage"

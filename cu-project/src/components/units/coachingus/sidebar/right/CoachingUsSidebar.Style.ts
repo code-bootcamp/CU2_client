@@ -8,7 +8,7 @@ export const SideBarContainer = styled.div`
   border-radius: 15px;
   background-color: #f6f5f5;
 
-  position: fixed;
+  position: sticky;
   top: 3%;
 `;
 

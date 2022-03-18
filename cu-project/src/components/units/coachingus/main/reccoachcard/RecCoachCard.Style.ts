@@ -10,7 +10,7 @@ export const ContainerRecommendCoach = styled.div`
   justify-content: space-between;
   min-height: 200px;
   background-color: #333333;
-  padding: 30px 25px;
+  padding: 30px 20px;
   p {
     color: white;
     font-size: 25px;
@@ -20,6 +20,8 @@ export const ContainerRecommendCoach = styled.div`
 
 export const ContainerRecommendCoachBody = styled.div`
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 `;
 
 export const RecommendCoach = styled.div`
@@ -32,7 +34,8 @@ export const RecommendCoach = styled.div`
   padding: 15px 20px;
   width: 230px;
   height: 350px;
-  margin: 0 15px; ;
+  margin: 20px 10px;
+  box-shadow: 0px 4px 4px 0px #00000040;
 `;
 export const RecommendCoachHeader = styled.div`
   width: 100%;

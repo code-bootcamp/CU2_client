@@ -1,5 +1,6 @@
 import React from "react";
+import CoachingUsColumnPage from "../../../src/components/units/coachingus/column/CoachingUsColumn.Container";
 
-export default function CoachingUsColumnPage() {
-  return <div>CoachingUsColumnPage</div>;
+export default function CoachingUsColumn() {
+  return <CoachingUsColumnPage />;
 }
