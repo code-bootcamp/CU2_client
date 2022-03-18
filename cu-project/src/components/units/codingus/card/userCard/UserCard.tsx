@@ -1,10 +1,10 @@
-import Label01 from "../../../commons/Label/Label01";
+import Label01 from "../../../../commons/Label/Label01";
 import * as S from "./UserCard.Style";
-import Blank from "../../../commons/Blank";
-import { getTimeDiff } from "../../../../commons/libraries/dateUtils";
-import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
+import Blank from "../../../../commons/Blank";
+import { getTimeDiff } from "../../../../../commons/libraries/dateUtils";
+import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 
-interface ICodingUsProps {
+interface ICodingUsCardProps {
   width?: string | number;
   height?: string | number;
   name: string;
@@ -22,12 +22,12 @@ interface ICodingUsProps {
   id: string;
 }
 
-export default function UserCard(props: ICodingUsProps) {
+export default function UserCard(props: ICodingUsCardProps) {
   const { moveToPage } = useMoveToPage();
   return (
     <S.Wrapper
-      width={props.width ? `${props.width}px` : "387px"}
-      height={props.height ? `${props.height}px` : "521px"}
+      width={props.width ? `${props.width}px` : "386px"}
+      height={props.height ? `${props.height}px` : "702px"}
     >
       <S.Header>
         <S.UserInfo>
