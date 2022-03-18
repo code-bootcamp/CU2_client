@@ -19,7 +19,7 @@ export default function CoachingUsMainUI(props: ICoachingUsMainUIProps) {
         <RecCoachCardPage />
         <Blank height="40px" />
         <CoachesCardPage />
-        <Blank height="40px" />
+        <Blank height="10px" />
         <ColumnsCardPage />
       </S.LandingBody>
       <S.RightSideBar>
