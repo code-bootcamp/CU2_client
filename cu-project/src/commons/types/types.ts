@@ -4,6 +4,8 @@ import {
   UseFormHandleSubmit,
   UseFormRegister,
 } from "react-hook-form";
+import { CheckboxChangeEvent } from "antd/lib/checkbox/Checkbox";
+import { ChangeEvent } from "react";
 
 // #region Login && Register
 export interface FormValues {
@@ -46,7 +48,9 @@ export interface ICodingUsBlogProps {}
 export interface ICodingUsBlogUIProps {}
 
 export interface ICodingUsMainProps {}
-export interface ICodingUsMainUIProps {}
+export interface ICodingUsMainUIProps {
+    moveToPage: (page: string) => void;
+}
 
 export interface ICodingUsStackProps {}
 export interface ICodingUsStackUIProps {}
@@ -56,11 +60,17 @@ export interface ICodingUsRankUIProps {}
 // #endregion
 
 // #region CoachingUs
-export interface ICoachingUsCommentsProps {}
-export interface ICoachingUsCommentsUIProps {}
+export interface ICoachingUsLandingProps {}
+export interface ICoachingUsLandingUIProps {
+  corList: string[];
+  onChangeCheckBox: (event: CheckboxChangeEvent) => void;
+}
 
 export interface ICoachingUsMainProps {}
 export interface ICoachingUsMainUIProps {}
+
+export interface ICoachingUsCommentsProps {}
+export interface ICoachingUsCommentsUIProps {}
 
 export interface ICoachingUsProfileProps {}
 export interface ICoachingUsProfileUIProps {}
