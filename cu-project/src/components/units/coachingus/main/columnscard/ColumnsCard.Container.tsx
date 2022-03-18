@@ -1,8 +1,9 @@
-import { ICoachingUsMainProps } from "../../../../commons/types/types";
-import CoachingUsMainUI from "./ColumnsCard.Presenter";
-import {} from "./CoachingUsMain.Queries";
-export default function CoachingUsMain(props: ICoachingUsMainProps) {
-  const recommendCoachList = [
+import { ICoachingUsMainProps } from "../../../../../commons/types/types";
+import ColumnsCardUI from "./ColumnsCard.Presenter";
+import {} from "../CoachingUsMain.Queries";
+
+export default function ColumnsCardPage(props: ICoachingUsMainProps) {
+  const columnList = [
     {
       id: 0,
       corName: "우아한 형제들",
@@ -41,5 +42,5 @@ export default function CoachingUsMain(props: ICoachingUsMainProps) {
     },
   ];
 
-  return <CoachingUsMainUI CoachesList={CoachesList} />;
+  return <ColumnsCardUI columnList={columnList} />;
 }

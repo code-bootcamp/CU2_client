@@ -11,30 +11,30 @@ export default function CoachesCardUI(props: ICoachingUsMainUIProps) {
         <S.MoreCoachesListBtn>더보기 {">"}</S.MoreCoachesListBtn>
       </S.CoachesTitle>
 
-      <S.ContainerRecommendCoachBody>
+      <S.ContainerCoachesListBody>
         {props.coachesList.map((coach) => (
-          <S.RecommendCoach key={coach.id}>
-            <S.RecommendCoachHeader>
+          <S.CoachList key={coach.id}>
+            <S.CoachListHeader>
               <S.CoachTitle>
                 <S.CoachCor>{coach.corName}</S.CoachCor>
                 <S.CoachSubCor>{coach.subCorName}</S.CoachSubCor>
               </S.CoachTitle>
               <S.CoachFollowBtn>Follow</S.CoachFollowBtn>
-            </S.RecommendCoachHeader>
+            </S.CoachListHeader>
             <Blank height="10px" />
-            <S.RecommendCoachPicture></S.RecommendCoachPicture>
+            <S.CoachListPicture></S.CoachListPicture>
             <Blank height="10px" />
-            <S.RecommendCoachPosition>직책</S.RecommendCoachPosition>
-            <S.RecommendCoachName>
+            <S.CoachListPosition>직책</S.CoachListPosition>
+            <S.CoachListName>
               {coach.profile.name} &nbsp; <div>coach</div>
-            </S.RecommendCoachName>
-            <S.RecommendCoachTags>
+            </S.CoachListName>
+            <S.CoachListTags>
               {coach.profile.tags.map((tag, index) => (
                 <S.CoachTag key={index}>{tag}</S.CoachTag>
               ))}
-            </S.RecommendCoachTags>
+            </S.CoachListTags>
             <Blank height="10px" />
-            <S.RecommendCoachInfo>
+            <S.CoachListInfo>
               <S.CoachInfoFollower>
                 <div
                   style={{
@@ -58,10 +58,10 @@ export default function CoachesCardUI(props: ICoachingUsMainUIProps) {
                 <Blank width="8px" />
                 {getMoney(coach.profile.score)}점
               </S.CoachInfoScore>
-            </S.RecommendCoachInfo>
-          </S.RecommendCoach>
+            </S.CoachListInfo>
+          </S.CoachList>
         ))}
-      </S.ContainerRecommendCoachBody>
+      </S.ContainerCoachesListBody>
     </S.ContainerCoaches>
   );
 }

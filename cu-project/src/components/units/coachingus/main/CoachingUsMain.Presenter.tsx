@@ -5,6 +5,7 @@ import CoachingUsSidebarLeft from "../sidebar/left/CoachingUsSidebar.Container";
 import CoachingUsSidebarRight from "../sidebar/right/CoachingUsSidebar.Container";
 import RecCoachCardPage from "./reccoachcard/RecCoachCard.Container";
 import CoachesCardPage from "./coachescard/CoachesCard.Container";
+import ColumnsCardPage from "./columnscard/ColumnsCard.Container";
 
 export default function CoachingUsMainUI(props: ICoachingUsMainUIProps) {
   return (
@@ -19,7 +20,7 @@ export default function CoachingUsMainUI(props: ICoachingUsMainUIProps) {
         <Blank height="40px" />
         <CoachesCardPage />
         <Blank height="40px" />
-        <S.ContainerColumns></S.ContainerColumns>
+        <ColumnsCardPage />
       </S.LandingBody>
       <S.RightSideBar>
         <CoachingUsSidebarRight />

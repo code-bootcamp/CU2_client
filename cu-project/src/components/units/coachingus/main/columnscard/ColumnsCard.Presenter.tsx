@@ -3,12 +3,12 @@ import Blank from "../../../../commons/Blank";
 import * as S from "./ColumnsCard.Style";
 import getMoney from "../../../../commons/hooks/getMoney";
 
-export default function RecCoachCardUI(props: ICoachingUsMainUIProps) {
+export default function ColumnsCardUI(props: ICoachingUsMainUIProps) {
   return (
     <S.ContainerRecommendCoach>
       <p>추천 Coaches</p>
       <S.ContainerRecommendCoachBody>
-        {props.recommendCoachList.map((coach) => (
+        {props.columnList.map((coach) => (
           <S.RecommendCoach key={coach.id}>
             <S.RecommendCoachHeader>
               <S.CoachTitle>

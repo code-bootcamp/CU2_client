@@ -28,12 +28,12 @@ export const MoreCoachesListBtn = styled.div`
   font-weight: lighter;
   cursor: pointer;
 `;
-export const ContainerRecommendCoachBody = styled.div`
+export const ContainerCoachesListBody = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
 
-export const RecommendCoach = styled.div`
+export const CoachList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,7 +46,7 @@ export const RecommendCoach = styled.div`
   height: 350px;
   margin: 20px 15px; ;
 `;
-export const RecommendCoachHeader = styled.div`
+export const CoachListHeader = styled.div`
   width: 100%;
   display: flex;
   align-items: flex-start;
@@ -69,16 +69,16 @@ export const CoachFollowBtn = styled.button`
   height: 25px;
   border-radius: 15px;
 `;
-export const RecommendCoachPicture = styled.div`
+export const CoachListPicture = styled.div`
   width: 150px;
   height: 150px;
   border-radius: 100%;
   background-color: #c4c4c4;
 `;
-export const RecommendCoachPosition = styled.div`
+export const CoachListPosition = styled.div`
   font-weight: lighter;
 `;
-export const RecommendCoachName = styled.div`
+export const CoachListName = styled.div`
   text-align: center;
   display: flex;
   justify-content: center;
@@ -91,7 +91,7 @@ export const RecommendCoachName = styled.div`
   }
 `;
 
-export const RecommendCoachTags = styled.div`
+export const CoachListTags = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
@@ -102,7 +102,7 @@ export const CoachTag = styled.div`
   padding: 0 5px;
   border: 1px solid #c4c4c4;
 `;
-export const RecommendCoachInfo = styled.div`
+export const CoachListInfo = styled.div`
   display: flex;
 `;
 export const CoachInfoFollower = styled.div`
