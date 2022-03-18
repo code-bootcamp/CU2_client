@@ -1,8 +1,8 @@
 ---
 name: "[BUG]"
 about: 버그 발견
-title: ''
-labels: ''
+title: "[BUG]"
+labels: Bug
 assignees: ''
 
 ---
