@@ -1,5 +1,5 @@
 // 81392730 => 81,392,730 으로 바꿔주는 hooks
-export default function getMoney(number: number) {
+export default function getMoney(number: number | string) {
   const result = String(number)
     .split("")
     .map((el, index) => {
