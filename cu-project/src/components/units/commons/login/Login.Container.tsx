@@ -8,6 +8,7 @@ import { useMutation } from "@apollo/client";
 import { useContext } from "react";
 import { GlobalContext } from "../../../../../pages/_app";
 import { useRouter } from "next/router";
+import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 
 const schema = yup.object().shape({
   email: yup
@@ -27,21 +28,24 @@ const schema = yup.object().shape({
 
 export default function Login(props: ILoginProps) {
   const router = useRouter();
-  const { accessToken } = useContext(GlobalContext);
   const [loginUser] = useMutation(LOGIN_USER);
+  const { moveToPage } = useMoveToPage();
+  const { setAccessToken } = useContext(GlobalContext);
   const { register, formState, handleSubmit } = useForm({
     resolver: yupResolver(schema),
   });
 
   const onClickLogin = async (data: FormValues) => {
     try {
-      await loginUser({
+      const result = await loginUser({
         variables: {
           email: data.email,
           password: data.password,
         },
       });
-      if (accessToken) {
+      const accessToken = result.data?.loginUser.accessToken;
+      if (setAccessToken) {
+        setAccessToken(accessToken || "");
         router.push("/");
       }
     } catch (error) {
@@ -53,6 +57,7 @@ export default function Login(props: ILoginProps) {
 
   return (
     <LoginUI
+      moveToPage={moveToPage}
       register={register}
       formState={formState}
       handleSubmit={handleSubmit}

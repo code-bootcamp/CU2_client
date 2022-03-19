@@ -1,4 +1,4 @@
-import { HTMLAttributes } from "react";
+import { MouseEvent, HTMLAttributes } from "react";
 
 interface ILabelProps {
   weight?: number | string;
@@ -7,6 +7,7 @@ interface ILabelProps {
   value: string;
   attr?: HTMLAttributes<HTMLDivElement>;
   padding?: string;
+  onClick?: (event: MouseEvent<HTMLDivElement>) => void;
 }
 
 export default function Label01(props: ILabelProps) {
