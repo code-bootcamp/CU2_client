@@ -23,16 +23,16 @@ export default function LoginUI(props: ILoginUIProps) {
         {props.formState.errors.password?.message}
         <Blank height="10px" />
         <p>이메일 찾기 | 비밀번호 찾기 | 회원가입</p>
-        <button>로그인</button>
-        <Blank height="10px" />
-        <S.SocialLogin>구글 로그인</S.SocialLogin>
-        <Blank height="10px" />
-        <S.SocialLogin>GitHub 로그인</S.SocialLogin>
-        <Blank height="10px" />
-        <S.SocialLogin>카카오 로그인</S.SocialLogin>
-        <Blank height="10px" />
-        <S.SocialLogin>네이버 로그인</S.SocialLogin>
+        <button type="submit">로그인</button>
       </S.RegisterForm>
+      <Blank height="10px" />
+      <S.SocialLogin>구글 로그인</S.SocialLogin>
+      <Blank height="10px" />
+      <S.SocialLogin>GitHub 로그인</S.SocialLogin>
+      <Blank height="10px" />
+      <S.SocialLogin>카카오 로그인</S.SocialLogin>
+      <Blank height="10px" />
+      <S.SocialLogin>네이버 로그인</S.SocialLogin>
     </S.Wrapper>
   );
 }
