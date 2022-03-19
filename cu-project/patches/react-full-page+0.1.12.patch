@@ -1,5 +1,5 @@
 diff --git a/node_modules/react-full-page/src/components/Controls.jsx b/node_modules/react-full-page/src/components/Controls.jsx
-index b398caf..ee3077f 100644
+index b398caf..d27ab74 100644
 --- a/node_modules/react-full-page/src/components/Controls.jsx
 +++ b/node_modules/react-full-page/src/components/Controls.jsx
 @@ -29,7 +29,7 @@ export default class Controls extends React.Component {
@@ -7,7 +7,7 @@ index b398caf..ee3077f 100644
            onClick={this.props.onPrev}
          >
 -          ←
-+          {"<<"}
++          →
          </button>
          {this.renderSlidesNumbers(currentSlideIndex)}
          <button
