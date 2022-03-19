@@ -34,6 +34,16 @@ function LayoutHeaderPageUI(props) {
 
         {props.isLogin ? (
           <S.HeaderSign>
+            <S.HeaderMypage
+              onClick={props.moveToPage("/mypage")}
+              isCurrent={props.currentPath.includes("/mypage")}
+            >
+              마이페이지
+              {props.currentPath.includes("/mypage") && <S.BoldLine />}
+            </S.HeaderMypage>
+          </S.HeaderSign>
+        ) : (
+          <S.HeaderSign>
             <S.SingIn
               onClick={props.moveToPage("/login")}
               isCurrent={props.currentPath.includes("/login")}
@@ -49,16 +59,6 @@ function LayoutHeaderPageUI(props) {
               회원가입
               {props.currentPath.includes("/register") && <S.BoldLine />}
             </S.SingUp>
-          </S.HeaderSign>
-        ) : (
-          <S.HeaderSign>
-            <S.HeaderMypage
-              onClick={props.moveToPage("/mypage")}
-              isCurrent={props.currentPath.includes("/mypage")}
-            >
-              마이페이지
-              {props.currentPath.includes("/mypage") && <S.BoldLine />}
-            </S.HeaderMypage>
           </S.HeaderSign>
         )}
       </S.RightHeader>

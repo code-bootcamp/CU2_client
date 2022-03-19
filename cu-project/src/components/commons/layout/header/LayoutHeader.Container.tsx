@@ -27,8 +27,6 @@ export default function LayoutHeaderPage() {
   const { moveToPage } = useMoveToPage();
   const currentPath = router.asPath;
 
-  console.log(isLogin, data?.fetchUserLoggedIn?.name);
-
   const [logoutUser] = useMutation(LOGOUT_USER);
 
   function onClickLogOut() {
@@ -38,14 +36,15 @@ export default function LayoutHeaderPage() {
   }
 
   useEffect(() => {
-    setIsLogin(data?.fetchUserLoggedIn?.name !== undefined);
+    setIsLogin(data !== undefined);
+    console.log(isLogin, data?.fetchUserLoggedIn?.name);
   }, []);
 
   return (
     <LayoutHeaderPageUI
       moveToPage={moveToPage}
       currentPath={currentPath}
-      isLogin={!isLogin}
+      isLogin={isLogin}
       onClickLogOut={onClickLogOut}
     />
   );
