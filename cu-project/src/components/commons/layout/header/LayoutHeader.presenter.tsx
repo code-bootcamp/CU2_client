@@ -2,7 +2,7 @@ import React from "react";
 import Blank from "../../Blank";
 import * as S from "./LayoutHeader.Style";
 
-function LayoutHeaderPageUI(props) {
+export default function LayoutHeaderPageUI(props) {
   return (
     <S.Wrapper>
       <S.LeftHeader>
@@ -65,5 +65,3 @@ function LayoutHeaderPageUI(props) {
     </S.Wrapper>
   );
 }
-
-export default React.memo(LayoutHeaderPageUI);
