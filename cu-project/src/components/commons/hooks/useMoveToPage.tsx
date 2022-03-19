@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-type IPage =
+export type IPage =
   | "/coachingus"
   | "/coachingus/coach"
   | "/coachingus/column"

@@ -6,6 +6,7 @@ import {
 } from "react-hook-form";
 import { CheckboxChangeEvent } from "antd/lib/checkbox/Checkbox";
 import { ChangeEvent } from "react";
+import { IPage } from "../../components/commons/hooks/useMoveToPage";
 
 // #region Login && Register
 export interface FormValues {
@@ -20,6 +21,7 @@ export interface ILoginUIProps {
   formState: FormState<FieldValues>;
   handleSubmit: UseFormHandleSubmit<FieldValues>;
   onClickLogin: (data: FormValues) => void;
+  moveToPage: (page: IPage) => () => void;
 }
 export interface ILoginProps {}
 
@@ -49,7 +51,7 @@ export interface ICodingUsBlogUIProps {}
 
 export interface ICodingUsMainProps {}
 export interface ICodingUsMainUIProps {
-    moveToPage: (page: string) => void;
+  moveToPage: (page: string) => void;
 }
 
 export interface ICodingUsStackProps {}
