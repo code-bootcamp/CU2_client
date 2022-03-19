@@ -7,7 +7,7 @@ index b398caf..ee3077f 100644
            onClick={this.props.onPrev}
          >
 -          ←
-+          왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽
++          {"<<"}
          </button>
          {this.renderSlidesNumbers(currentSlideIndex)}
          <button
