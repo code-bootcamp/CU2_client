@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import CoachingUsNavbarUI from "./CoachingUsNavbar.Presenter";
 

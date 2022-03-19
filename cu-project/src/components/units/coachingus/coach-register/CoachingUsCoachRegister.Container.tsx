@@ -1,5 +1,5 @@
-import CoachingUsCoachUI from "./CoachingUsCoachRegister.Presenter";
+import CoachingUsCoachRegisterUI from "./CoachingUsCoachRegister.Presenter";
 
 export default function CoachingUsCoachRegisterPage() {
-  return <CoachingUsCoachUI />;
+  return <CoachingUsCoachRegisterUI />;
 }

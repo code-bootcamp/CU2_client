@@ -1,17 +1,10 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { GlobalContext } from "../../../../../pages/_app";
+import { useAuth } from "../../hooks/useAuth";
 import { useMoveToPage } from "../../hooks/useMoveToPage";
 import LayoutHeaderPageUI from "./LayoutHeader.presenter";
-
-const FETCH_USER_LOGGED_IN = gql`
-  query fetchUserLoggedIn {
-    fetchUserLoggedIn {
-      email
-      name
-    }
-  }
-`;
 
 const LOGOUT_USER = gql`
   mutation logoutUser {
@@ -20,14 +13,12 @@ const LOGOUT_USER = gql`
 `;
 
 export default function LayoutHeaderPage() {
-  const { data } = useQuery(FETCH_USER_LOGGED_IN);
+  const { accessToken } = useContext(GlobalContext);
   const [isLogin, setIsLogin] = useState(false);
 
   const router = useRouter();
   const { moveToPage } = useMoveToPage();
   const currentPath = router.asPath;
-
-  console.log(isLogin, data?.fetchUserLoggedIn?.name);
 
   const [logoutUser] = useMutation(LOGOUT_USER);
 
@@ -38,14 +29,16 @@ export default function LayoutHeaderPage() {
   }
 
   useEffect(() => {
-    setIsLogin(data?.fetchUserLoggedIn?.name !== undefined);
-  }, []);
+    if (accessToken) {
+      setIsLogin(true);
+    }
+  }, [accessToken]);
 
   return (
     <LayoutHeaderPageUI
       moveToPage={moveToPage}
       currentPath={currentPath}
-      isLogin={!isLogin}
+      isLogin={isLogin}
       onClickLogOut={onClickLogOut}
     />
   );

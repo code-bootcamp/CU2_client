@@ -2,7 +2,7 @@ import React from "react";
 import Blank from "../../Blank";
 import * as S from "./LayoutHeader.Style";
 
-function LayoutHeaderPageUI(props) {
+export default function LayoutHeaderPageUI(props) {
   return (
     <S.Wrapper>
       <S.LeftHeader>
@@ -34,6 +34,16 @@ function LayoutHeaderPageUI(props) {
 
         {props.isLogin ? (
           <S.HeaderSign>
+            <S.HeaderMypage
+              onClick={props.moveToPage("/mypage")}
+              isCurrent={props.currentPath.includes("/mypage")}
+            >
+              마이페이지
+              {props.currentPath.includes("/mypage") && <S.BoldLine />}
+            </S.HeaderMypage>
+          </S.HeaderSign>
+        ) : (
+          <S.HeaderSign>
             <S.SingIn
               onClick={props.moveToPage("/login")}
               isCurrent={props.currentPath.includes("/login")}
@@ -50,20 +60,8 @@ function LayoutHeaderPageUI(props) {
               {props.currentPath.includes("/register") && <S.BoldLine />}
             </S.SingUp>
           </S.HeaderSign>
-        ) : (
-          <S.HeaderSign>
-            <S.HeaderMypage
-              onClick={props.moveToPage("/mypage")}
-              isCurrent={props.currentPath.includes("/mypage")}
-            >
-              마이페이지
-              {props.currentPath.includes("/mypage") && <S.BoldLine />}
-            </S.HeaderMypage>
-          </S.HeaderSign>
         )}
       </S.RightHeader>
     </S.Wrapper>
   );
 }
-
-export default React.memo(LayoutHeaderPageUI);
