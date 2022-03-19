@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import Blank from "../../../../commons/Blank";
-import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import Label01 from "../../../../commons/Label/Label01";
 import * as S from "./style";
 
@@ -13,7 +12,7 @@ export default function CodingUsLeftSidebar(props: ICodingUsLeftSideBarProps) {
   const router = useRouter();
   return (
     <S.Wrapper>
-      <Label01 value="관심 스택" size="24px" />
+      <Label01 value="관심 스택" size="24px" weight="700"/>
       <S.StackWrapper>
         {props.interestStacks.map((el, idx) => (
           <div key={idx}>
