@@ -8,7 +8,8 @@
     "build:ssr": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate": "graphql-codegen"
+    "generate": "graphql-codegen",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@apollo/client": "^3.5.10",
@@ -49,6 +50,7 @@
     "eslint-plugin-promise": "^5.2.0",
     "eslint-plugin-react": "^7.29.4",
     "patch-package": "^6.4.7",
+    "postinstall-postinstall": "^2.1.0",
     "prettier": "2.5.1",
     "typescript": "^4.6.2"
   }
