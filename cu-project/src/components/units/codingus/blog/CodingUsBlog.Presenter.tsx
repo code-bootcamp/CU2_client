@@ -3,6 +3,7 @@ import Blank from "../../../commons/Blank";
 import UserCard from "../card/userCard/UserCard";
 import BlogCard from "../card/blogCard/BlogCard";
 import * as S from "./CodingUsBlog.Style";
+import BlogShortCard from "../card/blogShortCard/BlogShortCard";
 export default function CodingUsBlogUI(props: ICodingUsBlogUIProps) {
   return (
     <div
@@ -44,6 +45,21 @@ export default function CodingUsBlogUI(props: ICodingUsBlogUIProps) {
         writer={"작성자"}
         isBad={false}
       ></BlogCard>
+      <Blank height="50px" />
+      <BlogShortCard
+        width={285}
+        height={327}
+        image={"https://source.unsplash.com/random"}
+        stacks={["JavaScript","HTML5","CSS3"]}
+        title={"모든 국민은 학문과 예술의 자유를 가진다. 근로조건의 기준은 인간의 존엄성을 보장하도록 법률로 정한다"}
+        content={"모든 국민은 학문과 예술의 자유를 가진다. 근로조건의 기준은 인간의 존엄성을 보장하도록 법률로 정한다. 국회는 선전포고, 국군의 외국에의 파견 또는 외…"}
+        goodCnt={3}
+        badCnt={31}
+        createdAt={"2022-02-07T14:42:54.920Z"}
+        isGood={false}
+        writer={"작성자"}
+        isBad={false}
+      ></BlogShortCard>
     </div>
   );
 }

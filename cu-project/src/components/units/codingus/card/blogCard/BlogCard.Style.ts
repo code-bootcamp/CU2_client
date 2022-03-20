@@ -29,12 +29,7 @@ export const Body = styled.div`
 `;
 
 export const StackWrapper = styled(RowWrapper)``;
-export const Stack = styled.div`
-  background-color: #222222;
-  color: #ffffff;
-  padding: 7px 30px;
-  border-radius: 8px;
-`;
+
 
 export const Title = styled.div`
   font-weight: 700;

@@ -3,6 +3,7 @@ import * as S from "./BlogCard.Style";
 import Blank from "../../../../commons/Blank";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import { getShortDateString } from "../../../../../commons/libraries/dateUtils";
+import Tag01 from "../../../../commons/Tag/Tag01";
 
 interface ICodingUsCardProps {
   width?: number;
@@ -37,7 +38,7 @@ export default function BlogCard(props: ICodingUsCardProps) {
               <Blank width="10px" />
               </div>
             ))} */}
-          {props.stacks && <S.Stack>{props.stacks[0]}</S.Stack>}
+          {props.stacks && <Tag01 value={props.stacks[0]} />}
         </S.StackWrapper>
         <Blank height="38px" />
         <S.Title>{props.title}</S.Title>
@@ -46,7 +47,7 @@ export default function BlogCard(props: ICodingUsCardProps) {
         <Blank height="11px" />
         <S.Writer>{props.writer}</S.Writer>
       </S.Body>
-        <Blank height="20px" />
+      <Blank height="20px" />
       <S.FooterWrapper>
         <S.GoodBad>
           <img
@@ -64,7 +65,7 @@ export default function BlogCard(props: ICodingUsCardProps) {
           <Label01 value={String(props.badCnt).padStart(4, "0")} size="18px" />
         </S.GoodBad>
         <Label01
-          value={getShortDateString(props.createdAt)}
+          value={getShortDateString(String(props.createdAt))}
           size="18px"
           color="#C4C4C4"
         />
