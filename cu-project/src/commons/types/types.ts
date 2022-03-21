@@ -1,10 +1,46 @@
-// #region Commons
-export interface ILoginUIProps {}
+import {
+  FieldValues,
+  FormState,
+  UseFormHandleSubmit,
+  UseFormRegister,
+} from "react-hook-form";
+import { CheckboxChangeEvent } from "antd/lib/checkbox/Checkbox";
+import { ChangeEvent } from "react";
+import { IPage } from "../../components/commons/hooks/useMoveToPage";
+
+// #region Login && Register
+export interface FormValues {
+  name?: string;
+  email?: string;
+  password?: string;
+  checkPassword?: string;
+}
+
+export interface ILoginUIProps {
+  register: UseFormRegister<FieldValues>;
+  formState: FormState<FieldValues>;
+  handleSubmit: UseFormHandleSubmit<FieldValues>;
+  onClickLogin: (data: FormValues) => void;
+  moveToPage: (page: IPage) => () => void;
+}
 export interface ILoginProps {}
 
-export interface IRegisterUIProps {}
+export interface IRegisterUIProps {
+  register: UseFormRegister<FieldValues>;
+  formState: FormState<FieldValues>;
+  handleSubmit: UseFormHandleSubmit<FieldValues>;
+  onClickRegister: (data: FormValues) => void;
+}
 export interface IRegisterProps {}
 
+// #endregion
+
+// #region Find
+export interface IFindUIProps {}
+export interface IFindProps {}
+// #endregion
+
+// #region Search
 export interface ISearchUIProps {}
 export interface ISearchProps {}
 // #endregion
@@ -14,7 +50,9 @@ export interface ICodingUsBlogProps {}
 export interface ICodingUsBlogUIProps {}
 
 export interface ICodingUsMainProps {}
-export interface ICodingUsMainUIProps {}
+export interface ICodingUsMainUIProps {
+  moveToPage: (page: string) => void;
+}
 
 export interface ICodingUsStackProps {}
 export interface ICodingUsStackUIProps {}
@@ -24,11 +62,17 @@ export interface ICodingUsRankUIProps {}
 // #endregion
 
 // #region CoachingUs
-export interface ICoachingUsCommentsProps {}
-export interface ICoachingUsCommentsUIProps {}
+export interface ICoachingUsLandingProps {}
+export interface ICoachingUsLandingUIProps {
+  corList: string[];
+  onChangeCheckBox: (event: CheckboxChangeEvent) => void;
+}
 
 export interface ICoachingUsMainProps {}
 export interface ICoachingUsMainUIProps {}
+
+export interface ICoachingUsCommentsProps {}
+export interface ICoachingUsCommentsUIProps {}
 
 export interface ICoachingUsProfileProps {}
 export interface ICoachingUsProfileUIProps {}
@@ -40,4 +84,21 @@ export interface ICoachingUsQuestionUIProps {}
 // #region MyPage
 export interface IMyPageProps {}
 export interface IMyPageUIProps {}
+// #endregion
+
+// #region MainPage
+export interface MainPageProps {}
+export interface MainPageUIProps {
+  blogSettings: {
+    infinite: boolean;
+    slidesToShow: number;
+    slidesToScroll: number;
+    arrows: boolean;
+    nextArrow: any;
+    prevArrow: any;
+  };
+  SampleNextArrow: any;
+  SamplePrevArrow: any;
+}
+
 // #endregion
