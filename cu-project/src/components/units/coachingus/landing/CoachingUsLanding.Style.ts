@@ -103,11 +103,13 @@ export const LeftSideBar = styled.div`
   display: flex;
   justify-content: flex-end;
   min-width: 300px;
+  min-height: 100vh;
 `;
 
 export const RightSideBar = styled.div`
-  height: 100%;
+  display: flex;
   min-width: 300px;
+  min-height: 100vh;
 `;
 
 export const SideBarContainer = styled.div`

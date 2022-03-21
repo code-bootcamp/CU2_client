@@ -1,8 +1,8 @@
-import { ICoachingUsMainUIProps } from "../../../../../commons/types/types";
+import { ICoachingUsColumnsCardUIProps } from "../../../../../commons/types/types";
 import Blank from "../../../../commons/Blank";
 import * as S from "./ColumnsCard.Style";
 
-export default function ColumnsCardUI(props: ICoachingUsMainUIProps) {
+export default function ColumnsCardUI(props: ICoachingUsColumnsCardUIProps) {
   return (
     <S.ContainerColumnsList>
       <S.ColumnsListTitle>

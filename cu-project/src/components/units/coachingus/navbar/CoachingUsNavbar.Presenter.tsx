@@ -1,7 +1,8 @@
+import { ICoachingUsNavbarUIProps } from "../../../../commons/types/types";
 import Blank from "../../../commons/Blank";
 import * as S from "./CoachingUsNavbar.Style";
 
-export default function CoachingUsNavbarUI(props) {
+export default function CoachingUsNavbarUI(props: ICoachingUsNavbarUIProps) {
   return (
     <S.Wrapper>
       <S.CoachingUs
@@ -13,11 +14,11 @@ export default function CoachingUsNavbarUI(props) {
       </S.CoachingUs>
       <Blank width="100px" />
       <S.Coach
-        onClick={props.moveToPage("/coachingus/coach")}
-        isCurrent={props.currentPath === "/coachingus/coach"}
+        onClick={props.moveToPage("/coachingus/coaches")}
+        isCurrent={props.currentPath === "/coachingus/coaches"}
       >
-        Coach
-        {props.currentPath === "/coachingus/coach" && <S.BoldLine />}
+        Coaches
+        {props.currentPath === "/coachingus/coaches" && <S.BoldLine />}
       </S.Coach>
       <Blank width="100px" />
       <S.Column
