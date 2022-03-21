@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { ICurrentPathProps } from "../../../../commons/types/types";
 
 export const Wrapper = styled.div`
   min-width: 100vw;
@@ -16,7 +17,8 @@ export const CoachingUs = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-weight: ${({ isCurrent }) => (isCurrent ? "bold" : "normal")};
+  font-weight: ${(props: ICurrentPathProps) =>
+    props.isCurrent ? "bold" : "normal"};
   cursor: pointer;
 `;
 
@@ -26,7 +28,8 @@ export const Coach = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-weight: ${({ isCurrent }) => (isCurrent ? "bold" : "normal")};
+  font-weight: ${(props: ICurrentPathProps) =>
+    props.isCurrent ? "bold" : "normal"};
   cursor: pointer;
 `;
 
@@ -36,7 +39,8 @@ export const Column = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-weight: ${({ isCurrent }) => (isCurrent ? "bold" : "normal")};
+  font-weight: ${(props: ICurrentPathProps) =>
+    props.isCurrent ? "bold" : "normal"};
   cursor: pointer;
 `;
 
@@ -46,7 +50,8 @@ export const CoachRegister = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-weight: ${({ isCurrent }) => (isCurrent ? "bold" : "normal")};
+  font-weight: ${(props: ICurrentPathProps) =>
+    props.isCurrent ? "bold" : "normal"};
   cursor: pointer;
 `;
 export const BoldLine = styled.div`

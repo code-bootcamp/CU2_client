@@ -4,10 +4,8 @@ import * as S from "./CoachingUsLanding.Style";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import CoachingUsSidebarLeft from "../sidebar/left/CoachingUsSidebar.Container";
 import CoachingUsSidebarRight from "../sidebar/right/CoachingUsSidebar.Container";
-
 import { Checkbox } from "antd";
 import "antd/dist/antd.css";
-import React from "react";
 
 export default function CoachingUsLandingUI(props: ICoachingUsLandingUIProps) {
   return (

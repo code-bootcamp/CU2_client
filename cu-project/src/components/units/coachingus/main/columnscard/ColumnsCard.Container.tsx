@@ -1,8 +1,8 @@
-import { ICoachingUsMainProps } from "../../../../../commons/types/types";
+import { ICoachingUsColumnsCardProps } from "../../../../../commons/types/types";
 import ColumnsCardUI from "./ColumnsCard.Presenter";
 import {} from "../CoachingUsMain.Queries";
 
-export default function ColumnsCardPage(props: ICoachingUsMainProps) {
+export default function ColumnsCardPage(props: ICoachingUsColumnsCardProps) {
   const columnList = [
     {
       id: 0,

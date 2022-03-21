@@ -1,9 +1,9 @@
-import { ICoachingUsMainUIProps } from "../../../../../commons/types/types";
+import { ICoachingUsRecCoachCardUIProps } from "../../../../../commons/types/types";
 import Blank from "../../../../commons/Blank";
 import * as S from "./RecCoachCard.Style";
 import getMoney from "../../../../../commons/libraries/getMoney";
 
-export default function RecCoachCardUI(props: ICoachingUsMainUIProps) {
+export default function RecCoachCardUI(props: ICoachingUsRecCoachCardUIProps) {
   return (
     <S.ContainerRecommendCoach>
       <p>추천 Coaches</p>

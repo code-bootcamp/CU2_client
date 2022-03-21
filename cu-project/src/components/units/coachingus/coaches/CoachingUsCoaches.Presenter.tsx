@@ -1,5 +1,5 @@
 import CoachingUsNavbarPage from "../navbar/CoachingUsNavbar.Container";
-import * as S from "./CoachingUsCoach.Style";
+import * as S from "./CoachingUsCoaches.Style";
 
 export default function CoachingUsCoachUI() {
   return (

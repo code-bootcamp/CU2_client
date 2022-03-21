@@ -1,7 +1,10 @@
-import { ICoachingUsMainProps } from "../../../../../commons/types/types";
+import { ICoachingUsCoachesCardProps } from "../../../../../commons/types/types";
 import CoachesCardUI from "./CoachesCard.Presenter";
 import {} from "../CoachingUsMain.Queries";
-export default function CoachesCardPage(props: ICoachingUsMainProps) {
+import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
+export default function CoachesCardPage(props: ICoachingUsCoachesCardProps) {
+  const { moveToPage } = useMoveToPage();
+
   const coachesList = [
     {
       id: 0,
@@ -77,5 +80,5 @@ export default function CoachesCardPage(props: ICoachingUsMainProps) {
     },
   ];
 
-  return <CoachesCardUI coachesList={coachesList} />;
+  return <CoachesCardUI coachesList={coachesList} moveToPage={moveToPage} />;
 }
