@@ -10,7 +10,6 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 40px;
-
   position: fixed;
   top: 0;
 `;
