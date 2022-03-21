@@ -11,7 +11,7 @@ export default function LayoutHeaderPageUI(props) {
           // onClick={props.moveToPage("/main")}
           isCurrent={props.currentPath === "/coachingus"}
         >
-          CU2
+          CUS
         </S.HeaderLogo>
       </S.LeftHeader>
       <S.RightHeader>
