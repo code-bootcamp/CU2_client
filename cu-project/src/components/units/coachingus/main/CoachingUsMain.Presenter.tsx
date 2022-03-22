@@ -11,24 +11,21 @@ import Carousel from "./test";
 
 export default function CoachingUsMainUI(props: ICoachingUsMainUIProps) {
   return (
-    <>
-      <S.Wrapper>
-        <Banner />
-        <Blank height="40px" />
-        <S.CoachingUsMainBody>
-          <S.LeftSideBar>
-            <CoachingUsSidebarLeft />
-          </S.LeftSideBar>
-          <S.LandingBody>
-            <Blank height="40px" />
-            <CoachesCardPage />
-            <Blank height="10px" />
-            <ColumnsCardPage />
-          </S.LandingBody>
-          <S.RightSideBar>{/* <CoachingUsSidebarRight /> */}</S.RightSideBar>
-        </S.CoachingUsMainBody>
-      </S.Wrapper>
-      <Carousel />
-    </>
+    <S.Wrapper>
+      <Banner />
+      <Blank height="40px" />
+      <S.CoachingUsMainBody>
+        <S.LeftSideBar>
+          <CoachingUsSidebarLeft />
+        </S.LeftSideBar>
+        <S.LandingBody>
+          <Blank height="40px" />
+          <CoachesCardPage />
+          <Blank height="10px" />
+          <ColumnsCardPage />
+        </S.LandingBody>
+        <S.RightSideBar>{/* <CoachingUsSidebarRight /> */}</S.RightSideBar>
+      </S.CoachingUsMainBody>
+    </S.Wrapper>
   );
 }

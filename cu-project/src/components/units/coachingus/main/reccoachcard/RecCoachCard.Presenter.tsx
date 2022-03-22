@@ -9,9 +9,14 @@ export default function RecCoachCardUI(props: ICoachingUsRecCoachCardUIProps) {
   return (
     <S.ContainerRecommendCoach>
       <p>Best Coaches</p>
+      {props.isStart && <S.Block />}
       <S.ContainerRecommendCoachBody>
         {props.recommendCoachList.map((coach, index) => (
-          <S.RecommendCoach key={coach.id} number={(index + 1) * 1500 + "ms"}>
+          <S.RecommendCoach
+            key={coach.id}
+            number={(index + 1) * 800 + "ms"}
+            isStart={props.isStart}
+          >
             <S.RecommendCoachPicture></S.RecommendCoachPicture>
             <S.ProfileWapper>
               <S.CoachProfile>

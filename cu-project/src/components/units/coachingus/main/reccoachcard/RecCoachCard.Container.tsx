@@ -1,8 +1,10 @@
 import RecCoachCardUI from "./RecCoachCard.Presenter";
 import {} from "../CoachingUsMain.Queries";
 import { ICoachingUsRecCoachCardProps } from "../../../../../commons/types/types";
+import { useEffect, useState } from "react";
 
 export default function RecCoachCardPage(props: ICoachingUsRecCoachCardProps) {
+  const [isStart, setIsStart] = useState(true);
   const recommendCoachList = [
     {
       id: 0,
@@ -42,5 +44,15 @@ export default function RecCoachCardPage(props: ICoachingUsRecCoachCardProps) {
     },
   ];
 
-  return <RecCoachCardUI recommendCoachList={recommendCoachList} />;
+  useEffect(() => {
+    setTimeout(() => {
+      setIsStart(false);
+    }, 2200);
+
+    console.log(isStart);
+  }, []);
+
+  return (
+    <RecCoachCardUI recommendCoachList={recommendCoachList} isStart={isStart} />
+  );
 }

@@ -18,6 +18,12 @@ export const ContainerRecommendCoach = styled.div`
   }
 `;
 
+export const Block = styled.div`
+  min-width: 100vw;
+  min-height: 65%;
+  position: absolute;
+  z-index: 2;
+`;
 export const ContainerRecommendCoachBody = styled.div`
   display: flex;
   justify-content: center;
@@ -32,8 +38,11 @@ export const RecommendCoach = styled.div`
   height: 420px;
   margin: 10px 10px;
   box-shadow: 0px 4px 4px 0px #00000040;
-  animation: ${({ number }) => `fadeIn ${number} forwards`};
-  /* animation-delay:  */
+  animation: ${({ number, isStart }) =>
+    isStart && `fadeIn ${number} ease-in-out`};
+  :hover {
+    animation: hoverUp 0.5s ease-in-out both;
+  }
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -42,6 +51,14 @@ export const RecommendCoach = styled.div`
     to {
       opacity: 3;
       transform: none;
+    }
+  }
+  @keyframes hoverUp {
+    from {
+      transform: translate(0, 0px);
+    }
+    to {
+      transform: scale(1.03) translate(0, -20px);
     }
   }
 `;
