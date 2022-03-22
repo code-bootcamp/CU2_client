@@ -1,10 +1,36 @@
 import { IMyPageMenuUIProps } from "../../../../commons/types/types";
 import Blank from "../../../commons/Blank";
 import * as S from "./MypageMenu.Style";
+import { Modal } from "antd";
+import "antd/dist/antd.css";
 
 export default function MypageMenuUI(props: IMyPageMenuUIProps) {
   return (
     <S.Wrapper>
+      {props.isModal && (
+        <Modal
+          visible={true}
+          // onOk={}
+          onCancel={props.onClickModal}
+          okText="충전하기"
+          cancelText="취소하기"
+          style={{ textAlign: "center", width: "100%" }}
+        >
+          <h1>CU2 포인트 충전</h1>
+          <select
+            // onChange={}
+            style={{ width: "80%", textAlign: "center", fontSize: "18px" }}
+          >
+            <option selected disabled>
+              CU Point 충전 금액을 선택해주세요.
+            </option>
+            <option value="5000">5,000 포인트</option>
+            <option value="10000">10,000 포인트</option>
+            <option value="20000">20,000 포인트</option>
+            <option value="30000">30,000 포인트</option>
+          </select>
+        </Modal>
+      )}
       <S.TopMenu>
         <S.MyPageButton
           isSelect={true}
@@ -23,8 +49,7 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
           </S.MyPageButton>
         )}
       </S.TopMenu>
-      <Blank height="10px" />
-
+      <Blank height="20px" />
       <S.ProfileBox>
         <S.ProfileHead>
           <S.ProfileImg src="/pofile_img_default.png" />
@@ -51,7 +76,7 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
           <S.ProfileContents>
             <span>포인트</span>
             <p>
-              <S.ChargeButton>충전</S.ChargeButton>
+              <S.ChargeButton onClick={props.onClickModal}>충전</S.ChargeButton>
               <S.ChargeButton onClick={props.moveToPage("/mypage/user/point")}>
                 내역
               </S.ChargeButton>{" "}
@@ -83,15 +108,16 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
           <p>CodingUs</p>
           <Blank height="40px" />
           <button onClick={props.moveToPage("/mypage/user/blog")}>
-            내 블로그 보기
+            <img src="/mypage_Blog.png" /> 내 블로그 보기
           </button>
           <Blank height="50px" />
           <button onClick={props.moveToPage("/mypage/user/likepost")}>
-            좋아요한 포스트 보기
+            <img src="/Icon_Fill_Good2.png" /> Good한 포스트 보기
           </button>
           <Blank height="50px" />
           <button onClick={props.moveToPage("/mypage/user/questions")}>
-            {"내 Q&A 보기"}
+            <img src="/Icon_Fill_Question.png" />
+            {" 내 Q&A 보기"}
           </button>
         </S.MenuBox>
         <Blank height="75px" />
@@ -99,11 +125,11 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
           <p>CoachingUs</p>
           <Blank height="40px" />
           <button onClick={props.moveToPage("/mypage/user/point")}>
-            내 코칭 보기
+            <img src="/Icon_Coaching.png" />내 코칭 보기
           </button>
           <Blank height="50px" />
           <button onClick={props.moveToPage("/mypage/user/point")}>
-            좋아요한 칼럼 보기
+            <img src="/Icon_Fill_Good2.png" /> Good한 칼럼 보기
           </button>
         </S.MenuBox>
       </S.ProfileBox>

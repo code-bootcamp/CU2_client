@@ -27,6 +27,9 @@ export const Box = styled.div`
     background-color: #e9345a;
     border: none;
     border-radius: 8px;
+    :hover {
+      cursor: pointer;
+    }
   }
 `;
 
@@ -55,6 +58,9 @@ export const Row = styled.div`
 
 export const ChargeBox = styled.div`
   width: 90%;
+  & span {
+    color: #dbdbdb;
+  }
 `;
 
 export const ColumnHeaderBasic = styled.div`

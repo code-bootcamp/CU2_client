@@ -22,6 +22,9 @@ export const MyPageButton = styled.button`
   padding: 10px;
   border: none;
   border-radius: 10px;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 export const ProfileBox = styled.div``;
@@ -49,6 +52,9 @@ export const ProfileContents = styled.div`
     font-size: 12px;
     border: none;
     background-color: transparent;
+    :hover {
+      cursor: pointer;
+    }
   }
 `;
 
@@ -72,6 +78,9 @@ export const ChargeButton = styled.button`
   border: none;
   border-radius: 20px;
   margin-right: 10px;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 export const UserInfoEditBox = styled.div`
@@ -81,6 +90,9 @@ export const UserInfoEditBox = styled.div`
     height: 45px;
     border: none;
     border-radius: 8px;
+    :hover {
+      cursor: pointer;
+    }
   }
 `;
 
@@ -97,6 +109,9 @@ export const MenuBox = styled.div`
     border: none;
     font-size: 24px;
     background-color: transparent;
+    & img {
+      margin-right: 10px;
+    }
     :hover {
       cursor: pointer;
     }
