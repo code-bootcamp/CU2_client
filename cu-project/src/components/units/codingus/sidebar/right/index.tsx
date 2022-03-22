@@ -2,15 +2,15 @@ import Blank from "../../../../commons/Blank";
 import Label01 from "../../../../commons/Label/Label01";
 import * as S from "./style";
 
-interface ICodingUsRightSideBarProps {
+interface ICodingUsRightSidebarProps {
   todayPercent?: number;
   todayPoint?: number;
   todayRanking: { prev: number; today: number };
   totalRanking: { prev: number; today: number };
 }
 
-export default function CodingUsRightSideBar(
-  props: ICodingUsRightSideBarProps
+export default function CodingUsRightSidebar(
+  props: ICodingUsRightSidebarProps
 ) {
   const todayDiff =
     props.todayRanking?.prev - props.todayRanking?.today > 0
