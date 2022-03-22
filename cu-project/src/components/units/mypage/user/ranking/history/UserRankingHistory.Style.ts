@@ -18,7 +18,7 @@ export const Box = styled.div`
   width: 90%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
 `;
 
 export const MyPageButton = styled.button`

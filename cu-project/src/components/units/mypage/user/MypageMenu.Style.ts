@@ -56,6 +56,11 @@ export const ProfileContents = styled.div`
       cursor: pointer;
     }
   }
+  & p {
+    :hover {
+      cursor: pointer;
+    }
+  }
 `;
 
 export const MainStack = styled.div`

@@ -3,6 +3,7 @@ import MypageMenu from "../MypageMenu.Container";
 import * as S from "./UserPoint.Style";
 import { Modal } from "antd";
 import "antd/dist/antd.css";
+import { MyPageButton } from "../../../../commons/Button/MypageButton";
 
 export default function UserPointUI(props) {
   return (
@@ -34,7 +35,7 @@ export default function UserPointUI(props) {
           </Modal>
         )}
         <S.Box>
-          <button onClick={props.onClickModal}>충전하기</button>
+          <MyPageButton onClick={props.onClickModal} value={"충전하기"} />
         </S.Box>
         <Blank height="30px" />
 

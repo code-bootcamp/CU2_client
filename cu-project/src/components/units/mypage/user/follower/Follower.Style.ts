@@ -44,29 +44,12 @@ export const Row = styled.div`
   border-bottom: 1px solid gray;
 `;
 
-export const ChargeBox = styled.div`
+export const FollowerBox = styled.div`
   width: 90%;
-  & span {
-    color: #dbdbdb;
-  }
-`;
-
-export const ColumnHeaderBasic = styled.div`
-  width: 20%;
-  text-align: center;
-`;
-
-export const ColumnHeaderTitle = styled.div`
-  width: 40%;
-  text-align: center;
-`;
-
-export const ColumnBasic = styled.div`
-  width: 20%;
-  text-align: center;
-`;
-
-export const ColumnTitle = styled.div`
-  width: 40%;
-  text-align: center;
+  border: 1px solid #bdbdbd;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 `;

@@ -65,35 +65,41 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
           <Blank height="20px" />
           <S.ProfileContents>
             <span>팔로우</span>
-            <p>112</p>
+            <p onClick={props.moveToPage("/mypage/user/follow")}>112</p>
           </S.ProfileContents>
           <Blank height="20px" />
           <S.ProfileContents>
             <span>팔로워</span>
-            <p>20</p>
+            <p onClick={props.moveToPage("/mypage/user/follower")}>20</p>
           </S.ProfileContents>
           <Blank height="20px" />
           <S.ProfileContents>
             <span>포인트</span>
-            <p>
+            <div>
               <S.ChargeButton onClick={props.onClickModal}>충전</S.ChargeButton>
               <S.ChargeButton onClick={props.moveToPage("/mypage/user/point")}>
                 내역
-              </S.ChargeButton>{" "}
+              </S.ChargeButton>
               10,000
-            </p>
+            </div>
           </S.ProfileContents>
           <Blank height="20px" />
           <S.ProfileContents>
             <span>유저 랭킹</span>
-            <p>50등(▲ 2등)</p>
+            <p onClick={props.moveToPage("/mypage/user/ranking")}>
+              50등(▲ 2등)
+            </p>
           </S.ProfileContents>
           <Blank height="10px" />
           <S.ProfileContents>
             <span></span>
             <span>
-              <button>{`전체 랭킹 보기 > `}</button>
-              <button>{`점수 내역 보기 >`}</button>
+              <button
+                onClick={props.moveToPage("/mypage/user/ranking")}
+              >{`전체 랭킹 보기 > `}</button>
+              <button
+                onClick={props.moveToPage("/mypage/user/ranking/history")}
+              >{`점수 내역 보기 >`}</button>
             </span>
           </S.ProfileContents>
           <Blank height="30px" />
@@ -118,6 +124,10 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
           <button onClick={props.moveToPage("/mypage/user/questions")}>
             <img src="/Icon_Fill_Question.png" />
             {" 내 Q&A 보기"}
+          </button>
+          <Blank height="50px" />
+          <button onClick={props.moveToPage("/mypage/user/likequestion")}>
+            <img src="/Icon_Fill_Good2.png" /> {`Good한 Q&A 보기`}
           </button>
         </S.MenuBox>
         <Blank height="75px" />
