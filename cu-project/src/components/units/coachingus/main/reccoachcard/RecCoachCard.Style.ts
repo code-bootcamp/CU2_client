@@ -18,9 +18,16 @@ export const ContainerRecommendCoach = styled.div`
   }
 `;
 
+export const Block = styled.div`
+  min-width: 100vw;
+  min-height: 65%;
+  position: absolute;
+  z-index: 2;
+`;
 export const ContainerRecommendCoachBody = styled.div`
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 `;
 
 export const RecommendCoach = styled.div`
@@ -28,12 +35,15 @@ export const RecommendCoach = styled.div`
   align-items: center;
   background-color: white;
   border-radius: 5px;
-  width: 615px;
+  width: 550px;
   height: 420px;
-  margin: 10px 10px;
+  margin: 20px 20px;
   box-shadow: 0px 4px 4px 0px #00000040;
-  animation: ${({ number }) => `fadeIn ${number} forwards`};
-  /* animation-delay:  */
+  animation: ${({ number, isStart }) =>
+    isStart && `fadeIn ${number} ease-in-out`};
+  :hover {
+    animation: hoverUp 0.5s ease-in-out both;
+  }
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -42,6 +52,14 @@ export const RecommendCoach = styled.div`
     to {
       opacity: 3;
       transform: none;
+    }
+  }
+  @keyframes hoverUp {
+    from {
+      transform: translate(0, 0px);
+    }
+    to {
+      transform: scale(1.03) translate(0, -20px);
     }
   }
 `;
@@ -78,7 +96,7 @@ export const CoachCor = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 600;
 `;
 export const CoachSubCor = styled.div`
@@ -86,10 +104,10 @@ export const CoachSubCor = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  font-size: 21px;
+  font-size: 18px;
   font-weight: lighter;
   & > p {
-    font-size: 21px;
+    font-size: 18px;
     font-weight: 400;
   }
 `;
@@ -127,9 +145,9 @@ export const RecommendCoachTags = styled.div`
 export const CoachTag = styled.div`
   width: fit-content;
   color: #bdbdbd;
-  margin: 0 5px;
   border-radius: 20px;
   padding: 5px 15px;
+  margin: 15px 5px 0 5px;
   border: 1px solid #c4c4c4;
 `;
 export const RecommendCoachInfo = styled.div`
@@ -138,7 +156,7 @@ export const RecommendCoachInfo = styled.div`
   align-items: center;
   width: 100%;
   font-weight: 200;
-  font-size: 16px;
+  font-size: 14px;
 `;
 export const CoachInfoFollower = styled.div`
   display: flex;

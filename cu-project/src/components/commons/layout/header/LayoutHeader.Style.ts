@@ -14,6 +14,8 @@ export const Wrapper = styled.div`
   padding: 0 40px;
   position: fixed;
   top: 0;
+
+  z-index: 10;
 `;
 
 export const LeftHeader = styled.div``;
