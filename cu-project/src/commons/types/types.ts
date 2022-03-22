@@ -83,7 +83,15 @@ export interface ICoachingUsQuestionUIProps {}
 
 // #region MyPage
 export interface IMyPageProps {}
-export interface IMyPageUIProps {}
+export interface IMyPageUIProps {
+  moveToPage: (page: IPage) => () => void;
+  onClickModal: () => void;
+  isModal: boolean;
+}
+export interface IMyPageMenuUIProps {
+  isCoach: boolean;
+  moveToPage: (page: IPage) => () => void;
+}
 // #endregion
 
 // #region MainPage

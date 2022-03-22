@@ -10,7 +10,11 @@ export type IPage =
   | "/login"
   | "/mypage"
   | "/register"
-  | "/search";
+  | "/search"
+  | "/mypage/user/point"
+  | "/mypage/user/blog"
+  | "/mypage/user/questions"
+  | "/mypage/user/likepost";
 
 export function useMoveToPage() {
   const router = useRouter();
