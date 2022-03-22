@@ -1,6 +1,5 @@
 import * as S from "./BlogShortCard.Style";
 import Blank from "../../../../commons/Blank";
-import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import Tag01 from "../../../../commons/Tag/Tag01";
 
 interface ICodingUsCardProps {
@@ -17,7 +16,7 @@ export default function BlogShortCard(props: ICodingUsCardProps) {
       width={props.width ? `${props.width}px` : "285px"}
       height={props.height ? `${props.height}px` : "327px"}
     >
-      <Tag01 value={props.stacks ? props.stacks[0] : ""} />
+    <Tag01 isShort={true} value={props.stacks ? props.stacks[0] : ""} />
       <Blank height="18px" />
       <S.Image src={props.image ?? "https://source.unsplash.com/random"} />
       <Blank height="19px" />

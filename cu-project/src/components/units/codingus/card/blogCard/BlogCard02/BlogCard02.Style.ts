@@ -13,17 +13,17 @@ export const Wrapper = styled.div`
   height: : ${(props: ICardWrapperProps) => props.height};
   border-radius: 8px;
   background-color: #FFFFFF;
-  border: 1px solid #F0F0F0;
+  margin-bottom: 40px;
 `;
 
 export const Image = styled.img`
-  width: 386px;
-  height: 251px;
+  width: 285px;
+  height: 182px;
   border: none;
 `;
 
 export const Body = styled.div`
-  padding: 0px 20px;
+  padding: 0px 0px;
   width: 100%;
   height: 100%;
 `;
@@ -39,8 +39,10 @@ export const Title = styled.div`
 
 export const FooterWrapper = styled(RowWrapper)`
   display: flex;
-  padding: 0px 20px 20px 20px;
-  justify-content: space-between;
+  
+`;
+export const ButtonWrapper = styled(RowWrapper)`
+  display: flex;
 `;
 
 export const Contents = styled.div`
