@@ -5,5 +5,5 @@ import {} from "./CodingUsMain.Queries";
 export default function CodingUsMain(props: ICodingUsMainProps) {
   const { moveToPage } = useMoveToPage();
 
-  return <CodingUsMainUI moveToPage = {moveToPage} />;
+  return <CodingUsMainUI moveToPage={moveToPage} />;
 }

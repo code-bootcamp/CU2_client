@@ -1,7 +1,8 @@
 import RecCoachCardUI from "./RecCoachCard.Presenter";
 import {} from "../CoachingUsMain.Queries";
+import { ICoachingUsRecCoachCardProps } from "../../../../../commons/types/types";
 
-export default function RecCoachCardPage() {
+export default function RecCoachCardPage(props: ICoachingUsRecCoachCardProps) {
   const recommendCoachList = [
     {
       id: 0,

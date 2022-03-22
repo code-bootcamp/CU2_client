@@ -46,7 +46,7 @@ export default function BlogCard(props: ICodingUsCardProps) {
         <Blank height="11px" />
         <S.Writer>{props.writer}</S.Writer>
       </S.Body>
-        <Blank height="20px" />
+      <Blank height="20px" />
       <S.FooterWrapper>
         <S.GoodBad>
           <img
