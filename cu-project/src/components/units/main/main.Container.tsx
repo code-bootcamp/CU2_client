@@ -1,44 +1,44 @@
+import { notification } from "antd";
+import "antd/dist/antd.css";
+import { useEffect } from "react";
 import { MainPageProps } from "../../../commons/types/types";
+import { useMoveToPage } from "../../commons/hooks/useMoveToPage";
 import MainUI from "./main.Presenter";
 import {} from "./main.Queries";
 
 export default function Main(props: MainPageProps) {
-  function SampleNextArrow(props: any) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", background: "red" }}
-        onClick={onClick}
-      />
-    );
-  }
+  const { moveToPage } = useMoveToPage();
 
-  function SamplePrevArrow(props: any) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", background: "green" }}
-        onClick={onClick}
-      />
-    );
-  }
+  const openNotification = (placement) => {
+    notification.info({
+      message: `ㅎㅇ`,
+      description:
+        "This is the content of the notification. This is the content of the notification. This is the content of the notification.",
+      onClick: () => {
+        console.log("Notification Clicked!");
+      },
+    });
+  };
 
-  const blogSettings = {
+  useEffect(() => {
+    () => openNotification("bottomRight");
+  }, []);
+
+  const settings = {
     infinite: true,
-    slidesToShow: 5,
+    slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: true,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
   };
 
   return (
-    <MainUI
-      blogSettings={blogSettings}
-      SampleNextArrow={SampleNextArrow}
-      SamplePrevArrow={SamplePrevArrow}
-    />
+    <>
+      <button
+        onClick={() => openNotification("bottomRight")}
+        style={{ display: "none" }}
+      >
+        bottomRight
+      </button>
+      <MainUI settings={settings} moveToPage={moveToPage} />
+    </>
   );
 }

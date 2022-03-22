@@ -169,6 +169,7 @@ export interface IMyPageUIProps {}
 // #region MainPage
 export interface MainPageProps {}
 export interface MainPageUIProps {
+  moveToPage: (page: IPage) => () => void;
   blogSettings: {
     infinite: boolean;
     slidesToShow: number;
