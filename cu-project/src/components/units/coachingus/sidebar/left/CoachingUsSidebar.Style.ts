@@ -1,27 +1,22 @@
 import styled from "@emotion/styled";
 
 export const SideBarContainer = styled.div`
-  width: 200px;
+  width: 100%;
   height: fit-content;
-  margin: 0px 10px 0px 10px;
-  border-radius: 15px;
-  background-color: #f6f5f5;
-
-  position: sticky;
-  top: 15%;
 `;
 
 export const SideBarContainerHeader = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  background-color: black;
-  color: white;
+  align-items: flex-start;
+  font-size: 18px;
   width: 100%;
   height: 20%;
   border-radius: 15px 15px 0 0;
   padding: 5px 10px 5px 10px;
+
+  border-bottom: 2px solid black;
 `;
 
 export const SideBarContainerBody = styled.div`
@@ -41,8 +36,8 @@ export const FavorList = styled.div`
   justify-content: center;
   width: 90%;
   height: 2rem;
-  border-radius: 10px;
+  border-radius: 15px;
   color: black;
   border: 1px solid #c4c4c4;
-  margin: 5px 0;
+  margin: 10px 0;
 `;

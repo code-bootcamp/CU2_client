@@ -31,11 +31,7 @@ export const CoachesSubTitle = styled.div`
   text-align: center;
   color: #333333;
 `;
-export const MoreCoachesListBtn = styled.div`
-  font-size: 14px;
-  font-weight: lighter;
-  cursor: pointer;
-`;
+
 export const ContainerCoachesListBody = styled.div`
   display: flex;
   justify-content: center;
@@ -121,4 +117,21 @@ export const CoachInfoFollower = styled.div`
 `;
 export const CoachInfoScore = styled.div`
   display: flex;
+`;
+
+export const MoreCoachesListBtn = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: lighter;
+  cursor: pointer;
+  width: 285px;
+  height: 56px;
+  font-size: 20px;
+  font-weight: 400;
+  color: white;
+  background: #ea345a;
+
+  cursor: pointer;
 `;

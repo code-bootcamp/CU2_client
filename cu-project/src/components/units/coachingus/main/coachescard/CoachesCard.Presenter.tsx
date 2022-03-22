@@ -64,7 +64,7 @@ export default function CoachesCardUI(props: ICoachingUsCoachesCardUIProps) {
         ))}
       </S.ContainerCoachesListBody>
       <S.MoreCoachesListBtn onClick={props.moveToPage(`/coachingus/coach`)}>
-        더보기 {">"}
+        더 많은 코치보기 {">"}
       </S.MoreCoachesListBtn>
     </S.ContainerCoaches>
   );

@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const Wrapper = styled.div`
   min-width: 100vw;
   padding: 50px 0 0 0;
-  height: 712px;
+  height: 764px;
   background: linear-gradient(
     270deg,
     #2d0d55 0%,

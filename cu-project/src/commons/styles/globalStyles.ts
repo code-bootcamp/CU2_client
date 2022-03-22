@@ -15,7 +15,7 @@ export const globalStyles = css`
         format("woff2"),
       url("/fonts/AppleSDGothicNeo/100_AppleSDGothicNeo-Thin.otf")
         format("opentype");
-    unicode-range: U+0030-0039, U+AC00-U+D7A3;
+    unicode-range: U+0030-0039, U+AC00- U+D7A3;
   }
 
   @font-face {
@@ -26,7 +26,7 @@ export const globalStyles = css`
         format("woff2"),
       url("/fonts/AppleSDGothicNeo/200_AppleSDGothicNeo-UltraLight.otf")
         format("opentype");
-    unicode-range: U+0030-0039, U+AC00-U+D7A3;
+    unicode-range: U+0030-0039, U+AC00- U+D7A3;
   }
 
   @font-face {
@@ -37,7 +37,7 @@ export const globalStyles = css`
         format("woff2"),
       url("/fonts/AppleSDGothicNeo/300_AppleSDGothicNeo-Light.otf")
         format("opentype");
-    unicode-range: U+0030-0039, U+AC00-U+D7A3;
+    unicode-range: U+0030-0039, U+AC00- U+D7A3;
   }
 
   @font-face {
@@ -48,7 +48,7 @@ export const globalStyles = css`
         format("woff2"),
       url("/fonts/AppleSDGothicNeo/400_AppleSDGothicNeo-Medium.otf")
         format("opentype");
-    unicode-range: U+0030-0039, U+AC00-U+D7A3;
+    unicode-range: U+0030-0039, U+AC00- U+D7A3;
   }
 
   @font-face {
@@ -59,7 +59,7 @@ export const globalStyles = css`
         format("woff2"),
       url("/fonts/AppleSDGothicNeo/500_AppleSDGothicNeo-Regular.otf")
         format("opentype");
-    unicode-range: U+0030-0039, U+AC00-U+D7A3;
+    unicode-range: U+0030-0039, U+AC00- U+D7A3;
   }
 
   @font-face {
@@ -70,7 +70,7 @@ export const globalStyles = css`
         format("woff2"),
       url("/fonts/AppleSDGothicNeo/600_AppleSDGothicNeo-SemiBold.otf")
         format("opentype");
-    unicode-range: U+0030-0039, U+AC00-U+D7A3;
+    unicode-range: U+0030-0039, U+AC00- U+D7A3;
   }
 
   @font-face {
@@ -82,7 +82,7 @@ export const globalStyles = css`
         format("woff2"),
       url("/fonts/AppleSDGothicNeo/700_AppleSDGothicNeo-Bold.otf")
         format("opentype");
-    unicode-range: U+0030-0039, U+AC00-U+D7A3;
+    unicode-range: U+0030-0039, U+AC00- U+D7A3;
   }
 
   @font-face {
@@ -93,7 +93,7 @@ export const globalStyles = css`
         format("woff2"),
       url("/fonts/AppleSDGothicNeo/800_AppleSDGothicNeo-ExtraBold.otf")
         format("opentype");
-    unicode-range: U+0030-0039, U+AC00-U+D7A3;
+    unicode-range: U+0030-0039, U+AC00- U+D7A3;
   }
 
   @font-face {
@@ -104,7 +104,7 @@ export const globalStyles = css`
         format("woff2"),
       url("/fonts/AppleSDGothicNeo/900_AppleSDGothicNeo-Heavy.otf")
         format("opentype");
-    unicode-range: U+0030-0039, U+AC00-U+D7A3;
+    unicode-range: U+0030-0039, U+AC00- U+D7A3;
   }
 
   // Roboto

@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 export const SearchBarArea = styled.div`
   display: flex;
   align-items: center;
-  height: 40%;
+  height: 50%;
   width: 100%;
   background: #f6f5f5;
   border-radius: 100px;
