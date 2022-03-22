@@ -1,10 +1,12 @@
 import { CheckboxChangeEvent } from "antd/lib/checkbox/Checkbox";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { ICoachingUsLandingProps } from "../../../../commons/types/types";
 import CoachingUsLandingUI from "./CoachingUsLanding.Presenter";
 import {} from "./CoachingUsLanding.Queries";
 
 export default function CoachingUsLanding(props: ICoachingUsLandingProps) {
+  const router = useRouter();
   const corList = [
     "대기업",
     "IT",
@@ -14,18 +16,17 @@ export default function CoachingUsLanding(props: ICoachingUsLandingProps) {
     "외국계",
     "대학원",
   ];
-  const [favorList, setFavorList] = useState([]);
+  const [favorList, setFavorList] = useState<(string | undefined)[]>([]);
 
   const onChangeCheckBox = (e: CheckboxChangeEvent) => {
     if (e.target.checked) {
       setFavorList([...favorList, e.target.id]);
     }
 
-    let temp = e.target.id;
     let restList;
 
     if (!e.target.checked) {
-      [temp, ...restList] = favorList;
+      [e.target.id, ...restList] = favorList;
       setFavorList([...restList]);
     }
   };
@@ -33,8 +34,9 @@ export default function CoachingUsLanding(props: ICoachingUsLandingProps) {
   const onClickStart = () => {
     if (!favorList.length) alert("관심 카테고리를 선택해주세요.");
     else {
-      localStorage.setItem("favorList", favorList);
+      localStorage.setItem("favorList", String(favorList));
       props.setIsFavorites(true);
+      window.location.reload();
     }
   };
 

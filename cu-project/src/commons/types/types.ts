@@ -1,11 +1,11 @@
+import { CheckboxChangeEvent } from "antd/lib/checkbox/Checkbox";
 import {
   FieldValues,
   FormState,
   UseFormHandleSubmit,
   UseFormRegister,
 } from "react-hook-form";
-import { CheckboxChangeEvent } from "antd/lib/checkbox/Checkbox";
-import { ChangeEvent } from "react";
+
 import { IPage } from "../../components/commons/hooks/useMoveToPage";
 
 // #region Login && Register
@@ -62,14 +62,77 @@ export interface ICodingUsRankUIProps {}
 // #endregion
 
 // #region CoachingUs
-export interface ICoachingUsLandingProps {}
+export interface ICoachingUsLandingProps {
+  setIsFavorites: (props: boolean) => void;
+}
 export interface ICoachingUsLandingUIProps {
   corList: string[];
   onChangeCheckBox: (event: CheckboxChangeEvent) => void;
+  onClickStart: () => void;
+  favorList: (string | undefined)[];
+  setIsFavorites: (props: boolean) => void;
 }
 
 export interface ICoachingUsMainProps {}
 export interface ICoachingUsMainUIProps {}
+
+// #region CoachingUs - coachescard
+export interface ICoachingUsCoachesCardProps {}
+export interface ICoachingUsCoachesCardUIProps {
+  coachesList: {
+    id: number;
+    corName: string;
+    subCorName: string;
+    profile: {
+      picture: string;
+      name: string;
+      tags: string[];
+      followers: number;
+      score: number;
+    };
+  }[];
+  moveToPage: (page: string) => () => void;
+}
+
+// #region CoachingUs - columnscard
+export interface ICoachingUsColumnsCardProps {}
+export interface ICoachingUsColumnsCardUIProps {
+  columnList: {
+    id: number;
+    title: string;
+    contents: string;
+    picture: string;
+  }[];
+  // moveToPage: (page: string) => () => void;
+}
+
+// #region CoachingUs - reccoachcard
+export interface ICoachingUsRecCoachCardProps {}
+export interface ICoachingUsRecCoachCardUIProps {
+  recommendCoachList: {
+    id: number;
+    corName: string;
+    subCorName: string;
+    profile: {
+      picture: string;
+      name: string;
+      tags: string[];
+      followers: number;
+      score: number;
+    };
+  }[];
+}
+
+// #region CoachingUs - navbar
+
+export interface ICoachingUsNavbarProps {}
+export interface ICoachingUsNavbarUIProps {
+  currentPath: string;
+  moveToPage: (page: string) => () => void;
+}
+export interface ICurrentPathProps {
+  isCurrent: boolean;
+}
 
 export interface ICoachingUsCommentsProps {}
 export interface ICoachingUsCommentsUIProps {}

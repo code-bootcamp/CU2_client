@@ -8,43 +8,37 @@ export const Wrapper = styled.div`
   margin: 0;
 `;
 
-export const ContentsBox = styled.div`
+export const SliderBox = styled(Slider)`
+  z-index: -1;
+`;
+
+export const Box1 = styled.div`
+  margin: 50px 0 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  padding-top: 240px;
+  padding-left: 260px;
+`;
+
+export const Box2 = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    180deg,
+    #7918f2 0%,
+    #7918f2 50%,
+    #ffffff 50%,
+    #ffffff 100%
+  );
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 `;
 
-export const ServiceName = styled.p`
-  width: 1200px;
-  padding: 0 30px;
-  font-size: 1.5rem;
-  display: flex;
-  justify-content: flex-start;
-  :hover {
-    cursor: pointer;
-  }
-`;
-
-export const BlogList = styled.div`
-  width: 1200px;
-  height: 300px;
-  padding: 30px;
-`;
-
-export const ContentsList = styled.div`
-  width: 1000px;
-  padding: 30px;
-`;
-
-export const ImgDiv = styled.div`
-  width: 100px;
-  padding: 20px;
-`;
-
-export const SliderBox = styled(Slider)`
-  .slick-prev:before,
-  .slick-next:before {
-    color: #e3e3e3;
-    font-size: 30px;
-  }
+export const Box3 = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
 `;

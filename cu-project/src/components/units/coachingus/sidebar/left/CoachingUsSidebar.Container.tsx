@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import CoachingUsSidebarUI from "./CoachingUsSidebar.Presenter";
 
 function CoachingUsSidebarPage() {
@@ -13,4 +13,4 @@ function CoachingUsSidebarPage() {
   return <CoachingUsSidebarUI favorList={favorList} />;
 }
 
-export default React.memo(CoachingUsSidebarPage);
+export default memo(CoachingUsSidebarPage);

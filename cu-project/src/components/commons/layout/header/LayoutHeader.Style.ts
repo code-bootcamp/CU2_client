@@ -1,33 +1,52 @@
 import styled from "@emotion/styled";
+import { ICurrentPathProps } from "../../../../commons/types/types";
 
 export const Wrapper = styled.div`
   min-width: 100vw;
-  height: 70px;
-  background-color: #c4c4c4;
+  height: 80px;
+  background: #ffffff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   margin: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 0 40px;
-
   position: fixed;
   top: 0;
 `;
 
 export const LeftHeader = styled.div``;
+export const HeaderBody = styled.div`
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 export const RightHeader = styled.div`
   display: flex;
 `;
 
-export const HeaderLogo = styled.div``;
+export const HeaderLogo = styled.div`
+  font-weight: 700;
+  font-size: 32px;
+  background: linear-gradient(90deg, #e9345a 13.71%, #6002ee 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+`;
 export const HeaderCodingUs = styled.div`
   min-width: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-weight: ${({ isCurrent }) => (isCurrent ? "bold" : "normal")};
+
+  font-weight: ${(props: ICurrentPathProps) =>
+    props.isCurrent ? "bold" : "normal"};
+  color: ${(props: ICurrentPathProps) =>
+    props.isCurrent ? "#ea345a" : "black"};
   cursor: pointer;
 `;
 export const HeaderCoachingUs = styled.div`
@@ -36,7 +55,10 @@ export const HeaderCoachingUs = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-weight: ${({ isCurrent }) => (isCurrent ? "bold" : "normal")};
+  font-weight: ${(props: ICurrentPathProps) =>
+    props.isCurrent ? "bold" : "normal"};
+  color: ${(props: ICurrentPathProps) =>
+    props.isCurrent ? "#ea345a" : "black"};
   cursor: pointer;
 `;
 
@@ -49,7 +71,10 @@ export const SingIn = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-weight: ${({ isCurrent }) => (isCurrent ? "bold" : "normal")};
+  font-weight: ${(props: ICurrentPathProps) =>
+    props.isCurrent ? "bold" : "normal"};
+  color: ${(props: ICurrentPathProps) =>
+    props.isCurrent ? "#ea345a" : "black"};
   cursor: pointer;
 `;
 export const SingUp = styled.div`
@@ -58,7 +83,10 @@ export const SingUp = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-weight: ${({ isCurrent }) => (isCurrent ? "bold" : "normal")};
+  font-weight: ${(props: ICurrentPathProps) =>
+    props.isCurrent ? "bold" : "normal"};
+  color: ${(props: ICurrentPathProps) =>
+    props.isCurrent ? "#ea345a" : "black"};
   cursor: pointer;
 `;
 export const HeaderMypage = styled.div`
@@ -67,7 +95,10 @@ export const HeaderMypage = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-weight: ${({ isCurrent }) => (isCurrent ? "bold" : "normal")};
+  font-weight: ${(props: ICurrentPathProps) =>
+    props.isCurrent ? "bold" : "normal"};
+  color: ${(props: ICurrentPathProps) =>
+    props.isCurrent ? "#ea345a" : "black"};
   cursor: pointer;
 `;
 
@@ -77,11 +108,13 @@ export const BoldLine = styled.div`
   @keyframes present {
     0% {
       width: 1%;
-      border-bottom: solid 3px black;
+      border-bottom: ${(props: ICurrentPathProps) =>
+        props.isCurrent ? "solid 3px #ea345a" : "solid 3px black"};
     }
     100% {
       width: 100%;
-      border-bottom: solid 3px black;
+      border-bottom: ${(props: ICurrentPathProps) =>
+        props.isCurrent ? "solid 3px #ea345a" : "solid 3px black"};
     }
   }
 `;
