@@ -15,13 +15,21 @@ export const ContainerCoaches = styled.div`
 export const CoachesTitle = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  border-bottom: 1px solid #c4c4c4;
+  justify-content: center;
+  align-items: center;
   font-size: 25px;
   font-weight: 500;
-  padding-bottom: 10px;
-  color: black;
+  font-weight: 600;
+  font-size: 36px;
+  color: #ea345a;
+`;
+export const CoachesSubTitle = styled.div`
+  font-style: normal;
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 60px;
+  text-align: center;
+  color: #333333;
 `;
 export const MoreCoachesListBtn = styled.div`
   font-size: 14px;
