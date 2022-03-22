@@ -164,6 +164,10 @@ export interface ICoachingUsQuestionUIProps {}
 // #region MyPage
 export interface IMyPageProps {}
 export interface IMyPageUIProps {}
+export interface IMyPageMenuUIProps {
+  isCoach: boolean;
+  moveToPage: (page: IPage) => () => void;
+}
 // #endregion
 
 // #region MainPage
