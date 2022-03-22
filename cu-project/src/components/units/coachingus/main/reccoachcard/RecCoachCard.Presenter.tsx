@@ -6,7 +6,7 @@ import getMoney from "../../../../../commons/libraries/getMoney";
 export default function RecCoachCardUI(props: ICoachingUsMainUIProps) {
   return (
     <S.ContainerRecommendCoach>
-      <p>추천 Coaches</p>
+      <p>Best Coaches</p>
       <S.ContainerRecommendCoachBody>
         {props.recommendCoachList.map((coach) => (
           <S.RecommendCoach key={coach.id}>

@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
-import React from "react";
-import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
+import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import CoachingUsNavbarUI from "./CoachingUsNavbar.Presenter";
 
 export default function CoachingUsNavbarPage() {

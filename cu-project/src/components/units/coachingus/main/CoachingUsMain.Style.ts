@@ -7,9 +7,8 @@ export const Wrapper = styled.div`
   margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 40px 0;
+  align-items: center;
+  /* justify-content: space-between; */
 `;
 
 export const CoachingUsMainBody = styled.div`
@@ -54,12 +53,12 @@ export const ContainerColumns = styled.div`
 // Sidebar 영역
 export const LeftSideBar = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   min-width: 300px;
+  min-height: 100vh;
 `;
 
 export const RightSideBar = styled.div`
   display: flex;
-  /* height: 100%; */
   min-width: 300px;
 `;

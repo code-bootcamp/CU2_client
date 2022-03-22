@@ -1,10 +1,10 @@
-import CoachingUsNavbarPage from "../navbar/CoachingUsNavbar.Container";
-import * as S from "./CoachingUsCoach.Style";
+import CoachingUsNavbarPage from "../sidebar/navbar/CoachingUsNavbar.Container";
+import * as S from "./CoachingUsCoaches.Style";
 
 export default function CoachingUsCoachUI() {
   return (
     <S.Wrapper>
-      <CoachingUsNavbarPage />
+      {/* <CoachingUsNavbarPage /> */}
       <div>CoachingUsCoach.Presenter</div>
     </S.Wrapper>
   );
