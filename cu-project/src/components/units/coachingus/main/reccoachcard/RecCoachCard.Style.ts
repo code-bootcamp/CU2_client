@@ -32,6 +32,18 @@ export const RecommendCoach = styled.div`
   height: 420px;
   margin: 10px 10px;
   box-shadow: 0px 4px 4px 0px #00000040;
+  animation: ${({ number }) => `fadeIn ${number} forwards`};
+  /* animation-delay:  */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(70px);
+    }
+    to {
+      opacity: 3;
+      transform: none;
+    }
+  }
 `;
 export const ProfileWapper = styled.div`
   width: 100%;
