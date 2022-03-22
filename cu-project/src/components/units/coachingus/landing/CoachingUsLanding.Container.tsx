@@ -1,10 +1,12 @@
 import { CheckboxChangeEvent } from "antd/lib/checkbox/Checkbox";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { ICoachingUsLandingProps } from "../../../../commons/types/types";
 import CoachingUsLandingUI from "./CoachingUsLanding.Presenter";
 import {} from "./CoachingUsLanding.Queries";
 
 export default function CoachingUsLanding(props: ICoachingUsLandingProps) {
+  const router = useRouter();
   const corList = [
     "대기업",
     "IT",
@@ -34,6 +36,7 @@ export default function CoachingUsLanding(props: ICoachingUsLandingProps) {
     else {
       localStorage.setItem("favorList", String(favorList));
       props.setIsFavorites(true);
+      window.location.reload();
     }
   };
 

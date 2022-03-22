@@ -9,7 +9,7 @@ export const ContainerRecommendCoach = styled.div`
   align-items: center;
   justify-content: space-between;
   min-height: 200px;
-  background-color: #333333;
+
   padding: 30px 20px;
   p {
     color: white;
