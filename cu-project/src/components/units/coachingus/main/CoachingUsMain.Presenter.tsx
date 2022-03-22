@@ -12,6 +12,7 @@ import Carousel from "./test";
 export default function CoachingUsMainUI(props: ICoachingUsMainUIProps) {
   return (
     <S.Wrapper>
+      <Blank height="50px" />
       <Banner />
       <Blank height="40px" />
       <S.CoachingUsMainBody>

@@ -27,6 +27,7 @@ export const Block = styled.div`
 export const ContainerRecommendCoachBody = styled.div`
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 `;
 
 export const RecommendCoach = styled.div`
@@ -34,9 +35,9 @@ export const RecommendCoach = styled.div`
   align-items: center;
   background-color: white;
   border-radius: 5px;
-  width: 615px;
+  width: 550px;
   height: 420px;
-  margin: 10px 10px;
+  margin: 20px 20px;
   box-shadow: 0px 4px 4px 0px #00000040;
   animation: ${({ number, isStart }) =>
     isStart && `fadeIn ${number} ease-in-out`};
@@ -95,7 +96,7 @@ export const CoachCor = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 600;
 `;
 export const CoachSubCor = styled.div`
@@ -103,10 +104,10 @@ export const CoachSubCor = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  font-size: 21px;
+  font-size: 18px;
   font-weight: lighter;
   & > p {
-    font-size: 21px;
+    font-size: 18px;
     font-weight: 400;
   }
 `;
@@ -144,9 +145,9 @@ export const RecommendCoachTags = styled.div`
 export const CoachTag = styled.div`
   width: fit-content;
   color: #bdbdbd;
-  margin: 0 5px;
   border-radius: 20px;
   padding: 5px 15px;
+  margin: 15px 5px 0 5px;
   border: 1px solid #c4c4c4;
 `;
 export const RecommendCoachInfo = styled.div`
@@ -155,7 +156,7 @@ export const RecommendCoachInfo = styled.div`
   align-items: center;
   width: 100%;
   font-weight: 200;
-  font-size: 16px;
+  font-size: 14px;
 `;
 export const CoachInfoFollower = styled.div`
   display: flex;
