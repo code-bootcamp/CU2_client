@@ -6,11 +6,12 @@ export const Wrapper = styled.div`
   justify-content: center;
   width: 70%;
   height: 100%;
+  padding: 0 20px;
 `;
 export const SearchBarArea = styled.div`
   display: flex;
   align-items: center;
-  height: 50%;
+  height: 40%;
   width: 100%;
   background: #f6f5f5;
   border-radius: 100px;

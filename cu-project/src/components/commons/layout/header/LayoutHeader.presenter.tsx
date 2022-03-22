@@ -28,7 +28,7 @@ export default function LayoutHeaderPageUI(props) {
             <S.BoldLine isCurrent={props.currentPath.includes("/codingus")} />
           )}
         </S.HeaderCodingUs>
-        <Blank width="100px" />
+        <Blank width="60px" />
         <S.HeaderCoachingUs
           onClick={props.moveToPage("/coachingus")}
           isCurrent={props.currentPath.includes("/coachingus")}
@@ -38,7 +38,7 @@ export default function LayoutHeaderPageUI(props) {
             <S.BoldLine isCurrent={props.currentPath.includes("/coachingus")} />
           )}
         </S.HeaderCoachingUs>
-        <Blank width="100px" />
+        <Blank width="60px" />
 
         {props.isLogin ? (
           <S.HeaderSign>
@@ -46,7 +46,7 @@ export default function LayoutHeaderPageUI(props) {
               onClick={props.moveToPage("/mypage")}
               isCurrent={props.currentPath.includes("/mypage")}
             >
-              마이페이지
+              Mypage
               {props.currentPath.includes("/mypage") && (
                 <S.BoldLine isCurrent={props.currentPath.includes("/mypage")} />
               )}
@@ -58,7 +58,7 @@ export default function LayoutHeaderPageUI(props) {
               onClick={props.moveToPage("/login")}
               isCurrent={props.currentPath.includes("/login")}
             >
-              로그인
+              Sign In
               {props.currentPath === "/login" && (
                 <S.BoldLine isCurrent={props.currentPath.includes("/login")} />
               )}
@@ -68,7 +68,7 @@ export default function LayoutHeaderPageUI(props) {
               onClick={props.moveToPage("/register")}
               isCurrent={props.currentPath.includes("/register")}
             >
-              회원가입
+              Sign Up
               {props.currentPath.includes("/register") && (
                 <S.BoldLine
                   isCurrent={props.currentPath.includes("/register")}
