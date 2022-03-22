@@ -1,8 +1,9 @@
 import { ICodingUsMainUIProps } from "../../../../commons/types/types";
 import Blank from "../../../commons/Blank";
+import CodingUsHistory from "../history/History.Container";
+import CodingUsSidebar from "../sidebar/Sidebar.Container";
 import * as S from "./CodingUsMain.Style";
 
-const historyItems = { 작성글: 10, GOOD: 24, BAD: 2, 채택: 0, 댓글: 1 };
 const bestUserItems = [
   {
     name: "carzyUs",
@@ -29,62 +30,8 @@ const bestUserItems = [
 export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
   return (
     <S.Wrapper>
-      <S.LeftSideBar>
-        <S.Label fontSize="18px" fontWeight="700">
-          관심 스택
-        </S.Label>
-        <Blank height="28px" />
-        {["HTML", "CSS", "JavaScript", "Java", "Python", "C++"].map(
-          (el, idx) => (
-            <>
-              <S.InterestItem key={idx}>
-                <S.RowWrapper>
-                  <img
-                    src="https://source.unsplash.com/random"
-                    style={{ width: "30px", height: "30px" }}
-                  />
-                  <S.Label fontSize="24px" style={{ marginLeft: "24px" }}>
-                    {el}
-                  </S.Label>
-                </S.RowWrapper>
-              </S.InterestItem>
-              <Blank height="24px" />
-            </>
-          )
-        )}
-        <Blank height="24px" />
-        <S.Label fontSize="24px">
-          관심 스택 추가하기
-        </S.Label>
-      </S.LeftSideBar>
-      <S.RightSideBar>
-        <S.Label fontSize="18px" fontWeight="700">
-          관심 스택
-        </S.Label>
-        <Blank height="28px" />
-        {["HTML", "CSS", "JavaScript", "Java", "Python", "C++"].map(
-          (el, idx) => (
-            <>
-              <S.InterestItem key={idx}>
-                <S.RowWrapper>
-                  <img
-                    src="https://source.unsplash.com/random"
-                    style={{ width: "30px", height: "30px" }}
-                  />
-                  <S.Label fontSize="24px" style={{ marginLeft: "24px" }}>
-                    {el}
-                  </S.Label>
-                </S.RowWrapper>
-              </S.InterestItem>
-              <Blank height="24px" />
-            </>
-          )
-        )}
-        <Blank height="24px" />
-        <S.Label fontSize="24px">
-          관심 스택 추가하기
-        </S.Label>
-      </S.RightSideBar>
+      <CodingUsSidebar/>
+    <S.CodingUsMain>
       <S.WriteButton onClick={props.moveToPage("/codingus/write")}>
         <img src="/write-button.png" />
         글쓰기
@@ -94,26 +41,16 @@ export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
         <S.SearchBtn></S.SearchBtn>
       </S.SearchWrapper>
       <Blank height="60px" />
-      <S.UserHistoryWrapper>
-        <S.Label
-          fontSize={"24px"}
-          fontWeight={700}
-        >{`${"CodingMaster"} 님의 최근 7일간 활동`}</S.Label>
-        <Blank height="27px" />
-        <S.HistoryItemWrapper>
-          {Object.keys(historyItems).map((el, idx) => (
-            <S.HistoryItem key={idx}>
-              <S.Label color="#c5b3b3" fontSize="24px">
-                {el}
-              </S.Label>
-              <Blank height="10px" />
-              <S.Label fontSize="36px" fontWeight="700">
-                {historyItems[el]}
-              </S.Label>
-            </S.HistoryItem>
-          ))}
-        </S.HistoryItemWrapper>
-      </S.UserHistoryWrapper>
+      <CodingUsHistory
+            historyData={{
+              작성글: 10,
+              GOOD: 24,
+              BAD: 2,
+              채택: 0,
+              댓글: 13,
+            }}
+            title="CodingMaster 님의 7일간 활동"
+          />
       <Blank height="88px" />
       <S.BestUserWrapper>
         <S.RowWrapper
@@ -247,6 +184,7 @@ export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
           ))}
         </S.StackItemWrapper>
       </S.RecomendStackWrapper>
+      </S.CodingUsMain>
     </S.Wrapper>
   );
 }

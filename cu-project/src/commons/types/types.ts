@@ -1,13 +1,12 @@
-import { CheckboxChangeEvent } from "antd/lib/checkbox/Checkbox";
 import {
   FieldValues,
   FormState,
   UseFormHandleSubmit,
   UseFormRegister,
 } from "react-hook-form";
-
+import { CheckboxChangeEvent } from "antd/lib/checkbox/Checkbox";
 import { IPage } from "../../components/commons/hooks/useMoveToPage";
-
+import { MouseEvent } from "react";
 // #region Login && Register
 export interface FormValues {
   name?: string;
@@ -47,7 +46,25 @@ export interface ISearchProps {}
 
 // #region CodingUs
 export interface ICodingUsBlogProps {}
-export interface ICodingUsBlogUIProps {}
+
+export interface ICodingUsBlogCardProps {
+  // graphQL Types 가져오면 수정할 예정
+  images: string[];
+  stacks : string[];
+  title : string;
+  content : string;
+  writer : string;
+  likeCnt : number;
+  commentCnt : number;
+  createdAt : string;
+  isLike : boolean;
+}
+export interface ICodingUsBlogUIProps {
+  onLoadMore: () => void;
+  sortedBlogList: ICodingUsBlogCardProps[];
+  onToggleSortGubun: (_: MouseEvent<HTMLDivElement>) => void;
+  isSortByPopular: boolean;
+}
 
 export interface ICodingUsMainProps {}
 export interface ICodingUsMainUIProps {
@@ -147,11 +164,16 @@ export interface ICoachingUsQuestionUIProps {}
 // #region MyPage
 export interface IMyPageProps {}
 export interface IMyPageUIProps {}
+export interface IMyPageMenuUIProps {
+  isCoach: boolean;
+  moveToPage: (page: IPage) => () => void;
+}
 // #endregion
 
 // #region MainPage
 export interface MainPageProps {}
 export interface MainPageUIProps {
+  moveToPage: (page: IPage) => () => void;
   blogSettings: {
     infinite: boolean;
     slidesToShow: number;

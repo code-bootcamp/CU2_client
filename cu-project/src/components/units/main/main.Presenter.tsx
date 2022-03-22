@@ -7,31 +7,21 @@ import "slick-carousel/slick/slick-theme.css";
 export default function MainUI(props: MainPageUIProps) {
   return (
     <S.Wrapper>
-      <S.ContentsBox>
-        {`Blog >`}
-        <S.ContentsList>
-          <S.SliderBox {...props.blogSettings}>
-            <S.ImgDiv>
-              <div style={{ backgroundColor: "yellow" }}>1</div>
-            </S.ImgDiv>
-          </S.SliderBox>
-        </S.ContentsList>
-        <Blank height="10px" />
-        {`Stack Q&A >`}
-        <S.ContentsList></S.ContentsList>
-        <Blank height="10px" />
-        {`Blog >`}
-        <S.ContentsList></S.ContentsList>
-        <Blank height="10px" />
-        {`Coaches >`}
-        <S.ContentsList></S.ContentsList>
-        <Blank height="10px" />
-        {`Comments >`}
-        <S.ContentsList></S.ContentsList>
-        <Blank height="10px" />
-        {`Columns >`}
-        <S.ContentsList></S.ContentsList>
-      </S.ContentsBox>
+      <S.SliderBox {...props.settings}>
+        <div>
+          <S.Box1>
+            <p style={{ color: "white", fontSize: "48px" }}>We are</p>
+            <Blank height="10px" />
+            <p style={{ color: "white", fontSize: "48px" }}>CodingUs</p>
+            <Blank height="10px" />
+            <p style={{ color: "white", fontSize: "48px" }}>CoachingUs</p>
+            <Blank height="10px" />
+            <button>자세히 보기</button>
+          </S.Box1>
+        </div>
+      </S.SliderBox>
+      <S.Box2>dd</S.Box2>
+      <S.Box3></S.Box3>
     </S.Wrapper>
   );
 }
