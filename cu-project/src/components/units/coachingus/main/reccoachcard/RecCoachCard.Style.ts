@@ -206,7 +206,7 @@ export const CoachInfoScore = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 16px;
+  text-align: center;
   @media screen and (max-width: 1440px) {
     font-size: 12px;
   }

@@ -13,7 +13,7 @@ export default function CoachesCardUI(props: ICoachingUsCoachesCardUIProps) {
         {props.coachesList.map((coach) => (
           <S.CoachList
             key={coach.id}
-            // onClick={props.moveToPage(`/coachingus/${coach.id}`)}
+            onClick={props.moveToPage(`/coachingus/${coach.id}`)}
           >
             <S.CoachListHeader>
               <S.CoachTitle>
@@ -64,7 +64,7 @@ export default function CoachesCardUI(props: ICoachingUsCoachesCardUIProps) {
         ))}
       </S.ContainerCoachesListBody>
       <Blank height="50px" />
-      <S.MoreCoachesListBtn onClick={props.moveToPage(`/coachingus/coach`)}>
+      <S.MoreCoachesListBtn onClick={props.moveToPage(`/coachingus/coaches`)}>
         더 많은 코치보기 {">"}
       </S.MoreCoachesListBtn>
     </S.ContainerCoaches>

@@ -31,11 +31,6 @@ export const ColumnsListSubTitle = styled.div`
   text-align: center;
   color: #333333;
 `;
-export const MoreCoachesListBtn = styled.div`
-  font-size: 14px;
-  font-weight: lighter;
-  cursor: pointer;
-`;
 
 export const ContainerColumnsListBody = styled.div`
   display: flex;
@@ -52,12 +47,17 @@ export const ColumnsList = styled.div`
   border-radius: 20px;
   padding: 15px 20px;
   width: 230px;
-  /* height: fit-content; */
-  height: 350px;
+
+  height: fit-content;
   margin: 20px 0;
   background: #fbfafa;
   overflow: hidden;
-  /* box-shadow: 4px 4px 4px 2px #dbdbdb40; */
+  cursor: pointer;
+
+  :hover {
+    background-color: #7918f2;
+    color: white;
+  }
 `;
 
 export const ColumnPicture = styled.div`
@@ -72,7 +72,7 @@ export const ColumnPicture = styled.div`
 export const ColumnText = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: space-between;
+  align-items: space-around;
   justify-content: space-between;
   height: 120px;
   width: 100%;
@@ -108,4 +108,19 @@ export const ColumnShortenContents = styled.div`
   justify-content: flex-start;
   font-size: 14px;
   font-weight: lighter;
+`;
+
+export const MoreCoachesListBtn = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: lighter;
+  cursor: pointer;
+  width: 285px;
+  height: 56px;
+  font-size: 20px;
+  font-weight: 400;
+  color: white;
+  background: #7918f2;
 `;
