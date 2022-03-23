@@ -1,49 +1,73 @@
-import { ICodingUsBlogUIProps } from "../../../../commons/types/types";
 import Blank from "../../../commons/Blank";
-import UserCard from "../card/userCard/UserCard";
-import BlogCard from "../card/blogCard/BlogCard";
+import {
+  ICodingUsBlogCardProps,
+  ICodingUsBlogUIProps,
+} from "../../../../commons/types/types";
+import BlogShortCard from "../card/blogShortCard/BlogShortCard";
 import * as S from "./CodingUsBlog.Style";
+import Label01 from "../../../commons/Label/Label01";
+import { v4 as uuidV4 } from "uuid";
+import InfiniteScroll from "react-infinite-scroller";
+import BlogCard02 from "../card/blogCard/BlogCard02/BlogCard02";
+import CodingUsHistory from "../history/History.Container";
 export default function CodingUsBlogUI(props: ICodingUsBlogUIProps) {
   return (
-    <div
-      style={{ backgroundColor: "#BDBDBD", width: "100vw", height: "100vh" }}
-    >
-      <Blank width="50px" />
-      <Blank height="50px" />
-      <UserCard
-        width={387}
-        id={"asd"}
-        height={521}
-        name={"crazyUs"}
-        stackList={["JavaScript", "CSS3", "HTML5"]}
-        title={"제목입니다~"}
-        contents={
-          "모든 국민은 학문과 예술의 자유를 가진다. 근로조건의 기준은 인간의 존엄성을 보장하도록 법률로 정한다. 국회는 선전포고, 국군의 외국에의 파견 또는 외국군대의 대한민국 영역안에서의…"
-        }
-        tags={["Java", "CSS", "개발"]}
-        image={"https://source.unsplash.com/random"}
-        followCount={5}
-        commentCount={12}
-        isFollowed={false}
-        place={3}
-        createdAt={"2022-03-18T 16:00:00"}
-        avatar={"https://source.unsplash.com/random"}
-      ></UserCard>
-      <Blank height="50px" />
-      <BlogCard
-        width={386}
-        height={702}
-        image={"https://source.unsplash.com/random"}
-        stacks={["JavaScript","HTML5","CSS3"]}
-        title={"모든 국민은 학문과 예술의 자유를 가진다. 근로조건의 기준은 인간의 존엄성을 보장하도록 법률로 정한다"}
-        content={"모든 국민은 학문과 예술의 자유를 가진다. 근로조건의 기준은 인간의 존엄성을 보장하도록 법률로 정한다. 국회는 선전포고, 국군의 외국에의 파견 또는 외…"}
-        goodCnt={3}
-        badCnt={31}
-        createdAt={"2022-02-07T14:42:54.920Z"}
-        isGood={false}
-        writer={"작성자"}
-        isBad={false}
-      ></BlogCard>
-    </div>
+      <S.CodingUsBlog>
+        <S.CodingUsBlogBody>
+          <CodingUsHistory
+            historyData={{
+              작성글: 10,
+              GOOD: 24,
+              BAD: 2,
+              채택: 0,
+              댓글: 13,
+            }}
+            title="My Blog History"
+          />
+          <Blank height="65px" />
+          <S.HotTopicWrapper>
+            <Label01 value="팔로잉" padding="0px" weight="700" size="36px" />
+            <Blank height="32px" />
+            <S.CardWrapper>
+              {new Array(4).fill(0).map((_, idx) => (
+                <BlogShortCard
+                  key={idx}
+                  image="https://source.unsplash.com/random"
+                  stacks={["스택"]}
+                  title="모든 국민은 학문과 예술의 자유를 가진다. 근로조건의 기..."
+                />
+              ))}
+            </S.CardWrapper>
+          </S.HotTopicWrapper>
+          <Blank height="120px" />
+          <S.FollowingWrapper>
+            <Label01
+              value="전체 블로그"
+              padding="0px"
+              weight="700"
+              size="36px"
+            />
+            <Blank height="21px" />
+            <S.SortGubun>
+              <S.GubunLabel isSelected={props.isSortByPopular} onClick={props.onToggleSortGubun}>인기</S.GubunLabel>
+              <S.GubunLabel isSelected={false}>|</S.GubunLabel>
+              <S.GubunLabel isSelected={!props.isSortByPopular} onClick={props.onToggleSortGubun}>최신</S.GubunLabel>
+            </S.SortGubun>
+            <Blank height="34px" />
+            <InfiniteScroll
+              pageStart={0}
+              loadMore={props.onLoadMore}
+              hasMore={true || false}
+              useWindow={true}
+            >
+              <S.CardWrapper>
+                {props.sortedBlogList?.map((el: ICodingUsBlogCardProps) => (
+                  <BlogCard02 key={uuidV4()} blogData={el} />
+                ))}
+              </S.CardWrapper>
+            </InfiniteScroll>
+          </S.FollowingWrapper>
+        </S.CodingUsBlogBody>
+      </S.CodingUsBlog>
   );
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import SearchBar from "../../../units/commons/search/searchBar/SearchBar.Container";
 import Blank from "../../Blank";
 import * as S from "./LayoutHeader.Style";
 
@@ -14,23 +15,30 @@ export default function LayoutHeaderPageUI(props) {
           CU2
         </S.HeaderLogo>
       </S.LeftHeader>
+      <S.HeaderBody>
+        <SearchBar />
+      </S.HeaderBody>
       <S.RightHeader>
         <S.HeaderCodingUs
           onClick={props.moveToPage("/codingus")}
           isCurrent={props.currentPath.includes("/codingus")}
         >
           CodingUs
-          {props.currentPath.includes("/codingus") && <S.BoldLine />}
+          {props.currentPath.includes("/codingus") && (
+            <S.BoldLine isCurrent={props.currentPath.includes("/codingus")} />
+          )}
         </S.HeaderCodingUs>
-        <Blank width="100px" />
+        <Blank width="60px" />
         <S.HeaderCoachingUs
           onClick={props.moveToPage("/coachingus")}
           isCurrent={props.currentPath.includes("/coachingus")}
         >
           CoachingUs
-          {props.currentPath.includes("/coachingus") && <S.BoldLine />}
+          {props.currentPath.includes("/coachingus") && (
+            <S.BoldLine isCurrent={props.currentPath.includes("/coachingus")} />
+          )}
         </S.HeaderCoachingUs>
-        <Blank width="100px" />
+        <Blank width="60px" />
 
         {props.isLogin ? (
           <S.HeaderSign>
@@ -38,8 +46,10 @@ export default function LayoutHeaderPageUI(props) {
               onClick={props.moveToPage("/mypage")}
               isCurrent={props.currentPath.includes("/mypage")}
             >
-              마이페이지
-              {props.currentPath.includes("/mypage") && <S.BoldLine />}
+              Mypage
+              {props.currentPath.includes("/mypage") && (
+                <S.BoldLine isCurrent={props.currentPath.includes("/mypage")} />
+              )}
             </S.HeaderMypage>
           </S.HeaderSign>
         ) : (
@@ -48,16 +58,22 @@ export default function LayoutHeaderPageUI(props) {
               onClick={props.moveToPage("/login")}
               isCurrent={props.currentPath.includes("/login")}
             >
-              로그인
-              {props.currentPath === "/login" && <S.BoldLine />}
+              Sign In
+              {props.currentPath === "/login" && (
+                <S.BoldLine isCurrent={props.currentPath.includes("/login")} />
+              )}
             </S.SingIn>
             <Blank width="25px" />
             <S.SingUp
               onClick={props.moveToPage("/register")}
               isCurrent={props.currentPath.includes("/register")}
             >
-              회원가입
-              {props.currentPath.includes("/register") && <S.BoldLine />}
+              Sign Up
+              {props.currentPath.includes("/register") && (
+                <S.BoldLine
+                  isCurrent={props.currentPath.includes("/register")}
+                />
+              )}
             </S.SingUp>
           </S.HeaderSign>
         )}

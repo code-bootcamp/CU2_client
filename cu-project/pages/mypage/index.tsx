@@ -1,5 +1,5 @@
-import MyPage from "../../src/components/units/mypage/main/mypage.Container";
+import UserMyPage from "./user/index";
 
-export default function MyPagePage() {
-  return <MyPage />;
+export default function MyPage() {
+  return <UserMyPage />;
 }

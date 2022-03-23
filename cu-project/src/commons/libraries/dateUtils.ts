@@ -20,10 +20,8 @@ export const getTimeDiff = (dateTime: string | Date) => {
 
 const day = ["일", "월", "화", "수", "목", "금", "토"];
 export const getShortDateString = (dateTime: string | Date) => {
-  console.log(dateTime);
   let dateString = "";
   const date = new Date(dateTime);
-  console.log(date);
   const now = new Date();
   const diff = now.getTime() - date.getTime();
 
