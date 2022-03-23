@@ -57,14 +57,14 @@ export interface ICodingUsBlogProps {}
 export interface ICodingUsBlogCardProps {
   // graphQL Types 가져오면 수정할 예정
   images: string[];
-  stacks : string[];
-  title : string;
-  content : string;
-  writer : string;
-  likeCnt : number;
-  commentCnt : number;
-  createdAt : string;
-  isLike : boolean;
+  stacks: string[];
+  title: string;
+  content: string;
+  writer: string;
+  likeCnt: number;
+  commentCnt: number;
+  createdAt: string;
+  isLike: boolean;
 }
 export interface ICodingUsBlogUIProps {
   onLoadMore: () => void;
@@ -106,7 +106,7 @@ export interface ICoachingUsLandingProps {
 }
 export interface ICoachingUsLandingUIProps {
   corList: string[];
-  onChangeCheckBox: (event: CheckboxChangeEvent) => void;
+  onChangeCheckBox: (event: MouseEvent) => void;
   onClickStart: () => void;
   favorList: (string | undefined)[];
   setIsFavorites: (props: boolean) => void;
