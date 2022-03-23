@@ -49,7 +49,7 @@ export const CoachList = styled.div`
   padding: 15px 20px;
   width: 230px;
   height: 350px;
-  margin: 20px 15px;
+  margin: 20px 30px;
 
   box-shadow: 0px 4px 4px 0px #00000040;
 `;
@@ -105,7 +105,7 @@ export const CoachListTags = styled.div`
 export const CoachTag = styled.div`
   width: fit-content;
   margin: 0 5px;
-  border-radius: 15px;
+  border-radius: 10px;
   padding: 0 5px;
   border: 1px solid #c4c4c4;
 `;

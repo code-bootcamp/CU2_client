@@ -145,6 +145,7 @@ export const RecommendCoachTags = styled.div`
 export const CoachTag = styled.div`
   width: fit-content;
   color: #bdbdbd;
+
   border-radius: 20px;
   padding: 5px 15px;
   margin: 15px 5px 0 5px;

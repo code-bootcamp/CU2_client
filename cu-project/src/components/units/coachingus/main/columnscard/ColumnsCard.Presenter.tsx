@@ -6,9 +6,9 @@ export default function ColumnsCardUI(props: ICoachingUsColumnsCardUIProps) {
   return (
     <S.ContainerColumnsList>
       <S.ColumnsListTitle>
-        Coach Columns
-        <S.MoreCoachesListBtn>더보기 {">"}</S.MoreCoachesListBtn>
+        개발자 실무 Tip, 대기업 면접 Tip들 아직도 찾고 계신가요?
       </S.ColumnsListTitle>
+      <S.ColumnsListSubTitle>코치들의 칼럼을 읽어보세요!</S.ColumnsListSubTitle>
       <S.ContainerColumnsListBody>
         {props.columnList.map((column) => (
           <S.ColumnsList key={column.id}>
