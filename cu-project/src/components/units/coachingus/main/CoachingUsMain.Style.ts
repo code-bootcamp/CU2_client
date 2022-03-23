@@ -13,7 +13,10 @@ export const Wrapper = styled.div`
 export const CoachingUsMainBody = styled.div`
   display: flex;
   flex-direction: column;
-  min-width: 1440px;
+  width: 1920px;
+  @media screen and (max-width: 1440px) {
+    width: 1440px;
+  }
 `;
 export const LandingBody = styled.div`
   display: flex;

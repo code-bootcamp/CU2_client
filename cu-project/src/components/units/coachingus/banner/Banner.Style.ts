@@ -18,9 +18,10 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  width: 1920px;
   @media screen and (max-width: 1440px) {
     height: 500px;
     padding: 10px 20px;
+    width: 1440px;
   }
 `;

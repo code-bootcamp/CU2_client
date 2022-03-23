@@ -27,8 +27,6 @@ export const Block = styled.div`
 export const ContainerRecommendCoachBody = styled.div`
   display: flex;
   justify-content: center;
-  @media screen and (max-width: 1440px) {
-  }
 `;
 
 export const RecommendCoach = styled.div`
@@ -52,6 +50,7 @@ export const RecommendCoach = styled.div`
   :hover {
     animation: hoverUp 0.5s ease-in-out both;
   }
+
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -70,6 +69,7 @@ export const RecommendCoach = styled.div`
       transform: scale(1.03) translate(0, -20px);
     }
   }
+  cursor: pointer;
 `;
 export const ProfileWapper = styled.div`
   width: 275px;
