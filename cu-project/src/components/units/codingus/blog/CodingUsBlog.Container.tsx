@@ -3,6 +3,7 @@ import {
   ICodingUsBlogCardProps,
   ICodingUsBlogProps,
 } from "../../../../commons/types/types";
+import CodingUsLayout from "../layout/CodingUsLayout";
 import CodingUsBlogUI from "./CodingUsBlog.Presenter";
 import {} from "./CodingUsBlog.Queries";
 
@@ -42,11 +43,15 @@ export default function CodingUsBlog(props: ICodingUsBlogProps) {
   }, [isSortByPopular]);
 
   return (
-    <CodingUsBlogUI
-      onLoadMore={onLoadMore}
-      sortedBlogList={sortedBlogList}
-      onToggleSortGubun={onToggleSortGubun}
-      isSortByPopular={isSortByPopular}
+    <CodingUsLayout
+      children={
+        <CodingUsBlogUI
+          onLoadMore={onLoadMore}
+          sortedBlogList={sortedBlogList}
+          onToggleSortGubun={onToggleSortGubun}
+          isSortByPopular={isSortByPopular}
+        />
+      }
     />
   );
 }

@@ -169,3 +169,4 @@ export const RightSideBar = styled.div`
   top: 10%;
   overflow: hidden;
 `;
+

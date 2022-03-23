@@ -6,7 +6,14 @@ import {
 } from "react-hook-form";
 import { CheckboxChangeEvent } from "antd/lib/checkbox/Checkbox";
 import { IPage } from "../../components/commons/hooks/useMoveToPage";
-import { MouseEvent } from "react";
+import { MouseEvent, ReactChild } from "react";
+
+
+export interface ILayoutProps {
+  children: ReactChild;
+}
+
+
 // #region Login && Register
 export interface FormValues {
   name?: string;
