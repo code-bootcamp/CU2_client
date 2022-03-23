@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   min-width: 100vw;
-  padding: 20px 0 0 0;
-  min-height: 764px;
+  padding: 10px 20px;
+  height: 700px;
   background: linear-gradient(
     270deg,
     #2d0d55 0%,
@@ -18,4 +18,9 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 1440px) {
+    height: 500px;
+    padding: 10px 20px;
+  }
 `;

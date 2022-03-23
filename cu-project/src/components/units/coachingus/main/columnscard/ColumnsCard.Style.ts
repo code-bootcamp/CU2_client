@@ -9,6 +9,7 @@ export const ContainerColumnsList = styled.div`
   justify-content: space-between;
   min-height: 200px;
   padding: 30px 25px;
+  background: gray;
 `;
 
 export const ColumnsListTitle = styled.div`

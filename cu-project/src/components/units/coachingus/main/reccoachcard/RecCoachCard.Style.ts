@@ -27,7 +27,8 @@ export const Block = styled.div`
 export const ContainerRecommendCoachBody = styled.div`
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  @media screen and (max-width: 1440px) {
+  }
 `;
 
 export const RecommendCoach = styled.div`
@@ -35,10 +36,17 @@ export const RecommendCoach = styled.div`
   align-items: center;
   background-color: white;
   border-radius: 5px;
+
   width: 550px;
-  height: 420px;
+  height: 380px;
+
   margin: 20px 20px;
   box-shadow: 0px 4px 4px 0px #00000040;
+
+  @media screen and (max-width: 1440px) {
+    width: 390px;
+    height: 285px;
+  }
   animation: ${({ number, isStart }) =>
     isStart && `fadeIn ${number} ease-in-out`};
   :hover {
@@ -64,20 +72,27 @@ export const RecommendCoach = styled.div`
   }
 `;
 export const ProfileWapper = styled.div`
-  width: 100%;
+  width: 275px;
   height: 100%;
+  padding: 10px 0 0 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media screen and (max-width: 1440px) {
+    width: 195px;
+  }
 `;
 export const CoachProfile = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  min-width: 50%;
   height: 100%;
-  padding: 0px 30px 0 30px;
+  min-width: 50%;
+  padding: 20px 30px 10px 30px;
+  @media screen and (max-width: 1440px) {
+    padding: 10px 20px;
+  }
 `;
 export const RecommendCoachHeader = styled.div`
   width: 100%;
@@ -98,6 +113,9 @@ export const CoachCor = styled.div`
   width: 100%;
   font-size: 24px;
   font-weight: 600;
+  @media screen and (max-width: 1440px) {
+    font-size: 21px;
+  }
 `;
 export const CoachSubCor = styled.div`
   display: flex;
@@ -110,6 +128,14 @@ export const CoachSubCor = styled.div`
     font-size: 18px;
     font-weight: 400;
   }
+
+  @media screen and (max-width: 1440px) {
+    font-size: 14px;
+    & > p {
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
 `;
 
 export const RecommendCoachPicture = styled.div`
@@ -118,9 +144,7 @@ export const RecommendCoachPicture = styled.div`
   /* border-radius: 100%; */
   background-color: #c4c4c4;
 `;
-export const RecommendCoachPosition = styled.div`
-  font-weight: lighter;
-`;
+
 export const RecommendCoachName = styled.div`
   text-align: center;
   display: flex;
@@ -143,40 +167,49 @@ export const RecommendCoachTags = styled.div`
   width: 100%;
 `;
 export const CoachTag = styled.div`
-  width: fit-content;
-  color: #bdbdbd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
+  /* width: fit-content; */
+  color: #bdbdbd;
+  font-size: 14px;
   border-radius: 20px;
-  padding: 5px 15px;
-  margin: 15px 5px 0 5px;
+  padding: 2px 10px 0 10px;
+  margin: 5px 5px 0 0px;
   border: 1px solid #c4c4c4;
+
+  @media screen and (max-width: 1440px) {
+    font-size: 12px;
+    padding: 2px 10px 0 10px;
+  }
 `;
 export const RecommendCoachInfo = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 100%;
+  height: fit-content;
   font-weight: 200;
-  font-size: 14px;
 `;
 export const CoachInfoFollower = styled.div`
   display: flex;
-  align-items: center;
-`;
-export const IconSizeControl = styled.div`
-  display: flex;
   justify-content: center;
   align-items: center;
-  width: 35px;
-  height: 35px;
-  background-color: black;
-  border-radius: 100%;
-  padding-left: 1px;
+  font-size: 16px;
+  @media screen and (max-width: 1440px) {
+    font-size: 12px;
+  }
 `;
+
 export const CoachInfoScore = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 16px;
+  @media screen and (max-width: 1440px) {
+    font-size: 12px;
+  }
 `;
 export const ContainerCoaches = styled.div`
   display: flex;
@@ -201,7 +234,7 @@ export const ContainerColumns = styled.div`
 
 export const ButtonWrapper = styled.div`
   width: 100%;
-  height: 100px;
+  height: 50px;
   font-size: 18px;
   border-top: 1px solid #c4c4c4;
 `;
@@ -219,6 +252,9 @@ export const CoachFollowBtn = styled.button`
     background-color: black;
     color: white;
   }
+  @media screen and (max-width: 1440px) {
+    font-size: 14px;
+  }
 `;
 
 export const CoachDetailBtn = styled.button`
@@ -231,5 +267,8 @@ export const CoachDetailBtn = styled.button`
   :hover {
     background-color: black;
     color: white;
+  }
+  @media screen and (max-width: 1440px) {
+    font-size: 14px;
   }
 `;
