@@ -2,14 +2,17 @@ import Blank from "../../../../commons/Blank";
 import MypageMenu from "../MypageMenu.Container";
 import * as S from "./UserRanking.Style";
 
-export default function UserRankingUI() {
+export default function UserRankingUI(props) {
   return (
     <S.AllWrapper>
       <MypageMenu />
       <S.Wrapper>
-        <S.Box>랭킹</S.Box>
+        <S.Box>
+          <span onClick={props.moveToPage("/mypage")}>마이페이지 </span>
+          {` > `}
+          <p>전체 랭킹보기</p>
+        </S.Box>
         <Blank height="30px" />
-
         <S.ChargeBox>
           <span>일간</span> | <span>주간</span> | <span>월간</span> |{" "}
           <span>전체</span>

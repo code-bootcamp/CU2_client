@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const AllWrapper = styled.div`
-  margin: 70px 360px 0;
+  margin: 100px 360px 0;
   display: flex;
   flex-direction: row;
 `;
@@ -18,7 +18,10 @@ export const Box = styled.div`
   width: 90%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  & span {
+    cursor: pointer;
+  }
 `;
 
 export const MyPageButton = styled.button`

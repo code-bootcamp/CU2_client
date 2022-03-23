@@ -1,5 +1,7 @@
+import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import UserRankingUI from "./UserRanking.Presenter";
 
 export default function UserRanking() {
-  return <UserRankingUI />;
+  const { moveToPage } = useMoveToPage();
+  return <UserRankingUI moveToPage={moveToPage} />;
 }

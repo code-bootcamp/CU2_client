@@ -104,9 +104,13 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
           </S.ProfileContents>
           <Blank height="30px" />
           <S.UserInfoEditBox>
-            <button>관심 카테고리 수정</button>
+            <button onClick={props.moveToPage("/mypage/user/follower")}>
+              관심 카테고리 수정
+            </button>
             <Blank height="10px" />
-            <button>회원 정보 수정</button>
+            <button onClick={props.moveToPage("/mypage/user/update")}>
+              회원 정보 수정
+            </button>
           </S.UserInfoEditBox>
         </S.ProfileBody>
         <Blank height="80px" />
