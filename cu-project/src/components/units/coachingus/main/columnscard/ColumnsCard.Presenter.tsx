@@ -16,9 +16,9 @@ export default function ColumnsCardUI(props: ICoachingUsColumnsCardUIProps) {
             <Blank height="10px" />
             <S.ColumnText>
               <S.ColumnTitle>
-                {column.title.length > 13 ? (
+                {column.title.length > 25 ? (
                   <S.ColumnShortenTitle>
-                    {column.title.slice(0, 13) + "..."}
+                    {column.title.slice(0, 25) + "..."}
                   </S.ColumnShortenTitle>
                 ) : (
                   <S.ColumnTitle>{column.title}</S.ColumnTitle>
@@ -33,6 +33,8 @@ export default function ColumnsCardUI(props: ICoachingUsColumnsCardUIProps) {
                   <S.ColumnContents>{column.contents}</S.ColumnContents>
                 )}
               </S.ColumnContents>
+              <Blank height="5px" />
+              <S.ColumnFooter>김태훈 coach | 2일전</S.ColumnFooter>
             </S.ColumnText>
           </S.ColumnsList>
         ))}

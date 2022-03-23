@@ -3,17 +3,17 @@ import styled from "@emotion/styled";
 
 export const ContainerColumnsList = styled.div`
   display: flex;
-  width: 100%;
+  min-width: 100vw;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   min-height: 200px;
   padding: 30px 25px;
-  background: gray;
+  background: #fbfafa;
 `;
 
 export const ColumnsListTitle = styled.div`
-  width: 100%;
+  width: max-content;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,7 +40,8 @@ export const MoreCoachesListBtn = styled.div`
 export const ContainerColumnsListBody = styled.div`
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+
+  min-width: 800px;
 `;
 
 export const ColumnsList = styled.div`
@@ -48,16 +49,15 @@ export const ColumnsList = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background-color: white;
   border-radius: 20px;
   padding: 15px 20px;
   width: 230px;
   /* height: fit-content; */
-  height: 240px;
-  margin: 20px 15px;
-
+  height: 350px;
+  margin: 20px 0;
+  background: #fbfafa;
   overflow: hidden;
-  box-shadow: 4px 4px 4px 2px #dbdbdb40;
+  /* box-shadow: 4px 4px 4px 2px #dbdbdb40; */
 `;
 
 export const ColumnPicture = styled.div`
@@ -65,15 +65,18 @@ export const ColumnPicture = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 130px;
+  height: 150px;
   background-color: #c4c4c4;
+  border-radius: 15px;
 `;
 export const ColumnText = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  min-width: 100%;
+  align-items: space-between;
+  justify-content: space-between;
+  height: 120px;
+  width: 100%;
+  /* background: red; */
 `;
 export const ColumnTitle = styled.div`
   display: flex;
@@ -95,6 +98,10 @@ export const ColumnContents = styled.div`
   font-weight: lighter;
 `;
 
+export const ColumnFooter = styled.div`
+  font-weight: lighter;
+  color: #bdbdbd;
+`;
 export const ColumnShortenContents = styled.div`
   display: flex;
   align-items: flex-start;
