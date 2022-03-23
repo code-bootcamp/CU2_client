@@ -7,15 +7,12 @@ import BlogShortCard from "../card/blogShortCard/BlogShortCard";
 import * as S from "./CodingUsBlog.Style";
 import Label01 from "../../../commons/Label/Label01";
 import { v4 as uuidV4 } from "uuid";
-import CodingUsSidebar from "../sidebar/Sidebar.Container";
 import InfiniteScroll from "react-infinite-scroller";
 import BlogCard02 from "../card/blogCard/BlogCard02/BlogCard02";
 import CodingUsHistory from "../history/History.Container";
 export default function CodingUsBlogUI(props: ICodingUsBlogUIProps) {
   return (
-    <S.Wrapper>
       <S.CodingUsBlog>
-        <CodingUsSidebar />
         <S.CodingUsBlogBody>
           <CodingUsHistory
             historyData={{
@@ -72,6 +69,5 @@ export default function CodingUsBlogUI(props: ICodingUsBlogUIProps) {
           </S.FollowingWrapper>
         </S.CodingUsBlogBody>
       </S.CodingUsBlog>
-    </S.Wrapper>
   );
 }

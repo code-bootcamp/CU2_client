@@ -9,9 +9,7 @@ import WaitingItem from "./waitingItem/WaitingItem.Container";
 
 export default function CodingUsQnAUI(props: ICodingUsQnAUIProps) {
   return (
-    <S.Wrapper>
       <S.CodingUsQnA>
-        <CodingUsSidebar />
         <S.CodingUsQnABody>
           <CodingUsHistory
             historyData={{
@@ -96,6 +94,5 @@ export default function CodingUsQnAUI(props: ICodingUsQnAUIProps) {
           </S.WaitingWrapper>
         </S.CodingUsQnABody>
       </S.CodingUsQnA>
-    </S.Wrapper>
   );
 }
