@@ -2,8 +2,10 @@ import RecCoachCardUI from "./RecCoachCard.Presenter";
 import {} from "../CoachingUsMain.Queries";
 import { ICoachingUsRecCoachCardProps } from "../../../../../commons/types/types";
 import { useEffect, useState } from "react";
+import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 
 export default function RecCoachCardPage(props: ICoachingUsRecCoachCardProps) {
+  const { moveToPage } = useMoveToPage();
   const [isStart, setIsStart] = useState(true);
   const recommendCoachList = [
     {
@@ -53,6 +55,10 @@ export default function RecCoachCardPage(props: ICoachingUsRecCoachCardProps) {
   }, []);
 
   return (
-    <RecCoachCardUI recommendCoachList={recommendCoachList} isStart={isStart} />
+    <RecCoachCardUI
+      recommendCoachList={recommendCoachList}
+      isStart={isStart}
+      moveToPage={moveToPage}
+    />
   );
 }

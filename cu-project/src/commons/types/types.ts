@@ -6,7 +6,14 @@ import {
 } from "react-hook-form";
 import { CheckboxChangeEvent } from "antd/lib/checkbox/Checkbox";
 import { IPage } from "../../components/commons/hooks/useMoveToPage";
-import { MouseEvent } from "react";
+import { MouseEvent, ReactChild } from "react";
+
+
+export interface ILayoutProps {
+  children: ReactChild;
+}
+
+
 // #region Login && Register
 export interface FormValues {
   name?: string;
@@ -50,14 +57,14 @@ export interface ICodingUsBlogProps {}
 export interface ICodingUsBlogCardProps {
   // graphQL Types 가져오면 수정할 예정
   images: string[];
-  stacks : string[];
-  title : string;
-  content : string;
-  writer : string;
-  likeCnt : number;
-  commentCnt : number;
-  createdAt : string;
-  isLike : boolean;
+  stacks: string[];
+  title: string;
+  content: string;
+  writer: string;
+  likeCnt: number;
+  commentCnt: number;
+  createdAt: string;
+  isLike: boolean;
 }
 export interface ICodingUsBlogUIProps {
   onLoadMore: () => void;
@@ -71,9 +78,24 @@ export interface ICodingUsMainUIProps {
   moveToPage: (page: string) => void;
 }
 
-export interface ICodingUsStackProps {}
-export interface ICodingUsStackUIProps {}
-
+export interface ICodingUsQnAProps {}
+export interface ICodingUsQnAUIProps {
+  isMyQuestion: boolean;
+  toogleIsMyQuestion: () => void;
+  waitingCnt: number;
+  myWaitingCnt: number;
+}
+export interface IWatingItemProps {
+  data: {
+    stack: string;
+    tags?: string[];
+    title: string;
+    images?: string[];
+    commentCnt: number;
+    createdAt: string;
+  };
+  onClickAnswer: () => void;
+}
 export interface ICodingUsRankProps {}
 export interface ICodingUsRankUIProps {}
 // #endregion
@@ -84,7 +106,7 @@ export interface ICoachingUsLandingProps {
 }
 export interface ICoachingUsLandingUIProps {
   corList: string[];
-  onChangeCheckBox: (event: CheckboxChangeEvent) => void;
+  onChangeCheckBox: (event: MouseEvent) => void;
   onClickStart: () => void;
   favorList: (string | undefined)[];
   setIsFavorites: (props: boolean) => void;

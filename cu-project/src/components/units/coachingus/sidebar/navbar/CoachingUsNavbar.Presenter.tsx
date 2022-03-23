@@ -7,36 +7,36 @@ export default function CoachingUsNavbarUI(props: ICoachingUsNavbarUIProps) {
     <S.Wrapper>
       <S.Title>CoachingUs</S.Title>
       <Blank height="30px" />
-      <S.CoachingUs
+      <S.Sidenav
         onClick={props.moveToPage("/coachingus")}
         isCurrent={props.currentPath === "/coachingus"}
       >
         CoachingUs
-      </S.CoachingUs>
+      </S.Sidenav>
       <Blank width="100px" />
       <Blank height="30px" />
-      <S.Coach
+      <S.Sidenav
         onClick={props.moveToPage("/coachingus/coaches")}
         isCurrent={props.currentPath === "/coachingus/coaches"}
       >
         Coaches
-      </S.Coach>
+      </S.Sidenav>
       <Blank width="100px" />
       <Blank height="30px" />
-      <S.Column
+      <S.Sidenav
         onClick={props.moveToPage("/coachingus/column")}
         isCurrent={props.currentPath === "/coachingus/column"}
       >
         Column
-      </S.Column>
+      </S.Sidenav>
       <Blank width="100px" />
       <Blank height="30px" />
-      <S.CoachRegister
+      <S.Sidenav
         onClick={props.moveToPage("/coachingus/coach-register")}
         isCurrent={props.currentPath === "/coachingus/coach-register"}
       >
         Coach Register
-      </S.CoachRegister>
+      </S.Sidenav>
     </S.Wrapper>
   );
 }
