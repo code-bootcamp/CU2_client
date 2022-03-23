@@ -71,9 +71,24 @@ export interface ICodingUsMainUIProps {
   moveToPage: (page: string) => void;
 }
 
-export interface ICodingUsStackProps {}
-export interface ICodingUsStackUIProps {}
-
+export interface ICodingUsQnAProps {}
+export interface ICodingUsQnAUIProps {
+  isMyQuestion: boolean;
+  toogleIsMyQuestion: () => void;
+  waitingCnt: number;
+  myWaitingCnt: number;
+}
+export interface IWatingItemProps {
+  data: {
+    stack: string;
+    tags?: string[];
+    title: string;
+    images?: string[];
+    commentCnt: number;
+    createdAt: string;
+  };
+  onClickAnswer: () => void;
+}
 export interface ICodingUsRankProps {}
 export interface ICodingUsRankUIProps {}
 // #endregion
