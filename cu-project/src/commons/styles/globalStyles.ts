@@ -6,6 +6,11 @@ export const globalStyles = css`
     box-sizing: border-box;
     font-family: "cu2FontFamily";
   }
+  button {
+    :hover{
+      cursor: pointer;
+    }
+  }
   // Apple SD Gothic Neo
   @font-face {
     font-family: "cu2FontFamily";

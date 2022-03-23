@@ -3,7 +3,12 @@ import Blank from "../../../../commons/Blank";
 import Label01 from "../../../../commons/Label/Label01";
 import HorizontalLine from "../../../../commons/Line/HorizontalLine";
 import { getYYYYMMDD } from "../../../../../commons/libraries/dateUtils";
-import { BiLike, BiDislike } from "react-icons/bi";
+import {
+  AiFillLike,
+  AiFillDislike,
+  AiOutlineLike,
+  AiOutlineDislike,
+} from "react-icons/ai";
 interface ICodingUsCardProps {
   width?: number;
   height?: number;
@@ -16,6 +21,7 @@ interface ICodingUsCardProps {
   goodCnt?: number;
   badCnt?: number;
   isGood?: boolean;
+  isBad?: boolean;
 }
 
 export default function QnADetailCard(props: ICodingUsCardProps) {
@@ -43,7 +49,11 @@ export default function QnADetailCard(props: ICodingUsCardProps) {
           isGood={props.isGood ?? false}
           isQuestion={props.isQuestion ?? false}
         >
-          <BiLike />
+          {props.isGood ? (
+            <AiOutlineLike style={{ width: "30px", height: "30px" }} />
+          ) : (
+            <AiFillLike style={{ width: "30px", height: "30px" }} />
+          )}
           <Blank width="16px" />
           Good
           <Blank width="16px" />
@@ -51,7 +61,11 @@ export default function QnADetailCard(props: ICodingUsCardProps) {
         </S.Button>
         <Blank width="47px" />
         <S.Button isGood={false} isQuestion={props.isQuestion ?? false}>
-          <BiDislike />
+          {props.isBad ? (
+            <AiOutlineDislike style={{ width: "30px", height: "30px" }} />
+          ) : (
+            <AiFillDislike style={{ width: "30px", height: "30px" }} />
+          )}
           <Blank width="16px" />
           Bad
           <Blank width="16px" />

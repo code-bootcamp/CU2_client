@@ -80,12 +80,14 @@ interface IButtonProps{
 
 export const Button = styled.button`
   display: inline-flex;
+  align-items: center;
   font-weight: 700;
   font-size: 18px;
   line-height: 22px;
   padding: 25px;
   border-radius: 8px;
   border: none;
+
   background-color: 
   ${(props:IButtonProps) => !props.isQuestion ? Color.white : Color.medium};
   :hover{
