@@ -24,8 +24,8 @@ export default function CoachingUsNavbarUI(props: ICoachingUsNavbarUIProps) {
       <Blank width="100px" />
       <Blank height="30px" />
       <S.Sidenav
-        onClick={props.moveToPage("/coachingus/column")}
-        isCurrent={props.currentPath.includes("/coachingus/column")}
+        onClick={props.moveToPage("/coachingus/columns")}
+        isCurrent={props.currentPath.includes("/coachingus/columns")}
       >
         Columns
       </S.Sidenav>
