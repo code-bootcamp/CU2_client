@@ -9,12 +9,13 @@ const EditorUI = dynamic(() => import("./Editor/index"), {
 interface ITextEditorProps {
   width: string | number;
   height: string | number;
-  ref: RefObject<Editor>;
+  editorRef: RefObject<Editor>;
 }
 export default function TextEditor01(props: ITextEditorProps) {
+  console.log(props)
   return (
     <div style={{ height: props.height, width: props.width }}>
-      <EditorUI ref={props.ref}/>
+      <EditorUI editorRef={props.editorRef}/>
     </div>
   );
 }

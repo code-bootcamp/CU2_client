@@ -13,14 +13,14 @@ export default function CodingUsBlogWriteUI(props: ICodingUsBlogWriteUIProps) {
     <S.CodingUsBlogWrite>
       <S.ButtonWrapper>
         <Button01 value="나가기" onClick={() => {}} padding="12px 38px" />
-        <Button02 value="완료" icon={AiOutlineEdit} onClick={() => {}} />
+        <Button02 value="완료" icon={AiOutlineEdit} onClick={props.onClickSubmit} />
       </S.ButtonWrapper>
-      <Blank height="50px" />
+      <Blank height="150px" />
       <S.TitleInput placeholder="제목을 입력하세요" />
       <HorizontalLine margin={30} color="#DBDBDB" />
       <TagInput tags={props.tags} setTags={props.setTags} />
       <Blank height="32px" />
-      <TextEditor01 width="100%" height="100%" ref={props.ref} />
+      <TextEditor01 width="100%" height="100%" editorRef={props.editorRef} />
     </S.CodingUsBlogWrite>
   );
 }

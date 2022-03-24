@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import Color from "../../../../commons/styles/color";
+import Color from "../../../../../commons/styles/color";
 
 export const CodingUsBlogWrite = styled.div`
   margin: 100px 0% 0% 5%;
@@ -16,6 +16,12 @@ export const RowWrapper = styled.div`
 
 export const ButtonWrapper = styled(RowWrapper)`
   justify-content: space-between;
+  z-index: 2;
+  position: fixed;
+  width: 90%;
+  top: 80px;
+  padding: 20px 0px 10px 0px;
+  background-color: ${Color.white};
 `;
 
 export const TitleInput = styled.input`

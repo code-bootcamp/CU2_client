@@ -73,9 +73,11 @@ export interface ICodingUsBlogUIProps {
 }
 export interface ICodingUsBlogWriteProps {}
 export interface ICodingUsBlogWriteUIProps {
-  ref: RefObject<Editor>;
+  editorRef: RefObject<Editor>;
   tags: string[];
   setTags: (tags: React.SetStateAction<string[]>) => void;
+  onClickExit: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 export interface ICodingUsMainProps {}
 export interface ICodingUsMainUIProps {

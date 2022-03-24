@@ -9,13 +9,12 @@ import Prism from "prismjs";
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 import { Editor as ToastEditor } from "@toast-ui/react-editor";
-import { RefObject, useEffect, useRef } from "react";
-import { EditorType } from "@toast-ui/editor";
+import { RefObject } from "react";
 import styled from "@emotion/styled";
 import Color from "../../../../../commons/styles/color";
 
 interface ITextEditorUIProps {
-  ref: RefObject<ToastEditor>;
+  editorRef: RefObject<ToastEditor>;
 }
 
 export const Editor = styled(ToastEditor)``;
@@ -47,23 +46,14 @@ export const Wrapper = styled.div`
   }
 `;
 export default function EditorUI(props: ITextEditorUIProps) {
-  const editorRef = useRef<ToastEditor>(null);
-
-  useEffect(() => {
-    console.log(editorRef);
-  }, [editorRef]);
   return (
     <Wrapper>
-      <Editor
-        ref={props.ref}
-        onChange={(_: EditorType) => {}}
+      <ToastEditor
+        ref={props.editorRef}
+        height={"100%"}
         previewStyle="vertical"
         placeholder="당신의 이야기를 적어보세요"
         plugins={[colorSyntax, [codeSyntaxHighlight, { highlighter: Prism }]]}
-        onLoad={() => {
-          // console.log("ins", editorRef.current?.getInstance());
-          // console.log("root", editorRef.current?.getRootElement());
-        }}
       />
     </Wrapper>
   );
