@@ -22,7 +22,7 @@ export default function CoachingUsProfile(props: ICoachingUsProfileProps) {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 100);
+    }, 1000);
   }, [isLoading]);
 
   if (isLoading) {

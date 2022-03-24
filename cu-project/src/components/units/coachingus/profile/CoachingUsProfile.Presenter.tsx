@@ -63,8 +63,34 @@ export default function CoachingUsProfileUI(props: ICoachingUsProfileUIProps) {
         </S.CoachCard>
       </S.CoachSidebar>
       <S.CoachProfileBody>
-        <S.CoachIntro>멘토소개</S.CoachIntro>
-        <S.CoachComments>Coach Comments</S.CoachComments>
+        <S.CoachIntro>
+          <S.CoachIntroTitle>멘토소개</S.CoachIntroTitle>
+          <S.CoachIntroContents>멘토소개글</S.CoachIntroContents>
+        </S.CoachIntro>
+        <Blank height="30px" />
+        <S.CoachComments>
+          <S.CoachComments>Coach Comments</S.CoachComments>
+          <Blank height="10px" />
+          <S.CommentsBody>
+            <S.CommentsTitle>Q) 멘티 질문 제목</S.CommentsTitle>
+            <Blank height="10px" />
+            <S.CommentsContents>
+              A) 멘토 답변 내용 멘토 답변 내용 멘토 답변 내용 멘토 답변 내용
+              멘토 답변 내용멘토 답변 내용멘토 답변 내용멘토 답변 내용멘토 답변
+              내용멘토 답변 내용멘토 답변 내용멘토 답변 내용
+            </S.CommentsContents>
+            <Blank height="20px" />
+            <S.CommentsInfo>
+              <S.CommentsInfoHits>조회수 302</S.CommentsInfoHits>
+              <Blank width="20px" />
+              <S.CommentsInfoLikes>좋아요 21</S.CommentsInfoLikes>
+            </S.CommentsInfo>
+            <S.MoreBtn>
+              <p>{">"}</p>더보기
+            </S.MoreBtn>
+          </S.CommentsBody>
+        </S.CoachComments>
+        <Blank height="30px" />
         <S.CoachColumn>Coach Columns</S.CoachColumn>
       </S.CoachProfileBody>
     </S.Wrapper>
