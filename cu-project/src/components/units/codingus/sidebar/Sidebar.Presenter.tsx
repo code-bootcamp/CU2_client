@@ -1,10 +1,13 @@
 import Blank from "../../../commons/Blank";
 import CodingUsLeftSidebar from "./left";
+import CodingUsNavbar from "./navbar";
 import CodingUsRightSidebar from "./right";
 import * as S from "./Sidebar.Style";
 export default function CodingUsSidebarUI() {
   return (
     <S.SidebarWrapper>
+      <CodingUsNavbar />
+      <Blank height="135px" />
       <CodingUsLeftSidebar
         interestStacks={["JavaScript", "HTML5", "CSS3", "Python", "C++"]}
       />
