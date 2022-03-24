@@ -96,6 +96,18 @@ export interface IWatingItemProps {
   };
   onClickAnswer: () => void;
 }
+
+export interface ICodingUsCardProps {
+  width?: number;
+  height?: number;
+  image?: string;
+  tags?: string[];
+  title?: string;
+  contents?: string;
+  writer?: string;
+}
+
+
 export interface ICodingUsRankProps {}
 export interface ICodingUsRankUIProps {}
 // #endregion

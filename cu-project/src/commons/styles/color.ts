@@ -4,4 +4,5 @@ export default class Color {
     static dark = "#333333";
     static medium = "#BDBDBD";
     static light = "#F6F5F5";
+    static white = "#FFFFFF";
 }

@@ -8,6 +8,12 @@ export const globalStyles = css`
     font-display: block;
   }
 
+  button {
+    :hover{
+      cursor: pointer;
+    }
+  }
+
   // Apple SD Gothic Neo
   @font-face {
     font-family: "cu2FontFamily";
