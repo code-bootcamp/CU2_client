@@ -18,7 +18,9 @@ export const Wrapper = styled.div`
   padding: 40px 30px 34px 30px;
   margin: 0px 0px 20px 0px;
   background-color: ${(props: ICardWrapperProps) =>
-    props.isQuestion ? Color.medium : Color.light};
+    props.isQuestion ? "#F0F0F0" : Color.white};
+
+    border: ${(props: ICardWrapperProps)=>props.isQuestion ? "none" : "1px solid black"}
   `;
 
 export const TagWrapper = styled.div`
@@ -89,7 +91,7 @@ export const Button = styled.button`
   border: none;
 
   background-color: 
-  ${(props:IButtonProps) => !props.isQuestion ? Color.white : Color.medium};
+  ${(props:IButtonProps) => props.isQuestion ? Color.white : "#F0F0F0"};
   :hover{
     pointer: cursor;
   }

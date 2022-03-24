@@ -5,6 +5,8 @@ import Tag02 from "../../../../commons/Tag/Tag02";
 import QnADetailCard from "../../card/qnaDetailCard/QnADetailCard";
 import * as S from "./QnADetail.Style";
 import { v4 as uuidv4 } from "uuid";
+import VerticalLine from "../../../../commons/Line/VerticalLine";
+import { MouseEvent } from "react";
 interface ICodingUsQnaDetailUIProps {
   question: {
     writer: string;
@@ -14,21 +16,23 @@ interface ICodingUsQnaDetailUIProps {
     stack: string;
     tags: string[];
   };
-  answer?: {question: {
+  answers: {
     writer: string;
     createdAt: string;
     title: string;
     contents: string;
     stack: string;
     tags: string[];
-  }[];
-}
+  };
+  isSortGood: boolean;
+  toggleSortGubun: () => void;
+  onClickButton: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
 export default function CodingUsQnADetailUI(props: ICodingUsQnaDetailUIProps) {
   return (
     <S.QnADetail>
-      <Label01 value="Stack" size="36px" weight="700"></Label01>
+      <Label01 value="Stack" size="36px" weight="700" />
       <Blank height="28px" />
       <S.Tags>
         <Tag01 value={props.question.stack} isShort={true} />
@@ -43,12 +47,50 @@ export default function CodingUsQnADetailUI(props: ICodingUsQnaDetailUIProps) {
       </S.Tags>
       <Blank height="21px" />
       <QnADetailCard
-        isQuestion={false}
+        isQuestion={true}
         writer={props.question.writer}
         title={props.question.title}
         contents={props.question.contents}
         createdAt={props.question.createdAt}
+        onClickBtn={props.onClickButton}
       />
+      <Blank height="166px" />
+      <Label01 value="Answers" size="36px" weight="700" />
+      <Blank height="24px" />
+      <S.Gubun>
+        <S.GubunLabel
+          isSelected={props.isSortGood}
+          onClick={() => {
+            if (!props.isSortGood) props.toggleSortGubun();
+          }}
+        >
+          Good순
+        </S.GubunLabel>
+        <VerticalLine margin={20} />
+        <S.GubunLabel
+          isSelected={!props.isSortGood}
+          onClick={() => {
+            if (props.isSortGood) props.toggleSortGubun();
+          }}
+        >
+          최신순
+        </S.GubunLabel>
+      </S.Gubun>
+      <Blank height="30px" />
+      {props.answers &&
+        new Array(4)
+          .fill(props.answers)
+          .map((el) => (
+            <QnADetailCard
+              key={uuidv4()}
+              isQuestion={false}
+              writer={el.writer}
+              title={el.title}
+              contents={el.contents}
+              createdAt={el.createdAt}
+              onClickBtn={props.onClickButton}
+            />
+          ))}
     </S.QnADetail>
   );
 }

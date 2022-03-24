@@ -9,6 +9,7 @@ import {
   AiOutlineLike,
   AiOutlineDislike,
 } from "react-icons/ai";
+import { MouseEvent } from "react";
 interface ICodingUsCardProps {
   width?: number;
   height?: number;
@@ -22,6 +23,7 @@ interface ICodingUsCardProps {
   badCnt?: number;
   isGood?: boolean;
   isBad?: boolean;
+  onClickBtn: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
 export default function QnADetailCard(props: ICodingUsCardProps) {
@@ -46,8 +48,10 @@ export default function QnADetailCard(props: ICodingUsCardProps) {
       <Blank height="77px" />
       <S.ButtonWrapper>
         <S.Button
+          id="good"
           isGood={props.isGood ?? false}
           isQuestion={props.isQuestion ?? false}
+          onClick={props.onClickBtn}
         >
           {props.isGood ? (
             <AiOutlineLike style={{ width: "30px", height: "30px" }} />
@@ -60,7 +64,12 @@ export default function QnADetailCard(props: ICodingUsCardProps) {
           <p>{props.goodCnt ?? 0}</p>
         </S.Button>
         <Blank width="47px" />
-        <S.Button isGood={false} isQuestion={props.isQuestion ?? false}>
+        <S.Button
+          id="bad"
+          isGood={false}
+          isQuestion={props.isQuestion ?? false}
+          onClick={props.onClickBtn}
+        >
           {props.isBad ? (
             <AiOutlineDislike style={{ width: "30px", height: "30px" }} />
           ) : (
