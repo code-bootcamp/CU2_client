@@ -13,8 +13,9 @@ export const Wrapper = styled.div`
 // coach card 영역
 export const CoachSidebar = styled.div`
   min-height: 100vh;
-  min-width: 300px;
+  min-width: 500px;
   display: flex;
+  justify-content: center;
 `;
 export const CoachCard = styled.div`
   width: 250px;
@@ -164,5 +165,89 @@ export const RateTextActive = styled.div`
 `;
 
 export const CoachIntro = styled.div``;
-export const CoachComments = styled.div``;
-export const CoachColumn = styled.div``;
+export const CoachIntroTitle = styled.div`
+  font-size: 21px;
+  font-weight: normal;
+`;
+export const CoachIntroContents = styled.div`
+  font-size: 16px;
+  font-weight: 300;
+`;
+
+export const CoachComments = styled.div`
+  font-size: 21px;
+  font-weight: 400;
+`;
+export const CommentsBody = styled.div`
+  width: 100%;
+
+  height: 175px;
+  padding: 25px 150px 25px 25px;
+  color: white;
+  background-color: #7918f2;
+`;
+export const CommentsTitle = styled.div`
+  font-weight: 300;
+`;
+export const CommentsContents = styled.div`
+  font-size: 14px;
+  font-weight: 200;
+  overflow: hidden;
+  padding: 0 20px;
+`;
+export const CommentsInfo = styled.div`
+  display: flex;
+  font-size: 14px;
+  font-weight: 200;
+`;
+export const CommentsInfoHits = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+  border: 1px solid white;
+`;
+export const CommentsInfoLikes = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+  border: 1px solid white;
+`;
+export const MoreBtn = styled.div`
+  position: relative;
+  bottom: 107px;
+  left: 116%;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background-color: white;
+  color: black;
+  font-size: 18px;
+  border: 1px solid black;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  :hover {
+    background-color: black;
+    color: white;
+  }
+
+  p {
+    font-size: 28px;
+  }
+`;
+
+export const CoachColumn = styled.div`
+  font-size: 21px;
+  font-weight: 400;
+`;
