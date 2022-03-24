@@ -11,4 +11,5 @@ export const Wrapper = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   padding: 40px 0;
+  margin: 0px 50px 0px 50px;
 `;
