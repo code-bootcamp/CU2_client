@@ -4,6 +4,7 @@ import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import Label01 from "../../../../commons/Label/Label01";
 import HorizontalLine from "../../../../commons/Line/HorizontalLine";
 import * as S from "./style";
+import { v4 as uuidv4 } from "uuid";
 export default function CodingUsNavbar() {
   const { moveToPage, currentPage } = useMoveToPage();
 
@@ -12,7 +13,7 @@ export default function CodingUsNavbar() {
     const isNow =
       currentPage.split("/")[currentPage.split("/").length - 1] === path;
     return (
-      <div>
+      <div key={uuidv4()}>
         <S.Title
           isNow={isNow}
           onClick={moveToPage(`/codingus/${path === "codingus" ? "" : path}`)}
