@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
   border-radius: 100%;
   transform: rotate(180deg);
   margin-left: -25px;
+  font-family: "cu2FontFamily";
   .circular {
     height: 60px;
     width: 60px;
