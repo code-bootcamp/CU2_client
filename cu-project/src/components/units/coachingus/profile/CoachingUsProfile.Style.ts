@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { globalStyles } from "../../../../../src/commons/styles/globalStyles";
 
 export const Wrapper = styled.div`
   min-height: 100vh;
@@ -7,7 +8,6 @@ export const Wrapper = styled.div`
   margin: 0;
   padding-top: 100px;
   display: flex;
-  justify-content: center;
 `;
 
 // coach card 영역
