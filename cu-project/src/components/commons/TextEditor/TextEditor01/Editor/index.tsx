@@ -9,7 +9,7 @@ import Prism from "prismjs";
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 import { Editor as ToastEditor } from "@toast-ui/react-editor";
-import { Dispatch, SetStateAction, useRef } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 import { EditorType } from "@toast-ui/editor";
 import styled from "@emotion/styled";
 import Color from "../../../../../commons/styles/color";
@@ -33,31 +33,34 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   .toastui-editor-defaultUI {
+    border: none;
     .toastui-editor-defaultUI-toolbar {
       background-color: ${"white"};
+      border: none;
     }
-    
     .toastui-editor-dropdown-toolbar {
       background-color: ${"white"};
+    }
+    .toastui-editor-defaultUI-toolbar button {
+      border: none;
     }
     .toastui-editor-defaultUI-toolbar .scroll-sync.active::before {
       color: ${Color.dark};
     }
-    /* 
-    .toastui-editor-toolbar-icons {
-      background-color: ${Color.light};
-      background-color: ${Color.sub};
+    .toastui-editor-mode-switch{
+      border: none;
     }
-    .toastui-editor-toolbar-icons.bold {
-      background: url("1-place-medal.png") no-repeat;
-      background-size: 466px 146px;
-    } 
-    */
+    .tab-item{
+      display: none;
+    }
   }
 `;
 export default function EditorUI(props: ITextEditorUIProps) {
   const editorRef = useRef<ToastEditor>(null);
 
+  useEffect(() => {
+    console.log(editorRef);
+  }, [editorRef]);
   return (
     <Wrapper>
       <Editor
@@ -69,8 +72,8 @@ export default function EditorUI(props: ITextEditorUIProps) {
         placeholder="내용을 입력해주세요"
         plugins={[colorSyntax, [codeSyntaxHighlight, { highlighter: Prism }]]}
         onLoad={() => {
-          console.log("ins", editorRef.current?.getInstance());
-          console.log("root", editorRef.current?.getRootElement());
+          // console.log("ins", editorRef.current?.getInstance());
+          // console.log("root", editorRef.current?.getRootElement());
         }}
       />
     </Wrapper>
