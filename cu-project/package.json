@@ -38,6 +38,7 @@
     "zustand": "^3.7.1"
   },
   "devDependencies": {
+    "@google-cloud/storage": "^5.18.2",
     "@graphql-codegen/cli": "^2.6.2",
     "@graphql-codegen/typescript": "^2.4.7",
     "@types/apollo-upload-client": "^17.0.0",

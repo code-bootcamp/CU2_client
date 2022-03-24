@@ -6,6 +6,8 @@ export const globalStyles = css`
     box-sizing: border-box;
     font-family: "cu2FontFamily";
   }
+
+
   // Apple SD Gothic Neo
   @font-face {
     font-family: "cu2FontFamily";

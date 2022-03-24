@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import { Dispatch, SetStateAction } from "react";
 
-const Editor = dynamic(() => import("./Editor/index"), {
+const EditorUI = dynamic(() => import("./Editor/index"), {
   ssr: false,
 });
 
@@ -14,7 +14,7 @@ interface ITextEditorProps {
 export default function TextEditor01(props: ITextEditorProps) {
   return (
     <div style={{ height: props.height, width: props.width }}>
-      <Editor value={props.value} setValue={props.setValue} />
+      <EditorUI setValue={props.setValue} />
     </div>
   );
 }
