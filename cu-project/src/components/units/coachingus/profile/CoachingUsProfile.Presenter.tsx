@@ -3,6 +3,7 @@ import Blank from "../../../commons/Blank";
 import * as S from "./CoachingUsProfile.Style";
 import CoachingUsProfileRate from "./CoachingUsProfileRate";
 import { BsFillTriangleFill } from "react-icons/bs";
+import CoachingUsSidebar from "../sidebar/CoachingUsSidebar.Container";
 
 export default function CoachingUsProfileUI(props: ICoachingUsProfileUIProps) {
   return (
@@ -16,7 +17,7 @@ export default function CoachingUsProfileUI(props: ICoachingUsProfileUIProps) {
             <S.ContentsSubTitle>
               <p>{props.coach.profile.name} </p> &nbsp;| 프론트엔드 2년차
             </S.ContentsSubTitle>
-            <Blank height="20px" />
+            <Blank height="15px" />
             <S.ContentsPersentage>
               <S.AnswerRate>
                 <S.RateText>
@@ -61,13 +62,18 @@ export default function CoachingUsProfileUI(props: ICoachingUsProfileUIProps) {
             </S.ProfileBtn>
           </S.CardContents>
         </S.CoachCard>
+        <Blank height="50px" />
+        <S.AddSideBar>
+          <CoachingUsSidebar />
+        </S.AddSideBar>
+        <Blank height="50px" />
       </S.CoachSidebar>
       <S.CoachProfileBody>
         <S.CoachIntro>
           <S.CoachIntroTitle>멘토소개</S.CoachIntroTitle>
           <S.CoachIntroContents>멘토소개글</S.CoachIntroContents>
         </S.CoachIntro>
-        <Blank height="30px" />
+        <Blank height="100px" />
         <S.CoachComments>
           <S.CoachComments>Coach Comments</S.CoachComments>
           <Blank height="10px" />
@@ -85,13 +91,60 @@ export default function CoachingUsProfileUI(props: ICoachingUsProfileUIProps) {
               <Blank width="20px" />
               <S.CommentsInfoLikes>좋아요 21</S.CommentsInfoLikes>
             </S.CommentsInfo>
-            <S.MoreBtn>
+            <S.MoreBtn
+              onClick={props.moveToPage(
+                `/coachingus/coaches/columnid/comments`
+              )}
+            >
               <p>{">"}</p>더보기
             </S.MoreBtn>
           </S.CommentsBody>
         </S.CoachComments>
-        <Blank height="30px" />
-        <S.CoachColumn>Coach Columns</S.CoachColumn>
+        <Blank height="100px" />
+        <S.CoachColumn>
+          Coach Columns
+          <Blank height="30px" />
+          <S.ContainerColumnsListBody>
+            {props.columnList.map((column) => (
+              <S.ColumnsList
+                key={column.id}
+                onClick={props.moveToPage(`/coachingus/column/${column.id}`)}
+              >
+                <S.ColumnPicture>{column.picture}</S.ColumnPicture>
+                <Blank height="20px" />
+                <S.ColumnText>
+                  <S.ColumnTitle>
+                    {column.title.length > 25 ? (
+                      <S.ColumnShortenTitle>
+                        {column.title.slice(0, 25) + "..."}
+                      </S.ColumnShortenTitle>
+                    ) : (
+                      <S.ColumnTitle>{column.title}</S.ColumnTitle>
+                    )}
+                  </S.ColumnTitle>
+                  <S.ColumnContents>
+                    {column.contents.length > 30 ? (
+                      <S.ColumnShortenContents>
+                        {column.contents.slice(0, 30) + "..."}
+                      </S.ColumnShortenContents>
+                    ) : (
+                      <S.ColumnContents>{column.contents}</S.ColumnContents>
+                    )}
+                  </S.ColumnContents>
+                  <Blank height="5px" />
+                  <S.ColumnFooter>
+                    <div>김태훈</div>2일전
+                  </S.ColumnFooter>
+                </S.ColumnText>
+              </S.ColumnsList>
+            ))}
+            <>
+              <S.ListMoreBtn onClick={props.moveToPage(`/coachingus/columns`)}>
+                <p>{">"}</p>더보기
+              </S.ListMoreBtn>
+            </>
+          </S.ContainerColumnsListBody>
+        </S.CoachColumn>
       </S.CoachProfileBody>
     </S.Wrapper>
   );
