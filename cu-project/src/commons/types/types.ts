@@ -6,7 +6,8 @@ import {
 } from "react-hook-form";
 import { CheckboxChangeEvent } from "antd/lib/checkbox/Checkbox";
 import { IPage } from "../../components/commons/hooks/useMoveToPage";
-import { MouseEvent, ReactChild } from "react";
+import { MouseEvent, ReactChild, RefObject } from "react";
+import {Editor} from "@toast-ui/react-editor";
 
 
 export interface ILayoutProps {
@@ -72,7 +73,12 @@ export interface ICodingUsBlogUIProps {
   onToggleSortGubun: (_: MouseEvent<HTMLDivElement>) => void;
   isSortByPopular: boolean;
 }
-
+export interface ICodingUsBlogWriteProps{
+  
+}
+export interface ICodingUsBlogWriteUIProps{
+  ref: RefObject<Editor>
+}
 export interface ICodingUsMainProps {}
 export interface ICodingUsMainUIProps {
   moveToPage: (page: string) => void;
