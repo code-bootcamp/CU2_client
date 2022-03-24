@@ -1,159 +1,126 @@
 import styled from "@emotion/styled";
+// ColumnsList 영역
 
-export const Wrapper = styled.div`
+export const ContainerColumnsList = styled.div`
+  display: flex;
   min-width: 100vw;
-  min-height: 100vh;
-  box-sizing: border-box;
-  margin: 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 40px 0;
-`;
-
-export const LandingBody = styled.div`
-  display: flex;
-  width: 95%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const SearchBar = styled.div`
-  height: 30px;
-  width: 70%;
-  border-radius: 20px;
-  background-color: #afa9a9;
-`;
-
-// RecommnedCoachList 영역
-
-export const ContainerRecommendCoach = styled.div`
-  display: flex;
-  width: 95%;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   min-height: 200px;
-  background-color: #333333;
   padding: 30px 25px;
-  p {
-    color: white;
-    font-size: 25px;
-    font-weight: 500;
-  }
+  background: #fbfafa;
 `;
 
-export const ContainerRecommendCoachBody = styled.div`
+export const ColumnsListTitle = styled.div`
+  width: max-content;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  font-weight: 500;
+  font-weight: 600;
+  font-size: 36px;
+  color: #7918f2;
+`;
+export const ColumnsListSubTitle = styled.div`
+  font-style: normal;
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 60px;
+  text-align: center;
+  color: #333333;
 `;
 
-export const RecommendCoach = styled.div`
+export const ContainerColumnsListBody = styled.div`
+  display: flex;
+  justify-content: center;
+
+  min-width: 800px;
+`;
+
+export const ColumnsList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background-color: white;
   border-radius: 20px;
   padding: 15px 20px;
   width: 230px;
-  height: 350px;
-  margin: 0 15px; ;
-`;
-export const RecommendCoachHeader = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-`;
-export const CoachTitle = styled.div``;
-export const CoachCor = styled.div`
-  font-size: 18px;
-  font-weight: bold;
-`;
-export const CoachSubCor = styled.div`
-  font-weight: lighter;
-`;
-export const CoachFollowBtn = styled.button`
-  color: white;
-  text-align: center;
-  background-color: black;
-  padding-top: 1px;
-  font-size: 12px;
-  height: 25px;
-  border-radius: 15px;
-`;
-export const RecommendCoachPicture = styled.div`
-  width: 150px;
-  height: 150px;
-  border-radius: 100%;
-  background-color: #c4c4c4;
-`;
-export const RecommendCoachPosition = styled.div`
-  font-weight: lighter;
-`;
-export const RecommendCoachName = styled.div`
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  font-weight: bold;
-  font-size: 18px;
-  div {
-    font-size: 14px;
-    font-weight: lighter;
+
+  height: fit-content;
+  margin: 20px 0;
+  background: #fbfafa;
+  overflow: hidden;
+  cursor: pointer;
+
+  :hover {
+    background-color: #7918f2;
+    color: white;
   }
 `;
 
-export const RecommendCoachTags = styled.div`
+export const ColumnPicture = styled.div`
   display: flex;
-  flex-wrap: wrap;
-`;
-export const CoachTag = styled.div`
-  width: fit-content;
-  margin: 0 5px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 150px;
+  background-color: #c4c4c4;
   border-radius: 15px;
-  padding: 0 5px;
-  border: 1px solid #c4c4c4;
 `;
-export const RecommendCoachInfo = styled.div`
-  display: flex;
-`;
-export const CoachInfoFollower = styled.div`
-  display: flex;
-`;
-export const CoachInfoScore = styled.div`
-  display: flex;
-`;
-export const ContainerCoaches = styled.div`
+export const ColumnText = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 95%;
-  min-height: 200px;
-  border-radius: 20px;
-  padding: 30px 25px;
+  align-items: space-around;
+  justify-content: space-between;
+  height: 120px;
+  width: 100%;
+  /* background: red; */
 `;
-export const ContainerColumns = styled.div`
+export const ColumnTitle = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 95%;
-  min-height: 200px;
-  border-radius: 20px;
-  padding: 30px 25px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 16px;
+  font-weight: 600;
+`;
+export const ColumnShortenTitle = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 16px;
+  font-weight: 600;
 `;
 
-// Sidebar 영역
-export const LeftSideBar = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  min-width: 300px;
+export const ColumnContents = styled.div`
+  font-size: 14px;
+  font-weight: lighter;
 `;
 
-export const RightSideBar = styled.div`
-  height: 100%;
-  min-width: 300px;
+export const ColumnFooter = styled.div`
+  font-weight: lighter;
+  color: #bdbdbd;
+`;
+export const ColumnShortenContents = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 14px;
+  font-weight: lighter;
+`;
+
+export const MoreCoachesListBtn = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: lighter;
+  cursor: pointer;
+  width: 285px;
+  height: 56px;
+  font-size: 20px;
+  font-weight: 400;
+  color: white;
+  background: #7918f2;
 `;

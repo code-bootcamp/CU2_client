@@ -1,28 +1,34 @@
-import { ICoachingUsMainProps } from "../../../../../commons/types/types";
+import { ICoachingUsColumnsCardProps } from "../../../../../commons/types/types";
 import ColumnsCardUI from "./ColumnsCard.Presenter";
 import {} from "../CoachingUsMain.Queries";
+import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 
-export default function ColumnsCardPage(props: ICoachingUsMainProps) {
+export default function ColumnsCardPage(props: ICoachingUsColumnsCardProps) {
+  const { moveToPage } = useMoveToPage();
   const columnList = [
     {
       id: 0,
-      corName: "우아한 형제들",
-      subCorName: "직군직군",
+      title: "형제들에서 알립니다!",
+      contents:
+        "내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~",
+      picture: "이미지입니다!",
       profile: {
         picture: "이미지! 입니다!",
-        name: "김태훈",
-        tags: ["IT", "대기업", "네카라쿠배"],
-        followers: 212,
-        score: 1213,
+        name: "손오공",
+        tags: ["IT", "개발직군아님"],
+        followers: 203312,
+        score: 3123,
       },
     },
     {
       id: 1,
-      corName: "배달의 민족",
-      subCorName: "마케팅",
+      title: "초기 컨텐츠 입니다.",
+      contents:
+        "내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~",
+      picture: "이미지입니다!",
       profile: {
         picture: "이미지! 입니다!",
-        name: "김재민",
+        name: "아이폰",
         tags: ["IT", "개발직군아님"],
         followers: 203312,
         score: 3123,
@@ -30,17 +36,33 @@ export default function ColumnsCardPage(props: ICoachingUsMainProps) {
     },
     {
       id: 2,
-      corName: "우아한 청년들",
-      subCorName: "배달배달",
+      title:
+        "하드코딩이 되어있습니다하드코딩이 되어있습니다하드코딩이 되어있습니다하드코딩이 되어있습니다하드코딩이 되어있습니다",
+      contents:
+        "내용이 들어가지요오~~내용이 내용이 들어가지요오~~내용이하드코딩이 되어있습니다하드코딩이 되어있습니다하드코딩이 되어있습니다하드코딩이 되어있습니다하드코딩이 되어있습니다 ",
+      picture: "이미지입니다!",
       profile: {
         picture: "이미지! 입니다!",
-        name: "최  건",
-        tags: ["배달", "하러", "가즈아"],
-        followers: 12,
-        score: 2513,
+        name: "갤럭시",
+        tags: ["IT", "개발직군아님"],
+        followers: 203312,
+        score: 3123,
+      },
+    },
+    {
+      id: 3,
+      title: "초기 컨텐츠 입니다. 하드코딩이 되어있습니다.",
+      contents: "내용내용",
+      picture: "이미지입니다!",
+      profile: {
+        picture: "이미지! 입니다!",
+        name: "김태훈",
+        tags: ["IT", "개발직군아님"],
+        followers: 203312,
+        score: 3123,
       },
     },
   ];
 
-  return <ColumnsCardUI columnList={columnList} />;
+  return <ColumnsCardUI columnList={columnList} moveToPage={moveToPage} />;
 }

@@ -1,63 +1,52 @@
-import { ICoachingUsMainUIProps } from "../../../../../commons/types/types";
+import { ICoachingUsColumnsCardUIProps } from "../../../../../commons/types/types";
 import Blank from "../../../../commons/Blank";
 import * as S from "./ColumnsCard.Style";
-import getMoney from "../../../../../commons/libraries/getMoney";
 
-export default function ColumnsCardUI(props: ICoachingUsMainUIProps) {
+export default function ColumnsCardUI(props: ICoachingUsColumnsCardUIProps) {
   return (
-    <S.ContainerRecommendCoach>
-      <p>추천 Coaches</p>
-      <S.ContainerRecommendCoachBody>
-        {props.columnList.map((coach) => (
-          <S.RecommendCoach key={coach.id}>
-            <S.RecommendCoachHeader>
-              <S.CoachTitle>
-                <S.CoachCor>{coach.corName}</S.CoachCor>
-                <S.CoachSubCor>{coach.subCorName}</S.CoachSubCor>
-              </S.CoachTitle>
-              <S.CoachFollowBtn>Follow</S.CoachFollowBtn>
-            </S.RecommendCoachHeader>
+    <S.ContainerColumnsList>
+      <S.ColumnsListTitle>
+        개발자 실무 Tip, 대기업 면접 Tip들 아직도 찾고 계신가요?
+      </S.ColumnsListTitle>
+      <S.ColumnsListSubTitle>코치들의 칼럼을 읽어보세요!</S.ColumnsListSubTitle>
+      <Blank height="20px" />
+      <S.ContainerColumnsListBody>
+        {props.columnList.map((column) => (
+          <S.ColumnsList
+            key={column.id}
+            onClick={props.moveToPage(`/coachingus/column/${column.id}`)}
+          >
+            <S.ColumnPicture>{column.picture}</S.ColumnPicture>
             <Blank height="10px" />
-            <S.RecommendCoachPicture></S.RecommendCoachPicture>
-            <Blank height="10px" />
-            <S.RecommendCoachPosition>직책</S.RecommendCoachPosition>
-            <S.RecommendCoachName>
-              {coach.profile.name} &nbsp; <div>coach</div>
-            </S.RecommendCoachName>
-            <S.RecommendCoachTags>
-              {coach.profile.tags.map((tag, index) => (
-                <S.CoachTag key={index}>{tag}</S.CoachTag>
-              ))}
-            </S.RecommendCoachTags>
-            <Blank height="10px" />
-            <S.RecommendCoachInfo>
-              <S.CoachInfoFollower>
-                <div
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                    background: "gray",
-                  }}
-                />
-                <Blank width="8px" />
-                {getMoney(coach.profile.followers)}명
-              </S.CoachInfoFollower>
-              <Blank width="10px" />
-              <S.CoachInfoScore>
-                <div
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                    background: "gray",
-                  }}
-                />
-                <Blank width="8px" />
-                {getMoney(coach.profile.score)}점
-              </S.CoachInfoScore>
-            </S.RecommendCoachInfo>
-          </S.RecommendCoach>
+            <S.ColumnText>
+              <S.ColumnTitle>
+                {column.title.length > 25 ? (
+                  <S.ColumnShortenTitle>
+                    {column.title.slice(0, 25) + "..."}
+                  </S.ColumnShortenTitle>
+                ) : (
+                  <S.ColumnTitle>{column.title}</S.ColumnTitle>
+                )}
+              </S.ColumnTitle>
+              <S.ColumnContents>
+                {column.contents.length > 30 ? (
+                  <S.ColumnShortenContents>
+                    {column.contents.slice(0, 30) + "..."}
+                  </S.ColumnShortenContents>
+                ) : (
+                  <S.ColumnContents>{column.contents}</S.ColumnContents>
+                )}
+              </S.ColumnContents>
+              <Blank height="5px" />
+              <S.ColumnFooter>김태훈 coach | 2일전</S.ColumnFooter>
+            </S.ColumnText>
+          </S.ColumnsList>
         ))}
-      </S.ContainerRecommendCoachBody>
-    </S.ContainerRecommendCoach>
+      </S.ContainerColumnsListBody>
+      <Blank height="50px" />
+      <S.MoreCoachesListBtn onClick={props.moveToPage(`/coachingus/column`)}>
+        더 많은 칼럼보기 {">"}
+      </S.MoreCoachesListBtn>
+    </S.ContainerColumnsList>
   );
 }

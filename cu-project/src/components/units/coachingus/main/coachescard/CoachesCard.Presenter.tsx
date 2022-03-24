@@ -1,19 +1,20 @@
-import { ICoachingUsMainUIProps } from "../../../../../commons/types/types";
+import { ICoachingUsCoachesCardUIProps } from "../../../../../commons/types/types";
 import Blank from "../../../../commons/Blank";
 import * as S from "./CoachesCard.Style";
 import getMoney from "../../../../../commons/libraries/getMoney";
 
-export default function CoachesCardUI(props: ICoachingUsMainUIProps) {
+export default function CoachesCardUI(props: ICoachingUsCoachesCardUIProps) {
   return (
     <S.ContainerCoaches>
-      <S.CoachesTitle>
-        Coaches
-        <S.MoreCoachesListBtn>더보기 {">"}</S.MoreCoachesListBtn>
-      </S.CoachesTitle>
-
+      <S.CoachesTitle>취업에 관한 모든 궁금증들</S.CoachesTitle>
+      <S.CoachesSubTitle>CU2 코치에게 물어보세요!</S.CoachesSubTitle>
+      <Blank height="20px" />
       <S.ContainerCoachesListBody>
         {props.coachesList.map((coach) => (
-          <S.CoachList key={coach.id}>
+          <S.CoachList
+            key={coach.id}
+            onClick={props.moveToPage(`/coachingus/coaches/${coach.id}`)}
+          >
             <S.CoachListHeader>
               <S.CoachTitle>
                 <S.CoachCor>{coach.corName}</S.CoachCor>
@@ -29,7 +30,7 @@ export default function CoachesCardUI(props: ICoachingUsMainUIProps) {
               {coach.profile.name} &nbsp; <div>coach</div>
             </S.CoachListName>
             <S.CoachListTags>
-              {coach.profile.tags.map((tag, index) => (
+              {coach.profile.tags.map((tag: string, index: number) => (
                 <S.CoachTag key={index}>{tag}</S.CoachTag>
               ))}
             </S.CoachListTags>
@@ -62,6 +63,10 @@ export default function CoachesCardUI(props: ICoachingUsMainUIProps) {
           </S.CoachList>
         ))}
       </S.ContainerCoachesListBody>
+      <Blank height="50px" />
+      <S.MoreCoachesListBtn onClick={props.moveToPage(`/coachingus/coaches`)}>
+        더 많은 코치보기 {">"}
+      </S.MoreCoachesListBtn>
     </S.ContainerCoaches>
   );
 }

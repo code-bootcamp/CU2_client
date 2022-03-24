@@ -1,4 +1,5 @@
 // import { ICoachingUsMainUIProps } from "../../../../commons/types/types";
+import Blank from "../../../../commons/Blank";
 import * as S from "./CoachingUsSidebar.Style";
 
 export default function CoachingUsSidebarUIUI(props) {
@@ -14,6 +15,7 @@ export default function CoachingUsSidebarUIUI(props) {
           </>
         ) : (
           <S.SideBarText>
+            <Blank height="20px" />
             <p>관심카테고리를</p>
             <p>설정해주세요!</p>
           </S.SideBarText>
