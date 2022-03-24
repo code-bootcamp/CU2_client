@@ -34,6 +34,7 @@ export function useMoveToPage() {
   const router = useRouter();
   const [visitedPage, setVisitedPage] = useState("/");
   const [prevPage, setPrevPage] = useState("/");
+  const currentPage = router.asPath;
 
   const moveToPage = (page: string) => () => {
     setVisitedPage(page);
@@ -48,5 +49,6 @@ export function useMoveToPage() {
     moveToPage,
     visitedPage,
     prevPage,
+    currentPage
   };
 }

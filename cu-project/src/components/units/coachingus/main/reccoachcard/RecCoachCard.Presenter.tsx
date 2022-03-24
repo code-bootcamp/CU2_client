@@ -16,7 +16,7 @@ export default function RecCoachCardUI(props: ICoachingUsRecCoachCardUIProps) {
             key={coach.id}
             number={(index + 1) * 800 + "ms"}
             isStart={props.isStart}
-            onClick={props.moveToPage(`/coachingus/${coach.id}`)}
+            onClick={props.moveToPage(`/coachingus/coaches/${coach.id}`)}
           >
             <S.RecommendCoachPicture></S.RecommendCoachPicture>
             <S.ProfileWapper>

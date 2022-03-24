@@ -1,8 +1,11 @@
+import { CSSProperties } from "react";
+
 interface ILineProps {
   thickness?: number;
   type?: string;
   color?: string;
   margin?: number;
+  style?: CSSProperties | undefined
 }
 export default function VerticalLine(props: ILineProps) {
   return (
@@ -13,6 +16,7 @@ export default function VerticalLine(props: ILineProps) {
           props.color ?? "#BDBDBD"
         }`,
         margin: props.margin ? `0px ${props.margin}px` : "0px 40px",
+        ...props.style
       }}
     ></div>
   );

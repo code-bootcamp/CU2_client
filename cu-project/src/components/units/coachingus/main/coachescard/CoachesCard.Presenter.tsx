@@ -13,7 +13,7 @@ export default function CoachesCardUI(props: ICoachingUsCoachesCardUIProps) {
         {props.coachesList.map((coach) => (
           <S.CoachList
             key={coach.id}
-            onClick={props.moveToPage(`/coachingus/${coach.id}`)}
+            onClick={props.moveToPage(`/coachingus/coaches/${coach.id}`)}
           >
             <S.CoachListHeader>
               <S.CoachTitle>
