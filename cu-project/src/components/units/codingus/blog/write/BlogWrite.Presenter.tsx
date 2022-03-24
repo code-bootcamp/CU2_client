@@ -7,6 +7,7 @@ import Button01 from "../../../../commons/Button/Button01";
 import Button02 from "../../../../commons/Button/Button02";
 import HorizontalLine from "../../../../commons/Line/HorizontalLine";
 import { AiOutlineEdit } from "react-icons/ai";
+import TagInput from "../../../../commons/Tag/TagInput";
 export default function CodingUsBlogWriteUI(props: ICodingUsBlogWriteUIProps) {
   return (
     <S.CodingUsBlogWrite>
@@ -17,10 +18,8 @@ export default function CodingUsBlogWriteUI(props: ICodingUsBlogWriteUIProps) {
       <Blank height="50px" />
       <S.TitleInput placeholder="제목을 입력하세요" />
       <HorizontalLine margin={30} color="#DBDBDB" />
-      <S.TagWrapper>
-        <S.TagList></S.TagList>
-        <S.TagInput/>
-        </S.TagWrapper>
+      <TagInput tags={props.tags} setTags={props.setTags} />
+      <Blank height="32px" />
       <TextEditor01 width="100%" height="100%" ref={props.ref} />
     </S.CodingUsBlogWrite>
   );
