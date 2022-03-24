@@ -20,12 +20,13 @@ export default function CoachingUsMainUI(props: ICoachingUsMainUIProps) {
           <CoachingUsSidebarLeft />
         </S.LeftSideBar>
         <S.LandingBody>
-          <Blank height="40px" />
-          <CoachesCardPage />
-          <Blank height="10px" />
-          <ColumnsCardPage />
+          <Blank height="50px" />
+          <S.BodyForSidebar>
+            <CoachesCardPage />
+          </S.BodyForSidebar>
         </S.LandingBody>
-        <S.RightSideBar>{/* <CoachingUsSidebarRight /> */}</S.RightSideBar>
+        <Blank height="120px" />
+        <ColumnsCardPage />
       </S.CoachingUsMainBody>
     </S.Wrapper>
   );

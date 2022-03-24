@@ -1,25 +1,34 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  min-width: 100vw;
   min-height: 100vh;
+  min-width: 100vw;
   box-sizing: border-box;
   margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  /* justify-content: space-between; */
+  align-items: flex-start;
 `;
 
 export const CoachingUsMainBody = styled.div`
   display: flex;
+  flex-direction: column;
+  width: 1920px;
+  @media screen and (max-width: 1440px) {
+    width: 1440px;
+  }
 `;
 export const LandingBody = styled.div`
   display: flex;
-  width: 95%;
+
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+`;
+
+export const BodyForSidebar = styled.div`
+  display: flex;
+  width: 100%;
 `;
 
 export const SearchBar = styled.div`
@@ -29,36 +38,12 @@ export const SearchBar = styled.div`
   background-color: #afa9a9;
 `;
 
-export const ContainerCoaches = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 95%;
-  min-height: 200px;
-  border-radius: 20px;
-  padding: 30px 25px;
-`;
-export const ContainerColumns = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 95%;
-  min-height: 200px;
-  border-radius: 20px;
-  padding: 30px 25px;
-`;
-
 // Sidebar 영역
 export const LeftSideBar = styled.div`
   display: flex;
   justify-content: center;
   min-width: 300px;
   min-height: 100vh;
-`;
-
-export const RightSideBar = styled.div`
-  display: flex;
-  min-width: 300px;
+  position: absolute;
+  left: 0;
 `;

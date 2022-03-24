@@ -8,20 +8,6 @@ export const Wrapper = styled.div`
   width: 100%;
 `;
 
-export const CoachingUs = styled.div`
-  min-width: 80px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  font-size: 21px;
-  color: ${(props: ICurrentPathProps) =>
-    props.isCurrent ? "black" : "#C4C4C4"};
-  font-weight: ${(props: ICurrentPathProps) =>
-    props.isCurrent ? "bold" : "normal"};
-  cursor: pointer;
-`;
-
 export const Title = styled.div`
   width: 100%;
   text-align: center;
@@ -30,8 +16,11 @@ export const Title = styled.div`
   padding-bottom: 20px;
 
   border-bottom: 2px solid black;
+  @media screen and (max-width: 1440px) {
+    font-size: 21px;
+  }
 `;
-export const Coach = styled.div`
+export const Sidenav = styled.div`
   min-width: 50px;
   display: flex;
   flex-direction: column;
@@ -43,35 +32,11 @@ export const Coach = styled.div`
   font-weight: ${(props: ICurrentPathProps) =>
     props.isCurrent ? "bold" : "normal"};
   cursor: pointer;
+  @media screen and (max-width: 1440px) {
+    font-size: 18px;
+  }
 `;
 
-export const Column = styled.div`
-  min-width: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  font-size: 21px;
-  color: ${(props: ICurrentPathProps) =>
-    props.isCurrent ? "black" : "#C4C4C4"};
-  font-weight: ${(props: ICurrentPathProps) =>
-    props.isCurrent ? "bold" : "normal"};
-  cursor: pointer;
-`;
-
-export const CoachRegister = styled.div`
-  min-width: 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  font-size: 21px;
-  color: ${(props: ICurrentPathProps) =>
-    props.isCurrent ? "black" : "#C4C4C4"};
-  font-weight: ${(props: ICurrentPathProps) =>
-    props.isCurrent ? "bold" : "normal"};
-  cursor: pointer;
-`;
 export const BoldLine = styled.div`
   width: 1%;
   animation: present 1s forwards;

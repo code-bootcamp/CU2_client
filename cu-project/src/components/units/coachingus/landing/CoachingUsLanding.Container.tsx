@@ -14,21 +14,16 @@ export default function CoachingUsLanding(props: ICoachingUsLandingProps) {
     "스타트업",
     "중견기업",
     "외국계",
-    "대학원",
+    "네카라쿠배",
+    "데브옵스",
+    "백엔드",
+    "프론트엔드",
+    "플랫폼",
   ];
   const [favorList, setFavorList] = useState<(string | undefined)[]>([]);
 
-  const onChangeCheckBox = (e: CheckboxChangeEvent) => {
-    if (e.target.checked) {
-      setFavorList([...favorList, e.target.id]);
-    }
-
-    let restList;
-
-    if (!e.target.checked) {
-      [e.target.id, ...restList] = favorList;
-      setFavorList([...restList]);
-    }
+  const onChangeCheckBox = (e: MouseEvent) => {
+    setFavorList([...favorList, e.currentTarget.id]);
   };
 
   const onClickStart = () => {
@@ -36,7 +31,6 @@ export default function CoachingUsLanding(props: ICoachingUsLandingProps) {
     else {
       localStorage.setItem("favorList", String(favorList));
       props.setIsFavorites(true);
-      window.location.reload();
     }
   };
 

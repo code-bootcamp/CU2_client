@@ -6,19 +6,23 @@ export default function ColumnsCardUI(props: ICoachingUsColumnsCardUIProps) {
   return (
     <S.ContainerColumnsList>
       <S.ColumnsListTitle>
-        Coach Columns
-        <S.MoreCoachesListBtn>더보기 {">"}</S.MoreCoachesListBtn>
+        개발자 실무 Tip, 대기업 면접 Tip들 아직도 찾고 계신가요?
       </S.ColumnsListTitle>
+      <S.ColumnsListSubTitle>코치들의 칼럼을 읽어보세요!</S.ColumnsListSubTitle>
+      <Blank height="20px" />
       <S.ContainerColumnsListBody>
         {props.columnList.map((column) => (
-          <S.ColumnsList key={column.id}>
+          <S.ColumnsList
+            key={column.id}
+            onClick={props.moveToPage(`/coachingus/column/${column.id}`)}
+          >
             <S.ColumnPicture>{column.picture}</S.ColumnPicture>
             <Blank height="10px" />
             <S.ColumnText>
               <S.ColumnTitle>
-                {column.title.length > 13 ? (
+                {column.title.length > 25 ? (
                   <S.ColumnShortenTitle>
-                    {column.title.slice(0, 13) + "..."}
+                    {column.title.slice(0, 25) + "..."}
                   </S.ColumnShortenTitle>
                 ) : (
                   <S.ColumnTitle>{column.title}</S.ColumnTitle>
@@ -33,10 +37,16 @@ export default function ColumnsCardUI(props: ICoachingUsColumnsCardUIProps) {
                   <S.ColumnContents>{column.contents}</S.ColumnContents>
                 )}
               </S.ColumnContents>
+              <Blank height="5px" />
+              <S.ColumnFooter>김태훈 coach | 2일전</S.ColumnFooter>
             </S.ColumnText>
           </S.ColumnsList>
         ))}
       </S.ContainerColumnsListBody>
+      <Blank height="50px" />
+      <S.MoreCoachesListBtn onClick={props.moveToPage(`/coachingus/column`)}>
+        더 많은 칼럼보기 {">"}
+      </S.MoreCoachesListBtn>
     </S.ContainerColumnsList>
   );
 }
