@@ -3,7 +3,7 @@ import {
   ICodingUsBlogCardProps,
   ICodingUsBlogProps,
 } from "../../../../../../commons/types/types";
-import UserBlogUI from "./Blog.Presenter";
+import UserLikePostsUI from "./Likeposts.Presenter";
 
 const dummy: ICodingUsBlogProps = {
   images: [
@@ -21,7 +21,7 @@ const dummy: ICodingUsBlogProps = {
   isLike: true,
 };
 
-export default function UserBlog() {
+export default function UserLikePosts() {
   const [sortedBlogList, setSortedBlogList] = useState<
     ICodingUsBlogCardProps[]
   >(new Array(10).fill(dummy));
@@ -31,5 +31,7 @@ export default function UserBlog() {
     setSortedBlogList([...temp, ...new Array(10).fill(dummy)]);
   };
 
-  return <UserBlogUI onLoadMore={onLoadMore} sortedBlogList={sortedBlogList} />;
+  return (
+    <UserLikePostsUI onLoadMore={onLoadMore} sortedBlogList={sortedBlogList} />
+  );
 }

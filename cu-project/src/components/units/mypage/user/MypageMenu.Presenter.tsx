@@ -121,7 +121,7 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
             <img src="/mypage_Blog.png" /> 내 블로그 보기
           </button>
           <Blank height="50px" />
-          <button onClick={props.moveToPage("/mypage/user/likepost")}>
+          <button onClick={props.moveToPage("/mypage/user/likeposts")}>
             <img src="/Icon_Fill_Good2.png" /> Good한 포스트 보기
           </button>
           <Blank height="50px" />
@@ -130,7 +130,7 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
             {" 내 Q&A 보기"}
           </button>
           <Blank height="50px" />
-          <button onClick={props.moveToPage("/mypage/user/likequestion")}>
+          <button onClick={props.moveToPage("/mypage/user/likequestions")}>
             <img src="/Icon_Fill_Good2.png" /> {`Good한 Q&A 보기`}
           </button>
         </S.MenuBox>
