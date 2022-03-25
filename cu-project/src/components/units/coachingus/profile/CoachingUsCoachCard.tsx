@@ -3,17 +3,15 @@ import styled from "@emotion/styled";
 import Blank from "../../../commons/Blank";
 import { BsFillTriangleFill } from "react-icons/bs";
 import CoachingUsProfileRate from "./CoachingUsProfileRate";
+import { useRouter } from "next/router";
 
-const AddSideBar = styled.div`
-  width: 300px;
-  display: flex;
-  justify-content: center;
-`;
 const CoachCard = styled.div`
   width: 250px;
   border-radius: 15px;
   height: fit-content;
   background-color: #f6f5f5;
+
+  cursor: pointer;
 `;
 const CardPicture = styled.div`
   width: 100%;
@@ -148,7 +146,8 @@ export const RateTextActive = styled.div`
   font-size: 11px;
   font-weight: lighter;
 `;
-export default function CoachingUsCoachCard() {
+function CoachingUsCoachCard(props) {
+  const router = useRouter();
   const coach = {
     id: 0,
     corName: "우아한 형제들",
@@ -162,7 +161,7 @@ export default function CoachingUsCoachCard() {
     },
   };
   return (
-    <CoachCard>
+    <CoachCard onClick={() => props.setComponent(`/`)}>
       <CardPicture></CardPicture>
       <CardContents>
         <ContentsTitle>{coach.corName}</ContentsTitle>
@@ -211,9 +210,18 @@ export default function CoachingUsCoachCard() {
         <Blank height="20px" />
         <ProfileBtn>
           <ContentsFollowBtn>팔로우</ContentsFollowBtn>
-          <ContentsFollowBtn>질문하기</ContentsFollowBtn>
+          <ContentsFollowBtn
+            onClick={(event) => {
+              props.setComponent("question");
+              event.stopPropagation();
+            }}
+          >
+            질문하기
+          </ContentsFollowBtn>
         </ProfileBtn>
       </CardContents>
     </CoachCard>
   );
 }
+
+export default React.memo(CoachingUsCoachCard);

@@ -1,29 +1,10 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { ICoachingUsProfileProps } from "../../../../commons/types/types";
-import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-import Loading from "../../../commons/Loading/Loading";
-import CoachingUsProfileUI from "./CoachingUsProfile.Presenter";
-import {} from "./CoachingUsProfile.Queries";
+import React, { useState } from "react";
+import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
+import CoachingUsCoachUI from "./CoachingUsCoach.Presenter";
 
-export default function CoachingUsProfile(props: ICoachingUsProfileProps) {
-  const [component, setComponent] = useState("/");
-  const [isLoading, setIsLoading] = useState(true);
-
+export default function CoachingUsCoachPage(props) {
   const { moveToPage } = useMoveToPage();
-  const coach = {
-    id: 0,
-    corName: "우아한 형제들",
-    subCorName: "직군직군",
-    profile: {
-      picture: "이미지! 입니다!",
-      name: "김태훈",
-      tags: ["IT", "대기업", "네카라쿠배"],
-      followers: 212,
-      score: 1213,
-    },
-  };
-
   const columnList = [
     {
       id: 0,
@@ -54,24 +35,11 @@ export default function CoachingUsProfile(props: ICoachingUsProfileProps) {
       },
     },
   ];
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, [isLoading]);
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
   return (
-    <CoachingUsProfileUI
-      coach={coach}
-      columnList={columnList}
+    <CoachingUsCoachUI
       moveToPage={moveToPage}
-      setComponent={setComponent}
-      component={component}
+      columnList={columnList}
+      setComponent={props.setComponent}
     />
   );
 }
