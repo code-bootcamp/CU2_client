@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import Blank from "../../commons/Blank";
+import { breakPoints } from "../../../commons/styles/media";
 
 const Wrapper = styled.div`
   min-width: 100vw;
@@ -7,11 +7,46 @@ const Wrapper = styled.div`
   box-sizing: border-box;
   margin: 0;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background-color: #f6f5f5;
   padding: 0 10%;
+  @media ${breakPoints.tablet} {
+    flex-direction: column;
+    justify-content: center;
+  }
+  @media ${breakPoints.mobile} {
+    flex-direction: column;
+    justify-content: center;
+  }
+`;
+
+const ImageBox = styled.div`
+  width: 69%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  @media ${breakPoints.tablet} {
+    width: 100%;
+  }
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    img:nth-of-type(3) {
+      display: none;
+    }
+  }
+`;
+
+const TitleBox = styled.div`
+  width: 29%;
+  display: flex;
+  flex-direction: column;
+  @media ${breakPoints.tablet} {
+    width: 100%;
+  }
+  @media ${breakPoints.mobile} {
+    width: 100%;
+  }
 `;
 
 const Title = styled.h2`
@@ -20,23 +55,13 @@ const Title = styled.h2`
   font-weight: 700;
   font-size: 36px;
   line-height: 43px;
-`;
-
-const CoachingCategory = styled.div`
-  display: flex;
-`;
-
-const CoachingBox = styled.div`
-  width: 468px;
-  display: flex;
-  flex-direction: column;
-`;
-
-const CoachingImg = styled.img`
-  width: 468px;
-  height: 220px;
-  border: 1px solid;
-  border-radius: 8px;
+  margin-bottom: 30px;
+  @media ${breakPoints.tablet} {
+    margin-bottom: 20px;
+  }
+  @media ${breakPoints.mobile} {
+    margin-bottom: 20px;
+  }
 `;
 
 const Contents = styled.p`
@@ -46,32 +71,39 @@ const Contents = styled.p`
   font-size: 18px;
   line-height: 32px;
   color: #bdbdbd;
+  @media ${breakPoints.tablet} {
+    margin-bottom: 30px;
+  }
+  @media ${breakPoints.mobile} {
+    margin-bottom: 30px;
+  }
+`;
+
+const ColumnImg = styled.img`
+  width: 32%;
+  @media ${breakPoints.mobile} {
+    width: 49%;
+  }
 `;
 
 export default function FifthPage() {
   return (
     <Wrapper>
-      <Title>코칭 서비스를 소개할게요</Title>
-      <Blank height="59px" />
-      <CoachingCategory>
-        <CoachingBox>
-          <CoachingImg src="" />
-          <Blank height="21px" />
-          <Contents>
-            국회는 의장 1인과 부의장 2인을 선출한다. 국무위원은 국정에 관하여
-            대통령을 보좌하며, 국무회의의 구성원으로서 국정을 심의한다.
-          </Contents>
-        </CoachingBox>
-        <Blank width="20px" />
-        <CoachingBox>
-          <CoachingImg src="" />
-          <Blank height="21px" />
-          <Contents>
-            국회는 의장 1인과 부의장 2인을 선출한다. 국무위원은 국정에 관하여
-            대통령을 보좌하며, 국무회의의 구성원으로서 국정을 심의한다.
-          </Contents>
-        </CoachingBox>
-      </CoachingCategory>
+      <TitleBox>
+        <Title>
+          현직자 코치들의
+          <br /> 이야기를 들어보세요
+        </Title>
+        <Contents>
+          코치들의 생생한 직무 이야기와 기술 지식들이 모여있는 곳! CoachingUs
+          Columns에서 확인하세요
+        </Contents>
+      </TitleBox>
+      <ImageBox>
+        <ColumnImg src="/Group 414.png" />
+        <ColumnImg src="/Group 414.png" />
+        <ColumnImg src="/Group 414.png" />
+      </ImageBox>
     </Wrapper>
   );
 }

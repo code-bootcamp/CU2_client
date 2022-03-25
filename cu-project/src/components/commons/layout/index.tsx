@@ -1,9 +1,9 @@
-import { ILayoutProps } from "./layout.types";
 import styled from "@emotion/styled";
 import Header from "./header/LayoutHeader.Container";
+import { ILayoutProps } from "./layout.types";
 
 const LayoutBody = styled.div`
-  padding: 50px 0;
+  padding: 30px 0 0 0;
 `;
 
 export default function Layout(props: ILayoutProps) {

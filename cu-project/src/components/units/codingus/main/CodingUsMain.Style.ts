@@ -1,10 +1,23 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 100vw;
+  min-width: 100vw;
+  min-height: 100vh;
+  /* max-width: 1200px; */
+  box-sizing: border-box;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 40px 0;
+`;
+
+export const CodingUsMain = styled.div`
+  /* width: 100vw;
   height: 100vh;
   max-width: 1200px;
-  margin: 0 0 0 20%;
+  margin: 0 0 0 20%; */
 `;
 export const RowWrapper = styled.div`
   display: flex;
@@ -156,3 +169,4 @@ export const RightSideBar = styled.div`
   top: 10%;
   overflow: hidden;
 `;
+
