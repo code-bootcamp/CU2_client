@@ -8,8 +8,7 @@
     "build:ssr": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate": "graphql-codegen",
-    "postinstall": "patch-package"
+    "generate": "graphql-codegen"
   },
   "dependencies": {
     "@apollo/client": "^3.5.10",
