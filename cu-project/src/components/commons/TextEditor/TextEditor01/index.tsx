@@ -1,6 +1,6 @@
-import {Editor} from "@toast-ui/react-editor";
+import { Editor } from "@toast-ui/react-editor";
 import dynamic from "next/dynamic";
-import {  RefObject } from "react";
+import { RefObject } from "react";
 
 const EditorUI = dynamic(() => import("./Editor/index"), {
   ssr: false,
@@ -12,10 +12,10 @@ interface ITextEditorProps {
   editorRef: RefObject<Editor>;
 }
 export default function TextEditor01(props: ITextEditorProps) {
-  console.log(props)
+  console.log(props);
   return (
     <div style={{ height: props.height, width: props.width }}>
-      <EditorUI editorRef={props.editorRef}/>
+      <EditorUI editorRef={props.editorRef} />
     </div>
   );
 }
