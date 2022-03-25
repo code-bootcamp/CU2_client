@@ -1,18 +1,10 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import CoachingUsCoachUI from "./CoachingUsCoach.Presenter";
 
-export default function CoachingUsCoachPage() {
+export default function CoachingUsCoachPage(props) {
   const { moveToPage } = useMoveToPage();
-  const router = useRouter();
-
-  const sendQuery = (component) => () => {
-    router.push({
-      pathname: router.asPath,
-      query: { components: component },
-    });
-  };
   const columnList = [
     {
       id: 0,
@@ -47,7 +39,7 @@ export default function CoachingUsCoachPage() {
     <CoachingUsCoachUI
       moveToPage={moveToPage}
       columnList={columnList}
-      sendQuery={sendQuery}
+      setComponent={props.setComponent}
     />
   );
 }

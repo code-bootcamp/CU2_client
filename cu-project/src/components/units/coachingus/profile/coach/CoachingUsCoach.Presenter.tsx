@@ -26,7 +26,7 @@ export default function CoachingUsCoachUI(props) {
             <Blank width="20px" />
             <S.CommentsInfoLikes>좋아요 21</S.CommentsInfoLikes>
           </S.CommentsInfo>
-          <S.MoreBtn onClick={props.sendQuery(`comments`)}>
+          <S.MoreBtn onClick={() => props.setComponent(`comments`)}>
             <p>{">"}</p>더보기
           </S.MoreBtn>
         </S.CommentsBody>
@@ -70,7 +70,7 @@ export default function CoachingUsCoachUI(props) {
             </S.ColumnsList>
           ))}
           <>
-            <S.ListMoreBtn onClick={props.sendQuery(`columns`)}>
+            <S.ListMoreBtn onClick={() => props.setComponent(`columns`)}>
               <p>{">"}</p>더보기
             </S.ListMoreBtn>
           </>

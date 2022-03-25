@@ -8,12 +8,13 @@ import CoachingUsCoachCard from "./CoachingUsCoachCard";
 import CoachingUsCommentsPage from "./comments/CoachingUsComments.Container";
 import CoachingUsCoachPage from "./coach/CoachingUsCoach.Container";
 import CoachingUsColumnPage from "./column/CoachingUsColumn.Container";
+import CoachingUsQuestion from "./question/CoachingUsQuestion.Container";
 
 export default function CoachingUsProfileUI(props: ICoachingUsProfileUIProps) {
   return (
     <S.Wrapper>
       <S.CoachSidebar>
-        <CoachingUsCoachCard />
+        <CoachingUsCoachCard setComponent={props.setComponent} />
         <Blank height="50px" />
         <S.AddSideBar>
           <CoachingUsSidebar />
@@ -21,9 +22,12 @@ export default function CoachingUsProfileUI(props: ICoachingUsProfileUIProps) {
         <Blank height="50px" />
       </S.CoachSidebar>
       <S.CoachProfileBody>
-        {props.query.components === undefined && <CoachingUsCoachPage />}
-        {props.query.components === "comments" && <CoachingUsCommentsPage />}
-        {props.query.components === "columns" && <CoachingUsColumnPage />}
+        {props.component === "/" && (
+          <CoachingUsCoachPage setComponent={props.setComponent} />
+        )}
+        {props.component === "comments" && <CoachingUsCommentsPage />}
+        {props.component === "columns" && <CoachingUsColumnPage />}
+        {props.component === "question" && <CoachingUsQuestion />}
       </S.CoachProfileBody>
     </S.Wrapper>
   );

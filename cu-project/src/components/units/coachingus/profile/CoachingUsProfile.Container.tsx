@@ -7,17 +7,7 @@ import CoachingUsProfileUI from "./CoachingUsProfile.Presenter";
 import {} from "./CoachingUsProfile.Queries";
 
 export default function CoachingUsProfile(props: ICoachingUsProfileProps) {
-  const router = useRouter();
-
-  const sendQuery = (component) => () => {
-    router.push({
-      pathname: router.asPath,
-      query: { components: component },
-    });
-  };
-
-  const query = router.query;
-
+  const [component, setComponent] = useState("/");
   const [isLoading, setIsLoading] = useState(true);
 
   const { moveToPage } = useMoveToPage();
@@ -80,8 +70,8 @@ export default function CoachingUsProfile(props: ICoachingUsProfileProps) {
       coach={coach}
       columnList={columnList}
       moveToPage={moveToPage}
-      query={query}
-      sendQuery={sendQuery}
+      setComponent={setComponent}
+      component={component}
     />
   );
 }

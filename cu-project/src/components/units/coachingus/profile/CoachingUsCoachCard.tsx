@@ -10,6 +10,8 @@ const CoachCard = styled.div`
   border-radius: 15px;
   height: fit-content;
   background-color: #f6f5f5;
+
+  cursor: pointer;
 `;
 const CardPicture = styled.div`
   width: 100%;
@@ -144,7 +146,7 @@ export const RateTextActive = styled.div`
   font-size: 11px;
   font-weight: lighter;
 `;
-function CoachingUsCoachCard() {
+function CoachingUsCoachCard(props) {
   const router = useRouter();
   const coach = {
     id: 0,
@@ -159,7 +161,7 @@ function CoachingUsCoachCard() {
     },
   };
   return (
-    <CoachCard onClick={() => router.push("/coachingus/coaches/1")}>
+    <CoachCard onClick={() => props.setComponent(`/`)}>
       <CardPicture></CardPicture>
       <CardContents>
         <ContentsTitle>{coach.corName}</ContentsTitle>
@@ -208,7 +210,14 @@ function CoachingUsCoachCard() {
         <Blank height="20px" />
         <ProfileBtn>
           <ContentsFollowBtn>팔로우</ContentsFollowBtn>
-          <ContentsFollowBtn>질문하기</ContentsFollowBtn>
+          <ContentsFollowBtn
+            onClick={(event) => {
+              props.setComponent("question");
+              event.stopPropagation();
+            }}
+          >
+            질문하기
+          </ContentsFollowBtn>
         </ProfileBtn>
       </CardContents>
     </CoachCard>
