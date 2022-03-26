@@ -138,11 +138,11 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
         <S.MenuBox>
           <p>CoachingUs</p>
           <Blank height="40px" />
-          <button onClick={props.moveToPage("/mypage/user/point")}>
+          <button onClick={props.moveToPage("/mypage/user/coached")}>
             <img src="/Icon_Coaching.png" />내 코칭 보기
           </button>
           <Blank height="50px" />
-          <button onClick={props.moveToPage("/mypage/user/point")}>
+          <button onClick={props.moveToPage("/mypage/user/likecolumns")}>
             <img src="/Icon_Fill_Good2.png" /> Good한 칼럼 보기
           </button>
         </S.MenuBox>

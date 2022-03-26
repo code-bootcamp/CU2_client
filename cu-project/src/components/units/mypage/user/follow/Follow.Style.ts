@@ -4,6 +4,7 @@ export const AllWrapper = styled.div`
   margin: 70px 360px 0;
   display: flex;
   flex-direction: row;
+  justify-content: center;
 `;
 
 export const Wrapper = styled.div`
@@ -52,4 +53,5 @@ export const FollowerBox = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-bottom: 20px;
 `;

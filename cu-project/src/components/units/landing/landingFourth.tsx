@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import Blank from "../../commons/Blank";
+import { breakPoints } from "../../../commons/styles/media";
 
 const Wrapper = styled.div`
   min-width: 100vw;
@@ -7,36 +7,59 @@ const Wrapper = styled.div`
   box-sizing: border-box;
   margin: 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 0 10%;
+  @media ${breakPoints.tablet} {
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
+  @media ${breakPoints.mobile} {
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
 `;
 
 const ImageBox = styled.div`
+  width: 59%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-`;
 
-const BlogImg = styled.img`
-  width: 227px;
-  height: 313px;
-  border: 1px solid;
-  border-radius: 8px;
+  align-items: center;
+  @media ${breakPoints.tablet} {
+    width: 100%;
+  }
+  @media ${breakPoints.mobile} {
+    width: 100%;
+  }
 `;
 
 const TitleBox = styled.div`
-  width: 322px;
+  width: 39%;
   display: flex;
   flex-direction: column;
+  @media ${breakPoints.tablet} {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    margin-bottom: 30px;
+  }
 `;
 
 const Title = styled.h2`
   font-family: "Apple SD Gothic Neo";
   font-style: normal;
   font-weight: 700;
-  font-size: 36px;
+  font-size: 32px;
   line-height: 43px;
+  @media ${breakPoints.tablet} {
+    margin-bottom: 30px;
+  }
+  @media ${breakPoints.mobile} {
+    margin-bottom: 30px;
+  }
 `;
 
 const Contents = styled.p`
@@ -48,28 +71,36 @@ const Contents = styled.p`
   color: #bdbdbd;
 `;
 
+const CommentsImg = styled.img`
+  width: 32%;
+  border: 1px solid #bdbdbd;
+  border-radius: 10px;
+`;
+
+const CommentsBigImg = styled.img`
+  width: 36%;
+  border: 1px solid #bdbdbd;
+  border-radius: 10px;
+`;
+
 export default function FourthPage() {
   return (
     <Wrapper>
+      <ImageBox>
+        <CommentsImg src="/Group 414.png" />
+        <CommentsBigImg src="/Group 414.png" />
+        <CommentsImg src="/Group 414.png" />
+      </ImageBox>
       <TitleBox>
         <Title>
-          블로깅하고
-          <br /> 피드백을 받으세요.
+          코치에게 자기소개서와
+          <br /> 포트폴리오를 물어보세요
         </Title>
-        <Blank height="32px" />
         <Contents>
-          국회는 의장 1인과 부의장 2인을 선출한다. 국무위원은 국정에 관하여
-          대통령을 보좌하며, 국무회의의 구성원으로서 국정을 심의한다.
+          {`자기소개서와 포트폴리오를 어떻게 해야할 지 모르는 분들을 위해서 코치가
+          피드백을 드립니다. CoachingUs Coaching & Comments, 코칭을 신청하세요`}
         </Contents>
       </TitleBox>
-      <Blank width="169px" />
-      <ImageBox>
-        <BlogImg src="" />
-        <Blank width="16px" />
-        <BlogImg src="" />
-        <Blank width="16px" />
-        <BlogImg src="" />
-      </ImageBox>
     </Wrapper>
   );
 }

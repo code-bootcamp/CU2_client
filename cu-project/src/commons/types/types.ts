@@ -6,13 +6,12 @@ import {
 } from "react-hook-form";
 import { CheckboxChangeEvent } from "antd/lib/checkbox/Checkbox";
 import { IPage } from "../../components/commons/hooks/useMoveToPage";
-import { MouseEvent, ReactChild } from "react";
-
+import React, { MouseEvent, ReactChild, RefObject } from "react";
+import { Editor } from "@toast-ui/react-editor";
 
 export interface ILayoutProps {
   children: ReactChild;
 }
-
 
 // #region Login && Register
 export interface FormValues {
@@ -72,7 +71,14 @@ export interface ICodingUsBlogUIProps {
   onToggleSortGubun: (_: MouseEvent<HTMLDivElement>) => void;
   isSortByPopular: boolean;
 }
-
+export interface ICodingUsBlogWriteProps {}
+export interface ICodingUsBlogWriteUIProps {
+  editorRef: RefObject<Editor>;
+  tags: string[];
+  setTags: (tags: React.SetStateAction<string[]>) => void;
+  onClickExit: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
+}
 export interface ICodingUsMainProps {}
 export interface ICodingUsMainUIProps {
   moveToPage: (page: string) => void;
@@ -96,6 +102,17 @@ export interface IWatingItemProps {
   };
   onClickAnswer: () => void;
 }
+
+export interface ICodingUsCardProps {
+  width?: number;
+  height?: number;
+  image?: string;
+  tags?: string[];
+  title?: string;
+  contents?: string;
+  writer?: string;
+}
+
 export interface ICodingUsRankProps {}
 export interface ICodingUsRankUIProps {}
 // #endregion

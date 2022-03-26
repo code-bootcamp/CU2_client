@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "../../../../../../commons/styles/media";
 
 export const AllWrapper = styled.div`
   margin: 70px 12.5% 0;
@@ -13,6 +14,9 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
+  @media ${breakPoints.mobile} {
+    margin: 0;
+  }
 `;
 
 export const Box = styled.div`
@@ -24,28 +28,16 @@ export const Box = styled.div`
 
 export const BlogHeader = styled.div`
   width: 90%;
+  padding: 10px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
-
-export const BlogHeaderRight = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-export const SearchBar = styled.div`
-  border: 1px solid #bdbdbd;
-  border-radius: 10px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 20px;
-  & input {
-    width: 300px;
-    border: none;
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    flex-direction: column;
   }
 `;
+
 export const RowWrapper = styled.div`
   display: flex;
   align-items: center;

@@ -1,30 +1,22 @@
-import { BsSearch } from "react-icons/bs";
 import Blank from "../../../../../commons/Blank";
-import HorizontalLine from "../../../../../commons/Line/HorizontalLine";
 import MypageMenu from "../../MypageMenu.Container";
 import * as S from "./LikeQuestions.Style";
-import WaitingItem from "../../../../codingus/qna/waitingItem/WaitingItem.Container";
+import MyPageNav from "../../../../../commons/Mypage/MypageNav";
+import MyPageSearchBar from "../../../../../commons/Mypage/MypageSearchBar";
+import WaitingItem from "../../../../codingus/QnA/waitingItem/WaitingItem.Container";
 
 export default function LikeQuestionsUI(props) {
   return (
     <S.AllWrapper>
       <MypageMenu />
       <S.Wrapper>
-        <S.Box>{`마이페이지 > Good한 Q&A`}</S.Box>
-        <Blank height="30px" />
+        <MyPageNav menu={"Good한 Q&A"} />
         <S.BlogHeader>
-          전체글 53
-          <S.BlogHeaderRight>
-            <S.SearchBar>
-              <input type="text" placeholder="검색어를 입력해주세요" />
-              <BsSearch />
-            </S.SearchBar>
-            <Blank width="20px"></Blank>
-            <div>인기순 | 최신순</div>
-          </S.BlogHeaderRight>
+          <h2>질문 14 | 답변 2</h2>
+          <MyPageSearchBar />
         </S.BlogHeader>
+
         <div style={{ width: "90%" }}>
-          <HorizontalLine margin={20} />
           {new Array(4).fill(0).map((el, idx) => (
             <div key={idx}>
               <WaitingItem

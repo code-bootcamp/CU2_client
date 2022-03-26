@@ -3,12 +3,14 @@ import MypageMenu from "../MypageMenu.Container";
 import * as S from "./UserPoint.Style";
 import { Modal } from "antd";
 import "antd/dist/antd.css";
-import { MyPageButton } from "../../../../commons/Button/MypageButton";
+import { MyPageButton } from "../../../../commons/Mypage/MypageButton";
+import MyPageNav from "../../../../commons/Mypage/MypageNav";
 
 export default function UserPointUI(props) {
   return (
     <S.AllWrapper>
       <MypageMenu />
+
       <S.Wrapper>
         {props.isModal && (
           <Modal
@@ -34,9 +36,8 @@ export default function UserPointUI(props) {
             </select>
           </Modal>
         )}
-        <S.Box>
-          <MyPageButton onClick={props.onClickModal} value={"충전하기"} />
-        </S.Box>
+        <MyPageNav menu={"포인트 충전내역"} />
+
         <Blank height="30px" />
 
         <S.ChargeBox>
@@ -54,6 +55,10 @@ export default function UserPointUI(props) {
             <S.ColumnBasic>충전 후 잔액 내용</S.ColumnBasic>
           </S.Row>
         </S.ChargeBox>
+        <Blank height="30px" />
+        <S.Box>
+          <MyPageButton onClick={props.onClickModal} value={"충전하기"} />
+        </S.Box>
       </S.Wrapper>
     </S.AllWrapper>
   );

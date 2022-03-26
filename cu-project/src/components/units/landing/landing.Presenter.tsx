@@ -1,26 +1,25 @@
 // @ts-ignore
 import { FullPage, Slide } from "react-full-page";
-import FifthPage from "./landingFifth";
 import FirstPage from "./landingFirst";
-import FourthPage from "./landingFourth";
-import SecondPage from "./landingSecond";
-import SeventhPage from "./landingSeventh";
-import SixthPage from "./landingSixth";
 import ThirdPage from "./landingThird";
-
-const controlsProps = {
-  style: {
-    left: "50%",
-    paddingTop: "10px",
-    position: "fixed",
-    transform: "translateX(-50%)",
-  },
-};
+import SixthPage from "./landingSixth";
+import SecondPage from "./landingSecond";
+import FourthPage from "./landingFourth";
+import FifthPage from "./landingFifth";
 
 export default function LandingUI() {
+  // const controlsProps = {
+  //   style: {
+  //     left: "50%",
+  //     paddingTop: "10px",
+  //     position: "fixed",
+  //     transform: "translateX(-50%)",
+  //   },
+  // };
+
   return (
     <>
-      <FullPage controls controlsProps={controlsProps}>
+      <FullPage controls>
         <Slide>
           <FirstPage />
         </Slide>
@@ -38,9 +37,6 @@ export default function LandingUI() {
         </Slide>
         <Slide>
           <SixthPage />
-        </Slide>
-        <Slide>
-          <SeventhPage />
         </Slide>
       </FullPage>
     </>
