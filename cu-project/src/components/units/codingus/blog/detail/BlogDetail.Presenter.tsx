@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import Blank from "../../../../commons/Blank";
 import Tag03 from "../../../../commons/Tag/Tag03";
 import BlogDetailIndex from "./index/BlogDetailIndex";
+import { Dispatch, SetStateAction } from "react";
 
 interface ICodingUsBlogDetailUIProps {
   width?: string | number;
@@ -19,6 +20,9 @@ interface ICodingUsBlogDetailUIProps {
   onClickDelete: () => void;
   onClickUpdate: () => void;
   index: string[];
+  currentIndex: number;
+  indexPositions?: number[];
+  setCurrentIndex: Dispatch<SetStateAction<number>>;
 }
 export default function CodingUsBlogDetailUI(
   props: ICodingUsBlogDetailUIProps
@@ -61,7 +65,7 @@ export default function CodingUsBlogDetailUI(
           <Blank height="55px" />
           <TextViewer01 width={"100%"} height={"100%"} value={props.contents} />
         </S.BlogDetailBody>
-        <BlogDetailIndex index={props.index} />
+        <BlogDetailIndex index={props.index} currentIndex={props.currentIndex} indexPositions={props.indexPositions} setCurrentIndex={props.setCurrentIndex}/>
       </S.BlogDetailLayout>
     </S.Wrapper>
   );

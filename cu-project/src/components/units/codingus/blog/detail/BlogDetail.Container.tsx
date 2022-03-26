@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { BsWindowSidebar } from "react-icons/bs";
 import { getIndexFromMD } from "../../../../../commons/libraries/mdUtils";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import { useScroll } from "../../../../commons/hooks/useScroll";
@@ -8,35 +7,43 @@ import CodingUsBlogDetailUI from "./BlogDetail.Presenter";
 
 export default function CodingUsBlogDetail() {
   const { moveToPage } = useMoveToPage();
-
+  const [indexPositions, setIndexPositions] = useState<number[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(-1);
   const onClickDelete = () => {
     // 삭제 확인
   };
   const onClickUpdate = () => {
     moveToPage(`/codingus/blog/${"blogId자리입니다~~~~"}/update`);
   };
-  useEffect(() => {
-    const hTags = [
-      ...Array.from(document.getElementsByTagName("h1")),
-      ...Array.from(document.getElementsByTagName("h2")),
-      ...Array.from(document.getElementsByTagName("h3")),
-    ];
-    // console.log("asd", hTags);
-    //     const scrollTops = getIndexFromMD(dummyMD).map(
-    //       (el) =>
-    //         hTags
-    //           .filter((tag) => el.includes(tag.innerText))[0]
-    //           .getBoundingClientRect().top
-    //     );
-    // console.log(scrollTops);
-    // console.log(hTags);
-  }, []);
-
-  const {y: scrollY} = useScroll();
+  const { y: scrollY } = useScroll();
 
   useEffect(() => {
-    console.log(scrollY)
-  }, [scrollY])
+    console.log(scrollY, indexPositions[currentIndex], currentIndex)
+    if (indexPositions.length < 1) {
+      const hTags = [
+        ...Array.from(document.getElementsByTagName("h1")),
+        ...Array.from(document.getElementsByTagName("h2")),
+        ...Array.from(document.getElementsByTagName("h3")),
+      ];
+      if (hTags.length < 1) return;
+      const scrollTops = getIndexFromMD(dummyMD).map(
+        (el) =>{
+          const tag = hTags
+            .filter((tag) => el.includes(tag.innerText))[0];
+            console.log(tag.style);
+            return Math.floor(tag.getBoundingClientRect().top - 100);
+        }
+      );
+      setIndexPositions(scrollTops);
+    }
+    if (indexPositions[currentIndex + 1] <= scrollY) {
+      setCurrentIndex(currentIndex + 1);
+      console.log(indexPositions[currentIndex +1], scrollY)
+    }
+    else if (indexPositions[currentIndex] > scrollY) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  }, [scrollY,currentIndex]);
   return (
     <CodingUsBlogDetailUI
       contents={dummyMD}
@@ -45,6 +52,9 @@ export default function CodingUsBlogDetail() {
       createdAt="2022-02-07T14:42:53.532Z"
       tags={["JavaScript", "React", "Zustand"]}
       index={getIndexFromMD(dummyMD)}
+      currentIndex={currentIndex}
+      indexPositions={indexPositions}
+      setCurrentIndex={setCurrentIndex}
       isPicked={true}
       onClickDelete={onClickDelete}
       onClickUpdate={onClickUpdate}
