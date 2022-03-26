@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import TextViewer01 from "../../../../commons/TextViewer/TextViewer01";
+import { dummyMD } from "../dummy";
+import CodingUsBlogDetailUI from "./BlogDetail.Presenter";
 
 export default function CodingUsBlogDetail() {
   const [contents, setContents] = useState("");
@@ -8,13 +9,5 @@ export default function CodingUsBlogDetail() {
     console.log(contents);
   }, [contents]);
 
-  return (
-    <div style={{ width: "100%", height: "100%" }}>
-      <TextViewer01
-        width={"100%"}
-        height={"100%"}
-        value={contents}
-      />
-    </div>
-  );
+  return <CodingUsBlogDetailUI contents={dummyMD} />;
 }

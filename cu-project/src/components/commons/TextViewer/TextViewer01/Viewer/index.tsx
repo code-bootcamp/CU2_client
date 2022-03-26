@@ -24,7 +24,7 @@ export default function ViewerUI(props: ITextViewerUIProps) {
     <Wrapper>
       <ToastViewer2
         initialValue={props.value}
-        plugins={[colorSyntax, [codeSyntaxHighlight, { highlighter: Prism }]]}
+        // plugins={[colorSyntax, [codeSyntaxHighlight, { highlighter: Prism }]]}
       />
     </Wrapper>
   );
