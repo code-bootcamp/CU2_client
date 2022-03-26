@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Color from "../../../../../commons/styles/color";
 
 export const Wrapper = styled.div`
   min-height: 100vh;
@@ -16,5 +17,23 @@ export const BlogDetailBody = styled.div`
   width: 70%;
   @media screen and (max-width: 1440px) {
     width: 1440px;
+  }
+`;
+
+export const RowWrapper = styled.div`
+  display: flex;
+`;
+
+export const Title = styled.div`
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 43px;
+`;
+
+export const BtnLabel = styled.div`
+  color: ${Color.medium};
+  font-size: 16px;
+  :hover{
+    cursor: pointer;
   }
 `;

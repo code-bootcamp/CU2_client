@@ -1,5 +1,5 @@
 export const dummyMD = `
-
+![](https://media.vlpt.us/images/choigeon96/post/e543f16a-29ad-409b-bdf6-284b6c96a8c5/bear.png)
 #### 요즘 새롭게 떠오르고 있는 상태 관리 라이브러리인 **Zustand**를 사용해 봤다.
 
 ## 왜 Zustand 인가?
