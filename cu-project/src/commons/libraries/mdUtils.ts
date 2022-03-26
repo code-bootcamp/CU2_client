@@ -32,3 +32,18 @@
     
         return gubunArr;        
     }
+export const getIndexFromMD = (mdString: string) => {
+  const splitArr = mdString.split("\n");
+    const indexArr = [];
+    let isSummary = false;
+    for (let i = 0; i < splitArr.length; i++) {
+      if (splitArr[i].startsWith("```")) isSummary = !isSummary;
+      if (isSummary) continue;
+      if (splitArr[i].startsWith("#")) {
+        if (splitArr[i].startsWith("####")) continue;
+        indexArr.push(splitArr[i]);
+      }
+    }
+    return indexArr;
+}
+    

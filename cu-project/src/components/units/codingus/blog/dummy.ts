@@ -7,7 +7,7 @@ export const dummyMD = `
 얼마 전 Context API를 사용해 다크 모드(고대비) 기능을 구현하던 중 의도치 않은 리랜더링이 일어나 곤란했던 경험이 있다.
 
 Context API를 사용하기 위해선 아래 코드와 같이 부모 컴포넌트로 \`Context.Provider\` 컴포넌트를 선언한 후 값을 전달해 줘야 하는데, 이렇게 전달받은 Context를 사용하는 모든 하위 컴포넌트는 해당 Context의 값이 변경될 때 리랜더링이 되게 된다.
-\`\`\`tsx
+\`\`\`js
 // 다크모드 사용을 위해 isDark 값을 변경했는데, todayItem(오늘 본 상품)을 사용하는 상품 목록 컴포넌트까지 리랜더링이 된다!
 function MyComponent({ Component, pageProps }: AppProps) {
   const GlobalContext = createContext<IGlobalContext>({
@@ -58,7 +58,7 @@ yarn add zustand
 \`\`\`
 
 ### store 생성
-\`\`\`tsx
+\`\`\`js
 // store.js
 import create from "zustand";
 const useStore = create((set) => ({
@@ -77,7 +77,7 @@ Zustand에서 제공하는\`create\`함수를 사용해 \`useStore\` 훅을 생�
 위에서 만든 \`useStore\` 를 사용해 store의 값을 사용할 수 있다.
 \`useStore\` 훅은 어떤 값을 가져올지 선택하는 셀렉터 함수를 인자로 받는다.
 (셀렉터 함수를 전달하지 않으면 스토어 전체가 반환된다.)
-\`\`\`tsx
+\`\`\`js
 import useStore from "../../../../commons/store/store";
 
 function MarketList() {
@@ -103,7 +103,7 @@ function MarketList() {
 ### store 값 변경
 \`useStore\` 를 생성할 때 \`set\` 함수를 사용해 state의 값을 변경하는 함수를 만들었었다.
 값을 사용할 때와 마찬가지로 값 변경 함수를 가져와 사용하여 store의 값을 변경한다.
-\`\`\`tsx
+\`\`\`js
 import useStore from "../store/store";
 export default function Layout(props: ILayoutProps) {
   
@@ -123,7 +123,7 @@ export default function Layout(props: ILayoutProps) {
 Redux DevTools 설치 : https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=ko
 
 \`zustand/middleware\`에서 \`devtools\`를 import 시켜주고, \`create\` 의 콜백 함수를 \`devtools\`로 감싸주기만 하면 Redux-devtools를 사용해 store의 상태를 확인할 수 있다.
-\`\`\`tsx
+\`\`\`js
 // store.js
 import create from "zustand";
 import { devtools } from "zustand/middleware";
@@ -140,8 +140,8 @@ export default useStore;
 Redux-devtools를 사용해 store의 상태를 확인 가능하다.
 <img src = "https://images.velog.io/images/choigeon96/post/15f8e87d-067b-4693-b488-e638ae37b785/%E1%84%92%E1%85%AA%E1%84%86%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%85%E1%85%A9%E1%86%A8%202022-03-14%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%2012.51.25.gif" align= "left"/>
 </br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
-> 
-참고
+
+>참고
 https://www.youtube.com/watch?v=jLcF0Az1nx8
 https://www.youtube.com/watch?v=zNHZJ_iEMPA&t=3s 
 https://ui.toast.com/weekly-pick/ko_20210812

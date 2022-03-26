@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* justify-content: center; */
 `;
 
 export const BlogDetailBody = styled.div`
@@ -21,7 +22,10 @@ export const BlogDetailBody = styled.div`
 `;
 
 export const RowWrapper = styled.div`
-  display: flex;
+  display: flex;  
+`;
+export const BlogDetailLayout = styled(RowWrapper)`
+  justify-content: center;
 `;
 
 export const Title = styled.div`
