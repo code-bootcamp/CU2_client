@@ -5,7 +5,7 @@ import * as S from "./Likeposts.Style";
 import { v4 as uuidV4 } from "uuid";
 import { ICodingUsBlogCardProps } from "../../../../../../commons/types/types";
 import { UserPageNav } from "../../../../../commons/Mypage/MypageNav";
-import MyPageSearchBar from "../../../../../commons/Mypage/MypageSearchBar";
+import { MyPageSearchBar } from "../../../../../commons/Mypage/MypageSearchBar";
 
 export default function UserLikePostsUI(props) {
   return (

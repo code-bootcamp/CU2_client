@@ -2,7 +2,7 @@ import Blank from "../../../../../commons/Blank";
 import MypageMenu from "../../MypageMenu.Container";
 import * as S from "./MyQuestions.Style";
 import { UserPageNav } from "../../../../../commons/Mypage/MypageNav";
-import MyPageSearchBar from "../../../../../commons/Mypage/MypageSearchBar";
+import { MyPageSearchBar } from "../../../../../commons/Mypage/MypageSearchBar";
 import WaitingItem from "../../../../codingus/QnA/waitingItem/WaitingItem.Container";
 
 export default function UserQuestionsUI(props) {

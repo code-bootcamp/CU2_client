@@ -13,3 +13,11 @@ export const Wrapper = styled.div`
   align-items: center;
   box-sizing: border-box;
 `;
+
+export const BlogHeader = styled.div`
+  width: 90%;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
