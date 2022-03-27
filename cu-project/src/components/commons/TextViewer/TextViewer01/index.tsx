@@ -10,7 +10,6 @@ interface ITextViewerProps {
   value: string;
 }
 export default function TextViewer01(props: ITextViewerProps) {
-  console.log(props)
   return (
     <div style={{ height: props.height, width: props.width }}>
       <ViewerUI value={props.value}/>
