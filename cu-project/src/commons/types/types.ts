@@ -91,6 +91,15 @@ export interface ICodingUsMainUIProps {
   onClickLike: (id: string) => () => void;
 }
 
+export interface ICodingUsCommentsProps {
+  id: string;
+  user: { name: string; image: string };
+  cretedAt: string;
+  isLiked: boolean;
+  likeCnt: number;
+  contents: string;
+}
+
 export interface ICodingUsQnAProps {}
 export interface ICodingUsQnAUIProps {
   isMyQuestion: boolean;

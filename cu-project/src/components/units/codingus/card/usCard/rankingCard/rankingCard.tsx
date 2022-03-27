@@ -7,7 +7,6 @@ import Blank from "../../../../../commons/Blank";
 import { AiFillTrophy } from "react-icons/ai";
 import Color from "../../../../../../commons/styles/color";
 import { Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
 interface ICodingUsCardProps {
   height?: number;
   data: IRankingInfo;
