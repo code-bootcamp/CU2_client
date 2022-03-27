@@ -2,7 +2,6 @@ import Label01 from "../../../../../commons/Label/Label01";
 import * as S from "./topThreeCard.Style";
 import { IRankingInfo } from "../../../../../../commons/types/types";
 import { Avatar } from "antd";
-import React from "react";
 import Blank from "../../../../../commons/Blank";
 interface ICodingUsCardProps {
   width?: number;

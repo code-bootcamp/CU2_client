@@ -26,6 +26,7 @@ interface IButtonProps {
   padding?: string;
   icon?: IconType;
   iconSize?: number;
+  size?: string;
 }
 export default function Button02(props: IButtonProps) {
   return (
