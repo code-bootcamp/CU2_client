@@ -55,7 +55,7 @@ const RateText = styled.div`
   position: relative;
   left: 33%;
   bottom: -2%;
-  z-index: 11;
+  z-index: 1;
   font-size: 11px;
   font-weight: lighter;
 `;
@@ -161,7 +161,12 @@ function CoachingUsCoachCard(props) {
     },
   };
   return (
-    <CoachCard onClick={() => props.setComponent(`/`)}>
+    <CoachCard
+      onClick={() => {
+        if (props.setComponent) return props.setComponent(`/`);
+        router.push("/coachingus/coaches/1");
+      }}
+    >
       <CardPicture></CardPicture>
       <CardContents>
         <ContentsTitle>{coach.corName}</ContentsTitle>
@@ -212,7 +217,8 @@ function CoachingUsCoachCard(props) {
           <ContentsFollowBtn>팔로우</ContentsFollowBtn>
           <ContentsFollowBtn
             onClick={(event) => {
-              props.setComponent("question");
+              props.setComponent && props.setComponent("question");
+              router.push("/coachingus/coaches/0/question");
               event.stopPropagation();
             }}
           >

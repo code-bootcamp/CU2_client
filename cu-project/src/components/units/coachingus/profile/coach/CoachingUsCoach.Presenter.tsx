@@ -1,4 +1,5 @@
 import React from "react";
+import { BsQuestionCircleFill } from "react-icons/bs";
 import Blank from "../../../../commons/Blank";
 import * as S from "./CoachingUsCoach.Style";
 export default function CoachingUsCoachUI(props) {
@@ -9,11 +10,22 @@ export default function CoachingUsCoachUI(props) {
         <S.CoachIntroContents>멘토소개글</S.CoachIntroContents>
       </S.CoachIntro>
       <Blank height="100px" />
-      <S.CoachComments>
-        <S.CoachComments>Coach Comments</S.CoachComments>
-        <Blank height="10px" />
+      <S.CoachComments onClick={props.moveToPage(`/coachingus/coaches/0/0`)}>
+        Coach Comments
+        <Blank height="20px" />
         <S.CommentsBody>
-          <S.CommentsTitle>Q) 멘티 질문 제목</S.CommentsTitle>
+          <S.CommentsTitle>
+            <BsQuestionCircleFill
+              style={{
+                color: "#EA345A",
+                height: "25px",
+                width: "25px",
+                marginBottom: "4px",
+              }}
+            />{" "}
+            <Blank width="10px" />
+            멘티 질문 제목
+          </S.CommentsTitle>
           <Blank height="10px" />
           <S.CommentsContents>
             A) 멘토 답변 내용 멘토 답변 내용 멘토 답변 내용 멘토 답변 내용 멘토
@@ -26,7 +38,12 @@ export default function CoachingUsCoachUI(props) {
             <Blank width="20px" />
             <S.CommentsInfoLikes>좋아요 21</S.CommentsInfoLikes>
           </S.CommentsInfo>
-          <S.MoreBtn onClick={() => props.setComponent(`comments`)}>
+          <S.MoreBtn
+            onClick={(event) => {
+              event.stopPropagation();
+              props.setComponent(`comments`);
+            }}
+          >
             <p>{">"}</p>더보기
           </S.MoreBtn>
         </S.CommentsBody>
@@ -39,10 +56,10 @@ export default function CoachingUsCoachUI(props) {
           {props.columnList.map((column) => (
             <S.ColumnsList
               key={column.id}
-              onClick={props.moveToPage(`/coachingus/column/${column.id}`)}
+              onClick={props.moveToPage(`/coachingus/columns/${column.id}`)}
             >
               <S.ColumnPicture>{column.picture}</S.ColumnPicture>
-              <Blank height="20px" />
+
               <S.ColumnText>
                 <S.ColumnTitle>
                   {column.title.length > 25 ? (

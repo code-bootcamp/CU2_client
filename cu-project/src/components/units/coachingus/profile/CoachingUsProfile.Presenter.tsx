@@ -27,7 +27,6 @@ export default function CoachingUsProfileUI(props: ICoachingUsProfileUIProps) {
         )}
         {props.component === "comments" && <CoachingUsCommentsPage />}
         {props.component === "columns" && <CoachingUsColumnPage />}
-        {props.component === "question" && <CoachingUsQuestion />}
       </S.CoachProfileBody>
     </S.Wrapper>
   );
