@@ -7,19 +7,21 @@ export const RowWrapper = styled.div`
 `;
 interface ICardWrapperProps {
   width: string;
-  height: string;
+
 }
 export const Wrapper = styled.div`
   width: ${(props: ICardWrapperProps) => props.width};
-  height: : ${(props: ICardWrapperProps) => props.height};
-  border-radius: 8px;
-  padding: 20px 30px 30px 20px;
-  background-color: ${Color.light};
+
+  padding: 27px 20px 17px 20px;
+  background-color: ${Color.white};
   margin: 0px 0px 20px 0px;
+  border: 1px solid #f6f5f5;
+  box-sizing: border-box;
+  border-radius: 8px;
 `;
 
 export const TagWrapper = styled.div`
-  display:flex;
+  display: flex;
 `;
 
 export const TextArea = styled.div`
@@ -29,17 +31,21 @@ export const TextArea = styled.div`
 `;
 
 export const Title = styled(TextArea)`
+  display: flex;
+  align-items: center;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 18px;
+  line-height: 21px;
   :hover {
     cursor: pointer;
   }
 `;
 
 export const Contents = styled(TextArea)`
-  font-weight: 200;
-  font-size: 24px;
-  line-height: 29px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  max-height: 72px;
   color: ${Color.medium};
   :hover {
     cursor: pointer;
@@ -48,8 +54,11 @@ export const Contents = styled(TextArea)`
 
 export const Writer = styled(TextArea)`
   font-weight: 200;
-  font-size: 24px;
+  font-size: 16px;
   line-height: 29px;
   color: ${Color.medium};
   text-align: right;
+`;
+export const Like = styled(RowWrapper)`
+  
 `;

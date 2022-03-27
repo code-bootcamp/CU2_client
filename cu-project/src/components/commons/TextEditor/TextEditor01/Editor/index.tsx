@@ -12,6 +12,7 @@ import { Editor as ToastEditor } from "@toast-ui/react-editor";
 import { RefObject } from "react";
 import styled from "@emotion/styled";
 import Color from "../../../../../commons/styles/color";
+import { dummyMD } from "../../../../units/codingus/blog/dummy";
 
 interface ITextEditorUIProps {
   editorRef: RefObject<ToastEditor>;

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { CSSProperties } from "react";
 import Color from "../../../../commons/styles/color";
 
 export const Tag = styled.div`
@@ -13,8 +14,9 @@ export const Tag = styled.div`
 interface ITagProps {
   value: string;
   size?: string | number;
+  style?: CSSProperties | undefined
 }
 
 export default function Tag02(props: ITagProps) {
-  return <Tag size={props.size}>{`# ${props.value}`}</Tag>;
+  return <Tag style={{...props.style}} size={props.size}>{`#${props.value}`}</Tag>;
 }
