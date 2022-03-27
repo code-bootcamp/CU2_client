@@ -15,7 +15,11 @@ export default function CoachingUsCoachUI(props) {
               onClick={() => {
                 props.SendQuery(tag);
               }}
-              isCurrent={props.isCurrentTag === tag}
+              isCurrent={
+                props.isCurrentTag
+                  ? props.isCurrentTag === tag
+                  : tag === "Today"
+              }
               key={index}
             >
               {tag}
