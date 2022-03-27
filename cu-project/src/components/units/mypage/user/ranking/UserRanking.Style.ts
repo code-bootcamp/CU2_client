@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const AllWrapper = styled.div`
-  margin: 70px 360px 0;
+  margin: 100px 360px 0;
   display: flex;
   flex-direction: row;
 `;
@@ -18,17 +18,11 @@ export const Box = styled.div`
   width: 90%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  & span {
+    cursor: pointer;
+  }
 `;
-
-export const MyPageButton = styled.button`
-  background-color: gray;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-`;
-
 export const TopMenu = styled.div`
   width: 100%;
   display: flex;
@@ -44,10 +38,10 @@ export const Row = styled.div`
   border-bottom: 1px solid gray;
 `;
 
-export const ChargeBox = styled.div`
+export const LankingBox = styled.div`
   width: 90%;
-  & span {
-    color: #dbdbdb;
+  & img {
+    width: 100%;
   }
 `;
 

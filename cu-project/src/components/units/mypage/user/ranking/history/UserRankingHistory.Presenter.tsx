@@ -1,5 +1,6 @@
 import { DatePicker, Space } from "antd";
 import Blank from "../../../../../commons/Blank";
+import MyPageNav from "../../../../../commons/Mypage/MypageNav";
 import MypageMenu from "../../MypageMenu.Container";
 import * as S from "./UserRankingHistory.Style";
 
@@ -9,7 +10,7 @@ export default function UserRankingHistoryUI() {
     <S.AllWrapper>
       <MypageMenu />
       <S.Wrapper>
-        <S.Box>{`마이페이지 > 점수 내역`}</S.Box>
+        <MyPageNav menu={"점수내역"} />
         <Blank height="30px" />
         <Space direction="vertical" size={12}>
           <RangePicker />

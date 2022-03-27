@@ -3,7 +3,7 @@ import * as S from "./CoachRegister.Style";
 import { Button, Radio } from "antd";
 import "antd/dist/antd.css";
 
-export default function CoachRegisterUI() {
+export default function CoachRegisterUI(props) {
   return (
     <S.Wrapper>
       <S.RegisterImg src="https://img3.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202110/21/newswire/20211021230703945chkm.jpg" />
@@ -31,9 +31,19 @@ export default function CoachRegisterUI() {
           (필수) 본인을 나타내는 태그 2개
           <Blank height="10px" />
         </div>
-        <S.FormInput />
+        <S.HashDivrap>
+          <div className="HashWrapOuter"></div>
+          <input
+            className="HashInput"
+            type="text"
+            value={props.hashtag}
+            onChange={props.onChangeHashtag}
+            onKeyUp={props.onKeyUp}
+            placeholder={props.hashState}
+          />
+        </S.HashDivrap>
         <Blank height="10px" />
-        <Button>지원하기</Button>
+        <Button style={{ height: "50px", fontSize: "24px" }}>지원하기</Button>
       </S.RegisterForm>
     </S.Wrapper>
   );

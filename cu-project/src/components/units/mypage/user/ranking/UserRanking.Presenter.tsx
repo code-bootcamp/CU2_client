@@ -1,31 +1,27 @@
+import { Radio } from "antd";
 import Blank from "../../../../commons/Blank";
+import MyPageNav from "../../../../commons/Mypage/MypageNav";
 import MypageMenu from "../MypageMenu.Container";
 import * as S from "./UserRanking.Style";
 
-export default function UserRankingUI() {
+export default function UserRankingUI(props) {
   return (
     <S.AllWrapper>
       <MypageMenu />
       <S.Wrapper>
-        <S.Box>랭킹</S.Box>
+        <MyPageNav menu={"전체 랭킹보기"} />
         <Blank height="30px" />
-
-        <S.ChargeBox>
-          <span>일간</span> | <span>주간</span> | <span>월간</span> |{" "}
-          <span>전체</span>
-          <S.Row>
-            <S.ColumnHeaderBasic>충전일</S.ColumnHeaderBasic>
-            <S.ColumnHeaderTitle>결제ID</S.ColumnHeaderTitle>
-            <S.ColumnHeaderBasic>충전/구매 내역</S.ColumnHeaderBasic>
-            <S.ColumnHeaderBasic>충전 후 잔액</S.ColumnHeaderBasic>
-          </S.Row>
-          <S.Row>
-            <S.ColumnBasic>충전일 내용</S.ColumnBasic>
-            <S.ColumnTitle>결제ID 내용</S.ColumnTitle>
-            <S.ColumnBasic>충전 내역 내용</S.ColumnBasic>
-            <S.ColumnBasic>충전 후 잔액 내용</S.ColumnBasic>
-          </S.Row>
-        </S.ChargeBox>
+        <S.LankingBox>
+          <Radio.Group onChange={props.onChangeDuration} defaultValue="daily">
+            <Radio.Button value="daily">일간</Radio.Button>
+            <Radio.Button value="weekly">주간</Radio.Button>
+            <Radio.Button value="monthly">월간</Radio.Button>
+            <Radio.Button value="total">전체</Radio.Button>
+          </Radio.Group>
+          <span>2022.03.26 - 2022.03.26 , 선택에 따라 달라짐</span>
+          <Blank height="30px" />
+          <img src="/Group 511.png" />
+        </S.LankingBox>
       </S.Wrapper>
     </S.AllWrapper>
   );

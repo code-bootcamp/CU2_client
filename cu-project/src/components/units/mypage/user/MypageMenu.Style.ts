@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
+import Color from "../../../../commons/styles/color";
 
 export const Wrapper = styled.div`
-  width: 320px;
+  width: 270px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -19,7 +20,7 @@ export const MyPageButton = styled.button`
   background-color: ${(props) =>
     props.isSelect === true ? "black" : "#F6F5F5"};
   color: ${(props) => (props.isSelect === true ? "white" : "#333333")};
-  padding: 10px;
+  padding: 10px 5px;
   border: none;
   border-radius: 10px;
   :hover {
@@ -34,7 +35,7 @@ export const ProfileHead = styled.div`
   align-items: center;
   justify-content: space-around;
   & div {
-    font-size: 24px;
+    font-size: 18px;
     line-height: 28px;
   }
 `;
@@ -112,7 +113,7 @@ export const MenuBox = styled.div`
   }
   & button {
     border: none;
-    font-size: 24px;
+    font-size: 18px;
     background-color: transparent;
     & img {
       margin-right: 10px;

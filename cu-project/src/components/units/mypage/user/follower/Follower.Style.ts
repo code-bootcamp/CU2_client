@@ -52,4 +52,5 @@ export const FollowerBox = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-bottom: 20px;
 `;
