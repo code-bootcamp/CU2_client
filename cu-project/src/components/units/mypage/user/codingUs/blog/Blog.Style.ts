@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { breakPoints } from "../../../../../../commons/styles/media";
 
 export const AllWrapper = styled.div`
-  margin: 70px 12.5% 0;
+  margin: 100px 12.5% 0;
   display: flex;
   flex-direction: row;
   align-items: flex-start;

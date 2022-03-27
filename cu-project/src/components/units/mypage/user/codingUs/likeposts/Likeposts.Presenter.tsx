@@ -4,7 +4,7 @@ import MypageMenu from "../../MypageMenu.Container";
 import * as S from "./Likeposts.Style";
 import { v4 as uuidV4 } from "uuid";
 import { ICodingUsBlogCardProps } from "../../../../../../commons/types/types";
-import MyPageNav from "../../../../../commons/Mypage/MypageNav";
+import { UserPageNav } from "../../../../../commons/Mypage/MypageNav";
 import MyPageSearchBar from "../../../../../commons/Mypage/MypageSearchBar";
 
 export default function UserLikePostsUI(props) {
@@ -12,7 +12,7 @@ export default function UserLikePostsUI(props) {
     <S.AllWrapper>
       <MypageMenu />
       <S.Wrapper>
-        <MyPageNav menu={"Good한 포스트"} />
+        <UserPageNav menu={"Good한 포스트"} />
         <S.BlogHeader>
           <h2>전체글 53</h2>
           <MyPageSearchBar />

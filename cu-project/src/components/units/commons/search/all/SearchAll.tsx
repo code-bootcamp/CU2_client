@@ -1,5 +1,4 @@
 import Blank from "../../../../commons/Blank";
-
 import * as S from "../Search.Style";
 
 export default function SearchAll() {

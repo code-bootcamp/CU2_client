@@ -1,7 +1,7 @@
 import Blank from "../../../../../commons/Blank";
 import MypageMenu from "../../MypageMenu.Container";
 import * as S from "./LikeQuestions.Style";
-import MyPageNav from "../../../../../commons/Mypage/MypageNav";
+import { UserPageNav } from "../../../../../commons/Mypage/MypageNav";
 import MyPageSearchBar from "../../../../../commons/Mypage/MypageSearchBar";
 import WaitingItem from "../../../../codingus/QnA/waitingItem/WaitingItem.Container";
 
@@ -10,7 +10,7 @@ export default function LikeQuestionsUI(props) {
     <S.AllWrapper>
       <MypageMenu />
       <S.Wrapper>
-        <MyPageNav menu={"Good한 Q&A"} />
+        <UserPageNav menu={"Good한 Q&A"} />
         <S.BlogHeader>
           <h2>질문 14 | 답변 2</h2>
           <MyPageSearchBar />

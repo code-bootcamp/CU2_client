@@ -1,6 +1,6 @@
 import { Radio } from "antd";
 import Blank from "../../../../commons/Blank";
-import MyPageNav from "../../../../commons/Mypage/MypageNav";
+import { UserPageNav } from "../../../../commons/Mypage/MypageNav";
 import MypageMenu from "../MypageMenu.Container";
 import * as S from "./UserRanking.Style";
 
@@ -9,7 +9,7 @@ export default function UserRankingUI(props) {
     <S.AllWrapper>
       <MypageMenu />
       <S.Wrapper>
-        <MyPageNav menu={"전체 랭킹보기"} />
+        <UserPageNav menu={"전체 랭킹보기"} />
         <Blank height="30px" />
         <S.LankingBox>
           <Radio.Group onChange={props.onChangeDuration} defaultValue="daily">

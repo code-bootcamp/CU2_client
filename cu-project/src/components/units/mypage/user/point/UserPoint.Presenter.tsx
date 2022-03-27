@@ -4,7 +4,7 @@ import * as S from "./UserPoint.Style";
 import { Modal } from "antd";
 import "antd/dist/antd.css";
 import { MyPageButton } from "../../../../commons/Mypage/MypageButton";
-import MyPageNav from "../../../../commons/Mypage/MypageNav";
+import { UserPageNav } from "../../../../commons/Mypage/MypageNav";
 
 export default function UserPointUI(props) {
   return (
@@ -36,12 +36,13 @@ export default function UserPointUI(props) {
             </select>
           </Modal>
         )}
-        <MyPageNav menu={"포인트 충전내역"} />
+        <UserPageNav menu={"포인트 충전내역"} />
 
         <Blank height="30px" />
 
         <S.ChargeBox>
-          <span>전체내역</span> | <span>충전내역</span> | <span>구매내역</span>
+          <span>전체내역</span> | <span>충전내역</span> | <span>구매내역</span>{" "}
+          | <span>판매내역</span>
           <S.Row>
             <S.ColumnHeaderBasic>충전일</S.ColumnHeaderBasic>
             <S.ColumnHeaderTitle>결제ID</S.ColumnHeaderTitle>

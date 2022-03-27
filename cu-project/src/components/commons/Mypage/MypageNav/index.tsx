@@ -28,12 +28,25 @@ interface IMyPageNavProps {
   menu: string;
 }
 
-export default function MyPageNav(props: IMyPageNavProps) {
+export function UserPageNav(props: IMyPageNavProps) {
   const { moveToPage } = useMoveToPage();
   return (
     <Wrapper>
       <Nav>
-        <span onClick={moveToPage("/mypage")}>마이페이지</span>
+        <span onClick={moveToPage("/mypage/user")}>유저페이지</span>
+        {`>${props.menu}`}
+      </Nav>
+      <h1>{props.menu}</h1>
+    </Wrapper>
+  );
+}
+
+export function CoachPageNav(props: IMyPageNavProps) {
+  const { moveToPage } = useMoveToPage();
+  return (
+    <Wrapper>
+      <Nav>
+        <span onClick={moveToPage("/mypage/coach")}>코치페이지</span>
         {`>${props.menu}`}
       </Nav>
       <h1>{props.menu}</h1>

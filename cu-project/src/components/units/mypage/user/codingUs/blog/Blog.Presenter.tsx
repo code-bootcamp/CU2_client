@@ -4,7 +4,7 @@ import MypageMenu from "../../MypageMenu.Container";
 import * as S from "./Blog.Style";
 import { v4 as uuidV4 } from "uuid";
 import { ICodingUsBlogCardProps } from "../../../../../../commons/types/types";
-import MyPageNav from "../../../../../commons/Mypage/MypageNav";
+import { UserPageNav } from "../../../../../commons/Mypage/MypageNav";
 import MyPageSearchBar from "../../../../../commons/Mypage/MypageSearchBar";
 
 export default function UserBlogUI(props) {
@@ -12,7 +12,7 @@ export default function UserBlogUI(props) {
     <S.AllWrapper>
       <MypageMenu />
       <S.Wrapper>
-        <MyPageNav menu={"내 블로그"} />
+        <UserPageNav menu={"내 블로그"} />
         <S.BlogHeader>
           <h2>블로그 전체글 53</h2>
           <MyPageSearchBar />
