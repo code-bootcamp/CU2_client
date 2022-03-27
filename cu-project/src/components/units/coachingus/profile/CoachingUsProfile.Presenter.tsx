@@ -7,7 +7,7 @@ import CoachingUsSidebar from "../sidebar/CoachingUsSidebar.Container";
 import CoachingUsCoachCard from "./CoachingUsCoachCard";
 import CoachingUsCommentsPage from "./comments/CoachingUsComments.Container";
 import CoachingUsCoachPage from "./coach/CoachingUsCoach.Container";
-import CoachingUsColumnPage from "./column/CoachingUsColumn.Container";
+import CoachingUsColumnPage from "./columns/CoachingUsColumn.Container";
 import CoachingUsQuestion from "./question/CoachingUsQuestion.Container";
 
 export default function CoachingUsProfileUI(props: ICoachingUsProfileUIProps) {
