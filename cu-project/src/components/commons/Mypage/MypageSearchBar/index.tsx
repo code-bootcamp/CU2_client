@@ -35,7 +35,7 @@ const SearchBar = styled.div`
   }
 `;
 
-export default function MyPageSearchBar() {
+export function MyPageSearchBar() {
   const [isRecently, setIsRecently] = useState(true);
   const [isHot, setIsHot] = useState(false);
 
@@ -58,6 +58,35 @@ export default function MyPageSearchBar() {
         |{" "}
         <Filter onClick={onClickSelect} isHot={isHot}>
           인기순
+        </Filter>
+      </div>
+    </BlogHeaderRight>
+  );
+}
+
+export function CoachingSearchBar() {
+  const [isRecently, setIsRecently] = useState(true);
+  const [isHot, setIsHot] = useState(false);
+
+  const onClickSelect = () => {
+    setIsRecently((prev) => !prev);
+    setIsHot((prev) => !prev);
+  };
+
+  return (
+    <BlogHeaderRight>
+      <SearchBar>
+        <input type="text" placeholder="검색어를 입력해주세요" />
+        <BsSearch />
+      </SearchBar>
+      <Blank width="20px"></Blank>
+      <div>
+        <Filter onClick={onClickSelect} isRecently={isRecently}>
+          답변대기
+        </Filter>{" "}
+        |{" "}
+        <Filter onClick={onClickSelect} isHot={isHot}>
+          답변완료
         </Filter>
       </div>
     </BlogHeaderRight>

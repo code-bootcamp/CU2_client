@@ -111,7 +111,7 @@ export default function CoachpageMenuUI(props: IMyPageMenuUIProps) {
               코치 정보 수정
             </button>
             <Blank height="10px" />
-            <button onClick={props.moveToPage("/mypage/coach/portfolio")}>
+            <button onClick={props.moveToPage("/mypage/coach/portfolio/edit")}>
               포트폴리오 추가/수정
             </button>
           </S.UserInfoEditBox>
@@ -121,7 +121,7 @@ export default function CoachpageMenuUI(props: IMyPageMenuUIProps) {
           <p>CoachingUs</p>
           <Blank height="40px" />
           <button onClick={props.moveToPage("/mypage/coach/comments")}>
-            <img src="/Icon_Coaching.png" />내 코멘트 보기
+            <img src="/Icon_Coaching.png" />내 코칭 보기
           </button>
           <Blank height="50px" />
           <button onClick={props.moveToPage("/mypage/coach/columns")}>
