@@ -1,4 +1,27 @@
 import styled from "@emotion/styled";
+export const Wrapper = styled.div`
+  min-height: 100vh;
+  min-width: 100vw;
+  box-sizing: border-box;
+  margin: 0;
+  padding-top: 100px;
+  display: flex;
+`;
+
+// coach card 영역
+export const CoachSidebar = styled.div`
+  min-height: 100vh;
+  min-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+`;
+export const AddSideBar = styled.div`
+  width: 300px;
+  display: flex;
+  justify-content: center;
+`;
 
 export const CoachQuestionWrapper = styled.div``;
 
@@ -57,10 +80,10 @@ export const CategoryIntroduceBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 90px;
-  height: 35px;
   font-size: 16px;
   font-weight: 200;
+  border-radius: 10px;
+  padding: 8px 20px;
   color: ${({ isCategory }) => (!isCategory ? "white" : "black")};
   border: ${({ isCategory }) => (!isCategory ? "none" : "1px solid #c4c4c4")};
   background-color: ${({ isCategory }) => (!isCategory ? "#ea345a" : "white")};
@@ -69,10 +92,11 @@ export const CategoryPortfolioBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 90px;
-  height: 35px;
+
   font-size: 16px;
   font-weight: 200;
+  border-radius: 10px;
+  padding: 8px 20px;
   color: ${({ isCategory }) => (isCategory ? "white" : "black")};
   border: ${({ isCategory }) => (isCategory ? "none" : "1px solid #c4c4c4")};
   background-color: ${({ isCategory }) => (isCategory ? "#ea345a" : "white")};
@@ -81,11 +105,19 @@ export const CategoryPortfolioBtn = styled.button`
 export const QuestionTitle = styled.input`
   height: 40px;
   padding: 3px 10px;
+  border: 1px solid #c4c4c4;
+  ::placeholder {
+    color: #c4c4c4;
+  }
 `;
 export const QuestionContents = styled.textarea`
   resize: none;
-  height: 200px;
+  min-height: 500px;
   padding: 10px;
+  border: 1px solid #c4c4c4;
+  ::placeholder {
+    color: #c4c4c4;
+  }
 `;
 export const QuestionFilesBox = styled.div`
   display: flex;
@@ -114,11 +146,11 @@ export const QuestionFilesF = styled.input`
   display: none;
 `;
 export const QuestionBtn = styled.button`
-  height: 40px;
   font-size: 18px;
   color: white;
   border: none;
-  border-radius: 15px;
+  border-radius: 5px;
+  padding: 10px;
   background: #ea345a;
 
   :hover {

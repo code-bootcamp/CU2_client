@@ -19,10 +19,14 @@ export const CommentsBody = styled.div`
 
   height: 175px;
   padding: 25px 150px 25px 25px;
-  color: white;
-  background-color: #7918f2;
+  border: 1px solid #c4c4c4;
+  border-radius: 15px;
+  color: black;
+
+  cursor: pointer;
 `;
 export const CommentsTitle = styled.div`
+  display: flex;
   font-weight: 300;
 `;
 export const CommentsContents = styled.div`
@@ -43,7 +47,7 @@ export const CommentsInfoHits = styled.div`
   width: 100px;
   height: 30px;
   border-radius: 20px;
-  border: 1px solid white;
+  border: 1px solid #c4c4c4;
 `;
 export const CommentsInfoLikes = styled.div`
   display: flex;
@@ -52,7 +56,7 @@ export const CommentsInfoLikes = styled.div`
   width: 100px;
   height: 30px;
   border-radius: 20px;
-  border: 1px solid white;
+  border: 1px solid #c4c4c4;
 `;
 export const MoreBtn = styled.div`
   position: relative;
@@ -108,7 +112,7 @@ export const ColumnsList = styled.div`
   cursor: pointer;
 
   :hover {
-    background-color: #7918f2;
+    background-color: #ea345a;
     color: white;
   }
 `;
@@ -128,6 +132,7 @@ export const ColumnText = styled.div`
   justify-content: space-between;
   height: 120px;
   width: 100%;
+  padding: 10px;
   /* background: red; */
 `;
 export const ColumnTitle = styled.div`

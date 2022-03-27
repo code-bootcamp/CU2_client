@@ -8,5 +8,15 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 40px 0;
+  padding: 100px 0 50px 0;
+`;
+// SideBar 영역
+
+export const LeftSideBar = styled.div`
+  display: flex;
+  justify-content: center;
+  min-width: 300px;
+  min-height: 100vh;
+  position: absolute;
+  left: 0;
 `;
