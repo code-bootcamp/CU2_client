@@ -8,6 +8,7 @@ import { CheckboxChangeEvent } from "antd/lib/checkbox/Checkbox";
 import { IPage } from "../../components/commons/hooks/useMoveToPage";
 import React, { MouseEvent, ReactChild, RefObject } from "react";
 import { Editor } from "@toast-ui/react-editor";
+import { string } from "yup/lib/locale";
 
 export interface ILayoutProps {
   children: ReactChild;
@@ -114,7 +115,33 @@ export interface ICodingUsCardProps {
 }
 
 export interface ICodingUsRankProps {}
-export interface ICodingUsRankUIProps {}
+
+export interface IRankingInfo{
+  user: {
+    name: string;
+    image: string;
+  }
+    currInfo?: {
+      ranking: number;
+      point: number;
+    };
+    prevInfo?: {
+      ranking: number;
+      point: number;
+    };
+}
+export interface ICodingUsRankUIProps {
+  rankingInfos: IRankingInfo[];
+  myRankingInfo: IRankingInfo;
+  moveToPage: (page: string) => () => void;
+  gubun: string;
+  onClickPeriodGubun : (gubun: string) => () => void;
+  onLoadMore: () => void;
+  onClickMyPage: (userId: string) => () => void;
+}
+
+
+
 // #endregion
 
 // #region CoachingUs

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { MouseEvent } from "react";
+import { MouseEvent } from "react";
 import { IconType } from "react-icons";
 import Blank from "../../Blank";
 export const Button = styled.button`

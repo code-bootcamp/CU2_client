@@ -1,18 +1,17 @@
 import styled from "@emotion/styled";
-import { MouseEvent } from "react";
-import Color from "../../../../commons/styles/color";
+import  { MouseEvent } from "react";
 import { IconType } from "react-icons";
+import Color from "../../../../commons/styles/color";
 import Blank from "../../Blank";
 export const Button = styled.button`
-  background: ${Color.main};
-  border: 1px solid ${Color.main};
+  border: 1px solid ${Color.light};
+  box-sizing: border-box;
   border-radius: 8px;
   font-weight: 700;
   font-size: 18px;
   line-height: 21px;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
+  color: ${Color.light};
+  background-color: ${Color.dark};
 `;
 
 interface IButtonProps {
@@ -22,7 +21,7 @@ interface IButtonProps {
   icon?: IconType;
   iconSize?: number;
 }
-export default function Button02(props: IButtonProps) {
+export default function Button03(props: IButtonProps) {
   return (
     <Button
       onClick={props.onClick}
