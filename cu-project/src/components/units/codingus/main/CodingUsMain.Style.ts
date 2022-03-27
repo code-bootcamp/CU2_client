@@ -105,6 +105,7 @@ export const RecomendBlogWrapper = styled.div``;
 export const BlogItemWrapper = styled(RowWrapper)`
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 `;
 export const Card = styled.div`
   width: 387px;

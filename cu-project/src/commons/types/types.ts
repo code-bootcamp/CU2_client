@@ -84,6 +84,7 @@ export interface ICodingUsMainUIProps {
   moveToPage: (page: string) => void;
   bestUserItems: any[];
   blogItems: ICodingUsBlogCardProps[];
+  bestQuestions: any[];
   onClickItem: (id: string) => () => void;
   onClickFollow: (id: string) => () => void;
   onClickLike: (id: string) => () => void;
