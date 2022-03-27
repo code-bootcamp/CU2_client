@@ -14,11 +14,11 @@ const SearchHead = styled.h1`
   justify-content: flex-start;
 `;
 
-export default function SearchUs() {
+export default function SearchStack() {
   return (
     <Wrapper>
-      <SearchHead>{`Us & Coaches`}</SearchHead>
-      <div>유저, 코치 리스트</div>
+      <SearchHead>{`CodingUs StackQ&A`}</SearchHead>
+      <div>스택 큐앤에이 리스트</div>
     </Wrapper>
   );
 }
