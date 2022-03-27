@@ -116,31 +116,29 @@ export interface ICodingUsCardProps {
 
 export interface ICodingUsRankProps {}
 
-export interface IRankingInfo{
+export interface IRankingInfo {
   user: {
     name: string;
     image: string;
-  }
-    currInfo?: {
-      ranking: number;
-      point: number;
-    };
-    prevInfo?: {
-      ranking: number;
-      point: number;
-    };
+  };
+  currInfo?: {
+    ranking: number;
+    point: number;
+  };
+  prevInfo?: {
+    ranking: number;
+    point: number;
+  };
 }
 export interface ICodingUsRankUIProps {
   rankingInfos: IRankingInfo[];
   myRankingInfo: IRankingInfo;
   moveToPage: (page: string) => () => void;
   gubun: string;
-  onClickPeriodGubun : (gubun: string) => () => void;
+  onClickPeriodGubun: (gubun: string) => () => void;
   onLoadMore: () => void;
   onClickMyPage: (userId: string) => () => void;
 }
-
-
 
 // #endregion
 
@@ -225,6 +223,15 @@ export interface ICoachingUsProfileUIProps {}
 
 export interface ICoachingUsQuestionProps {}
 export interface ICoachingUsQuestionUIProps {}
+
+// #region CoachingUs - columnWrite
+export interface ICoachingUsColumnWriteUIProps {
+  editorRef: RefObject<Editor>;
+  tags: string[];
+  setTags: (tags: React.SetStateAction<string[]>) => void;
+  onClickExit: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
+}
 // #endregion
 
 // #region MyPage
