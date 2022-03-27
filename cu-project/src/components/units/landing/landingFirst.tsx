@@ -31,14 +31,13 @@ const TitleBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 70px;
+  padding-bottom: 70px;
   @media ${breakPoints.tablet} {
   }
   @media ${breakPoints.mobile} {
-    /* padding-top: 120px; */
     min-width: 100%;
     align-items: center;
-    margin-bottom: 30px;
+    padding-bottom: 30px;
   }
 `;
 
@@ -47,14 +46,14 @@ const Title = styled.h1`
   text-align: center;
   color: #333333;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin-bottom: 30px;
+  padding-bottom: 30px;
   @media ${breakPoints.tablet} {
     font-size: 48px;
   }
   @media ${breakPoints.mobile} {
     font-size: 28px;
     min-width: 100%;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
   }
 `;
 

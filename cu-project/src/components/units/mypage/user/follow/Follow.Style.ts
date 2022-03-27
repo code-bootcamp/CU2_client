@@ -4,6 +4,7 @@ export const AllWrapper = styled.div`
   margin: 70px 360px 0;
   display: flex;
   flex-direction: row;
+  justify-content: center;
 `;
 
 export const Wrapper = styled.div`
@@ -18,7 +19,7 @@ export const Box = styled.div`
   width: 90%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: flex-start;
 `;
 
 export const MyPageButton = styled.button`
@@ -52,4 +53,5 @@ export const FollowerBox = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-bottom: 20px;
 `;
