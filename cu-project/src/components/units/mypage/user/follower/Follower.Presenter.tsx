@@ -1,5 +1,5 @@
 import Blank from "../../../../commons/Blank";
-import MyPageNav from "../../../../commons/Mypage/MypageNav";
+import { UserPageNav } from "../../../../commons/Mypage/MypageNav";
 import MypageMenu from "../MypageMenu.Container";
 import * as S from "./Follower.Style";
 
@@ -8,7 +8,7 @@ export default function UserFollowerUI() {
     <S.AllWrapper>
       <MypageMenu />
       <S.Wrapper>
-        <MyPageNav menu={"팔로워"} />
+        <UserPageNav menu={"팔로워"} />
         <Blank height="30px" />
         <S.FollowerBox>
           <img src="/pofile_img_default.png" />

@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import CoachRegisterUI from "./CoachRegister.Presenter";
 
-export default function CoachRegister() {
+export default function CoachRegister(props) {
   const [hashtag, setHashtag] = useState<string | "">("");
   const [hashArr, setHashArr] = useState<string[] | []>([]);
   const [hashState, setHashState] = useState("해시태그 입력");
@@ -57,6 +57,7 @@ export default function CoachRegister() {
 
   return (
     <CoachRegisterUI
+      isEdit={props.isEdit}
       hashtag={hashtag}
       hashState={hashState}
       onChangeHashtag={onChangeHashtag}

@@ -1,5 +1,5 @@
 import Blank from "../../../../commons/Blank";
-import MyPageNav from "../../../../commons/Mypage/MypageNav";
+import { UserPageNav } from "../../../../commons/Mypage/MypageNav";
 import MypageMenu from "../MypageMenu.Container";
 import * as S from "./UserUpdate.Style";
 
@@ -8,7 +8,7 @@ export default function UserUpdateUI(props) {
     <S.AllWrapper>
       <MypageMenu />
       <S.Wrapper>
-        <MyPageNav menu={"회원 정보 변경"} />
+        <UserPageNav menu={"회원 정보 변경"} />
         <Blank height="30px" />
         <S.Box>
           <S.InfoBox>

@@ -1,7 +1,7 @@
 import Blank from "../../../../../commons/Blank";
 import MypageMenu from "../../MypageMenu.Container";
 import * as S from "./MyQuestions.Style";
-import MyPageNav from "../../../../../commons/Mypage/MypageNav";
+import { UserPageNav } from "../../../../../commons/Mypage/MypageNav";
 import MyPageSearchBar from "../../../../../commons/Mypage/MypageSearchBar";
 import WaitingItem from "../../../../codingus/QnA/waitingItem/WaitingItem.Container";
 
@@ -10,7 +10,7 @@ export default function UserQuestionsUI(props) {
     <S.AllWrapper>
       <MypageMenu />
       <S.Wrapper>
-        <MyPageNav menu={"내 Q&A"} />
+        <UserPageNav menu={"내 Q&A"} />
         <S.BlogHeader>
           <h2>내 질문 14 | 내 답변 2</h2>
           <MyPageSearchBar />

@@ -9,7 +9,9 @@ export default function CoachRegisterUI(props) {
       <S.RegisterImg src="https://img3.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202110/21/newswire/20211021230703945chkm.jpg" />
       <Blank width="30px" />
       <S.RegisterForm>
-        <S.FormTitle>코치 지원하기</S.FormTitle>
+        <S.FormTitle>
+          {props.isEdit ? `코치 정보 수정하기` : `코치 지원하기`}
+        </S.FormTitle>
         <S.FormSubTitle>당신의 경험이 우리를 성장시킵니다.</S.FormSubTitle>
         <S.FormInput type="text" placeholder="회사명" />
         <S.FormInput type="text" placeholder="직무" />
@@ -43,7 +45,9 @@ export default function CoachRegisterUI(props) {
           />
         </S.HashDivrap>
         <Blank height="10px" />
-        <Button style={{ height: "50px", fontSize: "24px" }}>지원하기</Button>
+        <Button style={{ height: "50px", fontSize: "24px" }}>
+          {props.isEdit ? `수정하기` : `지원하기`}
+        </Button>
       </S.RegisterForm>
     </S.Wrapper>
   );
