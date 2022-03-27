@@ -18,9 +18,11 @@ export const CodingUsMain = styled.div`
   height: 100vh;
   max-width: 1200px;
   margin: 0 0 0 20%; */
+  max-width: 1200px;
 `;
 export const RowWrapper = styled.div`
   display: flex;
+  align-items:  center;
 `;
 
 interface ILabelProps {

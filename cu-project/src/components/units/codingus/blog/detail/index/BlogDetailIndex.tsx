@@ -41,7 +41,7 @@ export default function BlogDetailIndex(props: IBlogDetailIndexProps) {
   const onClickItem = (idx: number) => () => {
     if (!props.indexPositions) return;
     if (!process.browser) return;
-    window.scrollTo(0, props.indexPositions[idx]);
+    window.scrollTo(0, props.indexPositions[idx] + 5);
     props.setCurrentIndex(idx);
     console.log(props.indexPositions[idx]);
   };

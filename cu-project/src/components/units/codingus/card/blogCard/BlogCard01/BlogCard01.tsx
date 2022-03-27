@@ -14,13 +14,13 @@ interface ICodingUsCardProps {
 export default function BlogCard(props: ICodingUsCardProps) {
   return (
     <S.Wrapper
-      width={props.width ? `${props.width}px` : "387px"}
-      height={props.height ? `${props.height}px` : "521px"}
+      width={props.width ? `${props.width}px` : "285px"}
+      height={props.height ? `${props.height}px` : "440px"}
     >
       {/* {console.log(props.blogData.images[0])} */}
       <S.Image src={props.blogData?.images?.[0]} />
       <S.Body>
-        <Blank height="16px" />
+        <Blank height="18px" />
         <S.StackWrapper>
           {props.blogData.stacks && <Tag01 value={props.blogData.stacks[0]} />}
         </S.StackWrapper>

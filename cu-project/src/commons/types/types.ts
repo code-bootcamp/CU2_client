@@ -82,6 +82,11 @@ export interface ICodingUsBlogWriteUIProps {
 export interface ICodingUsMainProps {}
 export interface ICodingUsMainUIProps {
   moveToPage: (page: string) => void;
+  bestUserItems: any[];
+  blogItems: ICodingUsBlogCardProps[];
+  onClickItem: (id: string) => () => void;
+  onClickFollow: (id: string) => () => void;
+  onClickLike: (id: string) => () => void;
 }
 
 export interface ICodingUsQnAProps {}

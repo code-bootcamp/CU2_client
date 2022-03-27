@@ -19,7 +19,9 @@ export default function Label01(props: ILabelProps) {
         fontWeight: props.weight ?? "normal",
         fontSize: props.size ?? "25px",
         padding: props.padding ?? "0px 0px",
-        textAlign: props.textAlign ?? "left"
+        textAlign: props.textAlign ?? "left",
+        display: "table-cell",
+        verticalAlign: "middle"
       }}
     >
       {props.value}

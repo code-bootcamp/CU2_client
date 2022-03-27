@@ -18,7 +18,6 @@ export default function CodingUsBlogDetail() {
   const { y: scrollY } = useScroll();
 
   useEffect(() => {
-    console.log(scrollY, indexPositions[currentIndex], currentIndex)
     if (indexPositions.length < 1) {
       const hTags = [
         ...Array.from(document.getElementsByTagName("h1")),

@@ -17,9 +17,10 @@ export const Wrapper = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 386px;
-  height: 251px;
+  width: 285px;
+  height: 189px;
   border: none;
+  border-radius: 8px;
 `;
 
 export const Body = styled.div`
