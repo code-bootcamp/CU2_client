@@ -1,5 +1,5 @@
 import Blank from "../../../../../commons/Blank";
-import MyPageNav from "../../../../../commons/Mypage/MypageNav";
+import { UserPageNav } from "../../../../../commons/Mypage/MypageNav";
 import MypageMenu from "../../MypageMenu.Container";
 
 import * as S from "./UpdatePassword.Style";
@@ -9,7 +9,7 @@ export default function UpdatePasswordUI() {
     <S.AllWrapper>
       <MypageMenu />
       <S.Wrapper>
-        <MyPageNav menu={"비밀번호 변경"} />
+        <UserPageNav menu={"비밀번호 변경"} />
         <Blank height="30px" />
         <S.Box>
           <h1>비밀번호 변경</h1>
