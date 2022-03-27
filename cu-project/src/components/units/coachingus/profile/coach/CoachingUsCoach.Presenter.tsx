@@ -56,7 +56,7 @@ export default function CoachingUsCoachUI(props) {
           {props.columnList.map((column) => (
             <S.ColumnsList
               key={column.id}
-              onClick={props.moveToPage(`/coachingus/columns/${column.id}`)}
+              onClick={props.moveToPage(`/coachingus/coaches/0/columns/0`)}
             >
               <S.ColumnPicture>{column.picture}</S.ColumnPicture>
 
