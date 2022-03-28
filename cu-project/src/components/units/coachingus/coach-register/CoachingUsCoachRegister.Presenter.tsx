@@ -4,8 +4,7 @@ import * as S from "./CoachingUsCoachRegister.Style";
 export default function CoachingUsCoachRegisterUI() {
   return (
     <S.Wrapper>
-      {/* <CoachingUsNavbarPage /> */}
-      <div>CoachingUsCoachRegisterUI.Presenter</div>
+      <S.CoachingRegisterContainer></S.CoachingRegisterContainer>
     </S.Wrapper>
   );
 }
