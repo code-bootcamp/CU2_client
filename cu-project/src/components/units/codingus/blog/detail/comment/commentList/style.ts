@@ -13,7 +13,7 @@ export const RowWrapper = styled.div`
 `;
 
 export const Comment = styled.div`
-padding: 3%;
+  padding: 3%;
 `;
 
 export const CommentHeader = styled(RowWrapper)`
@@ -34,9 +34,9 @@ export const UserDetail = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 export const LikeButton = styled.div``;
 
@@ -55,7 +55,26 @@ export const MyButton = styled.div`
 export const CommentBody = styled.div``;
 
 export const Contents = styled.div`
-    font-size: 18px;
-    line-height: 25px;
-    font-weight: 300;
+  font-size: 18px;
+  line-height: 25px;
+  font-weight: 300;
+`;
+
+export const CommentInput = styled.textarea`
+  font-size: 18px;
+  resize: none;
+  padding: 20px 15px 20px 15px;
+  border: 1px solid ${Color.medium};
+  width: 100%;
+  height: 120px;
+  border-radius: 4px;
+  line-height: 30px;
+
+  :focus {
+    outline: none;
+  }
+`;
+
+export const CommentInputWrapper = styled.div`
+  
 `;

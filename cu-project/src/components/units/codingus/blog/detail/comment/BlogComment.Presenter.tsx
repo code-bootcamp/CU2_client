@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MouseEvent } from "react";
+import { ChangeEvent, MouseEvent } from "react";
 import { ICodingUsCommentsProps } from "../../../../../../commons/types/types";
 import Blank from "../../../../../commons/Blank";
 import * as S from "./BlogComment.Style";
@@ -15,8 +15,10 @@ interface ICodingUsBlogCommentProps {
   commentListProps: {
     commentList: ICodingUsCommentsProps[];
     onClickDeleteComment: (id: string) => () => void;
-    onClickEditComment: (id: string) => () => void;
+    onClickEditComment: (idx: number) => () => void;
+    onClickSubmit: (id: string) => () => void;
     onLoadMore: () => void;
+    isEdits: boolean[];
   };
 }
 

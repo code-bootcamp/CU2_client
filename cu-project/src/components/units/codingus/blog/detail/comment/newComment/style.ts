@@ -20,6 +20,7 @@ export const CommentInput = styled.textarea`
   }
 `;
 
+
 export const Footer = styled.div`
     display: flex;
     justify-content: flex-end;

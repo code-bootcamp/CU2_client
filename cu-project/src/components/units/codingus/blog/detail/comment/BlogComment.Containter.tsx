@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEvent, useState } from "react";
+import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 import CodingUsBlogCommentUI from "./BlogComment.Presenter";
 interface IBlogCommentProps {}
 
@@ -18,20 +18,30 @@ export default function CodingUsBlogComment(props: IBlogCommentProps) {
   const onChangeNewComment = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setCommentValue(event.currentTarget.value);
   };
-  const onClickSubmit = (_: MouseEvent<HTMLButtonElement>) => {
+  const onClickWriteSubmit = (_: MouseEvent<HTMLButtonElement>) => {
     // 검증
     console.log(commentValue);
   };
   const onClickDeleteComment = (id: string) => () => {};
-  const onClickEditComment = (id: string) => () => {};
-
+  const onClickEditComment = (idx: number) => () => {
+    setIsEdits(isEdits.map((el, index) => idx === index));
+    console.log("a")
+  };
+  const onClickEditSubmit = (id: string) => () => {};
   const onLoadMore = () => {};
   const commentCnt = 10;
+  const [isEdits, setIsEdits] = useState<boolean[]>([]);
+
+  // eslint-disable-next-line no-undef
+  useEffect(() => {
+    setIsEdits([...new Array(commentList.length).fill(false)]);
+  }, []);
+
   return (
     <CodingUsBlogCommentUI
       newCommentProps={{
         onChangeNewComment: onChangeNewComment,
-        onClickSubmit: onClickSubmit,
+        onClickSubmit: onClickWriteSubmit,
         value: commentValue,
         commentCnt: commentCnt,
       }}
@@ -40,6 +50,8 @@ export default function CodingUsBlogComment(props: IBlogCommentProps) {
         onClickDeleteComment: onClickDeleteComment,
         onClickEditComment: onClickEditComment,
         onLoadMore: onLoadMore,
+        onClickSubmit: onClickEditSubmit,
+        isEdits: isEdits,
       }}
     />
   );
