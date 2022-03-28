@@ -6,7 +6,7 @@ import QnADetailCard from "../../card/qnaDetailCard/QnADetailCard";
 import * as S from "./QnADetail.Style";
 import { v4 as uuidv4 } from "uuid";
 import VerticalLine from "../../../../commons/Line/VerticalLine";
-import { MouseEvent } from "react";
+import { Dispatch, MouseEvent, SetStateAction } from "react";
 interface ICodingUsQnaDetailUIProps {
   question: {
     writer: string;
@@ -28,6 +28,9 @@ interface ICodingUsQnaDetailUIProps {
   toggleSortGubun: () => void;
   onClickButton: (event: MouseEvent<HTMLButtonElement>) => void;
   onClickDelete: (gubun: "question" | "answer", id: string) => () => void;
+  editValue: string;
+  setEditValue: Dispatch<SetStateAction<string>>
+  onClickEditSubmit: (gubun: "question" | "answer", id: string) => () => void;
 }
 
 export default function CodingUsQnADetailUI(props: ICodingUsQnaDetailUIProps) {
@@ -55,6 +58,9 @@ export default function CodingUsQnADetailUI(props: ICodingUsQnaDetailUIProps) {
         createdAt={props.question.createdAt}
         onClickBtn={props.onClickButton}
         onClickDelete={props.onClickDelete}
+        editValue={props.editValue}
+        setEditValue={props.setEditValue}
+        onClickEditSubmit={props.onClickEditSubmit}
       />
       <Blank height="166px" />
       <Label01 value="Answers" size="36px" weight="700" />
@@ -90,6 +96,9 @@ export default function CodingUsQnADetailUI(props: ICodingUsQnaDetailUIProps) {
             createdAt={el.createdAt}
             onClickBtn={props.onClickButton}
             onClickDelete={props.onClickDelete}
+            onClickEditSubmit={props.onClickEditSubmit}
+            editValue={props.editValue}
+            setEditValue={props.setEditValue}
           />
         ))}
     </S.QnADetail>

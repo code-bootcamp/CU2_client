@@ -7,11 +7,11 @@ export default function CodingUsQnADetail() {
   const toggleSortGubun = () => {
     setIsSortGood((prev) => !prev);
   };
-
+  const [editValue, setEditValue] = useState("");
   const onClickButton = (event: MouseEvent<HTMLButtonElement>) => {};
 
   const onClickDelete =
-     (gubun: "question" | "answer", id: string) => async() => {
+    (gubun: "question" | "answer", id: string) => async () => {
       // 삭제 확인
 
       // const query =
@@ -24,6 +24,9 @@ export default function CodingUsQnADetail() {
         // 실패(err.message);
       }
     };
+
+  const onClickEditSubmit =
+    (gubun: "question" | "answer", id: string) => async () => {};
 
   return (
     <CodingUsLayout
@@ -51,6 +54,9 @@ export default function CodingUsQnADetail() {
           toggleSortGubun={toggleSortGubun}
           onClickButton={onClickButton}
           onClickDelete={onClickDelete}
+          onClickEditSubmit={onClickEditSubmit}
+          editValue={editValue}
+          setEditValue={setEditValue}
         />
       }
     ></CodingUsLayout>
