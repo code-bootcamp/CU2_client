@@ -1,4 +1,7 @@
 import styled from "@emotion/styled";
+import Blank from "../../../../commons/Blank";
+import HorizontalLine from "../../../../commons/Line/HorizontalLine";
+import WaitingItem from "../../../codingus/QnA/waitingItem/WaitingItem.Container";
 
 const Wrapper = styled.div`
   width: 75%;
@@ -18,7 +21,25 @@ export default function SearchStack() {
   return (
     <Wrapper>
       <SearchHead>{`CodingUs StackQ&A`}</SearchHead>
-      <div>스택 큐앤에이 리스트</div>
+      <Blank height="30px" />
+      <HorizontalLine />
+      {new Array(4).fill(0).map((el, idx) => (
+        <div key={idx} style={{ width: "100%" }}>
+          <WaitingItem
+            data={{
+              stack: "스택",
+              tags: ["컴퓨터 부품", "JAVA"],
+              title: "모든 국민은 학문과 예술의 자유를 가진다.",
+              images: ["https://source.unsplash.com/random"],
+              commentCnt: 3,
+              createdAt: "2022-02-07T14:42:53.532Z",
+            }}
+            onClickAnswer={() => {}}
+          />
+          <HorizontalLine />
+          <Blank height="30px" />
+        </div>
+      ))}
     </Wrapper>
   );
 }

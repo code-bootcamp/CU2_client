@@ -144,3 +144,28 @@ export const SearchButton2 = styled.button`
     cursor: pointer;
   }
 `;
+
+export const RowWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  width: 75%;
+`;
+
+export const SortGubun = styled(RowWrapper)``;
+interface IGubunProps {
+  isSelected: boolean;
+}
+export const GubunLabel = styled.div`
+  padding: 10px 20px;
+  border: 3px solid ${Color.sub};
+  border-radius: 30px;
+  font-weight: ${(props: IGubunProps) => (props.isSelected ? "700" : "300")};
+  font-size: 18px;
+  color: ${(props: IGubunProps) =>
+    props.isSelected ? Color.light : Color.sub};
+  background-color: ${(props: IGubunProps) =>
+    props.isSelected ? Color.sub : ""};
+  :hover {
+    cursor: pointer;
+  }
+`;
