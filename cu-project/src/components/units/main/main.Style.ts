@@ -14,25 +14,38 @@ export const Wrapper = styled.div`
 `;
 
 export const SliderBox = styled(Slider)`
+  width: 100vw;
+  height: 50vh;
   z-index: -1;
 `;
 
 export const SliderBanner = styled.div`
-  margin: 100px 0 0;
+  margin: 0;
   width: 100vw;
-  height: 100vh;
+  height: 50vh;
   background-image: url("/backgroundmain.png");
-
   background-position: center;
+  background-size: cover;
   background-repeat: no-repeat;
-  padding-top: 240px;
-  padding-left: 260px;
+  padding-top: 20vh;
+  display: flex;
+  justify-content: center;
+
+  & div {
+    min-width: 1200px;
+  }
 `;
 
 export const CodingUsBanner = styled.div`
   width: 100vw;
   background-color: #f6f5f5;
-  padding: 30px 10% 30px 10%;
+  display: flex;
+  justify-content: center;
+`;
+
+export const CodingUsBannerDiv = styled.div`
+  min-width: 1200px;
+  padding: 20px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -67,8 +80,7 @@ export const CodingUsButton = styled.button`
 `;
 
 export const SearchBox = styled.div`
-  width: 100%;
-  padding: 0 10%;
+  min-width: 1200px;
 `;
 
 export const TagsBox = styled.div`
@@ -86,8 +98,7 @@ export const Tag = styled.button`
 `;
 
 export const ServiceBox = styled.div`
-  width: 100%;
-  padding: 0 10%;
+  width: 1200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -96,10 +107,12 @@ export const ServiceBox = styled.div`
 
 export const ServiceHead = styled.h2`
   font-weight: bold;
+  font-size: 24px;
   width: 100%;
 `;
 export const ServiceSubHead = styled.div`
   width: 100%;
+  font-size: 18px;
   display: flex;
   justify-content: space-between;
   color: #808080;
@@ -127,5 +140,32 @@ export const ServiceBody = styled.div`
 
   .slick-next:before {
     color: black;
+  }
+`;
+
+export const SearchBarArea = styled.div`
+  display: flex;
+  align-items: center;
+  height: 50%;
+  width: 100%;
+  background: #f6f5f5;
+  border-radius: 100px;
+  padding: 5px 25px;
+`;
+export const SearchBarBody = styled.input`
+  width: 100%;
+  padding: 10px 0;
+  resize: none;
+  background: none;
+  border: none;
+  font-size: 16px;
+  &::placeholder {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 24px;
+    color: #bdbdbd;
+  }
+  :focus {
+    outline: none;
   }
 `;
