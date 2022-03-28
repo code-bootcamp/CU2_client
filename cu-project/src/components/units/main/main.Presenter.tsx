@@ -3,11 +3,11 @@ import * as S from "./main.Style";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import SearchBar from "../commons/search/searchBar/SearchBar.Container";
 import Blank from "../../commons/Blank";
 import Slider from "react-slick";
 import Card from "../codingus/main/Card/Card.container";
 import { BsSearch } from "react-icons/bs";
+import BlogCard from "../codingus/card/blogCard/BlogCard01/BlogCard01";
 
 export default function MainUI(props: MainPageUIProps) {
   return (
@@ -48,17 +48,21 @@ export default function MainUI(props: MainPageUIProps) {
           <BsSearch style={{ fontSize: "18px", cursor: "pointer" }} />
         </S.SearchBarArea>
         <S.TagsBox>
-          <S.Tag>#Front-End</S.Tag>
-          <S.Tag>#Back-End</S.Tag>
-          <S.Tag>#Javascript</S.Tag>
-          <S.Tag>#Html</S.Tag>
-          <S.Tag>#CSS</S.Tag>
-          <S.Tag>#SQL</S.Tag>
-          <S.Tag>#NoSQL</S.Tag>
-          <S.Tag>#React</S.Tag>
-          <S.Tag>#Python</S.Tag>
-          <S.Tag>#Vue</S.Tag>
-          <S.Tag>#Angular</S.Tag>
+          <S.Tag onClick={props.moveToPage("/search/프론트엔드")}>
+            #프론트엔드
+          </S.Tag>
+          <S.Tag onClick={props.moveToPage("/search/백엔드")}>#백엔드</S.Tag>
+          <S.Tag onClick={props.moveToPage("/search/javascript")}>
+            #Javascript
+          </S.Tag>
+          <S.Tag onClick={props.moveToPage("/search/html")}>#Html</S.Tag>
+          <S.Tag onClick={props.moveToPage("/search/css")}>#CSS</S.Tag>
+          <S.Tag onClick={props.moveToPage("/search/sql")}>#SQL</S.Tag>
+          <S.Tag onClick={props.moveToPage("/search/nosql")}>#NoSQL</S.Tag>
+          <S.Tag onClick={props.moveToPage("/search/react")}>#React</S.Tag>
+          <S.Tag onClick={props.moveToPage("/search/python")}>#Python</S.Tag>
+          <S.Tag onClick={props.moveToPage("/search/vue")}>#Vue</S.Tag>
+          <S.Tag onClick={props.moveToPage("/search/angular")}>#Angular</S.Tag>
         </S.TagsBox>
       </S.SearchBox>
       <Blank height="100px" />

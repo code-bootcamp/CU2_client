@@ -15,19 +15,19 @@ export const Wrapper = styled.div`
 
 export const SliderBox = styled(Slider)`
   width: 100vw;
-  height: 50vh;
-  z-index: -1;
+  height: 720px;
+  /* z-index: -1; */
 `;
 
 export const SliderBanner = styled.div`
   margin: 0;
   width: 100vw;
-  height: 50vh;
+  height: 720px;
   background-image: url("/backgroundmain.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  padding-top: 20vh;
+  padding-top: 300px;
   display: flex;
   justify-content: center;
 
