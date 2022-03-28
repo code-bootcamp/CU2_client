@@ -3,6 +3,7 @@ import * as S from "./UserCard.Style";
 import Blank from "../../../../commons/Blank";
 import { getTimeDiff } from "../../../../../commons/libraries/dateUtils";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
+import { useRouter } from "next/router";
 
 interface ICodingUsCardProps {
   width?: string | number;
@@ -24,10 +25,12 @@ interface ICodingUsCardProps {
 
 export default function UserCard(props: ICodingUsCardProps) {
   const { moveToPage } = useMoveToPage();
+  const router = useRouter();
   return (
     <S.Wrapper
-      width={props.width ? `${props.width}px` : "386px"}
-      height={props.height ? `${props.height}px` : "702px"}
+    width={props.width ? `${props.width}px` : "386px"}
+    height={props.height ? `${props.height}px` : "702px"}
+    onClick={() =>{router.push("/codingus/blog/detail")}}
     >
       <S.Header>
         <S.UserInfo>

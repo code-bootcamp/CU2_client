@@ -7,6 +7,7 @@ import HorizontalLine from "../../../../commons/Line/HorizontalLine";
 import Color from "../../../../../commons/styles/color";
 import { getShortDateString } from "../../../../../commons/libraries/dateUtils";
 import { AiFillLike, AiOutlineLike, AiOutlineComment } from "react-icons/ai";
+import { useRouter } from "next/router";
 interface ICodingUsBestUserProps {
   userInfo: {
     id: string;
@@ -38,10 +39,12 @@ interface ICodingUsCardProps {
   onClickFollow: (id: string) => () => void;
 }
 export default function BlogMainCard(props: ICodingUsCardProps) {
+  const router = useRouter();
   return (
     <S.Wrapper
       width={props.width ? `${props.width}px` : "387px"}
       height={props.height ? `${props.height}px` : "570px"}
+      onClick={()=> {router.push("/codingus/blog/main")}}
     >
       <S.UserInfoWrapper>
         <S.UserInfo>

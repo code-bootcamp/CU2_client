@@ -9,7 +9,7 @@ export default function CodingUsNavbar() {
   const { moveToPage, currentPage } = useMoveToPage();
 
   const printNavbarItem = (name: string) => {
-    const path = name === "Q&A" ? "qna" : name.toLowerCase();
+    const path = name === "Q&A" ? "question" : name.toLowerCase();
     const isNow =
       currentPage.split("/")[currentPage.split("/").length - 1] === path;
     return (

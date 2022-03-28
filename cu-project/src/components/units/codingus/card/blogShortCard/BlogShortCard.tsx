@@ -1,6 +1,7 @@
 import * as S from "./BlogShortCard.Style";
 import Blank from "../../../../commons/Blank";
 import Tag01 from "../../../../commons/Tag/Tag01";
+import { useRouter } from "next/router";
 
 interface ICodingUsCardProps {
   width?: number;
@@ -11,10 +12,12 @@ interface ICodingUsCardProps {
 }
 
 export default function BlogShortCard(props: ICodingUsCardProps) {
+  const router = useRouter();
   return (
     <S.Wrapper
       width={props.width ? `${props.width}px` : "285px"}
       height={props.height ? `${props.height}px` : "327px"}
+      onClick={() =>{router.push("/codingus/blog/detail")}}
     >
     <Tag01 isShort={true} value={props.stacks ? props.stacks[0] : ""} />
       <Blank height="18px" />
