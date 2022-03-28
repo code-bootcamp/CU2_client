@@ -10,19 +10,24 @@ interface ICardWrapperProps {
   width?: string;
   height?: string;
   isQuestion?: boolean;
+  isMine: boolean;
 }
 export const Wrapper = styled.div`
   width: ${(props: ICardWrapperProps) => props.width};
   height: : ${(props: ICardWrapperProps) => props.height};
   border-radius: 20px;
-  padding: 40px 30px 34px 30px;
+  padding: ${(props: ICardWrapperProps)=> props.isMine ? "14px 30px 34px 30px" : "40px 30px 34px 30px"};
   margin: 0px 0px 20px 0px;
   background-color: ${(props: ICardWrapperProps) =>
     props.isQuestion ? "#F0F0F0" : Color.white};
 
-    border: ${(props: ICardWrapperProps)=>props.isQuestion ? "none" : "1px solid black"}
+    border: ${(props: ICardWrapperProps)=>props.isQuestion ? "none" : "1px solid black"};
   `;
-
+export const MyButtonWrapper = styled(RowWrapper)`
+width: 100%;
+  display: ${(props: {isMine: boolean}) => props.isMine ? "flex" : "none"};
+  justify-content: flex-end;
+`;
 export const TagWrapper = styled.div`
   display: flex;
 `;
@@ -88,14 +93,31 @@ export const Button = styled.button`
   line-height: 22px;
   padding: 25px;
   border-radius: 8px;
-  border: none;
-
-  background-color: 
-  ${(props:IButtonProps) => props.isQuestion ? Color.white : "#F0F0F0"};
+  
+  /* background-color: 
+  ${(props:IButtonProps) => props.isQuestion ? Color.white : "#F0F0F0"}; */
+  background-color: ${Color.white};
+  
   :hover{
     pointer: cursor;
   }
   p{
     color: ${(props: IButtonProps) => props.isGood ? Color.main : Color.dark}
+  }
+`;
+
+
+export const CommentInput = styled.textarea`
+  font-size: 18px;
+  resize: none;
+  padding: 20px 15px 20px 15px;
+  border: 1px solid ${Color.medium};
+  width: 100%;
+  height: 120px;
+  border-radius: 4px;
+  line-height: 30px;
+
+  :focus {
+    outline: none;
   }
 `;

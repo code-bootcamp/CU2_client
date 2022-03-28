@@ -3,7 +3,6 @@ import Blank from "../../../commons/Blank";
 import Label01 from "../../../commons/Label/Label01";
 import QnACard from "../card/qnaCard/QnACard";
 import CodingUsHistory from "../history/History.Container";
-import CodingUsSidebar from "../sidebar/Sidebar.Container";
 import * as S from "./CodingUsQnA.Style";
 import WaitingItem from "./waitingItem/WaitingItem.Container";
 
@@ -36,6 +35,7 @@ export default function CodingUsQnAUI(props: ICodingUsQnAUIProps) {
               contents="국회는 의장 1인과 부의장 2인을 선출한다. 국무위원은 국정에 관하여 대통령을 보좌하며, 국무회의의 구성원으로서 국정"
               writer="작성자"
               tags={["JAVA", "CSS"]}
+              likeCnt={5}
               // onClick={props.moveToPage(`/codingUs/qna/${idx}`)}
             ></QnACard>
           ))}

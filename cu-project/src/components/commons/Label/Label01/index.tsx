@@ -23,6 +23,7 @@ export default function Label01(props: ILabelProps) {
         display: "table-cell",
         verticalAlign: "middle"
       }}
+      onClick={props.onClick}
     >
       {props.value}
     </div>

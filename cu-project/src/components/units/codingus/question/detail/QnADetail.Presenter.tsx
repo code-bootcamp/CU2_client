@@ -23,10 +23,11 @@ interface ICodingUsQnaDetailUIProps {
     contents: string;
     stack: string;
     tags: string[];
-  };
+  }[];
   isSortGood: boolean;
   toggleSortGubun: () => void;
   onClickButton: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickDelete: (gubun: "question" | "answer", id: string) => () => void;
 }
 
 export default function CodingUsQnADetailUI(props: ICodingUsQnaDetailUIProps) {
@@ -53,6 +54,7 @@ export default function CodingUsQnADetailUI(props: ICodingUsQnaDetailUIProps) {
         contents={props.question.contents}
         createdAt={props.question.createdAt}
         onClickBtn={props.onClickButton}
+        onClickDelete={props.onClickDelete}
       />
       <Blank height="166px" />
       <Label01 value="Answers" size="36px" weight="700" />
@@ -78,19 +80,18 @@ export default function CodingUsQnADetailUI(props: ICodingUsQnaDetailUIProps) {
       </S.Gubun>
       <Blank height="30px" />
       {props.answers &&
-        new Array(4)
-          .fill(props.answers)
-          .map((el) => (
-            <QnADetailCard
-              key={uuidv4()}
-              isQuestion={false}
-              writer={el.writer}
-              title={el.title}
-              contents={el.contents}
-              createdAt={el.createdAt}
-              onClickBtn={props.onClickButton}
-            />
-          ))}
+        props.answers.map((el) => (
+          <QnADetailCard
+            key={uuidv4()}
+            isQuestion={false}
+            writer={el.writer}
+            title={el.title}
+            contents={el.contents}
+            createdAt={el.createdAt}
+            onClickBtn={props.onClickButton}
+            onClickDelete={props.onClickDelete}
+          />
+        ))}
     </S.QnADetail>
   );
 }
