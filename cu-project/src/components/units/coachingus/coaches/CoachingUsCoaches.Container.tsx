@@ -1,9 +1,11 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import CoachingUsCoachUI from "./CoachingUsCoaches.Presenter";
 
 export default function CoachingUsCoachPage() {
   const router = useRouter();
+  const { moveToPage } = useMoveToPage();
   const period = ["Today", "Week", "Month", "Total"];
 
   const SendQuery = (tag) => {
@@ -17,7 +19,7 @@ export default function CoachingUsCoachPage() {
     console.log(router.query);
   });
 
-  const coachList = [
+  const [coachList, setCoachList] = useState([
     {
       id: 0,
       name: "Coaching1",
@@ -33,7 +35,7 @@ export default function CoachingUsCoachPage() {
       picture: "이미지입니다!",
       score: 1352,
       Lv: 5,
-      changeRating: 12,
+      changeRating: -12,
       changeRanking: 1,
     },
     {
@@ -60,7 +62,7 @@ export default function CoachingUsCoachPage() {
       picture: "이미지입니다!",
       score: 1289,
       Lv: 4,
-      changeRating: 14,
+      changeRating: -14,
       changeRanking: -4,
     },
     {
@@ -78,7 +80,7 @@ export default function CoachingUsCoachPage() {
       picture: "이미지입니다!",
       score: 1241,
       Lv: 4,
-      changeRating: 30,
+      changeRating: -30,
       changeRanking: 4,
     },
     {
@@ -117,18 +119,42 @@ export default function CoachingUsCoachPage() {
       changeRating: 20,
       changeRanking: 4,
     },
-  ];
+  ]);
 
   const myList = {
     id: 0,
     name: "myScore",
     picture: "내 사진",
     score: 301,
+    ranking: 125,
     Lv: 2,
     changeRating: 10,
     changeRanking: 2,
   };
 
+  const onLoadMore = () => {
+    setCoachList([
+      ...coachList,
+      ...new Array(10).fill(0).map((el, idx) => {
+        return {
+          id: 0,
+          name: "myScore",
+          picture: "내 사진",
+          score: 301,
+          Lv: 2,
+          changeRating: 10,
+          changeRanking: 2,
+        };
+      }),
+    ]);
+  };
+  // "▲"▼"
+
+  const medal = [
+    "/1-place-medal.png",
+    "/2-place-medal.png",
+    "/3-place-medal.png",
+  ];
   return (
     <CoachingUsCoachUI
       period={period}
@@ -136,6 +162,9 @@ export default function CoachingUsCoachPage() {
       isCurrentTag={isCurrentTag}
       coachList={coachList}
       myList={myList}
+      onLoadMore={onLoadMore}
+      medal={medal}
+      moveToPage={moveToPage}
     />
   );
 }
