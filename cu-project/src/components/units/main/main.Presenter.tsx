@@ -7,6 +7,7 @@ import SearchBar from "../commons/search/searchBar/SearchBar.Container";
 import Blank from "../../commons/Blank";
 import Slider from "react-slick";
 import Card from "../codingus/main/Card/Card.container";
+import { BsSearch } from "react-icons/bs";
 
 export default function MainUI(props: MainPageUIProps) {
   return (
@@ -14,35 +15,50 @@ export default function MainUI(props: MainPageUIProps) {
       <S.SliderBox {...props.settings}>
         <div>
           <S.SliderBanner>
-            <p style={{ color: "white", fontSize: "48px" }}>We are</p>
-            <p style={{ color: "white", fontSize: "48px" }}>CodingUs</p>
-            <p style={{ color: "white", fontSize: "48px" }}>CoachingUs</p>
-            <button>자세히 보기</button>
+            <div>
+              <h1 style={{ color: "white", fontSize: "48px" }}>
+                Self Study Solution
+              </h1>
+              <p
+                style={{ color: "white", fontSize: "24px" }}
+              >{`CU2만의 커뮤니티 서비스 'CodingUs'와 멘토링 서비스`}</p>
+              <p
+                style={{ color: "white", fontSize: "24px" }}
+              >{`'CoachingUs'로 Self Study Solution을 경험하세요`}</p>
+            </div>
           </S.SliderBanner>
         </div>
       </S.SliderBox>
       <S.CodingUsBanner>
-        <S.CodingUsBannerTitle>
-          <p>혼자 개발공부하기 어려운가요?</p>
-          <h1>CodingUs에서 같이 공부해요!</h1>
-        </S.CodingUsBannerTitle>
-        <S.CodingUsButton onClick={props.moveToPage("/codingus")}>
-          자세히 보기 <AiOutlineArrowRight />
-        </S.CodingUsButton>
+        <S.CodingUsBannerDiv>
+          <S.CodingUsBannerTitle>
+            <p>혼자 개발공부하기 어려운가요?</p>
+            <h1>CodingUs에서 같이 공부해요!</h1>
+          </S.CodingUsBannerTitle>
+          <S.CodingUsButton onClick={props.moveToPage("/codingus")}>
+            자세히 보기 <AiOutlineArrowRight />
+          </S.CodingUsButton>
+        </S.CodingUsBannerDiv>
       </S.CodingUsBanner>
-      <Blank height="100px" />
+      <Blank height="50px" />
       <S.SearchBox>
-        <SearchBar />
+        <S.SearchBarArea>
+          <S.SearchBarBody placeholder="개발 공부하다가 궁금한 게 있다면 검색해보세요!" />
+          <Blank width="12px" />
+          <BsSearch style={{ fontSize: "18px", cursor: "pointer" }} />
+        </S.SearchBarArea>
         <S.TagsBox>
           <S.Tag>#Front-End</S.Tag>
           <S.Tag>#Back-End</S.Tag>
           <S.Tag>#Javascript</S.Tag>
           <S.Tag>#Html</S.Tag>
-          <S.Tag>#Css</S.Tag>
+          <S.Tag>#CSS</S.Tag>
           <S.Tag>#SQL</S.Tag>
           <S.Tag>#NoSQL</S.Tag>
           <S.Tag>#React</S.Tag>
           <S.Tag>#Python</S.Tag>
+          <S.Tag>#Vue</S.Tag>
+          <S.Tag>#Angular</S.Tag>
         </S.TagsBox>
       </S.SearchBox>
       <Blank height="100px" />
@@ -105,15 +121,67 @@ export default function MainUI(props: MainPageUIProps) {
           <Card />
         </div>
       </S.ServiceBox>
+      <Blank height="100px" />
       <S.CodingUsBanner>
-        <S.CodingUsBannerTitle>
-          <p>취업에 관한 모든 궁금증들</p>
-          <h1>CoachingUs에서 코치들에게 물어보세요!</h1>
-        </S.CodingUsBannerTitle>
-        <S.CodingUsButton onClick={props.moveToPage("/coachingus")}>
-          자세히 보기 <AiOutlineArrowRight />
-        </S.CodingUsButton>
+        <S.CodingUsBannerDiv>
+          <S.CodingUsBannerTitle>
+            <p>취업에 관한 모든 궁금증들</p>
+            <h1>CoachingUs에서 코치들에게 물어보세요!</h1>
+          </S.CodingUsBannerTitle>
+          <S.CodingUsButton onClick={props.moveToPage("/coachingus")}>
+            자세히 보기 <AiOutlineArrowRight />
+          </S.CodingUsButton>
+        </S.CodingUsBannerDiv>
       </S.CodingUsBanner>
+      <Blank height="100px" />
+      <S.ServiceBox>
+        <S.ServiceHead>🔥 CU2만의 베스트 코치들</S.ServiceHead>
+        <S.ServiceSubHead>
+          <p>자기소개서와 포트폴리오, 취업에 관한 모든 것들 다 물어보세요</p>
+          <p>{`전체보기 >`}</p>
+        </S.ServiceSubHead>
+        <div
+          style={{ width: "100%", display: "flex", justifyContent: "center" }}
+        >
+          <Card />
+          <Card />
+          <Card />
+        </div>
+      </S.ServiceBox>
+      <Blank height="100px" />
+      <S.ServiceBox>
+        <S.ServiceHead>🔥 코치들의 코멘트</S.ServiceHead>
+        <S.ServiceSubHead>
+          <p>양질의 피드백을 경험하세요</p>
+          <p>{`전체보기 >`}</p>
+        </S.ServiceSubHead>
+        <Card />
+        <Card />
+      </S.ServiceBox>
+      <Blank height="100px" />
+      <S.ServiceBox>
+        <S.ServiceHead>🔥 코치들의 칼럼</S.ServiceHead>
+        <S.ServiceSubHead>
+          <p>전문성이 더 한 콘텐츠를 읽어보세요</p>
+          <p>{`전체보기 >`}</p>
+        </S.ServiceSubHead>
+        <div
+          style={{ width: "100%", display: "flex", justifyContent: "center" }}
+        >
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </div>
+        <div
+          style={{ width: "100%", display: "flex", justifyContent: "center" }}
+        >
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </div>
+      </S.ServiceBox>
     </S.Wrapper>
   );
 }
