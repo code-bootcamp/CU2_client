@@ -35,6 +35,7 @@ export const getDateString = (dateTime: string | Date, separator?: string) => {
       if(newArr[i] === "-")
       newArr[i] = separator;
     }
+    dateString = newArr.join("");
   }
   return dateString;
 };
