@@ -18,6 +18,7 @@ import {
 } from "react";
 import { RowWrapper } from "../../../coachingus/columns/detail/Columns.Style";
 import Color from "../../../../../commons/styles/color";
+import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 interface ICodingUsCardProps {
   width?: number;
   height?: number;
@@ -43,6 +44,7 @@ export default function QnADetailCard(props: ICodingUsCardProps) {
   const onChangeEditText = (event: ChangeEvent<HTMLTextAreaElement>) => {
     props.setEditValue(event.target.value);
   };
+  const {moveToPage} = useMoveToPage();
   return (
     <S.Wrapper
       width={"100%"}
@@ -50,6 +52,7 @@ export default function QnADetailCard(props: ICodingUsCardProps) {
       isQuestion={props.isQuestion ?? false}
       // isMine={props.writer === "loginUser"}
       isMine={true}
+      onClick ={()=>{moveToPage("/codingus/question/detail")}}
     >
       <Blank height="15px" />
       {/* <S.MyButtonWrapper isMine={props.writer === "loginUser"}> */}

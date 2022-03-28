@@ -5,6 +5,7 @@ import { getShortDateString } from "../../../../../../commons/libraries/dateUtil
 import Tag01 from "../../../../../commons/Tag/Tag01";
 import { ICodingUsBlogCardProps } from "../../../../../../commons/types/types";
 import HorizontalLine from "../../../../../commons/Line/HorizontalLine";
+import { useRouter } from "next/router";
 
 interface ICodingUsCardProps {
   width?: number;
@@ -13,10 +14,12 @@ interface ICodingUsCardProps {
 }
 
 export default function BlogCard(props: ICodingUsCardProps) {
+  const router = useRouter();
   return (
     <S.Wrapper
       width={props.width ? `${props.width}px` : "285px"}
       height={props.height ? `${props.height}px` : "440px"}
+      onClick={()=>{router.push("/codingus/blog/detail")}}
     >
       {/* {console.log(props.blogData.images[0])} */}
       <S.Image src={props.blogData?.images?.[0]} />

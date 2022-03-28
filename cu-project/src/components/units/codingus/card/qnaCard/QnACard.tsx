@@ -3,6 +3,8 @@ import Blank from "../../../../commons/Blank";
 import Tag02 from "../../../../commons/Tag/Tag02";
 import { AiOutlineLike } from "react-icons/ai";
 import Label01 from "../../../../commons/Label/Label01";
+import { useRouter } from "next/router";
+import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 interface ICodingUsCardProps {
   width?: number;
   height?: number;
@@ -15,8 +17,9 @@ interface ICodingUsCardProps {
 }
 
 export default function QnACard(props: ICodingUsCardProps) {
+  const {moveToPage} = useMoveToPage();
   return (
-    <S.Wrapper width={props.width ? `${props.width}px` : "590px"}>
+    <S.Wrapper width={props.width ? `${props.width}px` : "590px"} onClick = {moveToPage("/codingus/question/detail")}>
       <S.Title>
         <img src="/Icon_Fill_Question.png" />
         <Blank width="10px" />
