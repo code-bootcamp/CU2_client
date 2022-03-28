@@ -18,10 +18,13 @@ export const SliderBox = styled(Slider)`
 `;
 
 export const SliderBanner = styled.div`
-  margin: 50px 0 0;
+  margin: 100px 0 0;
   width: 100vw;
   height: 100vh;
-  background-color: black;
+  background-image: url("/backgroundmain.png");
+
+  background-position: center;
+  background-repeat: no-repeat;
   padding-top: 240px;
   padding-left: 260px;
 `;
