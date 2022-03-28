@@ -3,7 +3,7 @@ import MypageMenu from "../../MypageMenu.Container";
 import * as S from "./LikeQuestions.Style";
 import { UserPageNav } from "../../../../../commons/Mypage/MypageNav";
 import { MyPageSearchBar } from "../../../../../commons/Mypage/MypageSearchBar";
-import WaitingItem from "../../../../codingus/QnA/waitingItem/WaitingItem.Container";
+import WaitingItem from "../../../../codingus/question/waitingItem/WaitingItem.Container";
 
 export default function LikeQuestionsUI(props) {
   return (

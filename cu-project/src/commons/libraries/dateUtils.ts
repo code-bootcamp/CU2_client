@@ -46,7 +46,7 @@ export const getYYYYMMDD = (dateTime: string | Date) => {
   const date = new Date(dateTime);
   let dateString = calcTimeDiff(date);
   if (!dateString)
-    dateString = `${date.getFullYear() + 1}.${
+    dateString = `${date.getFullYear()}.${
       date.getMonth() + 1
     }.${date.getDate()}`;
   return dateString;

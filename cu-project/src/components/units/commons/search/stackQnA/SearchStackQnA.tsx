@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import Blank from "../../../../commons/Blank";
 import HorizontalLine from "../../../../commons/Line/HorizontalLine";
-import WaitingItem from "../../../codingus/QnA/waitingItem/WaitingItem.Container";
+import WaitingItem from "../../../codingus/question/waitingItem/WaitingItem.Container";
 
 const Wrapper = styled.div`
   width: 75%;

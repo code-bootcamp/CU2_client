@@ -1,8 +1,8 @@
-import * as S from "./QnADetailCard.Style";
-import Blank from "../../../../commons/Blank";
-import Label01 from "../../../../commons/Label/Label01";
-import HorizontalLine from "../../../../commons/Line/HorizontalLine";
-import { getYYYYMMDD } from "../../../../../commons/libraries/dateUtils";
+import * as S from "./NewAnswer.Style";
+import Blank from "../../../../../commons/Blank";
+import Label01 from "../../../../../commons/Label/Label01";
+import HorizontalLine from "../../../../../commons/Line/HorizontalLine";
+import { getYYYYMMDD } from "../../../../../../commons/libraries/dateUtils";
 import {
   AiFillLike,
   AiFillDislike,
@@ -16,8 +16,8 @@ import {
   SetStateAction,
   useState,
 } from "react";
-import { RowWrapper } from "../../../coachingus/columns/detail/Columns.Style";
-import Color from "../../../../../commons/styles/color";
+import { RowWrapper } from "../../../../coachingus/columns/detail/Columns.Style";
+import Color from "../../../../../../commons/styles/color";
 interface ICodingUsCardProps {
   width?: number;
   height?: number;

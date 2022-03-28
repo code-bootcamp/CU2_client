@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import Color from "../../../../../commons/styles/color";
+import Color from "../../../../../../commons/styles/color";
 
 export const RowWrapper = styled.div`
   display: flex;
@@ -53,10 +53,9 @@ export const Title = styled(TextArea)`
 `;
 
 export const Date = styled.div`
-  font-weight: 200;
+  font-weight: 400;
   font-size: 24px;
   line-height: 36px;
-  color: ${Color.medium};
   text-align: right;
   color: "#808080";
 `;
