@@ -27,7 +27,14 @@ export const getDateString = (dateTime: string | Date, separator?: string) => {
   const date = new Date(dateTime);
   let dateString = calcTimeDiff(date);
   if (!dateString) dateString = String(dateTime).split("T")[0];
-  if(separator) dateString = dateString.replaceAll("-", separator);
+  if(separator) {
+    const newArr = dateString.split("");
+    for (let i = 0; i < newArr.length; i++) {
+      if(newArr[i] === "-")
+      newArr[i] = separator;
+    }
+    dateString = newArr.join("");
+  }
   return dateString;
 };
 
@@ -46,7 +53,7 @@ export const getYYYYMMDD = (dateTime: string | Date) => {
   const date = new Date(dateTime);
   let dateString = calcTimeDiff(date);
   if (!dateString)
-    dateString = `${date.getFullYear() + 1}.${
+    dateString = `${date.getFullYear()}.${
       date.getMonth() + 1
     }.${date.getDate()}`;
   return dateString;

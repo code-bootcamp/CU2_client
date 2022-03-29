@@ -1,14 +1,16 @@
 import Blank from "../../../commons/Blank";
-import CodingUsLeftSidebar from "./left";
+// import CodingUsLeftSidebar from "./left";
 import CodingUsNavbar from "./navbar";
-import CodingUsRightSidebar from "./right";
+// import CodingUsRightSidebar from "./right";
 import * as S from "./Sidebar.Style";
+import SidebarUserInfo from "./userInfo";
 export default function CodingUsSidebarUI() {
   return (
     <S.SidebarWrapper>
       <CodingUsNavbar />
-      <Blank height="135px" />
-      <CodingUsLeftSidebar
+      <Blank height="40px" />
+      <SidebarUserInfo/>
+      {/* <CodingUsLeftSidebar
         interestStacks={["JavaScript", "HTML5", "CSS3", "Python", "C++"]}
       />
       <Blank height="70px" />
@@ -17,13 +19,8 @@ export default function CodingUsSidebarUI() {
         totalRanking={{ prev: 120, today: 100 }}
         todayPercent={20}
         todayPoint={12}
-      />
+      /> */}
     </S.SidebarWrapper>
   );
 }
 
-/*
-  todayPercent?: number;
-  todayPoint?: number;
-  todayRanking: { prev: number; today: number };
-  totalRanking: { prev: number; today: number }; */

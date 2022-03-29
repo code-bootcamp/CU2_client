@@ -4,7 +4,7 @@ import MypageMenuUI from "./MypageMenu.Presenter";
 
 export default function MypageMenu() {
   const [isModal, setIsModal] = useState(false);
-  const [isCoach, setIsCoach] = useState(false);
+  const [isCoach, setIsCoach] = useState(true);
   const { moveToPage } = useMoveToPage();
 
   const onClickModal = () => {

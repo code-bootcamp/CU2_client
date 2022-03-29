@@ -11,7 +11,7 @@ export default function VerticalLine(props: ILineProps) {
   return (
     <div
       style={{
-        height: "100%",
+        // height: "100%",
         border: `${props.thickness ?? 1}px ${props.type ?? "solid"} ${
           props.color ?? "#BDBDBD"
         }`,

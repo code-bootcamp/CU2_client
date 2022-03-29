@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "../../../../../../commons/styles/media";
 
 export const AllWrapper = styled.div`
-  margin: 70px 360px 0;
+  margin: 100px 12.5% 0;
   display: flex;
   flex-direction: row;
 `;
@@ -13,12 +14,10 @@ export const Wrapper = styled.div`
   align-items: center;
   box-sizing: border-box;
 `;
-
-export const Box = styled.div`
-  width: 90%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+export const Web = styled.div`
+  @media ${breakPoints.tablet && breakPoints.mobile} {
+    display: none;
+  }
 `;
 
 export const MyPageButton = styled.button`
@@ -46,27 +45,32 @@ export const Row = styled.div`
 
 export const ChargeBox = styled.div`
   width: 90%;
-  & span {
-    color: #dbdbdb;
+  @media ${breakPoints.tablet} {
+    width: 100%;
+    font-size: 16px;
+  }
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    font-size: 10px;
   }
 `;
 
-export const ColumnHeaderBasic = styled.div`
+export const ColumnDate = styled.div`
   width: 20%;
   text-align: center;
 `;
 
-export const ColumnHeaderTitle = styled.div`
+export const ColumnContent = styled.div`
   width: 40%;
   text-align: center;
 `;
 
-export const ColumnBasic = styled.div`
+export const ColumnScore = styled.div`
   width: 20%;
   text-align: center;
 `;
 
-export const ColumnTitle = styled.div`
-  width: 40%;
+export const ColumnAllScore = styled.div`
+  width: 20%;
   text-align: center;
 `;

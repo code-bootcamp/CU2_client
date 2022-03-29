@@ -17,9 +17,10 @@ export const Wrapper = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 386px;
-  height: 251px;
+  width: 285px;
+  height: 189px;
   border: none;
+  border-radius: 8px;
 `;
 
 export const Body = styled.div`
@@ -33,8 +34,8 @@ export const StackWrapper = styled(RowWrapper)``;
 
 export const Title = styled.div`
   font-weight: 700;
-  font-size: 24px;
-  line-height: 36px;
+font-size: 18px;
+line-height: 25px;
 `;
 
 export const FooterWrapper = styled(RowWrapper)`
@@ -47,11 +48,12 @@ export const ButtonWrapper = styled(RowWrapper)`
 
 export const Contents = styled.div`
   font-weight: 400;
-  font-size: 18px;
-  line-height: 30px;
+font-size: 16px;
+line-height: 24px;
+max-height: 48px;
 `;
 
 export const Writer = styled.div`
-  font-size: 18px;
+  font-size: 16px;
 `;
 export const GoodBad = styled(RowWrapper)``;

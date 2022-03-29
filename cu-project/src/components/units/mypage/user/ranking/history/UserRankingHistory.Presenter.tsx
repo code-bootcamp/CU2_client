@@ -1,5 +1,6 @@
 import { DatePicker, Space } from "antd";
 import Blank from "../../../../../commons/Blank";
+import { UserPageNav } from "../../../../../commons/Mypage/MypageNav";
 import MypageMenu from "../../MypageMenu.Container";
 import * as S from "./UserRankingHistory.Style";
 
@@ -7,25 +8,27 @@ export default function UserRankingHistoryUI() {
   const { RangePicker } = DatePicker;
   return (
     <S.AllWrapper>
-      <MypageMenu />
+      <S.Web>
+        <MypageMenu />
+      </S.Web>
       <S.Wrapper>
-        <S.Box>{`마이페이지 > 점수 내역`}</S.Box>
+        <UserPageNav menu={"점수내역"} />
         <Blank height="30px" />
         <Space direction="vertical" size={12}>
           <RangePicker />
         </Space>
         <S.ChargeBox>
           <S.Row>
-            <S.ColumnHeaderBasic>날짜</S.ColumnHeaderBasic>
-            <S.ColumnHeaderTitle>내용</S.ColumnHeaderTitle>
-            <S.ColumnHeaderBasic>점수</S.ColumnHeaderBasic>
-            <S.ColumnHeaderBasic>누적 점수</S.ColumnHeaderBasic>
+            <S.ColumnDate>날짜</S.ColumnDate>
+            <S.ColumnContent>내용</S.ColumnContent>
+            <S.ColumnScore>점수</S.ColumnScore>
+            <S.ColumnAllScore>누적 점수</S.ColumnAllScore>
           </S.Row>
           <S.Row>
-            <S.ColumnBasic>2022.03.22</S.ColumnBasic>
-            <S.ColumnTitle>블로그 작성</S.ColumnTitle>
-            <S.ColumnBasic>+1</S.ColumnBasic>
-            <S.ColumnBasic>120</S.ColumnBasic>
+            <S.ColumnDate>2022.03.22</S.ColumnDate>
+            <S.ColumnContent>블로그 작성</S.ColumnContent>
+            <S.ColumnScore>+1</S.ColumnScore>
+            <S.ColumnAllScore>120</S.ColumnAllScore>
           </S.Row>
         </S.ChargeBox>
       </S.Wrapper>

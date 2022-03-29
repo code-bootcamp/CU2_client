@@ -41,14 +41,11 @@ export const RecommendCoach = styled.div`
   margin: 20px 20px;
   box-shadow: 0px 4px 4px 0px #00000040;
 
-  @media screen and (max-width: 1440px) {
-    width: 390px;
-    height: 285px;
-  }
   animation: ${({ number, isStart }) =>
     isStart && `fadeIn ${number} ease-in-out`};
+  transition: transform 0.5s ease-in-out;
   :hover {
-    animation: hoverUp 0.5s ease-in-out both;
+    transform: scale(1.03) translate(0, -20px);
   }
 
   @keyframes fadeIn {
@@ -61,15 +58,13 @@ export const RecommendCoach = styled.div`
       transform: none;
     }
   }
-  @keyframes hoverUp {
-    from {
-      transform: translate(0, 0px);
-    }
-    to {
-      transform: scale(1.03) translate(0, -20px);
-    }
-  }
+
   cursor: pointer;
+
+  @media screen and (max-width: 1440px) {
+    width: 390px;
+    height: 285px;
+  }
 `;
 export const ProfileWapper = styled.div`
   width: 275px;

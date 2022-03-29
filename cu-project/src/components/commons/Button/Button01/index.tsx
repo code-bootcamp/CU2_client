@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { MouseEvent } from "react";
+import { MouseEvent } from "react";
 import { IconType } from "react-icons";
 import Blank from "../../Blank";
 export const Button = styled.button`
@@ -10,6 +10,11 @@ export const Button = styled.button`
   font-size: 18px;
   line-height: 21px;
   color: #dbdbdb;
+
+  :hover {
+    background-color: black;
+    color: white;
+  }
 `;
 
 interface IButtonProps {
@@ -25,7 +30,11 @@ export default function Button01(props: IButtonProps) {
       onClick={props.onClick}
       style={{ padding: props.padding ? props.padding : "12px 30px 12px 30px" }}
     >
-      {props.icon && <props.icon fontSize={`${props.iconSize ? props.iconSize + 4 : 22}px`}/>}
+      {props.icon && (
+        <props.icon
+          fontSize={`${props.iconSize ? props.iconSize + 4 : 22}px`}
+        />
+      )}
       <Blank width="14px" />
       {props.value}
     </Button>

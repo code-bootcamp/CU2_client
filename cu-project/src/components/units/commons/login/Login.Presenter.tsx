@@ -5,34 +5,55 @@ import * as S from "./Login.Style";
 export default function LoginUI(props: ILoginUIProps) {
   return (
     <S.Wrapper>
-      <S.Logo src="https://blog.kakaocdn.net/dn/bdcEzt/btqwO6vBvi1/4rXyAZ3e2s0QSbxFDuEh7k/img.jpg" />
+      <S.Logo src="/CU2_LOGO.png" />
       <S.RegisterForm onSubmit={props.handleSubmit(props.onClickLogin)}>
+        <Blank height="10px" />
+        <S.InputLabelText>Welcome!</S.InputLabelText>
         <Blank height="10px" />
         <S.RegisterInput
           type="email"
-          placeholder="이메일"
+          placeholder="EMAIL ADDRESS"
           {...props.register("email")}
         />
         {props.formState.errors.email?.message}
         <Blank height="10px" />
         <S.RegisterInput
           type="password"
-          placeholder="비밀번호"
+          placeholder="PASSWORD"
           {...props.register("password")}
         />
-        {props.formState.errors.password?.message}
         <Blank height="10px" />
-        <p>이메일 찾기 | 비밀번호 찾기 | 회원가입</p>
-        <button type="submit">로그인</button>
+        {props.formState.errors.password?.message}
+
+        <S.LoginBtn type="submit">
+          <p>Sign In</p>
+        </S.LoginBtn>
+
+        <Blank height="10px" />
+        <S.LoginBtn>
+          <p>Sign Up</p>
+        </S.LoginBtn>
+        <Blank height="10px" />
+
+        <S.FindBtnBox>
+          <S.FindIDBtn onClick={props.moveToPage("/login/find")}>
+            이메일 찾기
+          </S.FindIDBtn>{" "}
+          &nbsp;&nbsp;| &nbsp;
+          <S.FindPasswordBtn onClick={props.moveToPage("/login/find")}>
+            비밀번호 찾기
+          </S.FindPasswordBtn>
+        </S.FindBtnBox>
+        <Blank height="40px" />
+        <S.SocialLogin>Login with Google</S.SocialLogin>
+        <Blank height="15px" />
+        <S.SocialLogin>Login with GitHub</S.SocialLogin>
+        <Blank height="15px" />
+        <S.SocialLogin>Login with Kakao</S.SocialLogin>
       </S.RegisterForm>
-      <Blank height="10px" />
-      <S.SocialLogin>구글 로그인</S.SocialLogin>
-      <Blank height="10px" />
-      <S.SocialLogin>GitHub 로그인</S.SocialLogin>
-      <Blank height="10px" />
-      <S.SocialLogin>카카오 로그인</S.SocialLogin>
-      <Blank height="10px" />
-      <S.SocialLogin>네이버 로그인</S.SocialLogin>
+      <S.FormContainer>
+        <S.FormContainerBorder></S.FormContainerBorder>
+      </S.FormContainer>
     </S.Wrapper>
   );
 }

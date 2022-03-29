@@ -13,6 +13,11 @@ export const Button = styled.button`
   color: #ffffff;
   display: flex;
   align-items: center;
+  :hover {
+    background-color: white;
+    color: ${Color.main};
+    border: 1px solid ${Color.main};
+  }
 `;
 
 interface IButtonProps {
@@ -21,6 +26,7 @@ interface IButtonProps {
   padding?: string;
   icon?: IconType;
   iconSize?: number;
+  size?: string;
 }
 export default function Button02(props: IButtonProps) {
   return (
@@ -28,8 +34,12 @@ export default function Button02(props: IButtonProps) {
       onClick={props.onClick}
       style={{ padding: props.padding ? props.padding : "12px 30px 12px 30px" }}
     >
-      {props.icon && <props.icon fontSize={`${props.iconSize ? props.iconSize + 4 : 22}px`}/>}
-      <Blank width="14px" />
+      {props.icon && (
+        <props.icon
+          fontSize={`${props.iconSize ? props.iconSize + 4 : 22}px`}
+        />
+      )}
+      {props.icon && <Blank width="14px" />}
       {props.value}
     </Button>
   );

@@ -32,6 +32,14 @@ export default function CoachingUsNavbarUI(props: ICoachingUsNavbarUIProps) {
       <Blank width="100px" />
       <Blank height="30px" />
       <S.Sidenav
+        onClick={props.moveToPage("/coachingus/comments")}
+        isCurrent={props.currentPath.includes("/coachingus/comments")}
+      >
+        Comments
+      </S.Sidenav>
+      <Blank width="100px" />
+      <Blank height="30px" />
+      <S.Sidenav
         onClick={props.moveToPage("/coachingus/coach-register")}
         isCurrent={props.currentPath === "/coachingus/coach-register"}
       >

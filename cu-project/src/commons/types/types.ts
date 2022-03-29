@@ -4,9 +4,8 @@ import {
   UseFormHandleSubmit,
   UseFormRegister,
 } from "react-hook-form";
-import { CheckboxChangeEvent } from "antd/lib/checkbox/Checkbox";
 import { IPage } from "../../components/commons/hooks/useMoveToPage";
-import React, { MouseEvent, ReactChild, RefObject } from "react";
+import React, { ChangeEvent, Dispatch, MouseEvent, ReactChild, RefObject, SetStateAction } from "react";
 import { Editor } from "@toast-ui/react-editor";
 
 export interface ILayoutProps {
@@ -34,7 +33,12 @@ export interface IRegisterUIProps {
   register: UseFormRegister<FieldValues>;
   formState: FormState<FieldValues>;
   handleSubmit: UseFormHandleSubmit<FieldValues>;
-  onClickRegister: (data: FormValues) => void;
+  onClickRegister: () => void;
+  onClickGetAuthNum: (data: FormValues) => void;
+  onChangeInput: (event: ChangeEvent<HTMLInputElement>) =>void;
+  phone: string;
+  isToken: boolean;
+  codeRef: RefObject<HTMLInputElement>;
 }
 export interface IRegisterProps {}
 
@@ -51,6 +55,25 @@ export interface ISearchProps {}
 // #endregion
 
 // #region CodingUs
+
+export interface ICodingUsSidebarProps {
+  todayRanking: {
+    prev: number;
+    today: number;
+  };
+  totalRanking: {
+    prev: number;
+    today: number;
+  };
+  todayPercent: string;
+  todayPoint: string;
+  stacks: string[];
+  userInfo?: {
+    name: string;
+    point: number;
+  };
+}
+
 export interface ICodingUsBlogProps {}
 
 export interface ICodingUsBlogCardProps {
@@ -82,6 +105,21 @@ export interface ICodingUsBlogWriteUIProps {
 export interface ICodingUsMainProps {}
 export interface ICodingUsMainUIProps {
   moveToPage: (page: string) => void;
+  bestUserItems: any[];
+  blogItems: ICodingUsBlogCardProps[];
+  bestQuestions: any[];
+  onClickItem: (id: string) => () => void;
+  onClickFollow: (id: string) => () => void;
+  onClickLike: (id: string) => () => void;
+}
+
+export interface ICodingUsCommentsProps {
+  id: string;
+  user: { name: string; image: string };
+  cretedAt: string;
+  isLiked: boolean;
+  likeCnt: number;
+  contents: string;
 }
 
 export interface ICodingUsQnAProps {}
@@ -113,8 +151,52 @@ export interface ICodingUsCardProps {
   writer?: string;
 }
 
+export interface ICodingQuestionCardProps {
+  width?: number;
+  height?: number;
+  image?: string;
+  title?: string;
+  contents?: string;
+  writer: string;
+  isQuestion?: boolean;
+  createdAt: string;
+  goodCnt?: number;
+  badCnt?: number;
+  isGood?: boolean;
+  isBad?: boolean;
+  onClickBtn: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickDelete: (id: string) => () => void;
+  onClickEditSubmit: (id: string) => () => void;
+  editValue: string;
+  setEditValue: Dispatch<SetStateAction<string>>;
+}
+
 export interface ICodingUsRankProps {}
-export interface ICodingUsRankUIProps {}
+
+export interface IRankingInfo {
+  user: {
+    name: string;
+    image: string;
+  };
+  currInfo?: {
+    ranking: number;
+    point: number;
+  };
+  prevInfo?: {
+    ranking: number;
+    point: number;
+  };
+}
+export interface ICodingUsRankUIProps {
+  rankingInfos: IRankingInfo[];
+  myRankingInfo: IRankingInfo;
+  moveToPage: (page: string) => () => void;
+  gubun: string;
+  onClickPeriodGubun: (gubun: string) => () => void;
+  onLoadMore: () => void;
+  onClickMyPage: (userId: string) => () => void;
+}
+
 // #endregion
 
 // #region CoachingUs
@@ -198,6 +280,15 @@ export interface ICoachingUsProfileUIProps {}
 
 export interface ICoachingUsQuestionProps {}
 export interface ICoachingUsQuestionUIProps {}
+
+// #region CoachingUs - columnWrite
+export interface ICoachingUsColumnWriteUIProps {
+  editorRef: RefObject<Editor>;
+  tags: string[];
+  setTags: (tags: React.SetStateAction<string[]>) => void;
+  onClickExit: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
+}
 // #endregion
 
 // #region MyPage
@@ -225,4 +316,5 @@ export interface MainPageUIProps {
   SamplePrevArrow: any;
 }
 
+// #endregion
 // #endregion

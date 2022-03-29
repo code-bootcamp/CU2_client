@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { ICoachingUsProfileProps } from "../../../../commons/types/types";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
@@ -6,6 +7,7 @@ import CoachingUsProfileUI from "./CoachingUsProfile.Presenter";
 import {} from "./CoachingUsProfile.Queries";
 
 export default function CoachingUsProfile(props: ICoachingUsProfileProps) {
+  const [component, setComponent] = useState("/");
   const [isLoading, setIsLoading] = useState(true);
 
   const { moveToPage } = useMoveToPage();
@@ -68,6 +70,8 @@ export default function CoachingUsProfile(props: ICoachingUsProfileProps) {
       coach={coach}
       columnList={columnList}
       moveToPage={moveToPage}
+      setComponent={setComponent}
+      component={component}
     />
   );
 }
