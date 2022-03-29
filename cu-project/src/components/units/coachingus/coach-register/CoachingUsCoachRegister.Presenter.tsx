@@ -1,10 +1,5 @@
-import Button from "antd/lib/button";
-import Radio from "antd/lib/radio";
 import { useEffect } from "react";
 import Blank from "../../../commons/Blank";
-import Button01 from "../../../commons/Button/Button01";
-import CoachRegister from "../../mypage/coach/register/CoachRegister.Container";
-import CoachingUsNavbarPage from "../sidebar/navbar/CoachingUsNavbar.Container";
 import * as S from "./CoachingUsCoachRegister.Style";
 
 export default function CoachingUsCoachRegisterUI(props) {
