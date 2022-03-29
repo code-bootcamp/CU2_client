@@ -43,7 +43,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   const uploadLink = createUploadLink({
     uri: process.env.NEXT_PUBLIC_GRAPHQL_URL,
-    headers: { Authorization: `Bearer ${accessToken}` },
+    headers: accessToken && { authorization: `Bearer ${accessToken}` },
     credentials: "include",
   });
 

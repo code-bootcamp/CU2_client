@@ -7,9 +7,9 @@ const Wrapper = styled.div`
   box-sizing: border-box;
   margin: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f6f5f5;
   padding: 0 10%;
   @media ${breakPoints.tablet} {
   }
@@ -103,14 +103,6 @@ const Contents = styled.p`
 export default function ThirdPage() {
   return (
     <Wrapper>
-      <ImageBox>
-        <FlexStart>
-          <StackQnAImg src="" />
-        </FlexStart>
-        <FlexEnd>
-          <StackQnAImg src="" />
-        </FlexEnd>
-      </ImageBox>
       <TitleBox>
         <Title>
           질문과 답변으로

@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f6f5f5;
+  background-color: #333333;
   padding: 0 10%;
   @media ${breakPoints.tablet} {
     min-width: 100%;
@@ -44,8 +44,7 @@ const TitleBox = styled.div`
 const Title = styled.h1`
   font-size: 64px;
   text-align: center;
-  color: #333333;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: ${Color.white};
   padding-bottom: 30px;
   @media ${breakPoints.tablet} {
     font-size: 48px;
@@ -57,13 +56,17 @@ const Title = styled.h1`
   }
 `;
 
+const TripTitle = styled.div`
+  color: ${Color.medium};
+  font-size: 18px;
+  line-height: 34px;
+`;
+
 const SubTitle = styled.div`
-  font-family: "Apple SD Gothic Neo";
-  font-style: normal;
   font-weight: 400;
-  font-size: 32px;
+  font-size: 24px;
   line-height: 38px;
-  color: #bdbdbd;
+  color: ${Color.white};
   @media ${breakPoints.tablet} {
     width: 100%;
     font-size: 28px;
@@ -83,7 +86,7 @@ const ButtonBox = styled.div`
 `;
 
 const MoveButton = styled.button`
-  border: 4px solid #333333;
+  border: none;
   border-radius: 10px;
   width: 240px;
   height: 72px;
@@ -92,13 +95,10 @@ const MoveButton = styled.button`
   font-size: 24px;
   line-height: 32px;
   text-align: center;
-  color: #333333;
+  color: ${(props: IButtonProps) => (props.cate ? Color.main : Color.white)};
   margin-right: 30px;
-  :hover {
-    color: #ffffff;
-    background-color: ${(props: IButtonProps) =>
-      props.cate ? Color.main : Color.sub};
-  }
+  background-color: ${(props: IButtonProps) =>
+    props.cate ? Color.white : Color.main};
   @media ${breakPoints.mobile} {
     width: 100%;
     font-size: 18px;
@@ -112,7 +112,8 @@ export default function FirstPage() {
     <Wrapper>
       <TitleBox>
         <Title>내가 쓴 글이 스펙이 된다!</Title>
-        <SubTitle>초보 개발자의 Self Study Solution, CU2</SubTitle>
+        <TripTitle>자기주도학습을 하면서 공부한 내용을 작성하고</TripTitle>
+        <SubTitle>작성에 대한 보상으로 점수를 획득해보세요!</SubTitle>
       </TitleBox>
       <ButtonBox>
         <MoveButton onClick={moveToPage("/codingus")} cate={true}>
