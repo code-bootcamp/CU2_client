@@ -8,7 +8,9 @@ import WaitingItem from "../../../../codingus/question/waitingItem/WaitingItem.C
 export default function LikeQuestionsUI(props) {
   return (
     <S.AllWrapper>
-      <MypageMenu />
+      <S.Web>
+        <MypageMenu />
+      </S.Web>
       <S.Wrapper>
         <UserPageNav menu={"Good한 Q&A"} />
         <S.BlogHeader>

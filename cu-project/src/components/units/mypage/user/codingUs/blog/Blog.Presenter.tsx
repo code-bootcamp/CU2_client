@@ -10,7 +10,9 @@ import { MyPageSearchBar } from "../../../../../commons/Mypage/MypageSearchBar";
 export default function UserBlogUI(props) {
   return (
     <S.AllWrapper>
-      <MypageMenu />
+      <S.Web>
+        <MypageMenu />
+      </S.Web>
       <S.Wrapper>
         <UserPageNav menu={"내 블로그"} />
         <S.BlogHeader>

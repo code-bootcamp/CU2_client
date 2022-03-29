@@ -1,8 +1,10 @@
 import styled from "@emotion/styled";
 import Color from "../../../../commons/styles/color";
+import { breakPoints } from "../../../../commons/styles/media";
 
 export const Wrapper = styled.div`
-  width: 280px;
+  max-width: 320px;
+  width: 260px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -10,9 +12,7 @@ export const Wrapper = styled.div`
 `;
 
 export const TopMenu = styled.div`
-  /* width: 100%; */
   display: flex;
-  justify-content: center;
 `;
 
 export const MyPageButton = styled.button`
@@ -26,6 +26,7 @@ export const MyPageButton = styled.button`
   :hover {
     cursor: pointer;
   }
+  justify-content: center;
 `;
 
 export const ProfileBox = styled.div``;
@@ -93,6 +94,7 @@ export const UserInfoEditBox = styled.div`
   display: flex;
   flex-direction: column;
   & button {
+    width: 100%;
     height: 45px;
     border: none;
     border-radius: 8px;

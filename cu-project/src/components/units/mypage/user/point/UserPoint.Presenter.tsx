@@ -9,8 +9,9 @@ import { UserPageNav } from "../../../../commons/Mypage/MypageNav";
 export default function UserPointUI(props) {
   return (
     <S.AllWrapper>
-      <MypageMenu />
-
+      <S.Web>
+        <MypageMenu />
+      </S.Web>
       <S.Wrapper>
         {props.isModal && (
           <Modal

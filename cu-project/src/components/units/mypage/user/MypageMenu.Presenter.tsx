@@ -3,6 +3,8 @@ import Blank from "../../../commons/Blank";
 import * as S from "./MypageMenu.Style";
 import { Modal } from "antd";
 import "antd/dist/antd.css";
+import { BsFillPencilFill } from "react-icons/bs";
+import Color from "../../../../commons/styles/color";
 
 export default function MypageMenuUI(props: IMyPageMenuUIProps) {
   return (
@@ -118,7 +120,7 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
           <p>CodingUs</p>
           <Blank height="40px" />
           <button onClick={props.moveToPage("/mypage/user/blog")}>
-            <img src="/mypage_Blog.png" /> 내 블로그 보기
+            <BsFillPencilFill color={Color.dark} /> 내 블로그 보기
           </button>
           <Blank height="50px" />
           <button onClick={props.moveToPage("/mypage/user/likeposts")}>

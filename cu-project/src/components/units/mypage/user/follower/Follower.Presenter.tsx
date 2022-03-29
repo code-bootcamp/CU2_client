@@ -6,7 +6,9 @@ import * as S from "./Follower.Style";
 export default function UserFollowerUI() {
   return (
     <S.AllWrapper>
-      <MypageMenu />
+      <S.Web>
+        <MypageMenu />
+      </S.Web>
       <S.Wrapper>
         <UserPageNav menu={"팔로워"} />
         <Blank height="30px" />

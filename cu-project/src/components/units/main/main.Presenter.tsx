@@ -4,7 +4,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import Blank from "../../commons/Blank";
-import Slider from "react-slick";
 import Card from "../codingus/main/Card/Card.container";
 import { BsSearch } from "react-icons/bs";
 
@@ -41,14 +40,14 @@ export default function MainUI(props: MainPageUIProps) {
           <BsSearch style={{ fontSize: "18px", cursor: "pointer" }} />
         </S.SearchBarArea>
         <S.TagsBox>
+          <S.Tag onClick={props.moveToPage("/search/html")}>#Html</S.Tag>
+          <S.Tag onClick={props.moveToPage("/search/css")}>#CSS</S.Tag>
           <S.Tag onClick={props.moveToPage("/search/javascript")}>
             #Javascript
           </S.Tag>
-          <S.Tag onClick={props.moveToPage("/search/html")}>#Html</S.Tag>
-          <S.Tag onClick={props.moveToPage("/search/css")}>#CSS</S.Tag>
           <S.Tag onClick={props.moveToPage("/search/Java")}>#Java</S.Tag>
-          <S.Tag onClick={props.moveToPage("/search/C")}>#C</S.Tag>
           <S.Tag onClick={props.moveToPage("/search/sql")}>#SQL</S.Tag>
+          <S.Tag onClick={props.moveToPage("/search/C")}>#C</S.Tag>
           <S.Tag onClick={props.moveToPage("/search/react")}>#React</S.Tag>
           <S.Tag onClick={props.moveToPage("/search/python")}>#Python</S.Tag>
           <S.Tag onClick={props.moveToPage("/search/vue")}>#Vue</S.Tag>
@@ -164,8 +163,17 @@ export default function MainUI(props: MainPageUIProps) {
           <p>양질의 피드백을 경험하세요</p>
           <p>{`전체보기 >`}</p>
         </S.ServiceSubHead>
-        <Card />
-        <Card />
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
+          <Card />
+          <Card />
+        </div>
       </S.ServiceBox>
       <Blank height="100px" />
       <S.ServiceBox>
