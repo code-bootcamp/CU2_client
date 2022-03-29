@@ -52,6 +52,25 @@ export interface ISearchProps {}
 // #endregion
 
 // #region CodingUs
+
+export interface ICodingUsSidebarProps {
+  todayRanking: {
+    prev: number;
+    today: number;
+  };
+  totalRanking: {
+    prev: number;
+    today: number;
+  };
+  todayPercent: string;
+  todayPoint: string;
+  stacks: string[];
+  userInfo?: {
+    name: string;
+    point: number;
+  };
+}
+
 export interface ICodingUsBlogProps {}
 
 export interface ICodingUsBlogCardProps {
