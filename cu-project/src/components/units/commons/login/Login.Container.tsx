@@ -3,7 +3,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormValues, ILoginProps } from "../../../../commons/types/types";
 import LoginUI from "./Login.Presenter";
-import { LOGIN_USER } from "./Login.Queries";
+import { LOGIN } from "./Login.Queries";
 import { useMutation } from "@apollo/client";
 import { useContext } from "react";
 import { GlobalContext } from "../../../../../pages/_app";
@@ -28,7 +28,7 @@ const schema = yup.object().shape({
 
 export default function Login(props: ILoginProps) {
   const router = useRouter();
-  const [loginUser] = useMutation(LOGIN_USER);
+  const [login] = useMutation(LOGIN);
   const { moveToPage } = useMoveToPage();
   const { setAccessToken } = useContext(GlobalContext);
   const { register, formState, handleSubmit } = useForm({
@@ -37,13 +37,13 @@ export default function Login(props: ILoginProps) {
 
   const onClickLogin = async (data: FormValues) => {
     try {
-      const result = await loginUser({
+      const result = await login({
         variables: {
           email: data.email,
           password: data.password,
         },
       });
-      const accessToken = result.data?.loginUser.accessToken;
+      const accessToken = result.data?.login;
       if (setAccessToken) {
         setAccessToken(accessToken || "");
         router.push("/");

@@ -94,7 +94,7 @@ export const FormContainerBorder = styled.div`
   z-index: 1;
 `;
 
-export const CreateAccountBtn = styled.div`
+export const CreateAccountBtn = styled.button`
   all: unset;
   width: 100%;
   display: flex;

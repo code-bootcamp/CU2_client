@@ -6,7 +6,7 @@ export default function RegisterUI(props: IRegisterUIProps) {
   return (
     <S.Wrapper>
       <S.Logo src="/CU2_LOGO.png" />
-      <S.RegisterForm onSubmit={props.handleSubmit(props.onClickRegister)}>
+      <S.RegisterForm onSubmit={props.handleSubmit(props.onClickGetAuthNum)}>
         <p>Sign Up</p>
         <Blank height="10px" />
         <S.RegisterLabel>
@@ -35,20 +35,33 @@ export default function RegisterUI(props: IRegisterUIProps) {
         <Blank height="10px" />
         <S.RegisterLabel>
           Phone Number
-          <S.RegisterInput type="text" />
+          <S.RegisterInput
+            type="text"
+            onChange={props.onChangeInput}
+            value={props.phone}
+          />
           <Blank height="30px" />
-          <S.GetRegisterNum type="button">
-            Get Authentication Number
-          </S.GetRegisterNum>
+          <S.GetRegisterNum>Get Authentication Number</S.GetRegisterNum>
           <Blank height="10px" />
           <S.RegisterInput
             type="text"
             placeholder="
 Please enter the verification code "
+            disabled={!props.isToken}
+            ref={props.codeRef}
+            onChange={()=>{
+              console.log(props.codeRef)
+            }}
           />
         </S.RegisterLabel>
         <Blank height="30px" />
-        <S.CreateAccountBtn>Create Account</S.CreateAccountBtn>
+        <S.CreateAccountBtn
+          disabled={!props.isToken}
+          type="button"
+          onClick={props.onClickRegister}
+        >
+          Create Account
+        </S.CreateAccountBtn>
       </S.RegisterForm>
       <S.FormContainer>
         <S.FormContainerBorder></S.FormContainerBorder>
