@@ -30,13 +30,9 @@ export const RightHeader = styled.div`
   display: flex;
 `;
 
-export const HeaderLogo = styled.div`
-  font-weight: 700;
-  font-size: 32px;
-  background: linear-gradient(90deg, #e9345a 13.71%, #6002ee 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+export const HeaderLogo = styled.img`
+  width: 50px;
+  cursor: pointer;
 `;
 export const HeaderCodingUs = styled.div`
   min-width: 80px;

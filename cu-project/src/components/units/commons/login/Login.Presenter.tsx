@@ -36,8 +36,13 @@ export default function LoginUI(props: ILoginUIProps) {
         <Blank height="10px" />
 
         <S.FindBtnBox>
-          <S.FindIDBtn>이메일 찾기</S.FindIDBtn> &nbsp;&nbsp;| &nbsp;
-          <S.FindPasswordBtn>비밀번호 찾기</S.FindPasswordBtn>
+          <S.FindIDBtn onClick={props.moveToPage("/login/find")}>
+            이메일 찾기
+          </S.FindIDBtn>{" "}
+          &nbsp;&nbsp;| &nbsp;
+          <S.FindPasswordBtn onClick={props.moveToPage("/login/find")}>
+            비밀번호 찾기
+          </S.FindPasswordBtn>
         </S.FindBtnBox>
         <Blank height="40px" />
         <S.SocialLogin>Login with Google</S.SocialLogin>

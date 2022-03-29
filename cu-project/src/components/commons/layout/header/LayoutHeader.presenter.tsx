@@ -8,12 +8,11 @@ export default function LayoutHeaderPageUI(props) {
     <S.Wrapper>
       <S.LeftHeader>
         <S.HeaderLogo
+          src="/CU2_LOGO.png"
           onClick={props.onClickLogOut}
           // onClick={props.moveToPage("/main")}
-          isCurrent={props.currentPath === "/coachingus"}
-        >
-          CU2
-        </S.HeaderLogo>
+          // isCurrent={props.currentPath === "/coachingus"}
+        />
       </S.LeftHeader>
       <S.HeaderBody>
         <SearchBar />
