@@ -42,12 +42,12 @@ export default function LayoutHeaderPageUI(props) {
               </S.Category>
               <Blank width="40px" />
               <S.Category
-                onClick={() => props.setSelect("Stack")}
-                isCurrent={props.select === "Stack"}
+                onClick={() => props.setSelect("Stack Q&A")}
+                isCurrent={props.select === "Stack Q&A"}
               >
                 Stack Q{"&"}A
-                {props.select === "Stack" && (
-                  <S.CategoryLine isCategory={props.select === "Stack"} />
+                {props.select === "Stack Q&A" && (
+                  <S.CategoryLine isCategory={props.select === "Stack Q&A"} />
                 )}
               </S.Category>
               <Blank width="40px" />
@@ -72,20 +72,28 @@ export default function LayoutHeaderPageUI(props) {
               </S.Category>
               <Blank width="40px" />
               <S.Category
-                onClick={() => props.setSelect("us")}
-                isCurrent={props.select === "us"}
+                onClick={() => props.setSelect("Us & Coaches")}
+                isCurrent={props.select === "Us & Coaches"}
               >
                 Us {"&"} Coaches
                 {props.select === "us" && (
-                  <S.CategoryLine isCategory={props.select === "us"} />
+                  <S.CategoryLine
+                    isCategory={props.select === "Us & Coaches"}
+                  />
                 )}
               </S.Category>
             </S.SearchCategory>
 
             <Blank height="25px" />
             <S.SearchBar>
-              <BsSearch style={{ color: "#BDBDBD", fontSize: "18px" }} />
-              <S.SearchBarInput placeholder="Search" />
+              <S.SearchBarInput
+                onChange={props.onChangeSearch}
+                onKeyDown={props.onChangeKeyPress}
+                placeholder="Search"
+              />
+              <S.SearchBtn ref={props.SearchRef} onClick={props.onClickSearch}>
+                <BsSearch style={{ color: "#BDBDBD", fontSize: "18px" }} />
+              </S.SearchBtn>
             </S.SearchBar>
           </S.SearchBarDetail>
         )}

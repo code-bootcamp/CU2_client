@@ -1,6 +1,6 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { GlobalContext } from "../../../../../pages/_app";
 import { useAuth } from "../../hooks/useAuth";
 import { useMoveToPage } from "../../hooks/useMoveToPage";
@@ -14,9 +14,10 @@ const LOGOUT_USER = gql`
 
 export default function LayoutHeaderPage() {
   const { accessToken } = useContext(GlobalContext);
+  const SearchRef = useRef(null);
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(false);
-
+  const [keyword, setKeyword] = useState("");
   const [isSearch, setIsSearch] = useState(true);
   const [select, setSelect] = useState("Total");
 
@@ -25,11 +26,26 @@ export default function LayoutHeaderPage() {
 
   const [logoutUser] = useMutation(LOGOUT_USER);
 
-  function onClickLogOut() {
-    logoutUser();
-    alert("로그아웃이 됐습니다.");
-    window.location.reload();
-  }
+  const SendQuery = (category, keyword) => {
+    router.push({
+      pathname: `/search/`,
+      query: { category: category, keyword: keyword },
+    });
+  };
+
+  const onChangeKeyPress = (e) => {
+    if (e.key === "Enter") {
+      SearchRef.current?.click();
+    }
+  };
+
+  const onChangeSearch = (e) => {
+    setKeyword(e.target.value);
+  };
+
+  const onClickSearch = () => {
+    SendQuery(select, keyword);
+  };
 
   useEffect(() => {
     if (accessToken) {
@@ -44,6 +60,12 @@ export default function LayoutHeaderPage() {
 
     if (window.pageYOffset > 0) setIsSearch(false);
   }, [isSearch]);
+
+  function onClickLogOut() {
+    logoutUser();
+    alert("로그아웃이 됐습니다.");
+    window.location.reload();
+  }
 
   useEffect(() => {
     const watch = () => {
@@ -70,6 +92,10 @@ export default function LayoutHeaderPage() {
       isSearch={isSearch}
       setSelect={setSelect}
       select={select}
+      onChangeKeyPress={onChangeKeyPress}
+      onChangeSearch={onChangeSearch}
+      SearchRef={SearchRef}
+      onClickSearch={onClickSearch}
     />
   );
 }

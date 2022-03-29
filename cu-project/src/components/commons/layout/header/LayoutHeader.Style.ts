@@ -184,6 +184,7 @@ export const CoachingUsSubCategory = styled.div`
 export const SearchBar = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 50%;
   width: 50%;
   background: #f6f5f5;
@@ -194,8 +195,14 @@ export const SearchBarInput = styled.input`
   all: unset;
   width: calc(100% - 20px);
   padding-left: 10px;
+  letter-spacing: 1px;
 `;
 
+export const SearchBtn = styled.button`
+  all: unset;
+  width: 20px;
+  cursor: pointer;
+`;
 export const SearchBarCancleBtn = styled.div`
   display: flex;
   align-items: center;
