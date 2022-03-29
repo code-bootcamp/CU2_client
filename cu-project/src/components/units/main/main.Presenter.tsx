@@ -7,7 +7,6 @@ import Blank from "../../commons/Blank";
 import Slider from "react-slick";
 import Card from "../codingus/main/Card/Card.container";
 import { BsSearch } from "react-icons/bs";
-import BlogCard from "../codingus/card/blogCard/BlogCard01/BlogCard01";
 
 export default function MainUI(props: MainPageUIProps) {
   return (
@@ -16,15 +15,9 @@ export default function MainUI(props: MainPageUIProps) {
         <div>
           <S.SliderBanner>
             <div>
-              <h1 style={{ color: "white", fontSize: "48px" }}>
-                Self Study Solution
-              </h1>
-              <p
-                style={{ color: "white", fontSize: "24px" }}
-              >{`CU2만의 커뮤니티 서비스 'CodingUs'와 멘토링 서비스`}</p>
-              <p
-                style={{ color: "white", fontSize: "24px" }}
-              >{`'CoachingUs'로 Self Study Solution을 경험하세요`}</p>
+              <h1>Self Study Solution</h1>
+              <p>{`CU2만의 커뮤니티 서비스 'CodingUs'와 `}</p>
+              <p>{`코칭 서비스 'CoachingUs'로 성장을 경험하세요`}</p>
             </div>
           </S.SliderBanner>
         </div>
@@ -43,22 +36,19 @@ export default function MainUI(props: MainPageUIProps) {
       <Blank height="50px" />
       <S.SearchBox>
         <S.SearchBarArea>
-          <S.SearchBarBody placeholder="개발 공부하다가 궁금한 게 있다면 검색해보세요!" />
+          <S.SearchBarBody placeholder="개발의 모든 것, 검색해보세요!" />
           <Blank width="12px" />
           <BsSearch style={{ fontSize: "18px", cursor: "pointer" }} />
         </S.SearchBarArea>
         <S.TagsBox>
-          <S.Tag onClick={props.moveToPage("/search/프론트엔드")}>
-            #프론트엔드
-          </S.Tag>
-          <S.Tag onClick={props.moveToPage("/search/백엔드")}>#백엔드</S.Tag>
           <S.Tag onClick={props.moveToPage("/search/javascript")}>
             #Javascript
           </S.Tag>
           <S.Tag onClick={props.moveToPage("/search/html")}>#Html</S.Tag>
           <S.Tag onClick={props.moveToPage("/search/css")}>#CSS</S.Tag>
+          <S.Tag onClick={props.moveToPage("/search/Java")}>#Java</S.Tag>
+          <S.Tag onClick={props.moveToPage("/search/C")}>#C</S.Tag>
           <S.Tag onClick={props.moveToPage("/search/sql")}>#SQL</S.Tag>
-          <S.Tag onClick={props.moveToPage("/search/nosql")}>#NoSQL</S.Tag>
           <S.Tag onClick={props.moveToPage("/search/react")}>#React</S.Tag>
           <S.Tag onClick={props.moveToPage("/search/python")}>#Python</S.Tag>
           <S.Tag onClick={props.moveToPage("/search/vue")}>#Vue</S.Tag>
@@ -73,7 +63,7 @@ export default function MainUI(props: MainPageUIProps) {
           <p>{`전체보기 >`}</p>
         </S.ServiceSubHead>
         <S.ServiceBody>
-          <Slider {...props.responsiveSettings}>
+          <S.SliderContentBox {...props.responsiveSettings}>
             <div>
               <h3>1</h3>
             </div>
@@ -98,7 +88,7 @@ export default function MainUI(props: MainPageUIProps) {
             <div>
               <h3>8</h3>
             </div>
-          </Slider>
+          </S.SliderContentBox>
         </S.ServiceBody>
       </S.ServiceBox>
       <Blank height="50px" />
@@ -109,7 +99,12 @@ export default function MainUI(props: MainPageUIProps) {
           <p>{`전체보기 >`}</p>
         </S.ServiceSubHead>
         <div
-          style={{ width: "100%", display: "flex", justifyContent: "center" }}
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
         >
           <Card />
           <Card />
@@ -117,7 +112,12 @@ export default function MainUI(props: MainPageUIProps) {
           <Card />
         </div>
         <div
-          style={{ width: "100%", display: "flex", justifyContent: "center" }}
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
         >
           <Card />
           <Card />
@@ -145,7 +145,12 @@ export default function MainUI(props: MainPageUIProps) {
           <p>{`전체보기 >`}</p>
         </S.ServiceSubHead>
         <div
-          style={{ width: "100%", display: "flex", justifyContent: "center" }}
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
         >
           <Card />
           <Card />
@@ -170,7 +175,12 @@ export default function MainUI(props: MainPageUIProps) {
           <p>{`전체보기 >`}</p>
         </S.ServiceSubHead>
         <div
-          style={{ width: "100%", display: "flex", justifyContent: "center" }}
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
         >
           <Card />
           <Card />
@@ -178,7 +188,12 @@ export default function MainUI(props: MainPageUIProps) {
           <Card />
         </div>
         <div
-          style={{ width: "100%", display: "flex", justifyContent: "center" }}
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
         >
           <Card />
           <Card />
