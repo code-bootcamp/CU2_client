@@ -93,7 +93,7 @@ export function MyPageSearchBar() {
       <SearchBar>
         <Web>
           <input type="text" placeholder="검색어를 입력해주세요" />
-          <BsSearch />
+          <BsSearch size={12} />
         </Web>
         <Mobile>
           <BsSearch onClick={onClickAlert} />
@@ -116,7 +116,7 @@ export function CoachingSearchBar() {
     <BlogHeaderRight>
       <SearchBar>
         <input type="text" placeholder="검색어를 입력해주세요" />
-        <BsSearch />
+        <BsSearch size={12} />
       </SearchBar>
       <Blank width="20px"></Blank>
       <div>
