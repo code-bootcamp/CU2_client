@@ -17,6 +17,7 @@ export default function UserQuestionsUI(props) {
           <h2>내 질문 14 | 내 답변 2</h2>
           <MyPageSearchBar />
         </S.BlogHeader>
+        <Blank height="30px" />
         <div style={{ width: "90%" }}>
           {new Array(4).fill(0).map((el, idx) => (
             <div key={idx}>

@@ -4,7 +4,8 @@ import * as S from "./MypageMenu.Style";
 import { Modal } from "antd";
 import "antd/dist/antd.css";
 import { BsFillPencilFill } from "react-icons/bs";
-import Color from "../../../../commons/styles/color";
+import { AiFillLike, AiFillQuestionCircle } from "react-icons/ai";
+import { FaCopyright } from "react-icons/fa";
 
 export default function MypageMenuUI(props: IMyPageMenuUIProps) {
   return (
@@ -96,12 +97,14 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
           <S.ProfileContents>
             <span></span>
             <span>
-              <button
+              <S.RankingButton
                 onClick={props.moveToPage("/mypage/user/ranking")}
-              >{`전체 랭킹 보기 > `}</button>
-              <button
+              >
+                {`전체 랭킹 보기 > `}
+              </S.RankingButton>
+              <S.RankingButton
                 onClick={props.moveToPage("/mypage/user/ranking/history")}
-              >{`점수 내역 보기 >`}</button>
+              >{`점수 내역 보기 >`}</S.RankingButton>
             </span>
           </S.ProfileContents>
           <Blank height="30px" />
@@ -119,34 +122,41 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
         <S.MenuBox>
           <p>CodingUs</p>
           <Blank height="40px" />
-          <button onClick={props.moveToPage("/mypage/user/blog")}>
-            <BsFillPencilFill color={Color.dark} /> 내 블로그 보기
-          </button>
+          <S.MenuButton onClick={props.moveToPage("/mypage/user/blog")}>
+            <BsFillPencilFill size={24} /> <Blank width="10px" />내 블로그 보기
+          </S.MenuButton>
           <Blank height="50px" />
-          <button onClick={props.moveToPage("/mypage/user/likeposts")}>
-            <img src="/Icon_Fill_Good2.png" /> Good한 포스트 보기
-          </button>
+          <S.MenuButton onClick={props.moveToPage("/mypage/user/likeposts")}>
+            <AiFillLike size={24} /> <Blank width="10px" />
+            Good한 포스트 보기
+          </S.MenuButton>
           <Blank height="50px" />
-          <button onClick={props.moveToPage("/mypage/user/questions")}>
-            <img src="/Icon_Fill_Question.png" />
+          <S.MenuButton onClick={props.moveToPage("/mypage/user/questions")}>
+            <AiFillQuestionCircle size={24} />
+            <Blank width="10px" />
             {" 내 Q&A 보기"}
-          </button>
+          </S.MenuButton>
           <Blank height="50px" />
-          <button onClick={props.moveToPage("/mypage/user/likequestions")}>
-            <img src="/Icon_Fill_Good2.png" /> {`Good한 Q&A 보기`}
-          </button>
+          <S.MenuButton
+            onClick={props.moveToPage("/mypage/user/likequestions")}
+          >
+            <AiFillLike size={24} /> <Blank width="10px" />
+            {`Good한 Q&A 보기`}
+          </S.MenuButton>
         </S.MenuBox>
         <Blank height="75px" />
         <S.MenuBox>
           <p>CoachingUs</p>
           <Blank height="40px" />
-          <button onClick={props.moveToPage("/mypage/user/coached")}>
-            <img src="/Icon_Coaching.png" />내 코칭 보기
-          </button>
+          <S.MenuButton onClick={props.moveToPage("/mypage/user/coached")}>
+            <FaCopyright size={24} />
+            <Blank width="10px" />내 코칭 보기
+          </S.MenuButton>
           <Blank height="50px" />
-          <button onClick={props.moveToPage("/mypage/user/likecolumns")}>
-            <img src="/Icon_Fill_Good2.png" /> Good한 칼럼 보기
-          </button>
+          <S.MenuButton onClick={props.moveToPage("/mypage/user/likecolumns")}>
+            <AiFillLike size={24} /> <Blank width="10px" />
+            Good한 칼럼 보기
+          </S.MenuButton>
         </S.MenuBox>
       </S.ProfileBox>
     </S.Wrapper>

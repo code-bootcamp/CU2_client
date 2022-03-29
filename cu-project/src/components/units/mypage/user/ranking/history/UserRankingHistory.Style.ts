@@ -19,12 +19,6 @@ export const Web = styled.div`
     display: none;
   }
 `;
-export const Box = styled.div`
-  width: 90%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
 
 export const MyPageButton = styled.button`
   background-color: gray;
@@ -51,27 +45,32 @@ export const Row = styled.div`
 
 export const ChargeBox = styled.div`
   width: 90%;
-  & span {
-    color: #dbdbdb;
+  @media ${breakPoints.tablet} {
+    width: 100%;
+    font-size: 16px;
+  }
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    font-size: 10px;
   }
 `;
 
-export const ColumnHeaderBasic = styled.div`
+export const ColumnDate = styled.div`
   width: 20%;
   text-align: center;
 `;
 
-export const ColumnHeaderTitle = styled.div`
+export const ColumnContent = styled.div`
   width: 40%;
   text-align: center;
 `;
 
-export const ColumnBasic = styled.div`
+export const ColumnScore = styled.div`
   width: 20%;
   text-align: center;
 `;
 
-export const ColumnTitle = styled.div`
-  width: 40%;
+export const ColumnAllScore = styled.div`
+  width: 20%;
   text-align: center;
 `;

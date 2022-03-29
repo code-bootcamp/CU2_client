@@ -17,7 +17,7 @@ export default function LikeQuestionsUI(props) {
           <h2>질문 14 | 답변 2</h2>
           <MyPageSearchBar />
         </S.BlogHeader>
-
+        <Blank height="30px" />
         <div style={{ width: "90%" }}>
           {new Array(4).fill(0).map((el, idx) => (
             <div key={idx}>

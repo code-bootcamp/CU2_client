@@ -19,16 +19,16 @@ export default function UserRankingHistoryUI() {
         </Space>
         <S.ChargeBox>
           <S.Row>
-            <S.ColumnHeaderBasic>날짜</S.ColumnHeaderBasic>
-            <S.ColumnHeaderTitle>내용</S.ColumnHeaderTitle>
-            <S.ColumnHeaderBasic>점수</S.ColumnHeaderBasic>
-            <S.ColumnHeaderBasic>누적 점수</S.ColumnHeaderBasic>
+            <S.ColumnDate>날짜</S.ColumnDate>
+            <S.ColumnContent>내용</S.ColumnContent>
+            <S.ColumnScore>점수</S.ColumnScore>
+            <S.ColumnAllScore>누적 점수</S.ColumnAllScore>
           </S.Row>
           <S.Row>
-            <S.ColumnBasic>2022.03.22</S.ColumnBasic>
-            <S.ColumnTitle>블로그 작성</S.ColumnTitle>
-            <S.ColumnBasic>+1</S.ColumnBasic>
-            <S.ColumnBasic>120</S.ColumnBasic>
+            <S.ColumnDate>2022.03.22</S.ColumnDate>
+            <S.ColumnContent>블로그 작성</S.ColumnContent>
+            <S.ColumnScore>+1</S.ColumnScore>
+            <S.ColumnAllScore>120</S.ColumnAllScore>
           </S.Row>
         </S.ChargeBox>
       </S.Wrapper>
