@@ -1,4 +1,4 @@
-import * as S from "./QnADetailCard.Style";
+import * as S from "./QnA.Answer.Style";
 import Blank from "../../../../commons/Blank";
 import Label01 from "../../../../commons/Label/Label01";
 import HorizontalLine from "../../../../commons/Line/HorizontalLine";
@@ -11,35 +11,14 @@ import {
 } from "react-icons/ai";
 import {
   ChangeEvent,
-  Dispatch,
-  MouseEvent,
-  SetStateAction,
   useState,
 } from "react";
 import { RowWrapper } from "../../../coachingus/columns/detail/Columns.Style";
 import Color from "../../../../../commons/styles/color";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
-interface ICodingUsCardProps {
-  width?: number;
-  height?: number;
-  image?: string;
-  title?: string;
-  contents?: string;
-  writer: string;
-  isQuestion?: boolean;
-  createdAt: string;
-  goodCnt?: number;
-  badCnt?: number;
-  isGood?: boolean;
-  isBad?: boolean;
-  onClickBtn: (event: MouseEvent<HTMLButtonElement>) => void;
-  onClickDelete: (gubun: "question" | "answer", id: string) => () => void;
-  onClickEditSubmit: (gubun: "question" | "answer", id: string) => () => void;
-  editValue: string;
-  setEditValue: Dispatch<SetStateAction<string>>;
-}
+import { ICodingQuestionCardProps } from "../../../../../commons/types/types";
 
-export default function QnADetailCard(props: ICodingUsCardProps) {
+export default function QnAQuestionCard(props: ICodingQuestionCardProps) {
   const [isEdit, setIsEdit] = useState(false);
   const onChangeEditText = (event: ChangeEvent<HTMLTextAreaElement>) => {
     props.setEditValue(event.target.value);
@@ -49,13 +28,11 @@ export default function QnADetailCard(props: ICodingUsCardProps) {
     <S.Wrapper
       width={"100%"}
       height={props.height ? `${props.height}px` : "350px"}
-      isQuestion={props.isQuestion ?? false}
       // isMine={props.writer === "loginUser"}
       isMine={true}
       onClick ={()=>{moveToPage("/codingus/question/detail")}}
     >
       <Blank height="15px" />
-      {/* <S.MyButtonWrapper isMine={props.writer === "loginUser"}> */}
       <S.MyButtonWrapper isMine={true}>
         <RowWrapper>
           <Label01
@@ -73,7 +50,6 @@ export default function QnADetailCard(props: ICodingUsCardProps) {
             size="16px"
             color={Color.medium}
             onClick={props.onClickDelete(
-              props.isQuestion ? "question" : "answer",
               "props.id"
             )}
           />
@@ -86,9 +62,7 @@ export default function QnADetailCard(props: ICodingUsCardProps) {
           <img
             style={{ width: "32px" }}
             src={
-              props.isQuestion
-                ? "/Icon_Fill_Question.png"
-                : "/Icon_Fill_Answer.png"
+                "/Icon_Fill_Answer.png"
             }
           />
           <Blank width="10px" /> {props.title}
@@ -107,7 +81,6 @@ export default function QnADetailCard(props: ICodingUsCardProps) {
             <S.Button
               id="good"
               isGood={props.isGood ?? false}
-              isQuestion={props.isQuestion ?? false}
               onClick={props.onClickBtn}
               style={{ border: `1px solid ${Color.main}` }}
             >
@@ -139,7 +112,6 @@ export default function QnADetailCard(props: ICodingUsCardProps) {
             <S.Button
               id="bad"
               isGood={false}
-              isQuestion={props.isQuestion ?? false}
               onClick={props.onClickBtn}
               style={{ border: `1px solid ${Color.medium}` }}
             >
@@ -177,11 +149,9 @@ export default function QnADetailCard(props: ICodingUsCardProps) {
             value={props.editValue}
           />
           <S.Button
-            isQuestion={true}
             isGood={false}
             style={{ border: `1px solid ${Color.main}` }}
             onClick={props.onClickEditSubmit(
-              props.isQuestion ? "question" : "answer",
               "props.id"
             )}
           >

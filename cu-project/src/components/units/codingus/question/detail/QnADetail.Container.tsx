@@ -10,24 +10,22 @@ export default function CodingUsQnADetail() {
   const [editValue, setEditValue] = useState("");
   const onClickButton = (event: MouseEvent<HTMLButtonElement>) => {};
 
-  const onClickDelete =
-    (gubun: "question" | "answer", id: string) => async () => {
-      // 삭제 확인
+  const onClickDelete = (id: string) => async () => {
+    // 삭제 확인
 
-      // const query =
-      //   gubun === "question" ? "deleteBlogQuestion" : "deleteBlogAnswer";
+    // const query =
+    //   gubun === "question" ? "deleteBlogQuestion" : "deleteBlogAnswer";
 
-      try {
-        // const result = await query(variable: {id: id});
-        // 삭제 완료 msg
-      } catch (err: any) {
-        // 실패(err.message);
-      }
-    };
+    try {
+      // const result = await query(variable: {id: id});
+      // 삭제 완료 msg
+    } catch (err: any) {
+      // 실패(err.message);
+    }
+  };
 
-  const onClickEditSubmit =
-    (gubun: "question" | "answer", id: string) => async () => {};
-
+  const onClickEditSubmit = (id: string) => async () => {};
+  const onClickSubmitAnswer = (contents: string) => () => {};
   return (
     <CodingUsLayout
       children={
@@ -57,6 +55,7 @@ export default function CodingUsQnADetail() {
           onClickEditSubmit={onClickEditSubmit}
           editValue={editValue}
           setEditValue={setEditValue}
+          onClickSubmitAnswer={onClickSubmitAnswer}
         />
       }
     ></CodingUsLayout>

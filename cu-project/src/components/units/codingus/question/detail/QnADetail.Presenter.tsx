@@ -2,11 +2,13 @@ import Blank from "../../../../commons/Blank";
 import Label01 from "../../../../commons/Label/Label01";
 import Tag01 from "../../../../commons/Tag/Tag01";
 import Tag02 from "../../../../commons/Tag/Tag02";
-import QnADetailCard from "../../card/qnaDetailCard/QnADetailCard";
+import QnAAnswerCard from "../../card/qnaAnswer/QnA.Answer";
 import * as S from "./QnADetail.Style";
 import { v4 as uuidv4 } from "uuid";
 import VerticalLine from "../../../../commons/Line/VerticalLine";
 import { Dispatch, MouseEvent, SetStateAction } from "react";
+import QnANewAnswerCard from "./newAnswer/NewAnswer";
+import QnAQuestionCard from "../../card/qnaQuestion/QnA.Question";
 interface ICodingUsQnaDetailUIProps {
   question: {
     writer: string;
@@ -27,10 +29,11 @@ interface ICodingUsQnaDetailUIProps {
   isSortGood: boolean;
   toggleSortGubun: () => void;
   onClickButton: (event: MouseEvent<HTMLButtonElement>) => void;
-  onClickDelete: (gubun: "question" | "answer", id: string) => () => void;
+  onClickDelete: (id: string) => () => void;
   editValue: string;
-  setEditValue: Dispatch<SetStateAction<string>>
-  onClickEditSubmit: (gubun: "question" | "answer", id: string) => () => void;
+  setEditValue: Dispatch<SetStateAction<string>>;
+  onClickEditSubmit: (id: string) => () => void;
+  onClickSubmitAnswer: (content: string) => () => void;
 }
 
 export default function CodingUsQnADetailUI(props: ICodingUsQnaDetailUIProps) {
@@ -50,7 +53,7 @@ export default function CodingUsQnADetailUI(props: ICodingUsQnaDetailUIProps) {
           ))}
       </S.Tags>
       <Blank height="21px" />
-      <QnADetailCard
+      <QnAQuestionCard
         isQuestion={true}
         writer={props.question.writer}
         title={props.question.title}
@@ -63,6 +66,12 @@ export default function CodingUsQnADetailUI(props: ICodingUsQnaDetailUIProps) {
         onClickEditSubmit={props.onClickEditSubmit}
       />
       <Blank height="166px" />
+
+      <Label01 value="New Answer" size="36px" weight="700" />
+      <Blank height="24px" />
+      <QnANewAnswerCard onClickSubmitAnswer={props.onClickSubmitAnswer} />
+      <Blank height="90px" />
+
       <Label01 value="Answers" size="36px" weight="700" />
       <Blank height="24px" />
       <S.Gubun>
@@ -87,9 +96,8 @@ export default function CodingUsQnADetailUI(props: ICodingUsQnaDetailUIProps) {
       <Blank height="30px" />
       {props.answers &&
         props.answers.map((el) => (
-          <QnADetailCard
+          <QnAAnswerCard
             key={uuidv4()}
-            isQuestion={false}
             writer={el.writer}
             title={el.title}
             contents={el.contents}
