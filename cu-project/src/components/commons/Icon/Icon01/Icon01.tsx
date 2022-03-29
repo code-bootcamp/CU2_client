@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import React from "react";
 import Blank from "../../Blank";
 import Label01 from "../../Label/Label01";
 
