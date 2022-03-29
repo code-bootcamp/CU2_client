@@ -5,11 +5,17 @@ import MypageMenuUI from "./MypageMenu.Presenter";
 export default function MypageMenu() {
   const [isModal, setIsModal] = useState(false);
   const [isCoach, setIsCoach] = useState(true);
-  const { moveToPage } = useMoveToPage();
+  const { moveToPage, currentPage } = useMoveToPage();
+
 
   const onClickModal = () => {
     setIsModal((prev) => !prev);
   };
+
+  const getIsCurrentPage = (page: string) => {
+    console.log(currentPage, page)
+    return currentPage.endsWith(page);
+  }
 
   return (
     <MypageMenuUI
@@ -17,6 +23,7 @@ export default function MypageMenu() {
       isCoach={isCoach}
       moveToPage={moveToPage}
       onClickModal={onClickModal}
+      getIsCurrentPage={getIsCurrentPage}
     />
   );
 }

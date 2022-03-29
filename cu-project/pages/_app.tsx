@@ -42,8 +42,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   };
 
   const uploadLink = createUploadLink({
-    uri: "http://34.64.206.255:3000/graphql",
-    headers: { Authorization: `Bearer ${accessToken}` },
+    uri: process.env.NEXT_PUBLIC_GRAPHQL_URL,
+    headers: accessToken && { authorization: `Bearer ${accessToken}` },
     credentials: "include",
   });
 

@@ -118,8 +118,9 @@ export const MenuButton = styled.div`
   font-size: 18px;
   background-color: transparent;
   display: flex;
-  color: ${Color.medium};
+  color: ${(props: {isCurrent: boolean}) => props.isCurrent ? Color.dark : Color.medium};
+  font-weight: ${(props: {isCurrent: boolean}) => props.isCurrent ? "700" : "400"};
   :hover {
-    cursor: pointer;
+    cursor: ${(props: {isCurrent: boolean}) => props.isCurrent ? "none" : "pointer"};
   }
 `;

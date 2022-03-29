@@ -123,3 +123,15 @@ export const MenuBox = styled.div`
     }
   }
 `;
+
+export const MenuButton = styled.button`
+    border: none;
+  font-size: 18px;
+  background-color: transparent;
+  display: flex;
+  color: ${(props: {isCurrent: boolean}) => props.isCurrent ? Color.dark : Color.medium};
+  font-weight: ${(props: {isCurrent: boolean}) => props.isCurrent ? "700" : "400"};
+  :hover {
+    cursor: ${(props: {isCurrent: boolean}) => props.isCurrent ? "none" : "pointer"};
+  }
+`;

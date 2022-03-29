@@ -120,13 +120,17 @@ export default function CoachpageMenuUI(props: IMyPageMenuUIProps) {
         <S.MenuBox>
           <p>CoachingUs</p>
           <Blank height="40px" />
-          <button onClick={props.moveToPage("/mypage/coach/comments")}>
+          <S.MenuButton 
+          isCurrent={props.getIsCurrentPage("/coach/comments")}
+          onClick={props.moveToPage("/mypage/coach/comments")}>
             <img src="/Icon_Coaching.png" />내 코칭 보기
-          </button>
+          </S.MenuButton>
           <Blank height="50px" />
-          <button onClick={props.moveToPage("/mypage/coach/columns")}>
+          <S.MenuButton 
+          isCurrent={props.getIsCurrentPage("/coach/columns")}
+          onClick={props.moveToPage("/mypage/coach/columns")}>
             <img src="/Icon_Fill_Good2.png" /> 내 칼럼 보기
-          </button>
+          </S.MenuButton>
         </S.MenuBox>
       </S.ProfileBox>
     </S.Wrapper>
