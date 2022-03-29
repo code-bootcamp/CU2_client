@@ -4,11 +4,9 @@ import {
   UseFormHandleSubmit,
   UseFormRegister,
 } from "react-hook-form";
-import { CheckboxChangeEvent } from "antd/lib/checkbox/Checkbox";
 import { IPage } from "../../components/commons/hooks/useMoveToPage";
-import React, { MouseEvent, ReactChild, RefObject } from "react";
+import React, { Dispatch, MouseEvent, ReactChild, RefObject, SetStateAction } from "react";
 import { Editor } from "@toast-ui/react-editor";
-import { string } from "yup/lib/locale";
 
 export interface ILayoutProps {
   children: ReactChild;
@@ -146,6 +144,26 @@ export interface ICodingUsCardProps {
   title?: string;
   contents?: string;
   writer?: string;
+}
+
+export interface ICodingQuestionCardProps {
+  width?: number;
+  height?: number;
+  image?: string;
+  title?: string;
+  contents?: string;
+  writer: string;
+  isQuestion?: boolean;
+  createdAt: string;
+  goodCnt?: number;
+  badCnt?: number;
+  isGood?: boolean;
+  isBad?: boolean;
+  onClickBtn: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickDelete: (id: string) => () => void;
+  onClickEditSubmit: (id: string) => () => void;
+  editValue: string;
+  setEditValue: Dispatch<SetStateAction<string>>;
 }
 
 export interface ICodingUsRankProps {}
@@ -293,4 +311,5 @@ export interface MainPageUIProps {
   SamplePrevArrow: any;
 }
 
+// #endregion
 // #endregion
