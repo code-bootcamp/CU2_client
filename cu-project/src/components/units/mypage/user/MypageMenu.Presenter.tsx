@@ -122,22 +122,32 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
         <S.MenuBox>
           <p>CodingUs</p>
           <Blank height="40px" />
-          <S.MenuButton onClick={props.moveToPage("/mypage/user/blog")}>
+          <S.MenuButton
+            isCurrent={props.getIsCurrentPage("/user/blog")}
+            onClick={props.moveToPage("/mypage/user/blog")}
+          >
             <BsFillPencilFill size={24} /> <Blank width="10px" />내 블로그 보기
           </S.MenuButton>
           <Blank height="50px" />
-          <S.MenuButton onClick={props.moveToPage("/mypage/user/likeposts")}>
+          <S.MenuButton
+            isCurrent={props.getIsCurrentPage("/user/likeposts")}
+            onClick={props.moveToPage("/mypage/user/likeposts")}
+          >
             <AiFillLike size={24} /> <Blank width="10px" />
             Good한 포스트 보기
           </S.MenuButton>
           <Blank height="50px" />
-          <S.MenuButton onClick={props.moveToPage("/mypage/user/questions")}>
+          <S.MenuButton
+            isCurrent={props.getIsCurrentPage("/user/questions")}
+            onClick={props.moveToPage("/mypage/user/questions")}
+          >
             <AiFillQuestionCircle size={24} />
             <Blank width="10px" />
             {" 내 Q&A 보기"}
           </S.MenuButton>
           <Blank height="50px" />
           <S.MenuButton
+            isCurrent={props.getIsCurrentPage("/user/likequestions")}
             onClick={props.moveToPage("/mypage/user/likequestions")}
           >
             <AiFillLike size={24} /> <Blank width="10px" />
@@ -148,12 +158,18 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
         <S.MenuBox>
           <p>CoachingUs</p>
           <Blank height="40px" />
-          <S.MenuButton onClick={props.moveToPage("/mypage/user/coached")}>
+          <S.MenuButton
+            isCurrent={props.getIsCurrentPage("/user/coached")}
+            onClick={props.moveToPage("/mypage/user/coached")}
+          >
             <FaCopyright size={24} />
             <Blank width="10px" />내 코칭 보기
           </S.MenuButton>
           <Blank height="50px" />
-          <S.MenuButton onClick={props.moveToPage("/mypage/user/likecolumns")}>
+          <S.MenuButton
+            isCurrent={props.getIsCurrentPage("/user/likecolumns")}
+            onClick={props.moveToPage("/mypage/user/likecolumns")}
+          >
             <AiFillLike size={24} /> <Blank width="10px" />
             Good한 칼럼 보기
           </S.MenuButton>

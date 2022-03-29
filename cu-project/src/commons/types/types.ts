@@ -4,8 +4,14 @@ import {
   UseFormHandleSubmit,
   UseFormRegister,
 } from "react-hook-form";
-import { IPage } from "../../components/commons/hooks/useMoveToPage";
-import React, { ChangeEvent, Dispatch, MouseEvent, ReactChild, RefObject, SetStateAction } from "react";
+import React, {
+  ChangeEvent,
+  Dispatch,
+  MouseEvent,
+  ReactChild,
+  RefObject,
+  SetStateAction,
+} from "react";
 import { Editor } from "@toast-ui/react-editor";
 
 export interface ILayoutProps {
@@ -25,7 +31,7 @@ export interface ILoginUIProps {
   formState: FormState<FieldValues>;
   handleSubmit: UseFormHandleSubmit<FieldValues>;
   onClickLogin: (data: FormValues) => void;
-  moveToPage: (page: IPage) => () => void;
+  moveToPage: (page: string) => () => void;
 }
 export interface ILoginProps {}
 
@@ -35,7 +41,7 @@ export interface IRegisterUIProps {
   handleSubmit: UseFormHandleSubmit<FieldValues>;
   onClickRegister: () => void;
   onClickGetAuthNum: (data: FormValues) => void;
-  onChangeInput: (event: ChangeEvent<HTMLInputElement>) =>void;
+  onChangeInput: (event: ChangeEvent<HTMLInputElement>) => void;
   phone: string;
   isToken: boolean;
   codeRef: RefObject<HTMLInputElement>;
@@ -296,14 +302,15 @@ export interface IMyPageProps {}
 export interface IMyPageUIProps {}
 export interface IMyPageMenuUIProps {
   isCoach: boolean;
-  moveToPage: (page: IPage) => () => void;
+  moveToPage: (page: string) => () => void;
+  getIsCurrentPage: (page: string) => boolean;
 }
 // #endregion
 
 // #region MainPage
 export interface MainPageProps {}
 export interface MainPageUIProps {
-  moveToPage: (page: IPage) => () => void;
+  moveToPage: (page: string) => () => void;
   blogSettings: {
     infinite: boolean;
     slidesToShow: number;
