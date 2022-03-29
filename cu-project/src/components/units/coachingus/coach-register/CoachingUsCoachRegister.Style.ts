@@ -101,6 +101,28 @@ export const CorGroupButton = styled.button`
     border: 1px solid #ea345a;
   }
 `;
+export const ButtonBox = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+export const GetOutButton = styled.button`
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: #c4c4c4;
+  border: 1px solid #c4c4c4;
+  border-radius: 15px;
+  padding: 5px 10px;
+  width: 100px;
+  :hover {
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+  }
+`;
 export const RegisterButton = styled.button`
   all: unset;
   display: flex;

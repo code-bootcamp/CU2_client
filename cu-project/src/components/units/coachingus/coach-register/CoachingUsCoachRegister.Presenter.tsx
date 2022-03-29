@@ -108,7 +108,12 @@ export default function CoachingUsCoachRegisterUI(props) {
               />
             </S.TagBox>
             <Blank height="50px" />
-            <S.RegisterButton>지원하기</S.RegisterButton>
+            <S.ButtonBox>
+              <S.RegisterButton>지원하기</S.RegisterButton>
+              <S.GetOutButton onClick={props.moveToPage("/coachingus")}>
+                나가기
+              </S.GetOutButton>
+            </S.ButtonBox>
           </S.RegisterForm>
         </S.RegisterContainerLeft>
         <S.RegisterContainerRight></S.RegisterContainerRight>

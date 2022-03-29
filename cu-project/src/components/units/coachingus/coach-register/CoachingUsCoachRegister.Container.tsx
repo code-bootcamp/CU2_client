@@ -1,10 +1,13 @@
 import { useCallback, useState } from "react";
+import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import CoachingUsCoachRegisterUI from "./CoachingUsCoachRegister.Presenter";
 
 export default function CoachingUsCoachRegisterPage() {
   const [text, setText] = useState("");
   const [tags, setTags] = useState([]);
   const [corType, setCorType] = useState("");
+
+  const { moveToPage } = useMoveToPage();
 
   const onChangeTags = (e) => {
     if (e.isComposing || e.keyCode === 229) {
@@ -54,6 +57,7 @@ export default function CoachingUsCoachRegisterPage() {
       text={text}
       onClickCorType={onClickCorType}
       corType={corType}
+      moveToPage={moveToPage}
     />
   );
 }
