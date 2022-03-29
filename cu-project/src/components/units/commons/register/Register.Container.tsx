@@ -12,7 +12,6 @@ import {
   IMutationSendTokenTosmsArgs,
 } from "../../../../commons/types/generated/types";
 import { ChangeEvent, useRef, useState } from "react";
-import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { useRouter } from "next/router";
 
 const schema = yup.object().shape({
