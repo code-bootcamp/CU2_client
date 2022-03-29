@@ -42,7 +42,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   };
 
   const uploadLink = createUploadLink({
-    uri: "https://backend05.codebootcamp.co.kr/graphql",
+    uri: process.env.NEXT_PUBLIC_GRAPHQL_URL,
     headers: { Authorization: `Bearer ${accessToken}` },
     credentials: "include",
   });
