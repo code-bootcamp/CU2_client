@@ -5,7 +5,7 @@ import {
   UseFormRegister,
 } from "react-hook-form";
 import { IPage } from "../../components/commons/hooks/useMoveToPage";
-import React, { Dispatch, MouseEvent, ReactChild, RefObject, SetStateAction } from "react";
+import React, { ChangeEvent, Dispatch, MouseEvent, ReactChild, RefObject, SetStateAction } from "react";
 import { Editor } from "@toast-ui/react-editor";
 
 export interface ILayoutProps {
@@ -33,7 +33,12 @@ export interface IRegisterUIProps {
   register: UseFormRegister<FieldValues>;
   formState: FormState<FieldValues>;
   handleSubmit: UseFormHandleSubmit<FieldValues>;
-  onClickRegister: (data: FormValues) => void;
+  onClickRegister: () => void;
+  onClickGetAuthNum: (data: FormValues) => void;
+  onChangeInput: (event: ChangeEvent<HTMLInputElement>) =>void;
+  phone: string;
+  isToken: boolean;
+  codeRef: RefObject<HTMLInputElement>;
 }
 export interface IRegisterProps {}
 
