@@ -26,15 +26,15 @@ export default function Main(props: MainPageProps) {
 
   const responsiveSettings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 4,
-    initialSlide: 0,
+    slidesToScroll: 1,
+    // initialSlide: 0,
     nextArrow: <SampleNextArrow />,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1280,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
@@ -43,18 +43,11 @@ export default function Main(props: MainPageProps) {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 767,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
         },
       },
     ],
