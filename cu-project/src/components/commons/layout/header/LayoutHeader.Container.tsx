@@ -1,6 +1,6 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../../../../pages/_app";
 import { useAuth } from "../../hooks/useAuth";
 import { useMoveToPage } from "../../hooks/useMoveToPage";
@@ -14,9 +14,12 @@ const LOGOUT_USER = gql`
 
 export default function LayoutHeaderPage() {
   const { accessToken } = useContext(GlobalContext);
+  const router = useRouter();
   const [isLogin, setIsLogin] = useState(false);
 
-  const router = useRouter();
+  const [isSearch, setIsSearch] = useState(true);
+  const [select, setSelect] = useState("Total");
+
   const { moveToPage } = useMoveToPage();
   const currentPath = router.asPath;
 
@@ -34,12 +37,39 @@ export default function LayoutHeaderPage() {
     }
   }, [accessToken]);
 
+  const handleFollow = useCallback(() => {
+    if (currentPath.includes("search")) {
+      if (window.pageYOffset === 0) setIsSearch(true);
+    }
+
+    if (window.pageYOffset > 0) setIsSearch(false);
+  }, [isSearch]);
+
+  useEffect(() => {
+    const watch = () => {
+      window.addEventListener("scroll", handleFollow);
+    };
+    watch();
+    return () => {
+      window.removeEventListener("scroll", handleFollow);
+    };
+  }, [isSearch]);
+
+  useEffect(() => {
+    if (currentPath.includes("search")) setIsSearch(true);
+    if (!currentPath.includes("search")) setIsSearch(false);
+  }, [router]);
+
   return (
     <LayoutHeaderPageUI
       moveToPage={moveToPage}
       currentPath={currentPath}
       isLogin={isLogin}
       onClickLogOut={onClickLogOut}
+      setIsSearch={setIsSearch}
+      isSearch={isSearch}
+      setSelect={setSelect}
+      select={select}
     />
   );
 }

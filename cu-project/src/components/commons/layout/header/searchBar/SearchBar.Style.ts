@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   width: 70%;
   height: 100%;
   padding: 0 20px;
+  cursor: pointer;
 `;
 export const SearchBarArea = styled.div`
   display: flex;
@@ -17,11 +18,12 @@ export const SearchBarArea = styled.div`
   border-radius: 100px;
   padding: 5px 25px;
 `;
-export const SearchBarBody = styled.input`
+export const SearchBarBody = styled.div`
   resize: none;
   background: none;
   border: none;
   font-size: 16px;
+  color: #bdbdbd;
   /* min-width: 350px; */
   &::placeholder {
     font-weight: 300;

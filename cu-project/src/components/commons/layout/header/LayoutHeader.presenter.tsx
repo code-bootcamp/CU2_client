@@ -1,11 +1,12 @@
 import React from "react";
-import SearchBar from "../../../units/commons/search/searchBar/SearchBar.Container";
+import SearchBar from "./searchBar/SearchBar.Container";
 import Blank from "../../Blank";
 import * as S from "./LayoutHeader.Style";
+import { BsSearch } from "react-icons/bs";
 
 export default function LayoutHeaderPageUI(props) {
   return (
-    <S.Wrapper>
+    <S.Wrapper isSearch={props.isSearch}>
       <S.LeftHeader>
         <S.HeaderLogo
           src="/CU2_LOGO.png"
@@ -15,8 +16,86 @@ export default function LayoutHeaderPageUI(props) {
         />
       </S.LeftHeader>
       <S.HeaderBody>
-        <SearchBar />
+        {!props.isSearch ? (
+          <SearchBar setIsSearch={props.setIsSearch} />
+        ) : (
+          <S.SearchBarDetail isSearch={props.isSearch}>
+            <S.SearchCategory>
+              <S.Category
+                onClick={() => props.setSelect("Total")}
+                isCurrent={props.select === "Total"}
+              >
+                Total
+                {props.select === "Total" && (
+                  <S.CategoryLine isCategory={props.select === "Total"} />
+                )}
+              </S.Category>
+              <Blank width="40px" />
+              <S.Category
+                onClick={() => props.setSelect("Blog")}
+                isCurrent={props.select === "Blog"}
+              >
+                Blog
+                {props.select === "Blog" && (
+                  <S.CategoryLine isCategory={props.select === "Blog"} />
+                )}
+              </S.Category>
+              <Blank width="40px" />
+              <S.Category
+                onClick={() => props.setSelect("Stack")}
+                isCurrent={props.select === "Stack"}
+              >
+                Stack Q{"&"}A
+                {props.select === "Stack" && (
+                  <S.CategoryLine isCategory={props.select === "Stack"} />
+                )}
+              </S.Category>
+              <Blank width="40px" />
+              <S.Category
+                onClick={() => props.setSelect("Columns")}
+                isCurrent={props.select === "Columns"}
+              >
+                Columns
+                {props.select === "Columns" && (
+                  <S.CategoryLine isCategory={props.select === "Columns"} />
+                )}
+              </S.Category>
+              <Blank width="40px" />
+              <S.Category
+                onClick={() => props.setSelect("Comments")}
+                isCurrent={props.select === "Comments"}
+              >
+                Comments
+                {props.select === "Comments" && (
+                  <S.CategoryLine isCategory={props.select === "Comments"} />
+                )}
+              </S.Category>
+              <Blank width="40px" />
+              <S.Category
+                onClick={() => props.setSelect("us")}
+                isCurrent={props.select === "us"}
+              >
+                Us {"&"} Coaches
+                {props.select === "us" && (
+                  <S.CategoryLine isCategory={props.select === "us"} />
+                )}
+              </S.Category>
+            </S.SearchCategory>
+
+            <Blank height="25px" />
+            <S.SearchBar>
+              <BsSearch style={{ color: "#BDBDBD", fontSize: "18px" }} />
+              <S.SearchBarInput placeholder="Search" />
+            </S.SearchBar>
+          </S.SearchBarDetail>
+        )}
+        {props.isSearch && (
+          <S.SearchBarCancleBtn onClick={() => props.setIsSearch(false)}>
+            cancle
+          </S.SearchBarCancleBtn>
+        )}
       </S.HeaderBody>
+
       <S.RightHeader>
         <S.HeaderCodingUs
           onClick={props.moveToPage("/codingus")}
