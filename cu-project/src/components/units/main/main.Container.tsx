@@ -29,8 +29,8 @@ export default function Main(props: MainPageProps) {
     infinite: true,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 1,
-    // initialSlide: 0,
+    slidesToScroll: 4,
+    initialSlide: 0,
     nextArrow: <SampleNextArrow />,
     responsive: [
       {

@@ -4,7 +4,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import Blank from "../../commons/Blank";
-import Slider from "react-slick";
 import Card from "../codingus/main/Card/Card.container";
 import { BsSearch } from "react-icons/bs";
 
