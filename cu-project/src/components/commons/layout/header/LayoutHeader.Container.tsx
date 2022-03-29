@@ -1,6 +1,6 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { GlobalContext } from "../../../../../pages/_app";
 import { useAuth } from "../../hooks/useAuth";
 import { useMoveToPage } from "../../hooks/useMoveToPage";
@@ -14,13 +14,52 @@ const LOGOUT_USER = gql`
 
 export default function LayoutHeaderPage() {
   const { accessToken } = useContext(GlobalContext);
-  const [isLogin, setIsLogin] = useState(false);
-
+  const SearchRef = useRef(null);
   const router = useRouter();
+  const [isLogin, setIsLogin] = useState(false);
+  const [keyword, setKeyword] = useState("");
+  const [isSearch, setIsSearch] = useState(true);
+  const [select, setSelect] = useState("Total");
+
   const { moveToPage } = useMoveToPage();
   const currentPath = router.asPath;
 
   const [logoutUser] = useMutation(LOGOUT_USER);
+
+  const SendQuery = (category, keyword) => {
+    router.push({
+      pathname: `/search/`,
+      query: { category: category, keyword: keyword },
+    });
+  };
+
+  const onChangeKeyPress = (e) => {
+    if (e.key === "Enter") {
+      SearchRef.current?.click();
+    }
+  };
+
+  const onChangeSearch = (e) => {
+    setKeyword(e.target.value);
+  };
+
+  const onClickSearch = () => {
+    SendQuery(select, keyword);
+  };
+
+  useEffect(() => {
+    if (accessToken) {
+      setIsLogin(true);
+    }
+  }, [accessToken]);
+
+  const handleFollow = useCallback(() => {
+    if (currentPath.includes("search")) {
+      if (window.pageYOffset === 0) setIsSearch(true);
+    }
+
+    if (window.pageYOffset > 0) setIsSearch(false);
+  }, [isSearch]);
 
   function onClickLogOut() {
     logoutUser();
@@ -29,10 +68,19 @@ export default function LayoutHeaderPage() {
   }
 
   useEffect(() => {
-    if (accessToken) {
-      setIsLogin(true);
-    }
-  }, [accessToken]);
+    const watch = () => {
+      window.addEventListener("scroll", handleFollow);
+    };
+    watch();
+    return () => {
+      window.removeEventListener("scroll", handleFollow);
+    };
+  }, [isSearch]);
+
+  useEffect(() => {
+    if (currentPath.includes("search")) setIsSearch(true);
+    if (!currentPath.includes("search")) setIsSearch(false);
+  }, [router]);
 
   return (
     <LayoutHeaderPageUI
@@ -40,6 +88,14 @@ export default function LayoutHeaderPage() {
       currentPath={currentPath}
       isLogin={isLogin}
       onClickLogOut={onClickLogOut}
+      setIsSearch={setIsSearch}
+      isSearch={isSearch}
+      setSelect={setSelect}
+      select={select}
+      onChangeKeyPress={onChangeKeyPress}
+      onChangeSearch={onChangeSearch}
+      SearchRef={SearchRef}
+      onClickSearch={onClickSearch}
     />
   );
 }
