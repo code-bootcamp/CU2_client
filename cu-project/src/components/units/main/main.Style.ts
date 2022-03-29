@@ -70,6 +70,7 @@ export const CodingUsBannerDiv = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  word-break: keep-all;
   @media ${breakPoints.mobile} {
     flex-direction: column;
   }

@@ -8,7 +8,9 @@ export default function UserRankingHistoryUI() {
   const { RangePicker } = DatePicker;
   return (
     <S.AllWrapper>
-      <MypageMenu />
+      <S.Web>
+        <MypageMenu />
+      </S.Web>
       <S.Wrapper>
         <UserPageNav menu={"점수내역"} />
         <Blank height="30px" />

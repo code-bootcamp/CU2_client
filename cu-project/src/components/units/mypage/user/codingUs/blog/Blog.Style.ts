@@ -8,6 +8,12 @@ export const AllWrapper = styled.div`
   align-items: flex-start;
 `;
 
+export const Web = styled.div`
+  @media ${breakPoints.tablet && breakPoints.mobile} {
+    display: none;
+  }
+`;
+
 export const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -30,10 +36,11 @@ export const BlogHeader = styled.div`
   width: 90%;
   padding: 10px 0;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   @media ${breakPoints.mobile} {
-    width: 100%;
+    width: 90%;
     flex-direction: column;
   }
 `;
@@ -48,4 +55,7 @@ export const CardWrapper = styled(RowWrapper)`
   justify-content: space-between;
   flex-wrap: wrap;
   width: 100%;
+  @media ${breakPoints.tablet && breakPoints.mobile} {
+    justify-content: center;
+  }
 `;

@@ -5,7 +5,9 @@ import * as S from "./Mypage.Style";
 export default function MyPageUI(props: IMyPageUIProps) {
   return (
     <S.Wrapper>
-      <MypageMenu />
+      <S.Web>
+        <MypageMenu />
+      </S.Web>
     </S.Wrapper>
   );
 }

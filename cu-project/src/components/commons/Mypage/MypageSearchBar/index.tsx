@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import Color from "../../../../commons/styles/color";
+import { breakPoints } from "../../../../commons/styles/media";
 import Blank from "../../Blank";
 
 interface IProps {
@@ -10,8 +11,19 @@ interface IProps {
 }
 
 const BlogHeaderRight = styled.div`
+  width: 100%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  @media ${breakPoints.tablet && breakPoints.mobile} {
+    justify-content: center;
+  }
+`;
+
+const FilterBox = styled.div`
+  @media ${breakPoints.tablet && breakPoints.mobile} {
+    margin-right: 10px;
+  }
 `;
 
 const Filter = styled.span`
@@ -23,15 +35,34 @@ const Filter = styled.span`
   }
 `;
 
+const Web = styled.div`
+  @media ${breakPoints.mobile} {
+    display: none;
+  }
+`;
+
+const Mobile = styled.div`
+  display: none;
+  @media ${breakPoints.tablet && breakPoints.mobile} {
+    display: contents;
+  }
+`;
+
 const SearchBar = styled.div`
   border: 1px solid #bdbdbd;
   border-radius: 10px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 10px;
+
   & input {
+    width: 90%;
     border: none;
+    font-size: 12px;
+    @media ${breakPoints.mobile} {
+      display: none;
+    }
   }
 `;
 
@@ -44,14 +75,13 @@ export function MyPageSearchBar() {
     setIsHot((prev) => !prev);
   };
 
+  const onClickAlert = () => {
+    alert("모바일");
+  };
+
   return (
     <BlogHeaderRight>
-      <SearchBar>
-        <input type="text" placeholder="검색어를 입력해주세요" />
-        <BsSearch />
-      </SearchBar>
-      <Blank width="20px"></Blank>
-      <div>
+      <FilterBox>
         <Filter onClick={onClickSelect} isRecently={isRecently}>
           최신순
         </Filter>{" "}
@@ -59,7 +89,16 @@ export function MyPageSearchBar() {
         <Filter onClick={onClickSelect} isHot={isHot}>
           인기순
         </Filter>
-      </div>
+      </FilterBox>
+      <SearchBar>
+        <Web>
+          <input type="text" placeholder="검색어를 입력해주세요" />
+          <BsSearch />
+        </Web>
+        <Mobile>
+          <BsSearch onClick={onClickAlert} />
+        </Mobile>
+      </SearchBar>
     </BlogHeaderRight>
   );
 }

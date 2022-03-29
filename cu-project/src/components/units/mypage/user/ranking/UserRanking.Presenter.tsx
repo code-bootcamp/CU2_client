@@ -7,7 +7,9 @@ import * as S from "./UserRanking.Style";
 export default function UserRankingUI(props) {
   return (
     <S.AllWrapper>
-      <MypageMenu />
+      <S.Web>
+        <MypageMenu />
+      </S.Web>
       <S.Wrapper>
         <UserPageNav menu={"전체 랭킹보기"} />
         <Blank height="30px" />

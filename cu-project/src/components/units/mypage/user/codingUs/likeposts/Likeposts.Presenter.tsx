@@ -10,7 +10,9 @@ import { MyPageSearchBar } from "../../../../../commons/Mypage/MypageSearchBar";
 export default function UserLikePostsUI(props) {
   return (
     <S.AllWrapper>
-      <MypageMenu />
+      <S.Web>
+        <MypageMenu />
+      </S.Web>
       <S.Wrapper>
         <UserPageNav menu={"Good한 포스트"} />
         <S.BlogHeader>
