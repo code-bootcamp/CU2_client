@@ -8,78 +8,31 @@ interface IButtonProps {
 }
 
 const Wrapper = styled.div`
-  width: 100vw;
+  min-width: 100vw;
   height: 100vh;
   box-sizing: border-box;
   margin: 0;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #333333;
-  padding: 0 10%;
+  /* flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start; */
+  background: url("/landingPage1.png");
+  background-position: flex-start;
+  background-size: cover;
+  padding: 70px 100px 0 100px;
   @media ${breakPoints.tablet} {
     min-width: 100%;
   }
   @media ${breakPoints.mobile} {
     min-width: 100%;
-  }
-`;
-
-const TitleBox = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-bottom: 70px;
-  @media ${breakPoints.tablet} {
-  }
-  @media ${breakPoints.mobile} {
-    min-width: 100%;
-    align-items: center;
-    padding-bottom: 30px;
-  }
-`;
-
-const Title = styled.h1`
-  font-size: 64px;
-  text-align: center;
-  color: ${Color.white};
-  padding-bottom: 30px;
-  @media ${breakPoints.tablet} {
-    font-size: 48px;
-  }
-  @media ${breakPoints.mobile} {
-    font-size: 28px;
-    min-width: 100%;
-    padding-bottom: 20px;
-  }
-`;
-
-const TripTitle = styled.div`
-  color: ${Color.medium};
-  font-size: 18px;
-  line-height: 34px;
-`;
-
-const SubTitle = styled.div`
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 38px;
-  color: ${Color.white};
-  @media ${breakPoints.tablet} {
-    width: 100%;
-    font-size: 28px;
-  }
-  @media ${breakPoints.mobile} {
-    width: 100%;
-    font-size: 18px;
-    text-align: center;
   }
 `;
 
 const ButtonBox = styled.div`
+  padding-top: 660px;
+  width: 100%;
   display: flex;
+  justify-content: center;
   @media ${breakPoints.mobile} {
     flex-direction: column;
   }
@@ -110,11 +63,6 @@ export default function FirstPage() {
   const { moveToPage } = useMoveToPage();
   return (
     <Wrapper>
-      <TitleBox>
-        <Title>내가 쓴 글이 스펙이 된다!</Title>
-        <TripTitle>자기주도학습을 하면서 공부한 내용을 작성하고</TripTitle>
-        <SubTitle>작성에 대한 보상으로 점수를 획득해보세요!</SubTitle>
-      </TitleBox>
       <ButtonBox>
         <MoveButton onClick={moveToPage("/codingus")} cate={true}>
           CodingUS
