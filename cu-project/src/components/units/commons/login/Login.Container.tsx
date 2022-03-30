@@ -14,6 +14,7 @@ import {
   IQueryFetchCoachUserArgs,
 } from "../../../../commons/types/generated/types";
 import useStore from "../../../../commons/store/store";
+import { getLoggenInUser } from "../../../../commons/libraries/getLoggedInUser";
 
 const schema = yup.object().shape({
   email: yup
@@ -43,7 +44,7 @@ export default function Login(props: ILoginProps) {
   );
 
   const { moveToPage } = useMoveToPage();
-  const setAccessToken = useStore((state) => state.setAccessToken);
+  const { setAccessToken, setUserInfo } = useStore((state) => state);
 
   const onClickLogin = async (data: FormValues) => {
     try {
@@ -54,7 +55,7 @@ export default function Login(props: ILoginProps) {
         },
       });
       const accessToken = result.data?.login;
-      console.log(accessToken)
+      console.log(accessToken);
       if (!accessToken) {
         alert("로그인 실패");
         return;
@@ -69,13 +70,17 @@ export default function Login(props: ILoginProps) {
         alert("로그인 실패");
         return;
       }
-
-      sessionStorage.setItem("userInfo", JSON.stringify(loginUser));
+      // refresh토큰 관련 이슈
       sessionStorage.setItem("accessToken", accessToken);
-
+      //
       if (setAccessToken) {
         setAccessToken(accessToken || "");
         router.push("/");
+
+        getLoggenInUser().then((userInfo) => {
+          console.log("getLoggenInUser", userInfo);
+          setUserInfo(userInfo);
+        });
       }
     } catch (error) {
       if (error instanceof Error) {

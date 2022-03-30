@@ -7,7 +7,7 @@ const useStore = create(
     isDark: false,
     toggleIsDark: () => set((state: any) => ({ isDark: !state.isDark })),
     userInfo: null,
-    setUserInfo: (userInfo: IUser) => set((_: any) => ({ userInfo: userInfo })),
+    setUserInfo: (userInfo: IUser | undefined) => set((_: any) => ({ userInfo: userInfo })),
     accessToken: "",
     setAccessToken: (token: string) => set((_: any) => ({ accessToken: token })),
   }))

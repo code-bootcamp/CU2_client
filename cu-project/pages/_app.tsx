@@ -11,15 +11,10 @@ import { Global } from "@emotion/react";
 import { onError } from "@apollo/client/link/error";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 import Layout from "../src/components/commons/layout";
-import {
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, Dispatch, SetStateAction, useEffect } from "react";
 import { getAccessToken } from "../src/commons/libraries/getAccessToken";
 import useStore from "../src/commons/store/store";
+import { getLoggenInUser } from "../src/commons/libraries/getLoggedInUser";
 
 // app.tsx 타입 추가
 interface IGlobalContext {
@@ -66,12 +61,24 @@ function MyApp({ Component, pageProps }: AppProps) {
     getAccessToken().then((newAccessToken) => {
       setAccessToken(newAccessToken);
     });
-    console.log("isLoad!!");
-    if (sessionStorage.getItem("userInfo"))
-    setAccessToken(sessionStorage.getItem("accessToken") || "");
-    
-    if (sessionStorage.getItem("userInfo")) {
-      setUserInfo(JSON.parse(sessionStorage.getItem("userInfo") || "{}"));
+    // refresh토큰 관련 이슈 
+    if (sessionStorage.getItem("accessToken"))
+      setAccessToken(sessionStorage.getItem("accessToken") || "");
+
+    if (sessionStorage.getItem("accessToken")) {
+      getLoggenInUser().then((userInfo) => {
+        console.log("getLoggenInUser", userInfo);
+        setUserInfo(userInfo);
+      });
+      //   if (accessToken)
+      //   setAccessToken(sessionStorage.getItem("accessToken") || "");
+
+      // if (accessToken) {
+      //   getLoggenInUser().then((userInfo) => {
+      //     console.log("getLoggenInUser", userInfo);
+      //     setUserInfo(userInfo);
+      //   });
+      // }
     }
   }, []);
 
