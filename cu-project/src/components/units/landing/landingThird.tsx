@@ -121,7 +121,7 @@ export default function ThirdPage() {
                 width="482"
                 height="193.073"
                 filterUnits="userSpaceOnUse"
-                colorInterpolation-filters="sRGB"
+                colorinterpolation-filters="sRGB"
               >
                 <feFlood floodOpacity="0" result="BackgroundImageFix" />
                 <feColorMatrix
@@ -156,7 +156,7 @@ export default function ThirdPage() {
                 width="482"
                 height="193.073"
                 filterUnits="userSpaceOnUse"
-                colorInterpolation-filters="sRGB"
+                colorinterpolation-filters="sRGB"
               >
                 <feFlood floodOpacity="0" result="BackgroundImageFix" />
                 <feColorMatrix

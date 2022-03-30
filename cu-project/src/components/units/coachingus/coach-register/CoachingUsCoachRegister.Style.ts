@@ -67,6 +67,13 @@ export const FormTitle = styled.h1`
 `;
 export const FormSubTitle = styled.p``;
 
+export const ErrorMessageBox = styled.div`
+  height: 20px;
+  font-size: 12px;
+  padding-top: 3px;
+  color: red;
+  padding-left: 5px;
+`;
 export const FormInput = styled.input`
   all: unset;
   width: 70%;

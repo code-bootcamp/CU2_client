@@ -3,7 +3,11 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormValues, IRegisterProps } from "../../../../commons/types/types";
 import RegisterUI from "./Register.Presenter";
-import { CHECK_TOKEN, CREATE_USER, SEND_TOKEN_TO_SMS } from "./Register.Queries";
+import {
+  CHECK_TOKEN,
+  CREATE_USER,
+  SEND_TOKEN_TO_SMS,
+} from "./Register.Queries";
 import { useMutation } from "@apollo/client";
 import {
   IMutation,
@@ -23,12 +27,16 @@ const schema = yup.object().shape({
   password: yup
     .string()
     .min(8, "비밀번호는 최소 8자리 이상 입력해주세요.")
+    .matches(
+      /^(?=.*[a-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/,
+      "영문,숫자,특수 문자의 조합하여 작성해주세요."
+    )
     .required("비밀번호는 필수 입력 사항입니다."),
   checkPassword: yup
     .string()
     .min(8, "확인 비밀번호는 최소 8자리 이상 입력해주세요.")
     .required("확인 비밀번호는 필수 입력 사항입니다.")
-    .oneOf([yup.ref("password"), "비밀번호가 일치하지 않습니다"]),
+    .oneOf([yup.ref("password")], "비밀번호가 일치하지 않습니다."),
 });
 
 export default function Register(props: IRegisterProps) {

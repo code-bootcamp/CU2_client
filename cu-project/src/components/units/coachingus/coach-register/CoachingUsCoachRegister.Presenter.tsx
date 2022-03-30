@@ -20,20 +20,59 @@ export default function CoachingUsCoachRegisterUI(props) {
               ref={(input) => {
                 nameInput = input;
               }}
-              value={props.text}
-              type="text"
-              placeholder="회사명"
-              isFull={props.text}
-              onChange={props.onChangeText}
+              value={props.coachProfile.email}
+              name="email"
+              type="email"
+              placeholder="이메일"
+              isFull={props.coachProfile.email}
+              onChange={props.onChangeCoachProfile}
               autofocus
             />
-            <Blank height="20px" />
-            <S.FormInput type="text" placeholder="직무" />
-            <Blank height="20px" />
-            <S.FormInput type="text" placeholder="직책" />
-            <Blank height="20px" />
-            <S.FormInput type="text" placeholder="경력" />
-            <Blank height="50px" />
+            {props.emailTextErr ? (
+              <S.ErrorMessageBox>
+                이메일 형식이 올바르지 않습니다.
+              </S.ErrorMessageBox>
+            ) : (
+              <Blank height="20px" />
+            )}
+
+            <S.FormInput
+              type="text"
+              name="cor"
+              isFull={props.coachProfile.cor}
+              onChange={props.onChangeCoachProfile}
+              placeholder="회사"
+            />
+            {props.activateBtn && props.coachProfile.cor === "" ? (
+              <S.ErrorMessageBox>필수 입력 사항입니다.</S.ErrorMessageBox>
+            ) : (
+              <Blank height="20px" />
+            )}
+            <S.FormInput
+              type="text"
+              name="subCorType"
+              onChange={props.onChangeCoachProfile}
+              isFull={props.coachProfile.subCorType}
+              placeholder="직책"
+            />
+            {props.activateBtn && props.coachProfile.subCorType === "" ? (
+              <S.ErrorMessageBox>필수 입력 사항입니다.</S.ErrorMessageBox>
+            ) : (
+              <Blank height="20px" />
+            )}
+            <S.FormInput
+              type="text"
+              name="exp"
+              isFull={props.coachProfile.exp}
+              onChange={props.onChangeCoachProfile}
+              placeholder="경력"
+            />
+            {props.activateBtn && props.coachProfile.exp === "" ? (
+              <S.ErrorMessageBox>필수 입력 사항입니다.</S.ErrorMessageBox>
+            ) : (
+              <Blank height="20px" />
+            )}
+            <Blank height="30px" />
             <div>
               (필수) 기업 유형을 선택해주세요
               <Blank height="10px" />
@@ -79,7 +118,13 @@ export default function CoachingUsCoachRegisterUI(props) {
                 </S.CorGroupButton>
               </S.CorGroup>
             </div>
-            <Blank height="50px" />
+            <Blank height="10px" />
+            {props.activateBtn && props.corType === "" ? (
+              <S.ErrorMessageBox>필수 입력 사항입니다.</S.ErrorMessageBox>
+            ) : (
+              <Blank height="20px" />
+            )}
+            <Blank height="20px" />
             <div>
               (필수) 본인을 나타내는 태그 2개
               <Blank height="10px" />
@@ -102,9 +147,18 @@ export default function CoachingUsCoachRegisterUI(props) {
                 isFull={props.tags.length > 1}
               />
             </S.TagBox>
-            <Blank height="50px" />
+            {props.activateBtn && props.tags.length < 2 ? (
+              <S.ErrorMessageBox>
+                두 가지 태그를 입력해주세요.
+              </S.ErrorMessageBox>
+            ) : (
+              <Blank height="20px" />
+            )}
+            <Blank height="30px" />
             <S.ButtonBox>
-              <S.RegisterButton>지원하기</S.RegisterButton>
+              <S.RegisterButton onClick={props.coachRegisterBtn}>
+                지원하기
+              </S.RegisterButton>
               <S.GetOutButton onClick={props.moveToPage("/coachingus")}>
                 나가기
               </S.GetOutButton>

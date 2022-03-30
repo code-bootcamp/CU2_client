@@ -2,29 +2,39 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   min-width: 100vw;
-  min-height: calc(100vh - 70px);
+  min-height: calc(100vh - 20px);
   box-sizing: border-box;
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
-  padding-bottom: 10px;
   background: linear-gradient(to bottom right, #d7455d, #6917d2);
+  padding: 20px 0;
 `;
 
 export const RegisterForm = styled.form`
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 450px;
+  height: 600px;
   z-index: 3;
+
+  border: 1px solid white;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 20px 45px 20px 45px;
   & > p {
     font-size: 21px;
     color: white;
   }
 `;
 
+export const ErrorMessageBox = styled.div`
+  height: 20px;
+  padding-top: 3px;
+  color: white;
+`;
 export const Logo = styled.img`
   width: 100px;
   background-color: white;
@@ -35,6 +45,8 @@ export const Logo = styled.img`
   :hover {
     transform: rotate(720deg);
   }
+  position: relative;
+  top: 50px;
 `;
 
 export const RegisterLabel = styled.label`
@@ -52,7 +64,8 @@ export const RegisterInput = styled.input`
   letter-spacing: 2px;
   padding: 10px 10px;
   z-index: 2;
-  font-size: 14px;
+  font-size: 12px;
+  /* height: 12px; */
   border-radius: 5px;
   ::placeholder {
     font-size: 14px;
@@ -70,28 +83,6 @@ export const GetRegisterNum = styled.button`
   letter-spacing: 2px;
   border-radius: 5px;
   background: linear-gradient(90deg, #e9345a 13%, #6002ee 100%);
-`;
-export const FormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 450px;
-  height: 600px;
-  position: absolute;
-  top: 150px;
-  border: 1px solid white;
-  opacity: 0.7;
-  border-radius: 15px;
-  z-index: 1;
-`;
-export const FormContainerBorder = styled.div`
-  width: 100%;
-  height: 100%;
-  border-radius: 15px;
-  background-color: white;
-  opacity: 0.2;
-  z-index: 1;
 `;
 
 export const CreateAccountBtn = styled.button`

@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import Color from "../../../../commons/styles/color";
 
 export const Wrapper = styled.div`
-  margin: 100px auto 0;
+  margin: 120px auto 0;
   width: 75%;
   display: flex;
   flex-direction: column;
