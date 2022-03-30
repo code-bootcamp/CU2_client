@@ -26,7 +26,6 @@ export default function CoachingUsCoachRegisterUI(props) {
               placeholder="이메일"
               isFull={props.coachProfile.email}
               onChange={props.onChangeCoachProfile}
-              autofocus
             />
             {props.emailTextErr ? (
               <S.ErrorMessageBox>

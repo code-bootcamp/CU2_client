@@ -61,12 +61,15 @@ export default function CoachingUsCoachRegisterPage() {
 
   const checkEmail = (emailForm) => {
     const email = emailForm;
-    const exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+    const exptext =
+      /^([\w\\.\\_\\-])*[a-zA-Z0-9]+([\w\\.\\_\\-])*([a-zA-Z0-9])+([\w\\.\\_\\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
     if (exptext.test(email) === false) {
       setEmailTextErr(true);
       return false;
+    } else {
+      setEmailTextErr(false);
+      return true;
     }
-    return true;
   };
 
   const coachRegisterBtn = () => {
