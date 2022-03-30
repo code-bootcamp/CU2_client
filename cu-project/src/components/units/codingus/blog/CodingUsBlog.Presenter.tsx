@@ -10,6 +10,7 @@ import { v4 as uuidV4 } from "uuid";
 import InfiniteScroll from "react-infinite-scroller";
 import BlogCard02 from "../card/blogCard/BlogCard02/BlogCard02";
 import CodingUsHistory from "../history/History.Container";
+import WriteBtn from "../writeBtn/WriteBtn";
 export default function CodingUsBlogUI(props: ICodingUsBlogUIProps) {
   return (
       <S.CodingUsBlog>
@@ -68,6 +69,7 @@ export default function CodingUsBlogUI(props: ICodingUsBlogUIProps) {
             </InfiniteScroll>
           </S.FollowingWrapper>
         </S.CodingUsBlogBody>
+        <WriteBtn page="blog"/>
       </S.CodingUsBlog>
   );
 }
