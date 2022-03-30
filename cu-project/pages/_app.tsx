@@ -19,6 +19,7 @@ import {
   useState,
 } from "react";
 import { getAccessToken } from "../src/commons/libraries/getAccessToken";
+import useStore from "../src/commons/store/store";
 
 // app.tsx 타입 추가
 interface IGlobalContext {
@@ -31,13 +32,10 @@ export const GlobalContext = createContext<IGlobalContext>({});
 function MyApp({ Component, pageProps }: AppProps) {
   const [accessToken, setAccessToken] = useState("");
   const temp = accessToken;
-  const [userInfo, setUserInfo] = useState({});
-
+  const setUserInfo = useStore((state) => state.setUserInfo);
   const value = {
     accessToken,
     setAccessToken,
-    userInfo,
-    setUserInfo,
     temp,
   };
 
@@ -83,9 +81,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     getAccessToken().then((newAccessToken) => {
       setAccessToken(newAccessToken);
     });
-
-    if (localStorage.getItem("userInfo")) {
-      setUserInfo(JSON.parse(localStorage.getItem("userInfo") || "{}"));
+    if (sessionStorage.getItem("userInfo")) {
+      setUserInfo(JSON.parse(sessionStorage.getItem("userInfo") || "{}"));
     }
   }, []);
 

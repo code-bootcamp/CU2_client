@@ -103,7 +103,7 @@ export default function Register(props: IRegisterProps) {
     if (phone.length < 1) alert("번호입력해요");
 
     try {
-      setIsToken((prev) => !prev);
+      setIsToken(true);
       sendTokenToSMS({ variables: { phonenumber: phone } });
       alert("인증번호 전송");
     } catch (error: any) {}
