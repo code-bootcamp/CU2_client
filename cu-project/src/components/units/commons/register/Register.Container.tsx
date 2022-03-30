@@ -3,7 +3,11 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormValues, IRegisterProps } from "../../../../commons/types/types";
 import RegisterUI from "./Register.Presenter";
-import { CHECK_TOKEN, CREATE_USER, SEND_TOKEN_TO_SMS } from "./Register.Queries";
+import {
+  CHECK_TOKEN,
+  CREATE_USER,
+  SEND_TOKEN_TO_SMS,
+} from "./Register.Queries";
 import { useMutation } from "@apollo/client";
 import {
   IMutation,
@@ -95,7 +99,7 @@ export default function Register(props: IRegisterProps) {
     if (phone.length < 1) alert("번호입력해요");
 
     try {
-      setIsToken((prev) => !prev);
+      setIsToken(true);
       sendTokenToSMS({ variables: { phonenumber: phone } });
       alert("인증번호 전송");
     } catch (error: any) {}

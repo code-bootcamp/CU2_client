@@ -3,12 +3,13 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormValues, ILoginProps } from "../../../../commons/types/types";
 import LoginUI from "./Login.Presenter";
-import { LOGIN } from "./Login.Queries";
-import { useMutation } from "@apollo/client";
+import { FETCH_COACH_USER_LIST, LOGIN } from "./Login.Queries";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import { useContext } from "react";
 import { GlobalContext } from "../../../../../pages/_app";
 import { useRouter } from "next/router";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
+import { IQuery, IQueryFetchCoachUserArgs } from "../../../../commons/types/generated/types";
 
 const schema = yup.object().shape({
   email: yup
@@ -28,12 +29,17 @@ const schema = yup.object().shape({
 
 export default function Login(props: ILoginProps) {
   const router = useRouter();
-  const [login] = useMutation(LOGIN);
-  const { moveToPage } = useMoveToPage();
-  const { setAccessToken } = useContext(GlobalContext);
   const { register, formState, handleSubmit } = useForm({
     resolver: yupResolver(schema),
   });
+
+  const [login] = useMutation(LOGIN);
+  const [fetchCoachUserList] = useLazyQuery<
+    Pick<IQuery, "fetchCoachUserList">
+  >(FETCH_COACH_USER_LIST);
+
+  const { moveToPage } = useMoveToPage();
+  const { setAccessToken } = useContext(GlobalContext);
 
   const onClickLogin = async (data: FormValues) => {
     try {
@@ -44,6 +50,24 @@ export default function Login(props: ILoginProps) {
         },
       });
       const accessToken = result.data?.login;
+      if (!accessToken) {
+        alert("로그인 실패");
+        return;
+      }
+      
+      const allUserList = (await fetchCoachUserList()).data?.fetchCoachUserList;
+      const {__typename, ...loginUser} = allUserList?.filter(el => el.email === data.email)[0];
+      
+
+      if (!loginUser) {
+        alert("로그인 실패");
+        return;
+      }
+
+      console.log(loginUser);
+      
+      sessionStorage.setItem("userInfo", JSON.stringify(loginUser));
+
       if (setAccessToken) {
         setAccessToken(accessToken || "");
         router.push("/");
