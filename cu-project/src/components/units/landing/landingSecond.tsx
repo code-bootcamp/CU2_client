@@ -18,7 +18,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 10%;
   background-color: ${Color.light};
   @media ${breakPoints.tablet} {
     min-width: 100%;
@@ -98,7 +97,7 @@ export default function SecondPage() {
       <img src="/CU2_LOGO2.png" width={287} />
       <Blank height="10px" />
       <Motto>초보 개발자의 Self Study Solution을 제공하는 CU2</Motto>
-      <Blank height="200px" />
+      <Blank height="70px" />
       <BodyWrapper>
         <Box width={"544px"}>
           <ServiceName>
@@ -141,7 +140,7 @@ export default function SecondPage() {
             <Ball />
             <Line width={"195px"} />
             <Blank width="15px" />
-            CodingUs
+            CoachingUs
             <Blank width="15px" />
             <Line width={"195px"} />
             <Ball />

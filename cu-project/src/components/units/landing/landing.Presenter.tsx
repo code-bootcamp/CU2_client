@@ -4,6 +4,7 @@ import SixthPage from "./landingSixth";
 import SecondPage from "./landingSecond";
 import FourthPage from "./landingFourth";
 import FifthPage from "./landingFifth";
+import SevenPage from "./landingSeven";
 
 export default function LandingUI() {
   return (
@@ -14,6 +15,7 @@ export default function LandingUI() {
       <FourthPage />
       <FifthPage />
       <SixthPage />
+      <SevenPage />
     </>
   );
 }

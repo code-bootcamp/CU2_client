@@ -1,88 +1,60 @@
 import styled from "@emotion/styled";
-import { breakPoints } from "../../../commons/styles/media";
+import Color from "../../../commons/styles/color";
+// import { breakPoints } from "../../../commons/styles/media";
 
 const Wrapper = styled.div`
-  min-width: 100vw;
-  min-height: 100vh;
-  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
   margin: 0;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  background-color: #f6f5f5;
-  padding: 0 10%;
-  @media ${breakPoints.tablet} {
-    flex-direction: column;
-    justify-content: center;
-  }
-  @media ${breakPoints.mobile} {
-    flex-direction: column;
-    justify-content: center;
-  }
-`;
-
-const ImageBox = styled.div`
-  width: 69%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  @media ${breakPoints.tablet} {
-    width: 100%;
-  }
-  @media ${breakPoints.mobile} {
-    width: 100%;
-    img:nth-of-type(3) {
-      display: none;
-    }
-  }
+  box-sizing: border-box;
 `;
 
 const TitleBox = styled.div`
-  width: 29%;
+  width: 730px;
   display: flex;
   flex-direction: column;
-  @media ${breakPoints.tablet} {
-    width: 100%;
+  justify-content: center;
+  align-items: center;
+  & h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: ${Color.dark};
   }
-  @media ${breakPoints.mobile} {
-    width: 100%;
-  }
-`;
-
-const Title = styled.h2`
-  font-family: "Apple SD Gothic Neo";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 36px;
-  line-height: 43px;
-  margin-bottom: 30px;
-  @media ${breakPoints.tablet} {
-    margin-bottom: 20px;
-  }
-  @media ${breakPoints.mobile} {
-    margin-bottom: 20px;
+  & p {
+    font-size: 24px;
   }
 `;
 
-const Contents = styled.p`
-  font-family: "Apple SD Gothic Neo";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
+const ContentsBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ContentBox = styled.div`
+  max-width: 742px;
+  min-width: 672px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ContentDesc = styled.div`
+  max-width: 454px;
+  min-width: 429px;
+  display: flex;
+  flex-direction: column;
   line-height: 32px;
-  color: #bdbdbd;
-  @media ${breakPoints.tablet} {
-    margin-bottom: 30px;
+  & h3 {
+    font-size: 24px;
   }
-  @media ${breakPoints.mobile} {
-    margin-bottom: 30px;
-  }
-`;
-
-const ColumnImg = styled.img`
-  width: 32%;
-  @media ${breakPoints.mobile} {
-    width: 49%;
+  & p {
+    font-size: 18px;
   }
 `;
 
@@ -90,20 +62,34 @@ export default function FifthPage() {
   return (
     <Wrapper>
       <TitleBox>
-        <Title>
-          현직자 코치들의
-          <br /> 이야기를 들어보세요
-        </Title>
-        <Contents>
-          코치들의 생생한 직무 이야기와 기술 지식들이 모여있는 곳! CoachingUs
-          Columns에서 확인하세요
-        </Contents>
+        <h1>코칭 서비스를 소개할게요</h1>
+        <p>
+          CoachingUs는 개발자로의 시작, 전환을 위한 취업 지원 콘텐츠를
+          제공합니다
+        </p>
       </TitleBox>
-      <ImageBox>
-        <ColumnImg src="/Group 414.png" />
-        <ColumnImg src="/Group 414.png" />
-        <ColumnImg src="/Group 414.png" />
-      </ImageBox>
+      <ContentsBox>
+        <ContentBox>
+          <img src="/fifth1.png" />
+          <ContentDesc>
+            <h3>User</h3>
+            <p>
+              코치들에게 자기소개서나 포트폴리오 등 취업 코칭을 신청하세요!
+              코치들이 작성한 칼럼을 읽고 전문적인 인사이트를 얻어보세요!
+            </p>
+          </ContentDesc>
+        </ContentBox>
+        <ContentBox>
+          <img src="/fifth2.png" />
+          <ContentDesc>
+            <h3>Coach</h3>
+            <p>
+              매일 1시간 후배들의 코칭을 진행하며 부수입을 창출해보세요! 칼럼을
+              작성하여 본인을 PR해보세요!
+            </p>
+          </ContentDesc>
+        </ContentBox>
+      </ContentsBox>
     </Wrapper>
   );
 }
