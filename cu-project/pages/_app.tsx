@@ -30,14 +30,8 @@ interface IGlobalContext {
 export const GlobalContext = createContext<IGlobalContext>({});
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [accessToken, setAccessToken] = useState("");
-  const temp = accessToken;
   const setUserInfo = useStore((state) => state.setUserInfo);
-  const value = {
-    accessToken,
-    setAccessToken,
-    temp,
-  };
+  const { accessToken, setAccessToken } = useStore((state) => state);
 
   const uploadLink = createUploadLink({
     uri: process.env.NEXT_PUBLIC_GRAPHQL_URL,
@@ -78,23 +72,26 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   useEffect(() => {
-    getAccessToken().then((newAccessToken) => {
-      setAccessToken(newAccessToken);
-    });
+    // refreshToken Issue 해결 시 주석 해제
+    // getAccessToken().then((newAccessToken) => {
+    //   setAccessToken(newAccessToken);
+    // });
+    console.log("isLoad!!");
+    if (sessionStorage.getItem("userInfo"))
+      setAccessToken(sessionStorage.getItem("accessToken") || "");
+
     if (sessionStorage.getItem("userInfo")) {
       setUserInfo(JSON.parse(sessionStorage.getItem("userInfo") || "{}"));
     }
   }, []);
 
   return (
-    <GlobalContext.Provider value={value}>
-      <ApolloProvider client={client}>
-        <Global styles={globalStyles} />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ApolloProvider>
-    </GlobalContext.Provider>
+    <ApolloProvider client={client}>
+      <Global styles={globalStyles} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ApolloProvider>
   );
 }
 

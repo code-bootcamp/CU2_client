@@ -2,6 +2,7 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { GlobalContext } from "../../../../../pages/_app";
+import useStore from "../../../../commons/store/store";
 import { useAuth } from "../../hooks/useAuth";
 import { useMoveToPage } from "../../hooks/useMoveToPage";
 import LayoutHeaderPageUI from "./LayoutHeader.presenter";
@@ -13,7 +14,8 @@ const LOGOUT_USER = gql`
 `;
 
 export default function LayoutHeaderPage() {
-  const { accessToken } = useContext(GlobalContext);
+  // const { accessToken } = useContext(GlobalContext);
+  const accessToken = useStore(state => state.accessToken);
   const SearchRef = useRef(null);
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(false);

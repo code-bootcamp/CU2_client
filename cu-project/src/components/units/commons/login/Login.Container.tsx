@@ -9,7 +9,11 @@ import { useContext } from "react";
 import { GlobalContext } from "../../../../../pages/_app";
 import { useRouter } from "next/router";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-import { IQuery, IQueryFetchCoachUserArgs } from "../../../../commons/types/generated/types";
+import {
+  IQuery,
+  IQueryFetchCoachUserArgs,
+} from "../../../../commons/types/generated/types";
+import useStore from "../../../../commons/store/store";
 
 const schema = yup.object().shape({
   email: yup
@@ -34,12 +38,12 @@ export default function Login(props: ILoginProps) {
   });
 
   const [login] = useMutation(LOGIN);
-  const [fetchCoachUserList] = useLazyQuery<
-    Pick<IQuery, "fetchCoachUserList">
-  >(FETCH_COACH_USER_LIST);
+  const [fetchCoachUserList] = useLazyQuery<Pick<IQuery, "fetchCoachUserList">>(
+    FETCH_COACH_USER_LIST
+  );
 
   const { moveToPage } = useMoveToPage();
-  const { setAccessToken } = useContext(GlobalContext);
+  const setAccessToken = useStore((state) => state.setAccessToken);
 
   const onClickLogin = async (data: FormValues) => {
     try {
@@ -50,23 +54,24 @@ export default function Login(props: ILoginProps) {
         },
       });
       const accessToken = result.data?.login;
+      console.log(accessToken)
       if (!accessToken) {
         alert("로그인 실패");
         return;
       }
-      
+
       const allUserList = (await fetchCoachUserList()).data?.fetchCoachUserList;
-      const {__typename, ...loginUser} = allUserList?.filter(el => el.email === data.email)[0];
-      
+      const { __typename, ...loginUser } = allUserList?.filter(
+        (el) => el.email === data.email
+      )[0];
 
       if (!loginUser) {
         alert("로그인 실패");
         return;
       }
 
-      console.log(loginUser);
-      
       sessionStorage.setItem("userInfo", JSON.stringify(loginUser));
+      sessionStorage.setItem("accessToken", accessToken);
 
       if (setAccessToken) {
         setAccessToken(accessToken || "");
