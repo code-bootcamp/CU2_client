@@ -1,5 +1,7 @@
-import CoachRegister from "../../../../src/components/units/mypage/coach/register/CoachRegister.Container";
+import CoachingUsCoachRegister from "../../../../src/components/units/coachingus/coach-register/CoachingUsCoachRegister.Container";
+
+// CoachingUsCoachRegister.Container
 
 export default function CoachRegisterPage() {
-  return <CoachRegister isEdit={false} />;
+  return <CoachingUsCoachRegister />;
 }

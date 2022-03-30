@@ -14,12 +14,10 @@ export async function getAccessToken() {
         credentials: "include",
       }
     );
-
+    console.log("asdasdasdasd",);
     const result = await graphQLClient.request(RESTORE_ACCESS_TOKEN);
-
-    // console.log("두번째로 실행되어야 하는거");
+    console.log("asdasdasdasd", result);
     const newAccessToken = result.resotreAccessToken;
-
     return newAccessToken;
   } catch (error) {
     if (error instanceof Error) console.log(error.message);
