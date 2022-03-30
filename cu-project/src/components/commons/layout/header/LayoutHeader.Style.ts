@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.1s ease-in-out;
+  transition: padding 0.2s linear;
   padding: ${({ isSearch }) =>
     isSearch ? "10px 40px 130px 40px" : "10px 40px"};
 
@@ -133,9 +133,9 @@ export const SearchBarDetail = styled.div`
   left: 0;
   width: 100vw;
   margin-top: 100px;
-  transition: all 0.1s ease-in-out;
+  transition: height 0.2s linear;
   /* background-color: red; */
-  animation: ${({ isSearch }) => isSearch && "showing 0.1s linear"};
+  animation: ${({ isSearch }) => isSearch && "showing 0.2s linear"};
   @keyframes showing {
     0% {
       height: 0%;
@@ -200,6 +200,8 @@ export const SearchBarInput = styled.input`
 
 export const SearchBtn = styled.button`
   all: unset;
+  display: flex;
+  align-items: center;
   width: 20px;
   cursor: pointer;
 `;

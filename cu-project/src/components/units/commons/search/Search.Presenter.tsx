@@ -25,7 +25,7 @@ export default function SearchUI(props: ISearchUIProps) {
         ].map((el) => (
           <div style={{ display: "flex" }} key={uuidv4()}>
             <S.GubunLabel
-              isSelected={el === props.query.category}
+              isSelected={el === props.gubun}
               onClick={props.onClickPeriodGubun(el)}
             >
               {`${el}`}
@@ -35,12 +35,12 @@ export default function SearchUI(props: ISearchUIProps) {
         ))}
       </S.SortGubun>
       <Blank height="50px" />
-      {props.query.category === "Total" && <SearchAll />}
-      {props.query.category === "Blog" && <SearchBlog />}
-      {props.query.category === "Stack Q&A" && <SearchStack />}
-      {props.query.category === "Columns" && <SearchColumns />}
-      {props.query.category === "Comments" && <SearchComments />}
-      {props.query.category === "Us & Coaches" && <SearchUs />}
+      {props.gubun === "Total" && <SearchAll />}
+      {props.gubun === "Blog" && <SearchBlog />}
+      {props.gubun === "Stack Q&A" && <SearchStack />}
+      {props.gubun === "Columns" && <SearchColumns />}
+      {props.gubun === "Comments" && <SearchComments />}
+      {props.gubun === "Us & Coaches" && <SearchUs />}
     </S.Wrapper>
   );
 }
