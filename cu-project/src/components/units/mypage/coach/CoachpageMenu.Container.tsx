@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAuth } from "../../../commons/hooks/useAuth";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import CoachpageMenuUI from "./CoachpageMenu.Presenter";
 
@@ -6,6 +7,8 @@ export default function CoachpageMenu() {
   const [isModal, setIsModal] = useState(false);
   const [isCoach, setIsCoach] = useState(true);
   const { moveToPage, currentPage } = useMoveToPage();
+
+  useAuth();
 
   const onClickModal = () => {
     setIsModal((prev) => !prev);
