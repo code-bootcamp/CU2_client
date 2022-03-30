@@ -13,9 +13,6 @@ const Wrapper = styled.div`
   box-sizing: border-box;
   margin: 0;
   display: flex;
-  /* flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start; */
   background: url("/landingback.png");
   background-position: flex-start;
   background-size: cover;
