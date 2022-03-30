@@ -1,6 +1,7 @@
 import { ICodingUsQnAUIProps } from "../../../../commons/types/types";
 import Blank from "../../../commons/Blank";
 import Label01 from "../../../commons/Label/Label01";
+import WriteBtn from "../writeBtn/WriteBtn";
 import QnACard from "../card/qnaCard/QnACard";
 import CodingUsHistory from "../history/History.Container";
 import * as S from "./CodingUsQnA.Style";
@@ -90,6 +91,7 @@ export default function CodingUsQnAUI(props: ICodingUsQnAUIProps) {
           ))}
         </S.WaitingWrapper>
       </S.CodingUsQnABody>
+      <WriteBtn page="question"/>
     </S.CodingUsQnA>
   );
 }
