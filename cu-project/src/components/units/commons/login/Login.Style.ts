@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   min-width: 100vw;
-  min-height: 100vh;
+  height: calc(100vh - 20px);
   box-sizing: border-box;
   margin: 0;
   display: flex;
@@ -295,7 +295,7 @@ export const FormContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 450px;
-  height: 300px;
+  min-height: 300px;
   position: relative;
   bottom: 475px;
   border: 1px solid white;
