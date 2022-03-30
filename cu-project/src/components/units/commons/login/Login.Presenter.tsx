@@ -30,7 +30,7 @@ export default function LoginUI(props: ILoginUIProps) {
         </S.LoginBtn>
 
         <Blank height="10px" />
-        <S.LoginBtn>
+        <S.LoginBtn onClick={props.moveToPage("/register")}>
           <p>Sign Up</p>
         </S.LoginBtn>
         <Blank height="10px" />
@@ -44,16 +44,13 @@ export default function LoginUI(props: ILoginUIProps) {
             비밀번호 찾기
           </S.FindPasswordBtn>
         </S.FindBtnBox>
-        <Blank height="40px" />
-        <S.SocialLogin>Login with Google</S.SocialLogin>
-        <Blank height="15px" />
-        <S.SocialLogin>Login with GitHub</S.SocialLogin>
-        <Blank height="15px" />
-        <S.SocialLogin>Login with Kakao</S.SocialLogin>
       </S.RegisterForm>
-      <S.FormContainer>
-        <S.FormContainerBorder></S.FormContainerBorder>
-      </S.FormContainer>
+      <Blank height="40px" />
+      <S.SocialLogin>Login with Google</S.SocialLogin>
+      <Blank height="15px" />
+      <S.SocialLogin>Login with GitHub</S.SocialLogin>
+      <Blank height="15px" />
+      <S.SocialLogin>Login with Kakao</S.SocialLogin>
     </S.Wrapper>
   );
 }

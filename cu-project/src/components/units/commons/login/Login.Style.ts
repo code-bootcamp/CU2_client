@@ -8,16 +8,20 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
-  padding-top: 120px;
+  justify-content: center;
+  /* padding-top: 70px; */
   background: linear-gradient(to bottom right, #d7455d, #6917d2);
 `;
 
 export const RegisterForm = styled.form`
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 400px;
   z-index: 2;
+  border: 1px solid white;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 50px 40px 20px 40px;
+  border-radius: 15px;
 `;
 
 export const Logo = styled.img`
@@ -25,11 +29,13 @@ export const Logo = styled.img`
   background-color: white;
   border: none;
   border-radius: 100%;
-  z-index: 2;
+  z-index: 3;
   transition: transform 1s;
   :hover {
     transform: rotate(720deg);
   }
+  position: relative;
+  top: 50px;
 `;
 
 export const InputLabelText = styled.div`
@@ -287,27 +293,4 @@ export const SocialLogin = styled.div`
     color: white;
     background-color: black;
   }
-`;
-
-export const FormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 450px;
-  min-height: 300px;
-  position: relative;
-  bottom: 475px;
-  border: 1px solid white;
-  opacity: 0.7;
-  border-radius: 15px;
-  z-index: 1;
-`;
-export const FormContainerBorder = styled.div`
-  width: 100%;
-  height: 100%;
-  border-radius: 15px;
-  background-color: white;
-  opacity: 0.2;
-  z-index: 1;
 `;

@@ -3,7 +3,15 @@ import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import CoachingUsCoachRegisterUI from "./CoachingUsCoachRegister.Presenter";
 
 export default function CoachingUsCoachRegisterPage() {
-  const [text, setText] = useState("");
+  const [coachProfile, setCoachProfile] = useState({
+    email: "",
+    cor: "",
+    subCorType: "",
+    exp: "",
+  });
+  const [emailTextErr, setEmailTextErr] = useState(false);
+  const [activateBtn, setActivateBtn] = useState(false);
+
   const [tags, setTags] = useState([]);
   const [corType, setCorType] = useState("");
 
@@ -35,8 +43,12 @@ export default function CoachingUsCoachRegisterPage() {
     }
   };
 
-  const onChangeText = (e) => {
-    setText(e.target.value);
+  const onChangeCoachProfile = (e) => {
+    const { value, name } = e.target;
+    setCoachProfile({
+      ...coachProfile,
+      [name]: value,
+    });
   };
 
   const onClickDeleteTags = (e) => {
@@ -47,17 +59,44 @@ export default function CoachingUsCoachRegisterPage() {
     setCorType(e.target.value);
   };
 
+  const checkEmail = (emailForm) => {
+    const email = emailForm;
+    const exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+    if (exptext.test(email) === false) {
+      setEmailTextErr(true);
+      return false;
+    }
+    return true;
+  };
+
+  const coachRegisterBtn = () => {
+    setActivateBtn(true);
+    if (
+      checkEmail(coachProfile.email) &&
+      coachProfile.cor &&
+      coachProfile.subCorType &&
+      coachProfile.exp &&
+      tags.length === 2 &&
+      corType
+    ) {
+      // 회원가입 로직 작성 폼이 완성 됐을 때 실행 가능
+      console.log("zz");
+    }
+  };
   return (
     <CoachingUsCoachRegisterUI
       onChangeTags={onChangeTags}
       onClickDeleteTags={onClickDeleteTags}
-      onChangeText={onChangeText}
+      onChangeCoachProfile={onChangeCoachProfile}
       tags={tags}
       setTags={setTags}
-      text={text}
+      coachProfile={coachProfile}
       onClickCorType={onClickCorType}
       corType={corType}
       moveToPage={moveToPage}
+      coachRegisterBtn={coachRegisterBtn}
+      emailTextErr={emailTextErr}
+      activateBtn={activateBtn}
     />
   );
 }
