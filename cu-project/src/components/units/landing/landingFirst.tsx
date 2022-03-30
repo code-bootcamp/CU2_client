@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   /* flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start; */
-  background: url("/landingPage1.png");
+  background: url("/landingback.png");
   background-position: flex-start;
   background-size: cover;
   padding: 70px 100px 0 100px;
