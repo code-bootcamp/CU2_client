@@ -42,7 +42,7 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
           User Mypage
         </S.MyPageButton>
         <Blank width="30px" />
-        {props.data?.fetchmyuser.role === "COACH" ? (
+        {props.isCoach ? (
           <S.MyPageButton onClick={props.moveToPage("/mypage/coach")}>
             Coach Mypage
           </S.MyPageButton>
@@ -57,35 +57,23 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
         <S.ProfileHead>
           <S.ProfileImg src="/pofile_img_default.png" />
           <Blank width="10px" />
-          <div>{props.data?.fetchmyuser.nickname}</div>
+          <div>유저 닉네임</div>
         </S.ProfileHead>
         <Blank height="20px" />
         <S.ProfileBody>
           <S.ProfileContents>
             <span>주활동</span>
-            <S.MainStack>
-              {props.data?.fetchmyuser.mainStack
-                ? props.data.fetchmyuser.mainStack
-                : "활동 없음"}
-            </S.MainStack>
+            <S.MainStack>Javascript</S.MainStack>
           </S.ProfileContents>
           <Blank height="20px" />
           <S.ProfileContents>
             <span>팔로우</span>
-            <p onClick={props.moveToPage("/mypage/user/follow")}>
-              {props.data?.fetchmyuser.follow
-                ? props.data.fetchmyuser.follow
-                : 0}
-            </p>
+            <p onClick={props.moveToPage("/mypage/user/follow")}>112</p>
           </S.ProfileContents>
           <Blank height="20px" />
           <S.ProfileContents>
             <span>팔로워</span>
-            <p onClick={props.moveToPage("/mypage/user/follower")}>
-              {props.data?.fetchmyuser.follower
-                ? props.data.fetchmyuser.follower
-                : 0}
-            </p>
+            <p onClick={props.moveToPage("/mypage/user/follower")}>20</p>
           </S.ProfileContents>
           <Blank height="20px" />
           <S.ProfileContents>
@@ -95,14 +83,14 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
               <S.ChargeButton onClick={props.moveToPage("/mypage/user/point")}>
                 내역
               </S.ChargeButton>
-              {props.data?.fetchmyuser.point}
+              10,000
             </div>
           </S.ProfileContents>
           <Blank height="20px" />
           <S.ProfileContents>
             <span>유저 랭킹</span>
             <p onClick={props.moveToPage("/mypage/user/ranking")}>
-              {props.data?.fetchmyuser.ranking}(▲ 2등)
+              50등(▲ 2등)
             </p>
           </S.ProfileContents>
           <Blank height="10px" />

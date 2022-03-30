@@ -197,7 +197,8 @@ export type IMutation = {
   Blogcommenttoggle: IBlogCommentLike;
   DislikeColumnToggle: IColumnLike;
   LikeColumnToggle: IColumnLike;
-  Stacktoggle: IStackLike;
+  Stackdisliketoggle: IStackLike;
+  Stackliketoggle: IStackLike;
   cancelAnswerOrder: IOrderHistory;
   cancelPointTransaction: IPointTransaction;
   checktoken: Scalars['Boolean'];
@@ -238,7 +239,7 @@ export type IMutation = {
   logout: Scalars['String'];
   minususerscore: IUser;
   plususerscore: IUser;
-  resotreAccessToken: Scalars['String'];
+  restoreAccessToken: Scalars['String'];
   sendTokenTOSMS: Scalars['String'];
   updateBlog: IBlog;
   updateBlogComment: IBlogComment;
@@ -272,7 +273,12 @@ export type IMutationLikeColumnToggleArgs = {
 };
 
 
-export type IMutationStacktoggleArgs = {
+export type IMutationStackdisliketoggleArgs = {
+  stackid: Scalars['String'];
+};
+
+
+export type IMutationStackliketoggleArgs = {
   stackid: Scalars['String'];
 };
 
@@ -611,6 +617,7 @@ export type IQuery = {
   __typename?: 'Query';
   coachAnsweredList: Array<IAnswer>;
   fetchAllBlogcomment: IStackComment;
+  fetchAllUser: IUser;
   fetchBlog: Array<IBlog>;
   fetchBlogCommentorderby: Array<IBlogComment>;
   fetchBlogSearch: Array<IBlog>;
@@ -631,17 +638,17 @@ export type IQuery = {
   fetchRecommendColumnListArgs: Array<ICoachColumn>;
   fetchStack: Array<IStack>;
   fetchStackmylike: Array<IStack>;
+  fetchUserOrderbylike: Array<IUser>;
+  fetchUsersearch: Array<IUser>;
   fetchmainstack: Scalars['String'];
   fetchmyBlog: Array<IBlog>;
   fetchmyStack: Array<IStack>;
+  fetchmyuser: IUser;
   fetchotherBlogorderbycreateAt: Array<IBlog>;
   fetchotherBlogorderbylikeAll: Array<IBlog>;
   fetchotherBlogorderbylikecreate: Array<IBlog>;
   fetchotherStackorderbycreateAt: Array<IStack>;
   fetchotherStackorderbylike: Array<IStack>;
-  findAllUser: IUser;
-  findUserOrderbylike: Array<IUser>;
-  findUsersearch: Array<IUser>;
   goodEvalAnswerList: Array<IAnswer>;
   myCoachingListHasAnswer: Array<IAnswer>;
   stringReturn: Scalars['String'];
@@ -700,7 +707,7 @@ export type IQueryFetchRecommendColumnListArgsArgs = {
 };
 
 
-export type IQueryFindUsersearchArgs = {
+export type IQueryFetchUsersearchArgs = {
   search: Scalars['String'];
 };
 
@@ -728,6 +735,7 @@ export enum IRole {
 export type IStack = {
   __typename?: 'Stack';
   contents: Scalars['String'];
+  dislike: Scalars['Int'];
   id: Scalars['String'];
   like: Scalars['Int'];
   stacktag: Array<IStackTag>;
@@ -738,7 +746,9 @@ export type IStack = {
 export type IStackComment = {
   __typename?: 'StackComment';
   contents: Scalars['String'];
+  dislike: Scalars['Int'];
   id: Scalars['String'];
+  like: Scalars['Int'];
   stack: IStack;
   user: IUser;
 };
