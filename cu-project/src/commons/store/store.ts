@@ -1,4 +1,4 @@
-import create, { State } from "zustand";
+import create from "zustand";
 import { devtools } from "zustand/middleware";
 import { IUser } from "../types/generated/types";
 

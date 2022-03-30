@@ -32,7 +32,6 @@ export const GlobalContext = createContext<IGlobalContext>({});
 function MyApp({ Component, pageProps }: AppProps) {
   const setUserInfo = useStore((state) => state.setUserInfo);
   const { accessToken, setAccessToken } = useStore((state) => state);
-
   const uploadLink = createUploadLink({
     uri: process.env.NEXT_PUBLIC_GRAPHQL_URL,
     headers: accessToken && { authorization: `Bearer ${accessToken}` },
@@ -40,26 +39,18 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {
-    // 1. 에러를 캐치
     if (graphQLErrors) {
       for (const err of graphQLErrors) {
-        // 2. 해당 에러가 토큰 만료 에러인지 체크(UNAUTHENTICATED)
         if (err.extensions.code === "UNAUTHENTICATED") {
-          // 3. refreshToken으로 accessToken 재발급 받기
-          // Promise이기 때문에 then을 사용해 getAccessToken의 return 값을 받아올 수 있다.
           getAccessToken().then((newAccessToken) => {
-            // 4. 재발급 받은 accessToken 저장하기
             setAccessToken(newAccessToken);
-
-            // 5. 재발급 받은 accessToken으로 방금 실패한 query 재요청하기
-            // console.log(operation.getContext());
             operation.setContext({
               headers: {
                 ...operation.getContext().response.headers,
                 Authorization: `Bearer ${newAccessToken}` || null,
               },
-            }); // 설정 변경(accessToken 바꾸기)
-            return forward(operation); // 변경된 operation 재요청하기
+            });
+            return forward(operation);
           });
         }
       }
@@ -72,14 +63,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   useEffect(() => {
-    // refreshToken Issue 해결 시 주석 해제
-    // getAccessToken().then((newAccessToken) => {
-    //   setAccessToken(newAccessToken);
-    // });
+    getAccessToken().then((newAccessToken) => {
+      setAccessToken(newAccessToken);
+    });
     console.log("isLoad!!");
     if (sessionStorage.getItem("userInfo"))
-      setAccessToken(sessionStorage.getItem("accessToken") || "");
-
+    setAccessToken(sessionStorage.getItem("accessToken") || "");
+    
     if (sessionStorage.getItem("userInfo")) {
       setUserInfo(JSON.parse(sessionStorage.getItem("userInfo") || "{}"));
     }

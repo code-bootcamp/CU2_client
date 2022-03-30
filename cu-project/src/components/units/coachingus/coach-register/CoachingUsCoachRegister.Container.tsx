@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import useStore from "../../../../commons/store/store";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import CoachingUsCoachRegisterUI from "./CoachingUsCoachRegister.Presenter";
 
@@ -11,7 +12,7 @@ export default function CoachingUsCoachRegisterPage() {
   });
   const [emailTextErr, setEmailTextErr] = useState(false);
   const [activateBtn, setActivateBtn] = useState(false);
-
+  const userInfo = useStore((state) => state.userInfo);
   const [tags, setTags] = useState([]);
   const [corType, setCorType] = useState("");
 
@@ -100,6 +101,7 @@ export default function CoachingUsCoachRegisterPage() {
       coachRegisterBtn={coachRegisterBtn}
       emailTextErr={emailTextErr}
       activateBtn={activateBtn}
+      userInfo={userInfo}
     />
   );
 }
