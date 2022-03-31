@@ -3,6 +3,7 @@ import { gql, GraphQLClient } from "graphql-request";
 const FETCH_MY_USER = gql`
   query fetchmyuser {
     fetchmyuser {
+      id
       name
       email
       nickname
