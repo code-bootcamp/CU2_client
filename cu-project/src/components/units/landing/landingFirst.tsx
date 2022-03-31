@@ -9,13 +9,14 @@ interface IButtonProps {
 
 const Wrapper = styled.div`
   min-width: 100vw;
-  height: 100vh;
+  margin: 0;
+  padding-top: 50x;
+  height: calc(100vh);
   box-sizing: border-box;
+  background-color: #303030;
   display: flex;
-  background: url("/landingback.png");
-  background-position: flex-start;
-  background-size: cover;
-  padding: 70px 100px 0 100px;
+  flex-direction: column;
+
   @media ${breakPoints.tablet} {
     min-width: 100%;
   }
@@ -24,10 +25,20 @@ const Wrapper = styled.div`
   }
 `;
 
-const ButtonBox = styled.div`
-  padding-top: 660px;
+const BackgroundImageFix = styled.div`
   width: 100%;
+  height: calc(100vh - 150px);
+  background-image: url("/landingback.png");
+  background-size: cover;
+`;
+
+const ButtonBox = styled.div`
+  width: 100%;
+  position: relative;
+  top: 100px;
   display: flex;
+  border: none;
+  padding-bottom: 200px;
   justify-content: center;
   @media ${breakPoints.mobile} {
     flex-direction: column;
@@ -59,6 +70,7 @@ export default function FirstPage() {
   const { moveToPage } = useMoveToPage();
   return (
     <Wrapper>
+      <BackgroundImageFix />
       <ButtonBox>
         <MoveButton onClick={moveToPage("/codingus")} cate={true}>
           CodingUS

@@ -4,12 +4,13 @@ import Color from "../../../commons/styles/color";
 
 const Wrapper = styled.div`
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   box-sizing: border-box;
 `;
 
