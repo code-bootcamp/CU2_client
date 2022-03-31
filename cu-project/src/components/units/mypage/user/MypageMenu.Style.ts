@@ -11,6 +11,12 @@ export const Wrapper = styled.div`
   justify-content: center;
 `;
 
+export const Web = styled.div`
+  @media ${breakPoints.mobile} {
+    width: 260px;
+  }
+`;
+
 export const TopMenu = styled.div`
   display: flex;
 `;
@@ -118,9 +124,12 @@ export const MenuButton = styled.div`
   font-size: 18px;
   background-color: transparent;
   display: flex;
-  color: ${(props: {isCurrent: boolean}) => props.isCurrent ? Color.dark : Color.medium};
-  font-weight: ${(props: {isCurrent: boolean}) => props.isCurrent ? "700" : "400"};
+  color: ${(props: { isCurrent: boolean }) =>
+    props.isCurrent ? Color.dark : Color.medium};
+  font-weight: ${(props: { isCurrent: boolean }) =>
+    props.isCurrent ? "700" : "400"};
   :hover {
-    cursor: ${(props: {isCurrent: boolean}) => props.isCurrent ? "none" : "pointer"};
+    cursor: ${(props: { isCurrent: boolean }) =>
+      props.isCurrent ? "none" : "pointer"};
   }
 `;
