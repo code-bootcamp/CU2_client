@@ -8,7 +8,7 @@ export const AllWrapper = styled.div`
   align-items: flex-start;
 `;
 export const Web = styled.div`
-  @media ${breakPoints.tablet} {
+  @media ${breakPoints.tablet && breakPoints.mobile} {
     display: none;
   }
 `;
@@ -18,6 +18,9 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
+  @media ${breakPoints.mobile} {
+    margin: 0;
+  }
 `;
 
 export const Box = styled.div`

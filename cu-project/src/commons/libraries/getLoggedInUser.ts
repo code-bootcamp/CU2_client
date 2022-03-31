@@ -4,9 +4,11 @@ const FETCH_MY_USER = gql`
   query fetchmyuser {
     fetchmyuser {
       name
+      email
       nickname
       point
       role
+      phonenumber
     }
   }
 `;

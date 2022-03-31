@@ -3,5 +3,5 @@ import CoachingUsCoachRegister from "../../../../src/components/units/coachingus
 
 export default function CoachRegisterPage() {
   useAuth();
-  return <CoachRegister />;
+  return <CoachingUsCoachRegister />;
 }
