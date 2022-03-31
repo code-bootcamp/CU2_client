@@ -58,7 +58,7 @@ export default function RegisterUI(props: IRegisterUIProps) {
             <Blank height="20px" />
           )}
         </S.RegisterLabel>
-        <Blank height="20px" />
+        <Blank height="10px" />
         <S.RegisterLabel>
           Phone Number
           <S.RegisterInput

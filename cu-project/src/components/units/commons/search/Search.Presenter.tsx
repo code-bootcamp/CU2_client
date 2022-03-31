@@ -28,7 +28,6 @@ export default function SearchUI(props: ISearchUIProps) {
             >
               {`${el}`}
             </S.GubunLabel>
-            <Blank width="10px" />
           </div>
         ))}
       </S.SortGubun>

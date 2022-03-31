@@ -33,6 +33,8 @@ export const RegisterForm = styled.form`
 export const ErrorMessageBox = styled.div`
   height: 20px;
   padding-top: 3px;
+
+  font-size: 12px;
   color: white;
 `;
 export const Logo = styled.img`
