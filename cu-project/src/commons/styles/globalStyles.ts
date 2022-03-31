@@ -1,4 +1,11 @@
 import { css } from "@emotion/react";
+// import useBackground from "../store/path";
+
+// const background = () => {
+//   const isLanding = useBackground((state) => state.isLanding);
+
+//   return isLanding;
+// };
 
 export const globalStyles = css`
   * {
@@ -9,7 +16,7 @@ export const globalStyles = css`
   }
 
   button {
-    :hover{
+    :hover {
       cursor: pointer;
     }
   }
