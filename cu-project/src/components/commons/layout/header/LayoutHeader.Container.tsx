@@ -97,6 +97,7 @@ export default function LayoutHeaderPage() {
       onChangeSearch={onChangeSearch}
       SearchRef={SearchRef}
       onClickSearch={onClickSearch}
+      router={router}
     />
   );
 }

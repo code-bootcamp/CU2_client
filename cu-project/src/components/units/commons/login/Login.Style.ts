@@ -23,6 +23,13 @@ export const RegisterForm = styled.form`
   padding: 50px 40px 20px 40px;
   border-radius: 15px;
 `;
+export const ErrorMessageBox = styled.div`
+  height: 20px;
+  font-size: 12px;
+  padding-top: 5px;
+  color: white;
+  padding-left: 5px;
+`;
 
 export const Logo = styled.img`
   width: 100px;
