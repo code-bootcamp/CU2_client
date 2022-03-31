@@ -61,7 +61,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     getAccessToken().then((newAccessToken) => {
       setAccessToken(newAccessToken);
     });
-    // refresh토큰 관련 이슈 
+    // refresh토큰 관련 이슈
     if (sessionStorage.getItem("accessToken"))
       setAccessToken(sessionStorage.getItem("accessToken") || "");
 
@@ -69,6 +69,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       getLoggenInUser().then((userInfo) => {
         console.log("getLoggenInUser", userInfo);
         setUserInfo(userInfo);
+        setAccessToken(sessionStorage.getItem("accessToken") || "");
       });
       //   if (accessToken)
       //   setAccessToken(sessionStorage.getItem("accessToken") || "");

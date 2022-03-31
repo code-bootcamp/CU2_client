@@ -110,6 +110,8 @@ export interface ICodingUsBlogWriteUIProps {
   onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
   title: string;
   onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeStack: (event: ChangeEvent<HTMLSelectElement>) => void;
+  stack: string;
 }
 export interface ICodingUsMainProps {}
 export interface ICodingUsMainUIProps {

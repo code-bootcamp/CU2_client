@@ -12,7 +12,23 @@ import { Editor as ToastEditor } from "@toast-ui/react-editor";
 import { RefObject } from "react";
 import styled from "@emotion/styled";
 import Color from "../../../../../commons/styles/color";
-import { dummyMD } from "../../../../units/codingus/blog/dummy";
+import { HookCallback } from "@toast-ui/editor/types/editor";
+import { gql, useMutation } from "@apollo/client";
+import {
+  IMutation,
+  IMutationUploadblogFileArgs,
+} from "../../../../../commons/types/generated/types";
+// import { uploadFile } from "../../../../../commons/libraries/upLoadFile";
+
+// uploadblogFile(
+//   files: [Upload!]!
+//   ): [String!]!
+
+const UPLOAD_BLOG_FILE = gql`
+  mutation uploadblogFile($files: [Upload!]!) {
+    uploadblogFile(files: $files)
+  }
+`;
 
 interface ITextEditorUIProps {
   editorRef: RefObject<ToastEditor>;
@@ -47,6 +63,10 @@ export const Wrapper = styled.div`
   }
 `;
 export default function EditorUI(props: ITextEditorUIProps) {
+  const [uploadblogFile] = useMutation<
+    Pick<IMutation, "uploadblogFile">,
+    IMutationUploadblogFileArgs
+  >(UPLOAD_BLOG_FILE);
   return (
     <Wrapper>
       <ToastEditor
@@ -55,6 +75,25 @@ export default function EditorUI(props: ITextEditorUIProps) {
         previewStyle="vertical"
         placeholder="당신의 이야기를 적어보세요"
         plugins={[colorSyntax, [codeSyntaxHighlight, { highlighter: Prism }]]}
+        hooks={{
+          addImageBlobHook: async (
+            file: Blob | File,
+            callback: HookCallback
+          ) => {
+            try {
+              const result = await uploadblogFile({
+                variables: { files: [file] },
+              });
+              if (!result) throw new Error("이미지 등록 실패");
+              const url = `https://storage.googleapis.com/${String(
+                result?.data?.uploadblogFile[0]
+              )}`;
+              callback(url);
+            } catch (err: any) {
+              alert(err.message);
+            }
+          },
+        }}
       />
     </Wrapper>
   );

@@ -9,7 +9,7 @@ const useStore = create(
     userInfo: null,
     setUserInfo: (userInfo: IUser | undefined) =>
       set((_: any) => ({ userInfo: userInfo })),
-    accessToken: "",
+    accessToken: null,
     setAccessToken: (token: string) =>
       set((_: any) => ({ accessToken: token })),
   }))

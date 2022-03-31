@@ -7,17 +7,42 @@ import Button02 from "../../../../commons/Button/Button02";
 import HorizontalLine from "../../../../commons/Line/HorizontalLine";
 import { AiOutlineEdit } from "react-icons/ai";
 import TagInput from "../../../../commons/Tag/TagInput";
+import { stackList } from "../../../../../commons/data/stack";
+import { v4 as uuidv4 } from "uuid";
 export default function CodingUsBlogWriteUI(props: ICodingUsBlogWriteUIProps) {
   return (
     <S.CodingUsBlogWrite>
       <S.ButtonWrapper>
         <Button01 value="나가기" onClick={() => {}} padding="12px 38px" />
-        <Button02 value="완료" icon={AiOutlineEdit} onClick={props.onClickSubmit} />
+        <Button02
+          value="완료"
+          icon={AiOutlineEdit}
+          onClick={props.onClickSubmit}
+        />
       </S.ButtonWrapper>
       <Blank height="150px" />
-      <S.TitleInput placeholder="제목을 입력하세요" value ={props.title} onChange={props.onChangeTitle}/>
+      <S.TitleInput
+        placeholder="제목을 입력하세요"
+        value={props.title}
+        onChange={props.onChangeTitle}
+      />
       <HorizontalLine margin={30} color="#DBDBDB" />
-      <TagInput tags={props.tags} setTags={props.setTags} />
+      <S.RowWrapper>
+        <TagInput tags={props.tags} setTags={props.setTags} />
+        <S.CategorySelect onChange={props.onChangeStack} value={props.stack}>
+          <S.StackOption key={uuidv4()} value={""}>
+            Stack 선택
+          </S.StackOption>
+          {stackList.map((el) => (
+            <S.StackOption key={uuidv4()} value={el}>
+              {el}
+            </S.StackOption>
+          ))}
+          <S.StackOption key={uuidv4()} value={"etc"}>
+            기타
+          </S.StackOption>
+        </S.CategorySelect>
+      </S.RowWrapper>
       <Blank height="32px" />
       <TextEditor01 width="100%" height="100%" editorRef={props.editorRef} />
     </S.CodingUsBlogWrite>

@@ -39,9 +39,6 @@ export default function Login(props: ILoginProps) {
   });
 
   const [login] = useMutation(LOGIN);
-  const [fetchCoachUserList] = useLazyQuery<Pick<IQuery, "fetchCoachUserList">>(
-    FETCH_COACH_USER_LIST
-  );
 
   const { moveToPage } = useMoveToPage();
   const { setAccessToken, setUserInfo } = useStore((state) => state);
@@ -61,27 +58,20 @@ export default function Login(props: ILoginProps) {
         return;
       }
 
-      const allUserList = (await fetchCoachUserList()).data?.fetchCoachUserList;
-      const { __typename, ...loginUser } = allUserList?.filter(
-        (el) => el.email === data.email
-      )[0];
-
-      if (!loginUser) {
-        alert("로그인 실패");
-        return;
-      }
+      getLoggenInUser();
       // refresh토큰 관련 이슈
       sessionStorage.setItem("accessToken", accessToken);
-      //
-      if (setAccessToken) {
-        setAccessToken(accessToken || "");
-        router.push("/");
-
-        getLoggenInUser().then((userInfo) => {
-          console.log("getLoggenInUser", userInfo);
-          setUserInfo(userInfo);
-        });
-      }
+      setAccessToken(accessToken);
+      const loggedInUser = getLoggenInUser().then((userInfo) => {
+        console.log("getLoggenInUser", userInfo);
+        // setUserInfo(userInfo);
+      });
+      console.log(loggedInUser);
+      // if (!loginUser) {
+      //   alert("로그인 실패");
+      //   return;
+      // }
+      router.push("/");
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message);
