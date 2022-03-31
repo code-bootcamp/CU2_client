@@ -1,43 +1,54 @@
-import { useCallback, useState } from "react";
+import { useMutation } from "@apollo/client";
+import { KeyboardEvent, useCallback, useState } from "react";
 import useStore from "../../../../commons/store/store";
+import {
+  IMutation,
+  IMutationCreateCoachProfileArgs,
+} from "../../../../commons/types/generated/types";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import CoachingUsCoachRegisterUI from "./CoachingUsCoachRegister.Presenter";
+import { CREATE_COACH_PROFILE } from "./CoachingUsCoachRegister.Queries";
 
 export default function CoachingUsCoachRegisterPage() {
+  const [createCoachProfile] = useMutation<
+    Pick<IMutation, "createCoachProfile">,
+    IMutationCreateCoachProfileArgs
+  >(CREATE_COACH_PROFILE);
+
   const [coachProfile, setCoachProfile] = useState({
-    email: "",
-    cor: "",
-    subCorType: "",
-    exp: "",
+    orgEmail: "",
+    orgName: "",
+    job: "",
+    department: "",
   });
   const [emailTextErr, setEmailTextErr] = useState(false);
   const [activateBtn, setActivateBtn] = useState(false);
   const userInfo = useStore((state) => state.userInfo);
-  const [tags, setTags] = useState([]);
-  const [corType, setCorType] = useState("");
+  const [tags, setTags] = useState<string[]>([]);
+  const [orgType, setOrgType] = useState("");
 
   const { moveToPage } = useMoveToPage();
 
-  const onChangeTags = (e) => {
+  const onChangeTags = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.isComposing || e.keyCode === 229) {
       return;
     }
 
-    if (e.key === "Backspace" && e.target.value === "") {
-      console.log(e.target.id);
+    if (e.key === "Backspace" && e.currentTarget.value === "") {
+      console.log(e.currentTarget.id);
       return setTags(tags.filter((_, i) => i + 1 !== tags.length));
     } else {
       if (tags.length > 1) {
-        e.target.value = "";
+        e.currentTarget.value = "";
         return alert("최대 네 개까지 입력 가능합니다.");
       } else {
         if (e.key === "Enter") {
-          if (e.target.value === "") {
+          if (e.currentTarget.value === "") {
             setTags([...tags]);
-            e.target.value = "";
+            e.currentTarget.value = "";
           } else {
-            setTags([...tags, e.target.value]);
-            e.target.value = "";
+            setTags([...tags, e.currentTarget.value]);
+            e.currentTarget.value = "";
           }
         }
       }
@@ -56,8 +67,8 @@ export default function CoachingUsCoachRegisterPage() {
     setTags(tags.filter((_, i) => Number(e.target.id) !== i));
   };
 
-  const onClickCorType = (e) => {
-    setCorType(e.target.value);
+  const onClickOrgType = (e) => {
+    setOrgType(e.target.value);
   };
 
   const checkEmail = (emailForm) => {
@@ -73,17 +84,33 @@ export default function CoachingUsCoachRegisterPage() {
     }
   };
 
-  const coachRegisterBtn = () => {
+  const coachRegisterBtn = async() => {
     setActivateBtn(true);
     if (
-      checkEmail(coachProfile.email) &&
-      coachProfile.cor &&
-      coachProfile.subCorType &&
-      coachProfile.exp &&
+      checkEmail(coachProfile.orgEmail) &&
+      coachProfile.orgName &&
+      coachProfile.job &&
+      coachProfile.department &&
       tags.length === 2 &&
-      corType
+      orgType
     ) {
-      // 회원가입 로직 작성 폼이 완성 됐을 때 실행 가능
+      // 유저 메일 인증 관련 내용 확인 후 진행 예정
+      console.log("coachProfile", coachProfile);
+      console.log("tags", tags);
+      console.log("orgType", orgType);
+      console.log("userInfo", userInfo);
+
+      const variables = { createProfileInput : {
+        ...coachProfile,
+        image: "",
+        orgType,
+        profileContents: "",
+        profileTitle: "",
+        answerInitAmount: 1000,
+      }};
+
+      const result = await createCoachProfile({variables})
+      
       console.log("zz");
     }
   };
@@ -95,8 +122,8 @@ export default function CoachingUsCoachRegisterPage() {
       tags={tags}
       setTags={setTags}
       coachProfile={coachProfile}
-      onClickCorType={onClickCorType}
-      corType={corType}
+      onClickOrgType={onClickOrgType}
+      orgType={orgType}
       moveToPage={moveToPage}
       coachRegisterBtn={coachRegisterBtn}
       emailTextErr={emailTextErr}

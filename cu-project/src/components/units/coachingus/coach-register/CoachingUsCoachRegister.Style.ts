@@ -81,8 +81,8 @@ export const FormInput = styled.input`
   padding: 5px;
   transition: border 1s ease-in-out;
 
-  border-bottom: ${({ isFull }) =>
-    isFull ? "1px solid #bdbdbd" : "1px solid white"};
+  border-bottom: ${(props: { isFull: boolean }) =>
+    props.isFull ? "1px solid #bdbdbd" : "1px solid white"};
 
   :focus {
     auto: true;
