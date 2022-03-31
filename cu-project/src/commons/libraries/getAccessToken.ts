@@ -2,9 +2,7 @@ import { gql, GraphQLClient } from "graphql-request";
 
 const RESTORE_ACCESS_TOKEN = gql`
   mutation restoreAccessToken {
-    restoreAccessToken {
-      accessToken
-    }
+    restoreAccessToken
   }
 `;
 
@@ -16,12 +14,8 @@ export async function getAccessToken() {
         credentials: "include",
       }
     );
-
     const result = await graphQLClient.request(RESTORE_ACCESS_TOKEN);
-
-    // console.log("두번째로 실행되어야 하는거");
-    const newAccessToken = result.restoreAccessToken.accessToken;
-
+    const newAccessToken = result.restoreAccessToken;
     return newAccessToken;
   } catch (error) {
     if (error instanceof Error) console.log(error.message);
