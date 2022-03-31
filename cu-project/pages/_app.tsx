@@ -9,12 +9,13 @@ import { createUploadLink } from "apollo-upload-client";
 import "../styles/globals.css";
 import { Global } from "@emotion/react";
 import { onError } from "@apollo/client/link/error";
-import { globalStyles } from "../src/commons/styles/globalStyles";
+import { globalStyles, landingCss } from "../src/commons/styles/globalStyles";
 import Layout from "../src/components/commons/layout";
 import { createContext, Dispatch, SetStateAction, useEffect } from "react";
 import { getAccessToken } from "../src/commons/libraries/getAccessToken";
 import useStore from "../src/commons/store/store";
 import { getLoggenInUser } from "../src/commons/libraries/getLoggedInUser";
+import { useRouter } from "next/router";
 
 // app.tsx 타입 추가
 interface IGlobalContext {
@@ -25,6 +26,8 @@ interface IGlobalContext {
 export const GlobalContext = createContext<IGlobalContext>({});
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
   const setUserInfo = useStore((state) => state.setUserInfo);
   const { accessToken, setAccessToken } = useStore((state) => state);
   const uploadLink = createUploadLink({
@@ -61,7 +64,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     getAccessToken().then((newAccessToken) => {
       setAccessToken(newAccessToken);
     });
-    // refresh토큰 관련 이슈 
+    // refresh토큰 관련 이슈
     if (sessionStorage.getItem("accessToken"))
       setAccessToken(sessionStorage.getItem("accessToken") || "");
 
@@ -84,7 +87,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <ApolloProvider client={client}>
-      <Global styles={globalStyles} />
+      <Global styles={router.asPath === "/" ? landingCss : globalStyles} />
       <Layout>
         <Component {...pageProps} />
       </Layout>
