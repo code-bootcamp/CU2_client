@@ -84,7 +84,7 @@ export default function CoachingUsCoachRegisterPage() {
     }
   };
 
-  const coachRegisterBtn = async() => {
+  const coachRegisterBtn = async () => {
     setActivateBtn(true);
     if (
       checkEmail(coachProfile.orgEmail) &&
@@ -95,22 +95,31 @@ export default function CoachingUsCoachRegisterPage() {
       orgType
     ) {
       // 유저 메일 인증 관련 내용 확인 후 진행 예정
-      console.log("coachProfile", coachProfile);
-      console.log("tags", tags);
-      console.log("orgType", orgType);
-      console.log("userInfo", userInfo);
+      //
+      //
+      //
+      //
 
-      const variables = { createProfileInput : {
-        ...coachProfile,
-        image: "",
-        orgType,
-        profileContents: "",
-        profileTitle: "",
-        answerInitAmount: 1000,
-      }};
+      const variables = {
+        createProfileInput: {
+          ...coachProfile,
+          image: "",
+          orgType,
+          profileContents: "",
+          profileTitle: "",
+          answerInitAmount: 1000,
+        },
+      };
 
-      const result = await createCoachProfile({variables})
-      
+      const result = await createCoachProfile({ variables });
+
+      if (!result.data) {
+        alert("코치 등록 실패");
+        return;
+      }
+
+      moveToPage("/mypage/coach/portfolio/");
+
       console.log("zz");
     }
   };
