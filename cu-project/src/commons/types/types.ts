@@ -105,8 +105,11 @@ export interface ICodingUsBlogWriteUIProps {
   editorRef: RefObject<Editor>;
   tags: string[];
   setTags: (tags: React.SetStateAction<string[]>) => void;
+  setStack: (tags: React.SetStateAction<string>) => void;
   onClickExit: (event: MouseEvent<HTMLButtonElement>) => void;
   onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
+  title: string;
+  onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 export interface ICodingUsMainProps {}
 export interface ICodingUsMainUIProps {

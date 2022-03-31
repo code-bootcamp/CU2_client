@@ -1,7 +1,6 @@
 import Blank from "../../../../commons/Blank";
 import { ICodingUsBlogWriteUIProps } from "../../../../../commons/types/types";
 import * as S from "./BlogWrite.Style";
-import { v4 as uuidV4 } from "uuid";
 import TextEditor01 from "../../../../commons/TextEditor/TextEditor01";
 import Button01 from "../../../../commons/Button/Button01";
 import Button02 from "../../../../commons/Button/Button02";
@@ -16,7 +15,7 @@ export default function CodingUsBlogWriteUI(props: ICodingUsBlogWriteUIProps) {
         <Button02 value="완료" icon={AiOutlineEdit} onClick={props.onClickSubmit} />
       </S.ButtonWrapper>
       <Blank height="150px" />
-      <S.TitleInput placeholder="제목을 입력하세요" />
+      <S.TitleInput placeholder="제목을 입력하세요" value ={props.title} onChange={props.onChangeTitle}/>
       <HorizontalLine margin={30} color="#DBDBDB" />
       <TagInput tags={props.tags} setTags={props.setTags} />
       <Blank height="32px" />
