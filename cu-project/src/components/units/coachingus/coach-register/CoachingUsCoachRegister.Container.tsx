@@ -1,4 +1,5 @@
 import { useMutation } from "@apollo/client";
+import { useRouter } from "next/router";
 import { KeyboardEvent, useCallback, useState } from "react";
 import useStore from "../../../../commons/store/store";
 import {
@@ -26,7 +27,7 @@ export default function CoachingUsCoachRegisterPage() {
   const userInfo = useStore((state) => state.userInfo);
   const [tags, setTags] = useState<string[]>([]);
   const [orgType, setOrgType] = useState("");
-
+  const router = useRouter();
   const { moveToPage } = useMoveToPage();
 
   const onChangeTags = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -40,7 +41,7 @@ export default function CoachingUsCoachRegisterPage() {
     } else {
       if (tags.length > 1) {
         e.currentTarget.value = "";
-        return alert("최대 네 개까지 입력 가능합니다.");
+        return alert("최대 두 개까지 입력 가능합니다.");
       } else {
         if (e.key === "Enter") {
           if (e.currentTarget.value === "") {
@@ -109,20 +110,23 @@ export default function CoachingUsCoachRegisterPage() {
           profileTitle: "",
           answerInitAmount: 1000,
         },
+        stacktag: tags,
       };
 
       const result = await createCoachProfile({ variables });
 
       if (!result.data) {
         alert("코치 등록 실패");
+
         return;
       }
+      console.log(result.data);
 
-      moveToPage("/mypage/coach/portfolio/");
-
-      console.log("zz");
+      router.push("/mypage/coach/portfolio/");
     }
   };
+
+  console.log(tags);
   return (
     <CoachingUsCoachRegisterUI
       onChangeTags={onChangeTags}

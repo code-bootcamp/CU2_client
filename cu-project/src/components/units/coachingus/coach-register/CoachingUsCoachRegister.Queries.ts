@@ -1,8 +1,14 @@
 import { gql } from "@apollo/client";
 
 export const CREATE_COACH_PROFILE = gql`
-  mutation createCoachProfile($createProfileInput: CreateCoachProfileInput!) {
-    createCoachProfile(createProfileInput: $createProfileInput) {
+  mutation createCoachProfile(
+    $createProfileInput: CreateCoachProfileInput!
+    $stacktag: [String!]!
+  ) {
+    createCoachProfile(
+      createProfileInput: $createProfileInput
+      stacktag: $stacktag
+    ) {
       coachProfile {
         id
         orgName
@@ -16,6 +22,9 @@ export const CREATE_COACH_PROFILE = gql`
         answerInitAmount
       }
       role
+      coachtag {
+        tag
+      }
     }
   }
 `;

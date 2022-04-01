@@ -1,17 +1,11 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
-
+import { LOGOUT } from "./LayoutHeader.Queries";
 import useStore from "../../../../commons/store/store";
 import { useAuth } from "../../hooks/useAuth";
 import { useMoveToPage } from "../../hooks/useMoveToPage";
 import LayoutHeaderPageUI from "./LayoutHeader.presenter";
-
-const LOGOUT_USER = gql`
-  mutation logoutUser {
-    logoutUser
-  }
-`;
 
 export default function LayoutHeaderPage() {
   const accessToken = useStore((state) => state.accessToken);
@@ -25,7 +19,7 @@ export default function LayoutHeaderPage() {
   const { moveToPage } = useMoveToPage();
   const currentPath = router.asPath;
 
-  const [logoutUser] = useMutation(LOGOUT_USER);
+  const [logoutUser] = useMutation(LOGOUT);
 
   const SendQuery = (category, keyword) => {
     router.push({
