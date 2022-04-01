@@ -3,6 +3,7 @@ import { AiFillQuestionCircle } from "react-icons/ai";
 import { BsPersonCircle } from "react-icons/bs";
 import { FaBloggerB, FaCommentDots } from "react-icons/fa";
 import { IoNewspaperSharp } from "react-icons/io5";
+import { useInView } from "react-intersection-observer";
 import Color from "../../../commons/styles/color";
 import { breakPoints } from "../../../commons/styles/media";
 import Blank from "../../commons/Blank";
@@ -29,10 +30,36 @@ const Wrapper = styled.div`
   }
 `;
 
+const Logo = styled.img`
+  opacity: 0;
+  animation: ${({ isPresent }) => isPresent && "fadeIn 3s forwards 0.5s"};
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-60px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+`;
 const Motto = styled.div`
   font-size: 18px;
+  opacity: 0;
   line-height: 32px;
   color: ${Color.medium};
+  animation: ${({ isPresent }) => isPresent && "fadeIn 3s forwards 0.5s"};
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-60px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
 `;
 
 const Service = styled.div`
@@ -92,15 +119,19 @@ const Box = styled.div`
 `;
 
 export default function SecondPage() {
+  const [ref, inView] = useInView();
+
   return (
     <Wrapper>
-      <img src="/CU2_LOGO2.png" width={287} />
+      <Logo isPresent={inView} src="/CU2_LOGO2.png" width={287} />
       <Blank height="10px" />
-      <Motto>초보 개발자의 Self Study Solution을 제공하는 CU2</Motto>
+      <Motto isPresent={inView}>
+        초보 개발자의 Self Study Solution을 제공하는 CU2
+      </Motto>
       <Blank height="70px" />
       <BodyWrapper>
         <Box width={"544px"}>
-          <ServiceName>
+          <ServiceName ref={ref}>
             <Ball />
             <Line width={"70px"} />
             <Blank width="15px" />

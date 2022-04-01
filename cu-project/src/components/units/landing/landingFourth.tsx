@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useInView } from "react-intersection-observer";
 import Color from "../../../commons/styles/color";
 import { breakPoints } from "../../../commons/styles/media";
 import Blank from "../../commons/Blank";
@@ -80,11 +81,50 @@ const Contents = styled.p`
   }
 `;
 
+const FixImg1 = styled.img`
+  position: fixed;
+  right: 350px;
+  opacity: 0;
+  animation: ${({ isPresent }) => isPresent && "fadeIn4 1s forwards 0.5s"};
+  @keyframes fadeIn4 {
+    0% {
+      opacity: 0;
+      transform: translateY(100px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+`;
+const FixImg2 = styled.img`
+  position: fixed;
+  right: 370px;
+  top: calc(100vh * 3 + 200px);
+  opacity: 0;
+  animation: ${({ isPresent }) => isPresent && "fadeIn4 2s forwards 0.5s"};
+`;
+const FixImg3 = styled.img`
+  position: fixed;
+  right: 300px;
+  top: calc(100vh * 3 + 250px);
+  opacity: 0;
+  animation: ${({ isPresent }) => isPresent && "fadeIn4 4s forwards 0.5s"};
+`;
+const FixImg4 = styled.img`
+  position: fixed;
+  right: 370px;
+  top: calc(100vh * 3 + 450px);
+  opacity: 0;
+  animation: ${({ isPresent }) => isPresent && "fadeIn4 2.5s forwards 0.5s"};
+`;
+
 export default function FifthPage() {
+  const [ref, inView] = useInView();
   return (
     <Wrapper>
       <TitleBox>
-        <Title>
+        <Title ref={ref}>
           블로깅하고
           <br /> 피드백을 받으세요.
         </Title>
@@ -95,8 +135,13 @@ export default function FifthPage() {
       </TitleBox>
       <Blank width="169px" />
       <ImageBox>
-        <img src="/fourth.png" />
+        <img src="/Group 838.png" />
       </ImageBox>
+
+      <FixImg1 isPresent={inView} src="/Group 840.png" />
+      <FixImg2 isPresent={inView} src="/Group 842.png" />
+      <FixImg3 isPresent={inView} src="/Group 840.png" />
+      <FixImg4 isPresent={inView} src="/Group 842.png" />
     </Wrapper>
   );
 }
