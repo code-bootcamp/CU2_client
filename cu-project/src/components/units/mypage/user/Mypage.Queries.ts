@@ -1,3 +1,9 @@
-// import {gql} from "@apollo/client"
+import { gql } from "@apollo/client";
 
-export {}
+export const FETCH_MY_USER = gql`
+  query fetchmyuser {
+    fetchmyuser {
+      nickname
+    }
+  }
+`;

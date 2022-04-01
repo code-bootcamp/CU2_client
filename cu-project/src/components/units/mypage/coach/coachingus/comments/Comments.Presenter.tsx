@@ -6,7 +6,9 @@ import * as S from "./Comments.Style";
 export default function CommentsUI() {
   return (
     <S.AllWrapper>
-      <CoachpageMenu />
+      <S.Web>
+        <CoachpageMenu />
+      </S.Web>
       <S.Wrapper>
         <CoachPageNav menu={"내 코칭 보기"} />
         <S.BlogHeader>
