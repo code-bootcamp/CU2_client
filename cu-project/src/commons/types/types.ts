@@ -13,6 +13,7 @@ import React, {
   SetStateAction,
 } from "react";
 import { Editor } from "@toast-ui/react-editor";
+import { IBlog } from "./generated/types";
 
 export interface ILayoutProps {
   children: ReactChild;
@@ -105,8 +106,13 @@ export interface ICodingUsBlogWriteUIProps {
   editorRef: RefObject<Editor>;
   tags: string[];
   setTags: (tags: React.SetStateAction<string[]>) => void;
+  setStack: (tags: React.SetStateAction<string>) => void;
   onClickExit: (event: MouseEvent<HTMLButtonElement>) => void;
   onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
+  title: string;
+  onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeStack: (event: ChangeEvent<HTMLSelectElement>) => void;
+  stack: string;
 }
 export interface ICodingUsMainProps {}
 export interface ICodingUsMainUIProps {
@@ -117,6 +123,18 @@ export interface ICodingUsMainUIProps {
   onClickItem: (id: string) => () => void;
   onClickFollow: (id: string) => () => void;
   onClickLike: (id: string) => () => void;
+}
+
+export interface ICodingUsBlogDetailUIProps {
+  width?: string | number;
+  height?: string | number;
+  data: IBlog;
+  onClickDelete: () => void;
+  onClickUpdate: () => void;
+  index: string[];
+  currentIndex: number;
+  indexPositions?: number[];
+  setCurrentIndex: Dispatch<SetStateAction<number>>;
 }
 
 export interface ICodingUsCommentsProps {

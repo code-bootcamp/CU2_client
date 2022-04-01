@@ -1,26 +1,38 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { getIndexFromMD } from "../../../../../commons/libraries/mdUtils";
-import { IQuery } from "../../../../../commons/types/generated/types";
+import { IMutation, IMutationDeleteBlogArgs, IQuery } from "../../../../../commons/types/generated/types";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import { useScroll } from "../../../../commons/hooks/useScroll";
 import { dummyMD } from "../dummy";
-import CodingUsBlogDetailUI from "./BlogDetail.Presenter";
-import { FETCH_BLOG } from "./BlogDetail.Queries";
+import CodingUsBlogDetailUI from "./BlogDetail.PresenterAPI";
+import { DELETE_BLOG, FETCH_BLOG } from "./BlogDetail.Queries";
 
 export default function CodingUsBlogDetail() {
   const { moveToPage } = useMoveToPage();
   const router = useRouter();
   const [indexPositions, setIndexPositions] = useState<number[]>([]);
   const [currentIndex, setCurrentIndex] = useState(-1);
-  // const {data: fetchBlogData} = useQuery<Pick<IQuery,"fetchBlog">,IQueryFetchBlogArgs>(FETCH_BLOG, {variables: {blogId: router.query.blogId}})
-  // const {data: fetchBlogData} = useQuery(FETCH_BLOG, {variables: {blogId: router.query.blogId}})
-  const onClickDelete = () => {
+  const {data: fetchBlogData} = useQuery<Pick<IQuery,"fetchBlog">,IQueryFetchBlogArgs>(FETCH_BLOG, {variables: {blogId: router.query.blogId}})
+  const [deleteBlog] = useMutation<Pick<IMutation,"deleteBlog">,IMutationDeleteBlogArgs>(DELETE_BLOG);
+  const onClickDelete = async () => {
     // 삭제 확인
+    if(!"삭제확인") return;
+
+    try{const result = await deleteBlog({variables: {blogid: String(router.query.blogId)}})
+    if(!result){
+      alert("삭제 실패");
+      return;
+    }
+    alert("삭제 성공");
+    router.push("/codingus/blog");
+  }catch(err: any){
+      alert(err.message);
+    }
   };
   const onClickUpdate = () => {
-    moveToPage(`/codingus/blog/${"blogId자리입니다~~~~"}/update`);
+    moveToPage(`/codingus/blog/${router.query.blogId}/update`);
   };
   const { y: scrollY } = useScroll();
 
@@ -52,16 +64,9 @@ export default function CodingUsBlogDetail() {
   }, [scrollY,currentIndex]);
   return (
     <CodingUsBlogDetailUI
-      contents={dummyMD}
-      writer={"CodingMaster"}
-      title={"Zustand - 상태 관리 라이브러리"}
-      createdAt="2022-02-07T14:42:53.532Z"
-      tags={["JavaScript", "React", "Zustand"]}
-
-      // fetchBlogData={fetchBlogData}
-      // index={getIndexFromMD(fetchBlogData.contents)}
-      // isPicked={true}
-
+      data={fetchBlogData.Blog}
+      index={getIndexFromMD(fetchBlogData.Blog.contents)}
+      isPicked={fetchBlogData.isLiked}
       currentIndex={currentIndex}
       indexPositions={indexPositions}
       setCurrentIndex={setCurrentIndex}
