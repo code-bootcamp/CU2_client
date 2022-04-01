@@ -12,7 +12,7 @@ export default function NextArrow({
       ref={scrollDownRef}
       style={{
         ...style,
-        display: "none",
+        zIndex: -1,
       }}
       onClick={onClick}
     />

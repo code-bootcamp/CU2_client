@@ -14,63 +14,67 @@ import * as S from "./landing.Style";
 import styled from "@emotion/styled";
 import NextArrow from "./arrow/NextArrow";
 import PrevArrow from "./arrow/PrevArrow";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import useBackground from "../../../commons/store/path";
 import { useRouter } from "next/router";
 
 const Slide = styled(Slider)`
-  min-height: calc(100vh);
-
-  overflow: hidden;
   .slick-dots {
     display: flex !important;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: fixed;
+    position: absolute;
     right: 10px;
+    bottom: 0;
     width: 20px;
     height: 100vh;
-    padding-bottom: 50px;
-    /* background-color: red; */
+    /* padding-bottom: 50px; */
   }
 `;
 
 export default function LandingUI() {
-  const router = useRouter();
-  // const setIsLanding = useBackground((state) => state.setIsLanding);
-
+  const slideRef = useRef();
   const scrollUpRef = useRef(null);
   const scrollDownRef = useRef(null);
 
-  const onScroll = (e: Event) => {
-
-    if (window.scrollY < 1) {
-      scrollUpRef.current?.click();
-    }
-    if (window.scrollY >= 2) {
-      scrollDownRef.current?.click();
-    }
-    window.scrollTo(0, 1);
-
-  };
-
   useEffect(() => {
-    // setIsLanding(router.asPath);
-    window.addEventListener("scroll",(e) => { 
-      onScroll(e)
-    });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
+    const slideRefCurrent = slideRef.current;
+    let timer;
+    const onScroll = (e) => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+
+      let { scrollTop } = slideRef.current;
+
+      console.log(scrollTop);
+
+      if (scrollTop === 0) {
+        scrollUpRef.current?.click();
+      }
+      if (scrollTop === 2) {
+        scrollDownRef.current?.click();
+      }
+
+      timer = setTimeout(function () {
+        slideRefCurrent?.scrollTo(0, 1);
+      }, 200);
     };
-  }, []);
+
+    slideRefCurrent?.addEventListener("scroll", onScroll);
+
+    return () => {
+      slideRefCurrent?.removeEventListener("scroll", onScroll);
+    };
+  });
 
   const firstSettings = {
-    infinite: true,
+    infinite: false,
     slidesToShow: 1,
     slidesToScroll: 1,
     dots: true,
-    speed: 1500,
+    speed: 1300,
     pauseOnHover: true,
     vertical: true,
     dotsClass: "slick-dots",
@@ -80,15 +84,17 @@ export default function LandingUI() {
 
   return (
     <S.Wrapper>
-      <Slide {...firstSettings}>
-        <FirstPage />
-        <SecondPage />
-        <ThirdPage />
-        <FourthPage />
-        <FifthPage />
-        <SixthPage />
-        <SevenPage />
-      </Slide>
+      <S.Outer ref={slideRef}>
+        <Slide {...firstSettings}>
+          <FirstPage />
+          <SecondPage />
+          <ThirdPage />
+          <FourthPage />
+          <FifthPage />
+          <SixthPage />
+          <SevenPage />
+        </Slide>
+      </S.Outer>
     </S.Wrapper>
   );
 }
