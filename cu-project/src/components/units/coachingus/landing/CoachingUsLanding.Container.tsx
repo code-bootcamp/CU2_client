@@ -23,7 +23,13 @@ export default function CoachingUsLanding(props: ICoachingUsLandingProps) {
   const [favorList, setFavorList] = useState<(string | undefined)[]>([]);
 
   const onChangeCheckBox = (e: MouseEvent) => {
-    setFavorList([...favorList, e.currentTarget.id]);
+    if (favorList.includes(e.currentTarget.id)) {
+      let temp = [];
+      temp = favorList.filter((favor) => favor !== e.currentTarget.id);
+      setFavorList(temp);
+    } else {
+      setFavorList([...favorList, e.currentTarget.id]);
+    }
   };
 
   const onClickStart = () => {

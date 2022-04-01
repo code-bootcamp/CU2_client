@@ -5,46 +5,89 @@ import * as S from "./Register.Style";
 export default function RegisterUI(props: IRegisterUIProps) {
   return (
     <S.Wrapper>
-      <S.Logo src="https://blog.kakaocdn.net/dn/bdcEzt/btqwO6vBvi1/4rXyAZ3e2s0QSbxFDuEh7k/img.jpg" />
-      <S.RegisterForm onSubmit={props.handleSubmit(props.onClickRegister)}>
-        <p>이메일로 회원가입</p>
+      <S.Logo src="/CU2_LOGO.png" />
+      <S.RegisterForm onSubmit={props.handleSubmit(props.onClickGetAuthNum)}>
+        <p>Sign Up</p>
+        <Blank height="10px" />
         <S.RegisterLabel>
-          이름
+          Name
           <S.RegisterInput type="text" {...props.register("name")} />
-          {props.formState.errors.name?.message}
+          {props.formState.errors.name?.message ? (
+            <S.ErrorMessageBox>
+              {props.formState.errors.name?.message}
+            </S.ErrorMessageBox>
+          ) : (
+            <Blank height="20px" />
+          )}
         </S.RegisterLabel>
-        <Blank height="10px" />
         <S.RegisterLabel>
-          이메일
+          Email Address
           <S.RegisterInput type="email" {...props.register("email")} />
+          {props.formState.errors.email?.message ? (
+            <S.ErrorMessageBox>
+              {props.formState.errors.email?.message}
+            </S.ErrorMessageBox>
+          ) : (
+            <Blank height="20px" />
+          )}
         </S.RegisterLabel>
-        <Blank height="10px" />
+
         <S.RegisterLabel>
-          패스워드
+          Password
           <S.RegisterInput type="password" {...props.register("password")} />
+          {props.formState.errors.password?.message ? (
+            <S.ErrorMessageBox>
+              {props.formState.errors.password?.message}
+            </S.ErrorMessageBox>
+          ) : (
+            <Blank height="20px" />
+          )}
         </S.RegisterLabel>
-        <Blank height="10px" />
+
         <S.RegisterLabel>
-          패스워드 확인
+          Confirm Password
           <S.RegisterInput
             type="password"
             {...props.register("checkPassword")}
           />
+          {props.formState.errors.checkPassword?.message ? (
+            <S.ErrorMessageBox>
+              {props.formState.errors.checkPassword?.message}
+            </S.ErrorMessageBox>
+          ) : (
+            <Blank height="20px" />
+          )}
         </S.RegisterLabel>
+        <Blank height="10px" />
         <S.RegisterLabel>
-          휴대전화
-          <S.RegisterInput type="text" />
-          <Blank height="10px" />
-          <button type="button">인증번호 받기</button>
+          Phone Number
+          <S.RegisterInput
+            type="text"
+            onChange={props.onChangeInput}
+            value={props.phone}
+          />
+          <Blank height="20px" />
+          <S.GetRegisterNum>Get Authentication Number</S.GetRegisterNum>
           <Blank height="10px" />
           <S.RegisterInput
             type="text"
-            placeholder="인증번호를 입력해주세요."
-            disabled
+            placeholder="
+Please enter the verification code "
+            disabled={!props.isToken}
+            ref={props.codeRef}
+            onChange={() => {
+              console.log(props.codeRef);
+            }}
           />
+          <Blank height="20px" />
         </S.RegisterLabel>
-        <Blank height="10px" />
-        <button>가입하기</button>
+        <S.CreateAccountBtn
+          disabled={!props.isToken}
+          type="button"
+          onClick={props.onClickRegister}
+        >
+          Create Account
+        </S.CreateAccountBtn>
       </S.RegisterForm>
     </S.Wrapper>
   );

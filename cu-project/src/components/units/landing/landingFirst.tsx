@@ -1,82 +1,95 @@
 import styled from "@emotion/styled";
-import Blank from "../../commons/Blank";
+import Color from "../../../commons/styles/color";
+import { breakPoints } from "../../../commons/styles/media";
+import { useMoveToPage } from "../../commons/hooks/useMoveToPage";
+
+interface IButtonProps {
+  cate: boolean;
+}
 
 const Wrapper = styled.div`
   min-width: 100vw;
-  min-height: 100vh;
-  box-sizing: border-box;
+  height: 100vh;
   margin: 0;
+  padding-top: 50px;
+
+  box-sizing: border-box;
+  background-color: #303030;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #f6f5f5;
-  padding: 0 10%;
+
+  @media ${breakPoints.tablet} {
+    min-width: 100%;
+  }
+  @media ${breakPoints.mobile} {
+    min-width: 100%;
+  }
 `;
 
-const TitleBox = styled.div`
+export const Logo = styled.img`
+  width: 100px;
+  border: none;
+  border-radius: 100%;
+  z-index: 3;
+  position: fixed;
+  top: 50px;
+  left: 50px;
+`;
+
+const BackgroundImageFix = styled.div`
   width: 100%;
-  padding: 0 10%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-
-const Title = styled.h1`
-  font-family: "Apple SD Gothic Neo";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 64px;
-  line-height: 77px;
-  text-align: center;
-  color: #333333;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-`;
-
-const SubTitle = styled.p`
-  width: 666px;
-  font-family: "Apple SD Gothic Neo";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 38px;
-  color: #bdbdbd;
+  height: calc(100vh - 150px);
+  background-image: url("/landingback.png");
+  background-size: cover;
 `;
 
 const ButtonBox = styled.div`
+  width: 100%;
+  position: relative;
+  top: 100px;
   display: flex;
+  border: none;
+  padding-bottom: 200px;
+  justify-content: center;
+  @media ${breakPoints.mobile} {
+    flex-direction: column;
+  }
 `;
 
 const MoveButton = styled.button`
-  border: 4px solid #333333;
+  border: none;
   border-radius: 10px;
   width: 240px;
   height: 72px;
-  font-family: "Arial";
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
   line-height: 32px;
   text-align: center;
-  color: #333333;
+  color: ${(props: IButtonProps) => (props.cate ? Color.main : Color.white)};
+  margin-right: 30px;
+  background-color: ${(props: IButtonProps) =>
+    props.cate ? Color.white : Color.main};
+  @media ${breakPoints.mobile} {
+    width: 100%;
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
 `;
 
 export default function FirstPage() {
+  const { moveToPage } = useMoveToPage();
   return (
     <Wrapper>
-      <TitleBox>
-        <Title>내가 쓴 글이 스펙이 된다!</Title>
-        <Blank height="46px" />
-        <SubTitle>
-          글 내용입니다글 내용입니다글 내용입니다글 내용입니다글 내용입니다글
-          내용입니다
-        </SubTitle>
-      </TitleBox>
-      <Blank height="118px" />
+      <Logo src="/CU2_LOGO.png" />
+      <BackgroundImageFix />
       <ButtonBox>
-        <MoveButton>CodingUS</MoveButton>
-        <Blank width="32px" />
-        <MoveButton>CouchingUS</MoveButton>
+        <MoveButton onClick={moveToPage("/codingus")} cate={true}>
+          CodingUS
+        </MoveButton>
+        <MoveButton onClick={moveToPage("/coachingus")} cate={false}>
+          CouchingUS
+        </MoveButton>
       </ButtonBox>
     </Wrapper>
   );

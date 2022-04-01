@@ -17,17 +17,25 @@ export default function CoachingUsNavbarUI(props: ICoachingUsNavbarUIProps) {
       <Blank height="30px" />
       <S.Sidenav
         onClick={props.moveToPage("/coachingus/coaches")}
-        isCurrent={props.currentPath === "/coachingus/coaches"}
+        isCurrent={props.currentPath.includes("/coachingus/coaches")}
       >
         Coaches
       </S.Sidenav>
       <Blank width="100px" />
       <Blank height="30px" />
       <S.Sidenav
-        onClick={props.moveToPage("/coachingus/column")}
-        isCurrent={props.currentPath === "/coachingus/column"}
+        onClick={props.moveToPage("/coachingus/columns")}
+        isCurrent={props.currentPath.includes("/coachingus/columns")}
       >
-        Column
+        Columns
+      </S.Sidenav>
+      <Blank width="100px" />
+      <Blank height="30px" />
+      <S.Sidenav
+        onClick={props.moveToPage("/coachingus/comments")}
+        isCurrent={props.currentPath.includes("/coachingus/comments")}
+      >
+        Comments
       </S.Sidenav>
       <Blank width="100px" />
       <Blank height="30px" />

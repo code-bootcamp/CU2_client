@@ -1,77 +1,96 @@
 import styled from "@emotion/styled";
-import Blank from "../../commons/Blank";
+import Color from "../../../commons/styles/color";
+// import { breakPoints } from "../../../commons/styles/media";
 
 const Wrapper = styled.div`
-  min-width: 100vw;
+  width: 100vw;
   min-height: 100vh;
-  box-sizing: border-box;
   margin: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f6f5f5;
-  padding: 0 10%;
+
+  box-sizing: border-box;
 `;
 
-const Title = styled.h2`
-  font-family: "Apple SD Gothic Neo";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 36px;
-  line-height: 43px;
-`;
-
-const CoachingCategory = styled.div`
-  display: flex;
-`;
-
-const CoachingBox = styled.div`
-  width: 468px;
+const TitleBox = styled.div`
+  width: 730px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  & h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: ${Color.dark};
+  }
+  & p {
+    font-size: 24px;
+  }
 `;
 
-const CoachingImg = styled.img`
-  width: 468px;
-  height: 220px;
-  border: 1px solid;
-  border-radius: 8px;
+const ContentsBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
-const Contents = styled.p`
-  font-family: "Apple SD Gothic Neo";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
+const ContentBox = styled.div`
+  max-width: 742px;
+  min-width: 672px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ContentDesc = styled.div`
+  max-width: 454px;
+  min-width: 429px;
+  display: flex;
+  flex-direction: column;
   line-height: 32px;
-  color: #bdbdbd;
+  & h3 {
+    font-size: 24px;
+  }
+  & p {
+    font-size: 18px;
+  }
 `;
 
 export default function FifthPage() {
   return (
     <Wrapper>
-      <Title>코칭 서비스를 소개할게요</Title>
-      <Blank height="59px" />
-      <CoachingCategory>
-        <CoachingBox>
-          <CoachingImg src="" />
-          <Blank height="21px" />
-          <Contents>
-            국회는 의장 1인과 부의장 2인을 선출한다. 국무위원은 국정에 관하여
-            대통령을 보좌하며, 국무회의의 구성원으로서 국정을 심의한다.
-          </Contents>
-        </CoachingBox>
-        <Blank width="20px" />
-        <CoachingBox>
-          <CoachingImg src="" />
-          <Blank height="21px" />
-          <Contents>
-            국회는 의장 1인과 부의장 2인을 선출한다. 국무위원은 국정에 관하여
-            대통령을 보좌하며, 국무회의의 구성원으로서 국정을 심의한다.
-          </Contents>
-        </CoachingBox>
-      </CoachingCategory>
+      <TitleBox>
+        <h1>코칭 서비스를 소개할게요</h1>
+        <p>
+          CoachingUs는 개발자로의 시작, 전환을 위한 취업 지원 콘텐츠를
+          제공합니다
+        </p>
+      </TitleBox>
+      <ContentsBox>
+        <ContentBox>
+          <img src="/fifth1.png" />
+          <ContentDesc>
+            <h3>User</h3>
+            <p>
+              코치들에게 자기소개서나 포트폴리오 등 취업 코칭을 신청하세요!
+              코치들이 작성한 칼럼을 읽고 전문적인 인사이트를 얻어보세요!
+            </p>
+          </ContentDesc>
+        </ContentBox>
+        <ContentBox>
+          <img src="/fifth2.png" />
+          <ContentDesc>
+            <h3>Coach</h3>
+            <p>
+              매일 1시간 후배들의 코칭을 진행하며 부수입을 창출해보세요! 칼럼을
+              작성하여 본인을 PR해보세요!
+            </p>
+          </ContentDesc>
+        </ContentBox>
+      </ContentsBox>
     </Wrapper>
   );
 }

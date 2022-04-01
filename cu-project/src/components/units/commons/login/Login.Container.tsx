@@ -3,12 +3,18 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormValues, ILoginProps } from "../../../../commons/types/types";
 import LoginUI from "./Login.Presenter";
-import { LOGIN_USER } from "./Login.Queries";
-import { useMutation } from "@apollo/client";
+import { FETCH_COACH_USER_LIST, LOGIN } from "./Login.Queries";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import { useContext } from "react";
 import { GlobalContext } from "../../../../../pages/_app";
 import { useRouter } from "next/router";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
+import {
+  IQuery,
+  IQueryFetchCoachUserArgs,
+} from "../../../../commons/types/generated/types";
+import useStore from "../../../../commons/store/store";
+import { getLoggenInUser } from "../../../../commons/libraries/getLoggedInUser";
 
 const schema = yup.object().shape({
   email: yup
@@ -28,26 +34,44 @@ const schema = yup.object().shape({
 
 export default function Login(props: ILoginProps) {
   const router = useRouter();
-  const [loginUser] = useMutation(LOGIN_USER);
-  const { moveToPage } = useMoveToPage();
-  const { setAccessToken } = useContext(GlobalContext);
   const { register, formState, handleSubmit } = useForm({
     resolver: yupResolver(schema),
   });
 
+  const [login] = useMutation(LOGIN);
+
+  const { moveToPage } = useMoveToPage();
+  const { setAccessToken, setUserInfo } = useStore((state) => state);
+
   const onClickLogin = async (data: FormValues) => {
     try {
-      const result = await loginUser({
+      const result = await login({
         variables: {
           email: data.email,
           password: data.password,
         },
       });
-      const accessToken = result.data?.loginUser.accessToken;
-      if (setAccessToken) {
-        setAccessToken(accessToken || "");
-        router.push("/");
+      const accessToken = result.data?.login;
+      console.log(accessToken);
+      if (!accessToken) {
+        alert("로그인 실패");
+        return;
       }
+
+      getLoggenInUser();
+      // refresh토큰 관련 이슈
+      sessionStorage.setItem("accessToken", accessToken);
+      setAccessToken(accessToken);
+      const loggedInUser = getLoggenInUser().then((userInfo) => {
+        console.log("getLoggenInUser", userInfo);
+        // setUserInfo(userInfo);
+      });
+      console.log(loggedInUser);
+      // if (!loginUser) {
+      //   alert("로그인 실패");
+      //   return;
+      // }
+      router.push("/");
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message);

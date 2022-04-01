@@ -4,6 +4,8 @@ import Blank from "../../../../../commons/Blank";
 import { getShortDateString } from "../../../../../../commons/libraries/dateUtils";
 import Tag01 from "../../../../../commons/Tag/Tag01";
 import { ICodingUsBlogCardProps } from "../../../../../../commons/types/types";
+import HorizontalLine from "../../../../../commons/Line/HorizontalLine";
+import { useRouter } from "next/router";
 
 interface ICodingUsCardProps {
   width?: number;
@@ -12,28 +14,43 @@ interface ICodingUsCardProps {
 }
 
 export default function BlogCard(props: ICodingUsCardProps) {
+  const router = useRouter();
   return (
     <S.Wrapper
-      width={props.width ? `${props.width}px` : "387px"}
-      height={props.height ? `${props.height}px` : "521px"}
+      width={props.width ? `${props.width}px` : "285px"}
+      height={props.height ? `${props.height}px` : "440px"}
+      onClick={()=>{router.push("/codingus/blog/detail")}}
     >
       {/* {console.log(props.blogData.images[0])} */}
       <S.Image src={props.blogData?.images?.[0]} />
       <S.Body>
-        <Blank height="16px" />
+        <Blank height="18px" />
         <S.StackWrapper>
-          {props.blogData.stacks && <Tag01 value={props.blogData.stacks[0]} />}
+          {props.blogData.stacks && (
+            <Tag01 value={props.blogData.stacks[0]} color="main" />
+          )}
         </S.StackWrapper>
-        <Blank height="20px" />
+        <Blank height="16px" />
         <S.Title>{props.blogData.title}</S.Title>
-        <Blank height="20px" />
+        <Blank height="8px" />
         <S.Contents>{props.blogData.content}</S.Contents>
-        <Blank height="30px" />
       </S.Body>
-      <Blank height="20px" />
+      <Blank height="18px" />
+      <S.RowWrapper style={{ justifyContent: "space-between" }}>
+        <S.Writer>{props.blogData.writer}</S.Writer>
+        <Blank width="23px" />
+        <Label01
+          value={getShortDateString(String(props.blogData.createdAt))}
+          size="16px"
+          color="#C4C4C4"
+          padding="0px"
+        />
+      </S.RowWrapper>
+      <HorizontalLine margin={10} />
       <S.RowWrapper>
         <S.GoodBad>
           <img
+            style={{ width: "20px", height: "20px" }}
             src={
               props.blogData.isLike
                 ? "/Icon_Unfill_Good.png"
@@ -43,30 +60,23 @@ export default function BlogCard(props: ICodingUsCardProps) {
           <Blank width="10px" />
           <Label01
             value={String(props.blogData.likeCnt)}
-            size="18px"
+            size="15px"
             padding="0px"
           />
           <Blank width="26px" />
-          <img src={"/Icon_Unfill_Comment.png"} />
+          <img
+            style={{ width: "20px", height: "20px" }}
+            src={"/Icon_Unfill_Comment.png"}
+          />
           <Blank width="10px" />
           <Label01
             value={String(props.blogData.commentCnt)}
-            size="18px"
+            size="15px"
             padding="0px"
           />
         </S.GoodBad>
       </S.RowWrapper>
-      <Blank height="15px"/>
-      <S.RowWrapper>
-        <S.Writer>{props.blogData.writer}</S.Writer>
-        <Blank width="23px" />
-        <Label01
-          value={getShortDateString(String(props.blogData.createdAt))}
-          size="18px"
-          color="#C4C4C4"
-          padding="0px"
-        />
-      </S.RowWrapper>
+      <Blank height="15px" />
     </S.Wrapper>
   );
 }

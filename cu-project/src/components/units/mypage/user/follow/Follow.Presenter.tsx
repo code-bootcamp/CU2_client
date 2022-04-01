@@ -1,19 +1,17 @@
 import Blank from "../../../../commons/Blank";
+import { UserPageNav } from "../../../../commons/Mypage/MypageNav";
 import MypageMenu from "../MypageMenu.Container";
 import * as S from "./Follow.Style";
 
 export default function UserFollowUI() {
   return (
     <S.AllWrapper>
-      <MypageMenu />
-
+      <S.Web>
+        <MypageMenu />
+      </S.Web>
       <S.Wrapper>
-        검색창
-        <S.Box>{`마이페이지 > 팔로워`}</S.Box>
+        <UserPageNav menu={"팔로우"} />
         <Blank height="30px" />
-        <div>
-          <b>팔로우</b> | 팔로워
-        </div>
         <S.FollowerBox>
           <img src="/pofile_img_default.png" />
           <p>닉네임</p>

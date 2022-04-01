@@ -16,7 +16,6 @@ width: 100%;`;
 export const HistoryItems = styled(RowWrapper)`
   width: 100%;
   /* background-color: ${Color.dark}; */
-  background-color: ${Color.light};
   border-radius: 100px;
   justify-content: space-around;
   padding: 21px 0px 32px 0px;
@@ -25,6 +24,8 @@ export const HistoryItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: ${Color.light};
+  padding: 12px 77px 12px 77px;
 `;
 
 export const Top = styled.div`

@@ -1,5 +1,7 @@
-import CoachRegister from "../../../../src/components/units/mypage/coach/register/CoachRegister.Container";
+import { useAuth } from "../../../../src/components/commons/hooks/useAuth";
+import CoachingUsCoachRegister from "../../../../src/components/units/coachingus/coach-register/CoachingUsCoachRegister.Container";
 
 export default function CoachRegisterPage() {
-  return <CoachRegister />;
+  useAuth();
+  return <CoachingUsCoachRegister />;
 }

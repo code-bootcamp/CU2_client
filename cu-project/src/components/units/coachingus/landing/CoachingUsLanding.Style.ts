@@ -60,10 +60,7 @@ export const CorporationContatiner = styled.div`
   background-color: ${({ isfavorList }) =>
     isfavorList ? "#ea345a" : "#f6f5f5"};
   color: ${({ isfavorList }) => (isfavorList ? "white" : "black")};
-  :hover {
-    background-color: #ea345a;
-    color: white;
-  }
+
   cursor: pointer;
 `;
 export const CorTitle = styled.div`
