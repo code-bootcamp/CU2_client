@@ -6,12 +6,12 @@ export const FETCH_BLOG = gql`
       id
       title
       contents
-      user{
+      user {
         nickname
       }
       like
       dislike
-      blogtag{
+      blogtag {
         tag
       }
       blogcategorytag {
@@ -22,6 +22,19 @@ export const FETCH_BLOG = gql`
 `;
 
 export const DELETE_BLOG = gql`
-mutation deletBoard($blogid: String!){
+  mutation deletBoard($blogid: String!) {
     deletBoard(blogid: $blogid)
-}`
+  }
+`;
+
+export const FETCH_BLOG_ALL = gql`
+  query fetchBlogAll {
+    fetchBlogAll {
+      id
+      title
+      contents
+      like
+      dislike
+    }
+  }
+`;
