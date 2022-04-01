@@ -38,25 +38,28 @@ const Slide = styled(Slider)`
 
 export default function LandingUI() {
   const router = useRouter();
-  const setIsLanding = useBackground((state) => state.setIsLanding);
+  // const setIsLanding = useBackground((state) => state.setIsLanding);
 
   const scrollUpRef = useRef(null);
   const scrollDownRef = useRef(null);
 
-  const onScroll = () => {
+  const onScroll = (e: Event) => {
+
     if (window.scrollY < 1) {
       scrollUpRef.current?.click();
     }
     if (window.scrollY >= 2) {
       scrollDownRef.current?.click();
     }
-
     window.scrollTo(0, 1);
+
   };
 
   useEffect(() => {
-    setIsLanding(router.asPath);
-    window.addEventListener("scroll", onScroll);
+    // setIsLanding(router.asPath);
+    window.addEventListener("scroll",(e) => { 
+      onScroll(e)
+    });
     return () => {
       window.removeEventListener("scroll", onScroll);
     };
@@ -79,7 +82,6 @@ export default function LandingUI() {
     <S.Wrapper>
       <Slide {...firstSettings}>
         <FirstPage />
-
         <SecondPage />
         <ThirdPage />
         <FourthPage />

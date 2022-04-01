@@ -62,7 +62,7 @@ export default function Login(props: ILoginProps) {
       }
 
       const allUserList = (await fetchCoachUserList()).data?.fetchCoachUserList;
-      const { __typename, ...loginUser } = allUserList?.filter(
+      const {...loginUser } = allUserList?.filter(
         (el) => el.email === data.email
       )[0];
 

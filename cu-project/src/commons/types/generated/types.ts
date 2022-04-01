@@ -116,6 +116,13 @@ export type ICoachProfile = {
   profileTitle: Scalars['String'];
 };
 
+export type ICoachTag = {
+  __typename?: 'CoachTag';
+  id: Scalars['String'];
+  tag: Scalars['String'];
+  user: Array<IUser>;
+};
+
 export type IColumnComment = {
   __typename?: 'ColumnComment';
   coachColumn: ICoachColumn;
@@ -230,6 +237,8 @@ export type IMutation = {
   deleteStack: Scalars['String'];
   deleteStackComment: IStackComment;
   deleteUser: Scalars['Boolean'];
+  deletemyBlog: Scalars['String'];
+  deletemyBlogComment: Scalars['Boolean'];
   dislikeAnswerToggle: IAnswerLike;
   dislikeBlogtoggle: IBlogLike;
   increaseColumnHit: ICoachColumn;
@@ -239,7 +248,7 @@ export type IMutation = {
   logout: Scalars['String'];
   minususerscore: IUser;
   plususerscore: IUser;
-  restoreAccessToken: Scalars['String'];
+  resotreAccessToken: Scalars['String'];
   sendTokenTOSMS: Scalars['String'];
   updateBlog: IBlog;
   updateBlogComment: IBlogComment;
@@ -253,8 +262,9 @@ export type IMutation = {
   updateStack: IStack;
   updateStackComment: IStackComment;
   updateUser: IUser;
-  uploadFile: Array<Scalars['String']>;
   uploadStackFile: Array<Scalars['String']>;
+  uploadblogFile: Array<Scalars['String']>;
+  usernulliddelete: Scalars['Boolean'];
 };
 
 
@@ -348,6 +358,7 @@ export type IMutationCreateCoachAnswerArgs = {
 
 export type IMutationCreateCoachProfileArgs = {
   createProfileInput: ICreateCoachProfileInput;
+  stacktag: Array<Scalars['String']>;
 };
 
 
@@ -444,6 +455,16 @@ export type IMutationDeleteStackArgs = {
 
 export type IMutationDeleteStackCommentArgs = {
   stackcommentid: Scalars['String'];
+};
+
+
+export type IMutationDeletemyBlogArgs = {
+  blogid: Scalars['String'];
+};
+
+
+export type IMutationDeletemyBlogCommentArgs = {
+  blogcommentid: Scalars['String'];
 };
 
 
@@ -569,12 +590,12 @@ export type IMutationUpdateUserArgs = {
 };
 
 
-export type IMutationUploadFileArgs = {
+export type IMutationUploadStackFileArgs = {
   files: Array<Scalars['Upload']>;
 };
 
 
-export type IMutationUploadStackFileArgs = {
+export type IMutationUploadblogFileArgs = {
   files: Array<Scalars['Upload']>;
 };
 
@@ -617,8 +638,8 @@ export type IQuery = {
   __typename?: 'Query';
   coachAnsweredList: Array<IAnswer>;
   fetchAllBlogcomment: IStackComment;
-  fetchAllUser: IUser;
-  fetchBlog: Array<IBlog>;
+  fetchAllUser: Array<IUser>;
+  fetchBlogAll: Array<IBlog>;
   fetchBlogCommentorderby: Array<IBlogComment>;
   fetchBlogSearch: Array<IBlog>;
   fetchBlogcommentlike: Array<IBlogComment>;
@@ -628,18 +649,24 @@ export type IQuery = {
   fetchCoachUserList: Array<IUser>;
   fetchColumnCommentList: Array<IColumnComment>;
   fetchColumnList: Array<ICoachColumn>;
+  fetchColumnListWhatILike: Array<IColumnLike>;
   fetchDetailColumn: ICoachColumn;
   fetchHighHitColumnList: Array<ICoachColumn>;
   fetchHighHitColumnListArgs: Array<ICoachColumn>;
+  fetchMyCoachInfo: IUser;
   fetchMyColumn: Array<ICoachColumn>;
+  fetchMyColumnComment: Array<IColumnComment>;
+  fetchMyPointHistory: Array<IPointTransaction>;
   fetchMyQuestionList: Array<IQuestion>;
   fetchQuestion: IQuestion;
   fetchRecommendColumnList: Array<ICoachColumn>;
   fetchRecommendColumnListArgs: Array<ICoachColumn>;
+  fetchSearchedColumnList: Array<ICoachColumn>;
   fetchStack: Array<IStack>;
   fetchStackmylike: Array<IStack>;
   fetchUserOrderbylike: Array<IUser>;
   fetchUsersearch: Array<IUser>;
+  fetchisnicknameuser: Scalars['Boolean'];
   fetchmainstack: Scalars['String'];
   fetchmyBlog: Array<IBlog>;
   fetchmyStack: Array<IStack>;
@@ -649,6 +676,7 @@ export type IQuery = {
   fetchotherBlogorderbylikecreate: Array<IBlog>;
   fetchotherStackorderbycreateAt: Array<IStack>;
   fetchotherStackorderbylike: Array<IStack>;
+  fetchuserbypage: Array<IUser>;
   goodEvalAnswerList: Array<IAnswer>;
   myCoachingListHasAnswer: Array<IAnswer>;
   stringReturn: Scalars['String'];
@@ -667,11 +695,6 @@ export type IQueryFetchBlogCommentorderbyArgs = {
 
 export type IQueryFetchBlogSearchArgs = {
   search: Scalars['String'];
-};
-
-
-export type IQueryFetchCoachQuestionListArgs = {
-  coachId: Scalars['String'];
 };
 
 
@@ -707,8 +730,24 @@ export type IQueryFetchRecommendColumnListArgsArgs = {
 };
 
 
+export type IQueryFetchSearchedColumnListArgs = {
+  search: Scalars['String'];
+};
+
+
 export type IQueryFetchUsersearchArgs = {
   search: Scalars['String'];
+};
+
+
+export type IQueryFetchisnicknameuserArgs = {
+  nickname: Scalars['String'];
+};
+
+
+export type IQueryFetchuserbypageArgs = {
+  page?: InputMaybe<Scalars['Float']>;
+  perpage?: InputMaybe<Scalars['Float']>;
 };
 
 
@@ -798,6 +837,7 @@ export type IUser = {
   __typename?: 'User';
   coachInterest: Scalars['String'];
   coachProfile: ICoachProfile;
+  coachtag: Array<ICoachTag>;
   codeInterest: Scalars['String'];
   email: Scalars['String'];
   id: Scalars['String'];
