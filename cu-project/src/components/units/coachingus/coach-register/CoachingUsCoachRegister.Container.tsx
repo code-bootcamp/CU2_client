@@ -1,4 +1,5 @@
 import { useMutation } from "@apollo/client";
+import { useRouter } from "next/router";
 import { KeyboardEvent, useCallback, useState } from "react";
 import useStore from "../../../../commons/store/store";
 import {
@@ -26,7 +27,7 @@ export default function CoachingUsCoachRegisterPage() {
   const userInfo = useStore((state) => state.userInfo);
   const [tags, setTags] = useState<string[]>([]);
   const [orgType, setOrgType] = useState("");
-
+  const router = useRouter();
   const { moveToPage } = useMoveToPage();
 
   const onChangeTags = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -115,12 +116,12 @@ export default function CoachingUsCoachRegisterPage() {
 
       if (!result.data) {
         alert("코치 등록 실패");
+
         return;
       }
+      console.log(result.data);
 
-      moveToPage("/mypage/coach/portfolio/");
-
-      console.log("zz");
+      router.push("/mypage/coach/portfolio/");
     }
   };
   return (
