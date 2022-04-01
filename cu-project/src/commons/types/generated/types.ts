@@ -116,6 +116,13 @@ export type ICoachProfile = {
   profileTitle: Scalars['String'];
 };
 
+export type ICoachTag = {
+  __typename?: 'CoachTag';
+  id: Scalars['String'];
+  tag: Scalars['String'];
+  user: Array<IUser>;
+};
+
 export type IColumnComment = {
   __typename?: 'ColumnComment';
   coachColumn: ICoachColumn;
@@ -351,6 +358,7 @@ export type IMutationCreateCoachAnswerArgs = {
 
 export type IMutationCreateCoachProfileArgs = {
   createProfileInput: ICreateCoachProfileInput;
+  stacktag: Array<Scalars['String']>;
 };
 
 
@@ -829,6 +837,7 @@ export type IUser = {
   __typename?: 'User';
   coachInterest: Scalars['String'];
   coachProfile: ICoachProfile;
+  coachtag: Array<ICoachTag>;
   codeInterest: Scalars['String'];
   email: Scalars['String'];
   id: Scalars['String'];
