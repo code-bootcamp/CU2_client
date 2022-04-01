@@ -1,4 +1,4 @@
-import { useMutation } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { KeyboardEvent, useCallback, useState } from "react";
 import useStore from "../../../../commons/store/store";
@@ -6,11 +6,29 @@ import {
   IMutation,
   IMutationCreateCoachProfileArgs,
 } from "../../../../commons/types/generated/types";
+import { useAuth } from "../../../commons/hooks/useAuth";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import CoachingUsCoachRegisterUI from "./CoachingUsCoachRegister.Presenter";
 import { CREATE_COACH_PROFILE } from "./CoachingUsCoachRegister.Queries";
 
+const FETCH_MY_USER = gql`
+  query fetchmyuser {
+    fetchmyuser {
+      role
+    }
+  }
+`;
+
 export default function CoachingUsCoachRegisterPage() {
+  // const { isCoach } = useAuth();
+
+  const { data } = useQuery(FETCH_MY_USER);
+  console.log(data?.fetchmyuser);
+
+  // if (isCoach) {
+  //   alert("이미 코치 등록이 된 유저입니다.");
+  //   return;
+  // }
   const [createCoachProfile] = useMutation<
     Pick<IMutation, "createCoachProfile">,
     IMutationCreateCoachProfileArgs
