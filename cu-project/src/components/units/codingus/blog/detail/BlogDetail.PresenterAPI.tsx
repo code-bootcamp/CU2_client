@@ -18,21 +18,20 @@ export default function CodingUsBlogDetailUI(
       <S.BlogDetailLayout>
         <S.BlogDetailBody>
           <S.RowWrapper style={{ justifyContent: "space-between" }}>
-            <S.Title>{props.data.title}</S.Title>
+            <S.Title>{props.data?.title}</S.Title>
             {/* <S.BookMarkIcon></S.BookMarkIcon> */}
           </S.RowWrapper>
           <Blank height="22px" />
           <S.RowWrapper style={{ justifyContent: "space-between" }}>
             <S.RowWrapper>
-              <Label01 value={props.data.user.nickname} size="16px" />
+              <Label01 value={props.data?.user?.nickname} size="16px" />
               <Blank width="8px" />
               <Label01
-                value={getDateString(props.createdAt, ".")}
+                value={`getDateString(props.createdAt, ".")`}
                 size="16px"
               />
             </S.RowWrapper>
-            {/* 이부분 확인 필 */}
-            {props.data.user.nickname !== "로그인한 유저" && (
+            {props.data?.user?.nickname !== "로그인한 유저" && (
               <S.RowWrapper>
                 <S.BtnLabel>수정</S.BtnLabel>
                 <Blank width="8px" />
@@ -42,7 +41,7 @@ export default function CodingUsBlogDetailUI(
           </S.RowWrapper>
           <Blank height="12px" />
           <S.RowWrapper>
-            {props.data.blogtag.map((el) => (
+            {props.data?.blogtag?.map((el) => (
               <div key={uuidv4()} style={{ display: "flex" }}>
                 <Tag03 value={el.tag} />
                 <Blank width="10px" />
@@ -50,7 +49,7 @@ export default function CodingUsBlogDetailUI(
             ))}
           </S.RowWrapper>
           <Blank height="55px" />
-          <TextViewer01 width={"100%"} height={"100%"} value={props.data.contents} />
+          <TextViewer01 width={"100%"} height={"100%"} value={props?.data?.contents} />
         <CodingUsBlogComment />
         </S.BlogDetailBody>
         <BlogDetailIndex
