@@ -26,21 +26,21 @@ const Wrapper = styled.div`
   }
 `;
 
-export const Logo = styled.img`
-  width: 100px;
-  border: none;
-  border-radius: 100%;
-  z-index: 3;
-  position: fixed;
-  top: 50px;
-  left: 50px;
-`;
-
 const BackgroundImageFix = styled.div`
   width: 100%;
   height: calc(100vh - 150px);
   background-image: url("/landingback.png");
   background-size: cover;
+
+  animation: firstFadeIn 1s ease-in-out;
+  @keyframes firstFadeIn {
+    0% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 `;
 
 const ButtonBox = styled.div`
@@ -81,7 +81,6 @@ export default function FirstPage() {
   const { moveToPage } = useMoveToPage();
   return (
     <Wrapper>
-      <Logo src="/CU2_LOGO.png" />
       <BackgroundImageFix />
       <ButtonBox>
         <MoveButton onClick={moveToPage("/codingus")} cate={true}>

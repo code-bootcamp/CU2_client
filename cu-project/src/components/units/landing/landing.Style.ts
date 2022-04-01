@@ -16,3 +16,15 @@ export const Outer = styled.div`
     display: none;
   }
 `;
+
+export const Logo = styled.img`
+  width: 100px;
+  border: none;
+  border-radius: 100%;
+  z-index: 3;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  animation: firstFadeIn 1s ease-in-out;
+  cursor: pointer;
+`;
