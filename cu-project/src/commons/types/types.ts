@@ -319,9 +319,15 @@ export interface ICoachingUsColumnWriteUIProps {
 export interface IMyPageProps {}
 export interface IMyPageUIProps {}
 export interface IMyPageMenuUIProps {
-  isCoach: boolean;
+  isModal: boolean;
+  onClickModal: () => void;
   moveToPage: (page: string) => () => void;
   getIsCurrentPage: (page: string) => boolean;
+  userInfo: {
+    role: string;
+    nickname: string;
+    point: number;
+  } | null;
 }
 // #endregion
 

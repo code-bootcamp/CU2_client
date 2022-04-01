@@ -38,18 +38,20 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
         <S.TopMenu>
           <S.MyPageButton
             isSelect={true}
-            onClick={props.moveToPage("/mypage/user")}
+            // onClick={props.moveToPage("/mypage/user")}
           >
             User Mypage
           </S.MyPageButton>
           <Blank width="30px" />
-          {props.userInfo?.role === "COACH" ? (
-            <S.MyPageButton onClick={props.moveToPage("/mypage/coach")}>
+          {props.data?.fetchmyuser?.role === "COACH" ? (
+            <S.MyPageButton
+            // onClick={props.moveToPage("/mypage/coach")}
+            >
               Coach Mypage
             </S.MyPageButton>
           ) : (
             <S.MyPageButton
-              onClick={props.moveToPage("/mypage/coach/register")}
+            // onClick={props.moveToPage("/mypage/coach/register")}
             >
               Coach Register
             </S.MyPageButton>
@@ -57,10 +59,12 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
         </S.TopMenu>
         <Blank height="20px" />
         <S.ProfileBox>
+          <div>데이터{props.data?.fetchmyuser.nickname}</div>{" "}
           <S.ProfileHead>
             <S.ProfileImg src="/pofile_img_default.png" />
             <Blank width="10px" />
-            <div>{props.userInfo?.nickname}</div>
+
+            <div>유저인포</div>
           </S.ProfileHead>
           <Blank height="20px" />
           <S.ProfileBody>
@@ -71,12 +75,12 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
             <Blank height="20px" />
             <S.ProfileContents>
               <span>팔로우</span>
-              <p onClick={props.moveToPage("/mypage/user/follow")}>112</p>
+              {/* <p onClick={props.moveToPage("/mypage/user/follow")}>112</p> */}
             </S.ProfileContents>
             <Blank height="20px" />
             <S.ProfileContents>
               <span>팔로워</span>
-              <p onClick={props.moveToPage("/mypage/user/follower")}>20</p>
+              {/* <p onClick={props.moveToPage("/mypage/user/follower")}>20</p> */}
             </S.ProfileContents>
             <Blank height="20px" />
             <S.ProfileContents>
@@ -86,17 +90,19 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
                   충전
                 </S.ChargeButton>
                 <S.ChargeButton
-                  onClick={props.moveToPage("/mypage/user/point")}
+                // onClick={props.moveToPage("/mypage/user/point")}
                 >
                   내역
                 </S.ChargeButton>
-                {props.userInfo?.point}
+                {/* {props.userInfo?.point} */}
               </div>
             </S.ProfileContents>
             <Blank height="20px" />
             <S.ProfileContents>
               <span>유저 랭킹</span>
-              <p onClick={props.moveToPage("/mypage/user/ranking")}>
+              <p
+              // onClick={props.moveToPage("/mypage/user/ranking")}
+              >
                 50등(▲ 2등)
               </p>
             </S.ProfileContents>
@@ -105,12 +111,12 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
               <span></span>
               <span>
                 <S.RankingButton
-                  onClick={props.moveToPage("/mypage/user/ranking")}
+                // onClick={props.moveToPage("/mypage/user/ranking")}
                 >
                   {`전체 랭킹 보기 > `}
                 </S.RankingButton>
                 <S.RankingButton
-                  onClick={props.moveToPage("/mypage/user/ranking/history")}
+                // onClick={props.moveToPage("/mypage/user/ranking/history")}
                 >{`점수 내역 보기 >`}</S.RankingButton>
               </span>
             </S.ProfileContents>
@@ -130,24 +136,24 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
             <p>CodingUs</p>
             <Blank height="40px" />
             <S.MenuButton
-              isCurrent={props.getIsCurrentPage("/user/blog")}
-              onClick={props.moveToPage("/mypage/user/blog")}
+            // isCurrent={props.getIsCurrentPage("/user/blog")}
+            // onClick={props.moveToPage("/mypage/user/blog")}
             >
               <BsFillPencilFill size={24} /> <Blank width="10px" />내 블로그
               보기
             </S.MenuButton>
             <Blank height="50px" />
             <S.MenuButton
-              isCurrent={props.getIsCurrentPage("/user/likeposts")}
-              onClick={props.moveToPage("/mypage/user/likeposts")}
+            // isCurrent={props.getIsCurrentPage("/user/likeposts")}
+            // onClick={props.moveToPage("/mypage/user/likeposts")}
             >
               <AiFillLike size={24} /> <Blank width="10px" />
               Good한 포스트 보기
             </S.MenuButton>
             <Blank height="50px" />
             <S.MenuButton
-              isCurrent={props.getIsCurrentPage("/user/questions")}
-              onClick={props.moveToPage("/mypage/user/questions")}
+            // isCurrent={props.getIsCurrentPage("/user/questions")}
+            // onClick={props.moveToPage("/mypage/user/questions")}
             >
               <AiFillQuestionCircle size={24} />
               <Blank width="10px" />
@@ -155,8 +161,8 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
             </S.MenuButton>
             <Blank height="50px" />
             <S.MenuButton
-              isCurrent={props.getIsCurrentPage("/user/likequestions")}
-              onClick={props.moveToPage("/mypage/user/likequestions")}
+            // isCurrent={props.getIsCurrentPage("/user/likequestions")}
+            // onClick={props.moveToPage("/mypage/user/likequestions")}
             >
               <AiFillLike size={24} /> <Blank width="10px" />
               {`Good한 Q&A 보기`}
@@ -167,16 +173,16 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
             <p>CoachingUs</p>
             <Blank height="40px" />
             <S.MenuButton
-              isCurrent={props.getIsCurrentPage("/user/coached")}
-              onClick={props.moveToPage("/mypage/user/coached")}
+            // isCurrent={props.getIsCurrentPage("/user/coached")}
+            // onClick={props.moveToPage("/mypage/user/coached")}
             >
               <FaCopyright size={24} />
               <Blank width="10px" />내 코칭 보기
             </S.MenuButton>
             <Blank height="50px" />
             <S.MenuButton
-              isCurrent={props.getIsCurrentPage("/user/likecolumns")}
-              onClick={props.moveToPage("/mypage/user/likecolumns")}
+            // isCurrent={props.getIsCurrentPage("/user/likecolumns")}
+            // onClick={props.moveToPage("/mypage/user/likecolumns")}
             >
               <AiFillLike size={24} /> <Blank width="10px" />
               Good한 칼럼 보기

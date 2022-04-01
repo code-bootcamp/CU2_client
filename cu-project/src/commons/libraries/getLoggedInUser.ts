@@ -10,6 +10,9 @@ const FETCH_MY_USER = gql`
       point
       role
       phonenumber
+      # coachProfile {
+      #   job
+      # }
     }
   }
 `;

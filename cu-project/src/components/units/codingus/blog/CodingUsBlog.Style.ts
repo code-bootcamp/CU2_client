@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import Color from "../../../../commons/styles/color";
 
 export const CodingUsBlog = styled.div`
-  display: flex; 
+  display: flex;
   width: 100%;
   /* max-width: 1200px; */
 `;
@@ -11,7 +11,7 @@ export const CodingUsBlogBody = styled.div`
   flex-direction: column;
   width: 100%;
   max-width: 1200px;
-`; 
+`;
 
 export const RowWrapper = styled.div`
   display: flex;
@@ -19,7 +19,8 @@ export const RowWrapper = styled.div`
   width: 95%;
 `;
 export const HistoryWrapper = styled.div`
-width: 100%;`;
+  width: 100%;
+`;
 
 export const HistoryItems = styled(RowWrapper)`
   width: 100%;
@@ -60,14 +61,11 @@ interface IGubunProps {
 }
 export const SortGubun = styled(RowWrapper)``;
 export const GubunLabel = styled.div`
-    font-weight: ${(props: IGubunProps) => (props.isSelected ? "700" : "300")};
-    font-size: 24px;
-    color = ${(props: IGubunProps) =>
-      props.isSelected ? "black" : Color.medium};
-      margin-right: 18px;
-      :hover{
-        cursor: pointer;
-      }
+  font-weight: ${(props: IGubunProps) => (props.isSelected ? "700" : "300")};
+  font-size: 24px;
+  color: ${(props: IGubunProps) => (props.isSelected ? "black" : Color.medium)};
+  margin-right: 18px;
+  :hover {
+    cursor: pointer;
+  }
 `;
-
-

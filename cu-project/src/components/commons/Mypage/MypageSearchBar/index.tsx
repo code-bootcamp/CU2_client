@@ -111,15 +111,13 @@ export function CoachingSearchBar() {
     setIsRecently((prev) => !prev);
     setIsHot((prev) => !prev);
   };
+  const onClickAlert = () => {
+    alert("모바일");
+  };
 
   return (
     <BlogHeaderRight>
-      <SearchBar>
-        <input type="text" placeholder="검색어를 입력해주세요" />
-        <BsSearch size={12} />
-      </SearchBar>
-      <Blank width="20px"></Blank>
-      <div>
+      <FilterBox>
         <Filter onClick={onClickSelect} isRecently={isRecently}>
           답변대기
         </Filter>{" "}
@@ -127,7 +125,16 @@ export function CoachingSearchBar() {
         <Filter onClick={onClickSelect} isHot={isHot}>
           답변완료
         </Filter>
-      </div>
+      </FilterBox>
+      <SearchBar>
+        <Web>
+          <input type="text" placeholder="검색어를 입력해주세요" />
+          <BsSearch size={12} />
+        </Web>
+        <Mobile>
+          <BsSearch onClick={onClickAlert} />
+        </Mobile>
+      </SearchBar>
     </BlogHeaderRight>
   );
 }
