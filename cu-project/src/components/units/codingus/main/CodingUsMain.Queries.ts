@@ -20,3 +20,10 @@ export const FETCH_BLOG_ALL = gql`
     }
   }
 `;
+export const FETCH_BLOG_LIKE = gql`
+  query fetchBloglike {
+    fetchBloglike {
+      id
+    }
+  }
+`;

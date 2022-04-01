@@ -5,7 +5,15 @@ import WriteBtn from "../writeBtn/WriteBtn";
 import QnACard from "../card/qnaCard/QnACard";
 import CodingUsHistory from "../history/History.Container";
 import * as S from "./CodingUsQnA.Style";
-import WaitingItem from "./waitingItem/WaitingItem.Container";
+import QuestionCard01 from "../../../commons/Card/QuestionCard01/QuestionCard01.Container";
+
+const dummyData = {
+  id: "asdasdsadsadasdsadsa",
+  title: "이것이 궁금해요~~~~~!!!",
+  contents: "JAVA,컴퓨터부품![contents]궁금해요~~~~알려주세요~~~~~~~",
+  createdAt: "2022-02-07T14:42:53.532Z",
+  stacktag: [{ tag: "JavaScript" }],
+};
 
 export default function CodingUsQnAUI(props: ICodingUsQnAUIProps) {
   return (
@@ -75,15 +83,9 @@ export default function CodingUsQnAUI(props: ICodingUsQnAUIProps) {
           <Blank height="30px" />
           {new Array(4).fill(0).map((el, idx) => (
             <div key={idx}>
-              <WaitingItem
-                data={{
-                  stack: "스택",
-                  tags: ["컴퓨터 부품", "JAVA"],
-                  title: "모든 국민은 학문과 예술의 자유를 가진다.",
-                  images: ["https://source.unsplash.com/random"],
-                  commentCnt: 3,
-                  createdAt: "2022-02-07T14:42:53.532Z",
-                }}
+              <QuestionCard01
+                data={dummyData}
+                isAnswered={true}
                 onClickAnswer={() => {}}
               />
               <Blank height="30px" />
@@ -91,7 +93,7 @@ export default function CodingUsQnAUI(props: ICodingUsQnAUIProps) {
           ))}
         </S.WaitingWrapper>
       </S.CodingUsQnABody>
-      <WriteBtn page="question"/>
+      <WriteBtn page="question" />
     </S.CodingUsQnA>
   );
 }

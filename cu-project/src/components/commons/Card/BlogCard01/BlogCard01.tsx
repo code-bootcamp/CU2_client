@@ -1,20 +1,18 @@
-import Label01 from "../../../../../commons/Label/Label01";
+import Label01 from "../../Label/Label01";
 import * as S from "./BlogCard01.Style";
-import Blank from "../../../../../commons/Blank";
-import { getShortDateString } from "../../../../../../commons/libraries/dateUtils";
-import Tag01 from "../../../../../commons/Tag/Tag01";
-import { ICodingUsBlogCardProps } from "../../../../../../commons/types/types";
-import HorizontalLine from "../../../../../commons/Line/HorizontalLine";
+import Blank from "../../Blank";
+import { getShortDateString } from "../../../../commons/libraries/dateUtils";
+import Tag01 from "../../Tag/Tag01";
+import HorizontalLine from "../../Line/HorizontalLine";
 import { useRouter } from "next/router";
 import {
   IBlog,
   IQuery,
   IQueryFetchBlogCommentorderbycreateArgs,
-  IQueryFetchBlogCommentorderbylikeArgs,
-} from "../../../../../../commons/types/generated/types";
-import { gql, useLazyQuery, useQuery } from "@apollo/client";
+} from "../../../../commons/types/generated/types";
+import { gql, useLazyQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
-import { getImagesFromMD } from "../../../../../../commons/libraries/mdUtils";
+import { getImagesFromMD } from "../../../../commons/libraries/mdUtils";
 
 interface ICodingUsCardProps {
   width?: number;
@@ -30,9 +28,10 @@ const FETCH_COMMENT_ORDERBY_LIKE = gql`
   }
 `;
 
-export default function BlogCard(props: ICodingUsCardProps) {
+export default function BlogCard01(props: ICodingUsCardProps) {
   const router = useRouter();
   const [commentCount, setCommentCount] = useState(0);
+  const [isLike, setIsLike] = useState(false);
   const [fetchBlogComments] = useLazyQuery<
     Pick<IQuery, "fetchBlogCommentorderbycreate">,
     IQueryFetchBlogCommentorderbycreateArgs
@@ -52,6 +51,23 @@ export default function BlogCard(props: ICodingUsCardProps) {
 
     if (props.data?.id)
       getCommentCount(props.data?.id).then((cnt) => setCommentCount(cnt || 0));
+
+      const getIsLike = async (blogId: string) => {
+        try {
+          const result = await fetchBlogComments({
+            variables: { blogid: blogId },
+          });
+          
+          return result.data?.fetchBlogCommentorderbycreate.length;
+        } catch (err: any) {
+          return 0;
+        }
+      };
+  
+      if (props.data?.id)
+      getIsLike(props.data?.id).then((cnt) => setCommentCount(cnt || 0));
+
+
   }, []);
   return (
     <S.Wrapper

@@ -146,7 +146,7 @@ export default function CodingUsMain(props: ICodingUsMainProps) {
           onClickFollow={onClickFollow}
           onClickLike={onClickLike}
           bestUserItems={bestUserItems}
-          blogAllItems={new Array(10).fill(dummyData)}
+          blogRecommendItems={new Array(8).fill(dummyData)}
           bestQuestions={bestQuestions}
         />
       }
