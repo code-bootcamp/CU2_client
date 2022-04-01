@@ -72,6 +72,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       getLoggenInUser().then((userInfo) => {
         console.log("getLoggenInUser", userInfo);
         setUserInfo(userInfo);
+        setAccessToken(sessionStorage.getItem("accessToken") || "");
       });
       //   if (accessToken)
       //   setAccessToken(sessionStorage.getItem("accessToken") || "");
