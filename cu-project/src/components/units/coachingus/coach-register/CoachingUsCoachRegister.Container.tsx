@@ -41,7 +41,7 @@ export default function CoachingUsCoachRegisterPage() {
     } else {
       if (tags.length > 1) {
         e.currentTarget.value = "";
-        return alert("최대 네 개까지 입력 가능합니다.");
+        return alert("최대 두 개까지 입력 가능합니다.");
       } else {
         if (e.key === "Enter") {
           if (e.currentTarget.value === "") {
@@ -110,6 +110,7 @@ export default function CoachingUsCoachRegisterPage() {
           profileTitle: "",
           answerInitAmount: 1000,
         },
+        stacktag: tags,
       };
 
       const result = await createCoachProfile({ variables });
@@ -124,6 +125,8 @@ export default function CoachingUsCoachRegisterPage() {
       router.push("/mypage/coach/portfolio/");
     }
   };
+
+  console.log(tags);
   return (
     <CoachingUsCoachRegisterUI
       onChangeTags={onChangeTags}
