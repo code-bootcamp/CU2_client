@@ -1,25 +1,24 @@
-import Slider from "react-slick";
-// import "./Slick.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
-import FirstPage from "./landingFirst";
-import ThirdPage from "./landingThird";
-import SixthPage from "./landingSixth";
-import SecondPage from "./landingSecond";
-import FourthPage from "./landingFourth";
-import FifthPage from "./landingFifth";
-import SevenPage from "./landingSeven";
-import * as S from "./landing.Style";
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
+import { useEffect, useRef } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 import NextArrow from "./arrow/NextArrow";
 import PrevArrow from "./arrow/PrevArrow";
-import { useEffect, useRef, useState } from "react";
-import useBackground from "../../../commons/store/path";
-import { useRouter } from "next/router";
+import * as S from "./landing.Style";
+import FifthPage from "./landingFifth";
+import FirstPage from "./landingFirst";
+import FourthPage from "./landingFourth";
+import SecondPage from "./landingSecond";
+import SevenPage from "./landingSeven";
+import SixthPage from "./landingSixth";
+import ThirdPage from "./landingThird";
 
 const Slide = styled(Slider)`
+  overflow-x: hidden;
   .slick-dots {
+    all: unset;
     display: flex !important;
     flex-direction: column;
     justify-content: center;
@@ -29,11 +28,11 @@ const Slide = styled(Slider)`
     bottom: 0;
     width: 20px;
     height: 100vh;
-    /* padding-bottom: 50px; */
   }
 `;
 
 export default function LandingUI() {
+  const router = useRouter();
   const slideRef = useRef();
   const scrollUpRef = useRef(null);
   const scrollDownRef = useRef(null);
@@ -77,13 +76,15 @@ export default function LandingUI() {
     speed: 1300,
     pauseOnHover: true,
     vertical: true,
-    dotsClass: "slick-dots",
+    draggable: true,
+    // dotsClass: "slick-dots",
     nextArrow: <NextArrow scrollDownRef={scrollDownRef} />,
     prevArrow: <PrevArrow scrollUpRef={scrollUpRef} />,
   };
 
   return (
     <S.Wrapper>
+      <S.Logo onClick={() => router.push("/main")} src="/CU2_LOGO.png" />
       <S.Outer ref={slideRef}>
         <Slide {...firstSettings}>
           <FirstPage />
