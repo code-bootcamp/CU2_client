@@ -5,9 +5,9 @@ import { v4 as uuidv4 } from "uuid";
 import * as S from "./CodingUsMain.Style";
 import BestUserCard from "../card/bestUserCard/BestUserCard";
 import BlogCard from "../card/blogCard/BlogCard01/BlogCard01";
-import React from "react";
 import QnACard from "../card/qnaCard/QnACard";
-
+import { useEffect } from "react";
+import { dummyData } from "./CodingUsMain.Container";
 export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
   return (
     <S.CodingUsMain>
@@ -77,9 +77,9 @@ export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
         </S.RowWrapper>
         <Blank height="26px" />
         <S.BlogItemWrapper>
-          {props.blogItems.map((el) => (
+          {props.blogAllItems?.map((el) => (
             <div key={uuidv4()}>
-              <BlogCard blogData={el}  />
+              <BlogCard data={dummyData}  />
               <Blank height="40px"/>
             </div>
           ))}

@@ -118,7 +118,7 @@ export interface ICodingUsMainProps {}
 export interface ICodingUsMainUIProps {
   moveToPage: (page: string) => void;
   bestUserItems: any[];
-  blogItems: ICodingUsBlogCardProps[];
+  blogAllItems: IBlog[];
   bestQuestions: any[];
   onClickItem: (id: string) => () => void;
   onClickFollow: (id: string) => () => void;

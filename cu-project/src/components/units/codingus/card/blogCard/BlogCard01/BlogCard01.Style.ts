@@ -10,7 +10,7 @@ interface ICardWrapperProps {
 }
 export const Wrapper = styled.div`
   width: ${(props: ICardWrapperProps) => props.width};
-  height: : ${(props: ICardWrapperProps) => props.height};
+  min-height: : ${(props: ICardWrapperProps) => props.height};
   border-radius: 8px;
   background-color: #FFFFFF;
   /* border: 1px solid #F0F0F0; */

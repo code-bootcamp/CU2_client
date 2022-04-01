@@ -10,6 +10,8 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
+  DateTime: any;
   /** The `Upload` scalar type represents a file upload. */
   Upload: any;
 };
@@ -39,10 +41,13 @@ export type IBlog = {
   blogcategorytag: Array<IBlogCategoryTag>;
   blogtag: Array<IBlogTag>;
   contents: Scalars['String'];
+  createAt: Scalars['DateTime'];
+  deletdAt: Scalars['DateTime'];
   dislike: Scalars['Int'];
   id: Scalars['String'];
   like: Scalars['Int'];
   title: Scalars['String'];
+  updatedat: Scalars['DateTime'];
   user: IUser;
 };
 
@@ -213,7 +218,6 @@ export type IMutation = {
   createBlog: IBlog;
   createBlogComment: IBlogComment;
   createBlogManyTag: Array<IStackTag>;
-  createBlogManycategoryTag: Array<IBlogCategoryTag>;
   createBlogTag: IStackTag;
   createBlogcategoryTag: IBlogCategoryTag;
   createCoachAnswer: IAnswer;
@@ -332,11 +336,6 @@ export type IMutationCreateBlogCommentArgs = {
 
 export type IMutationCreateBlogManyTagArgs = {
   stacktag: Array<Scalars['String']>;
-};
-
-
-export type IMutationCreateBlogManycategoryTagArgs = {
-  blogcategorytag: Array<Scalars['String']>;
 };
 
 
@@ -640,7 +639,8 @@ export type IQuery = {
   fetchAllBlogcomment: IStackComment;
   fetchAllUser: Array<IUser>;
   fetchBlogAll: Array<IBlog>;
-  fetchBlogCommentorderby: Array<IBlogComment>;
+  fetchBlogCommentorderbycreate: Array<IBlogComment>;
+  fetchBlogCommentorderbylike: Array<IBlogComment>;
   fetchBlogSearch: Array<IBlog>;
   fetchBlogcommentlike: Array<IBlogComment>;
   fetchBloglike: Array<IBlog>;
@@ -666,6 +666,7 @@ export type IQuery = {
   fetchStackmylike: Array<IStack>;
   fetchUserOrderbylike: Array<IUser>;
   fetchUsersearch: Array<IUser>;
+  fetchblogone: IBlog;
   fetchisnicknameuser: Scalars['Boolean'];
   fetchmainstack: Scalars['String'];
   fetchmyBlog: Array<IBlog>;
@@ -688,7 +689,12 @@ export type IQueryFetchAllBlogcommentArgs = {
 };
 
 
-export type IQueryFetchBlogCommentorderbyArgs = {
+export type IQueryFetchBlogCommentorderbycreateArgs = {
+  blogid: Scalars['String'];
+};
+
+
+export type IQueryFetchBlogCommentorderbylikeArgs = {
   blogid: Scalars['String'];
 };
 
@@ -737,6 +743,11 @@ export type IQueryFetchSearchedColumnListArgs = {
 
 export type IQueryFetchUsersearchArgs = {
   search: Scalars['String'];
+};
+
+
+export type IQueryFetchblogoneArgs = {
+  blogid: Scalars['String'];
 };
 
 
