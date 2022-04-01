@@ -43,7 +43,7 @@ export default function LoginUI(props: ILoginUIProps) {
         </S.LoginBtn>
 
         <Blank height="10px" />
-        <S.LoginBtn onClick={props.moveToPage("/register")}>
+        <S.LoginBtn type="button" onClick={props.moveToPage("/register")}>
           <p>Sign Up</p>
         </S.LoginBtn>
         <Blank height="10px" />
