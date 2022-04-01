@@ -4,7 +4,7 @@ import Blank from "../../commons/Blank";
 // import { breakPoints } from "../../../commons/styles/media";
 
 const Wrapper = styled.div`
-  width: 100vw;
+  min-width: 100vw;
   height: 100vh;
   margin: 0;
   display: flex;

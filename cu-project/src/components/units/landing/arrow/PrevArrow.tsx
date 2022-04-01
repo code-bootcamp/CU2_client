@@ -7,7 +7,7 @@ export default function PrevArrow({ className, style, onClick, scrollUpRef }) {
       ref={scrollUpRef}
       style={{
         ...style,
-        display: "none",
+        zIndex: -1,
       }}
       onClick={onClick}
     />

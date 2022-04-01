@@ -9,9 +9,10 @@ interface IButtonProps {
 
 const Wrapper = styled.div`
   min-width: 100vw;
+  height: 100vh;
   margin: 0;
-  padding-top: 50x;
-  height: calc(100vh);
+  padding-top: 50px;
+
   box-sizing: border-box;
   background-color: #303030;
   display: flex;
@@ -23,6 +24,16 @@ const Wrapper = styled.div`
   @media ${breakPoints.mobile} {
     min-width: 100%;
   }
+`;
+
+export const Logo = styled.img`
+  width: 100px;
+  border: none;
+  border-radius: 100%;
+  z-index: 3;
+  position: fixed;
+  top: 50px;
+  left: 50px;
 `;
 
 const BackgroundImageFix = styled.div`
@@ -70,6 +81,7 @@ export default function FirstPage() {
   const { moveToPage } = useMoveToPage();
   return (
     <Wrapper>
+      <Logo src="/CU2_LOGO.png" />
       <BackgroundImageFix />
       <ButtonBox>
         <MoveButton onClick={moveToPage("/codingus")} cate={true}>

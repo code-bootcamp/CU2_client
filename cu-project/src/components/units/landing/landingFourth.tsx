@@ -5,7 +5,7 @@ import Blank from "../../commons/Blank";
 
 const Wrapper = styled.div`
   min-width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   box-sizing: border-box;
   margin: 0;
   display: flex;
