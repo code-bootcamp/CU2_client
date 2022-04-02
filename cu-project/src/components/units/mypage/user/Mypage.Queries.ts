@@ -6,6 +6,7 @@ export const FETCH_MY_USER = gql`
       nickname
       point
       score
+      role
     }
   }
 `;

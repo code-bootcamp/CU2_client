@@ -1,4 +1,4 @@
-import { IMyPageMenuUIProps } from "../../../../commons/types/types";
+import { ICoachPageMenuUIProps } from "../../../../commons/types/types";
 import Blank from "../../../commons/Blank";
 import * as S from "./CoachpageMenu.Style";
 import { Modal } from "antd";
@@ -6,7 +6,7 @@ import "antd/dist/antd.css";
 import { FaCopyright } from "react-icons/fa";
 import { BiNews } from "react-icons/bi";
 
-export default function CoachpageMenuUI(props: IMyPageMenuUIProps) {
+export default function CoachpageMenuUI(props: ICoachPageMenuUIProps) {
   return (
     <S.Web>
       <S.Wrapper>
@@ -42,20 +42,20 @@ export default function CoachpageMenuUI(props: IMyPageMenuUIProps) {
           </Modal>
         )}
         <S.TopMenu>
-          <S.MyPageButton onClick={props.moveToPage("/mypage/user")}>
+          <S.MyPageButton onClick={props.onClickMove("/mypage/user")}>
             User Mypage
           </S.MyPageButton>
           <Blank width="30px" />
-          {props.userInfo?.role === "COACH" ? (
+          {props.userData?.fetchmyuser.role === "COACH" ? (
             <S.MyPageButton
               isSelect={true}
-              onClick={props.moveToPage("/mypage/coach")}
+              onClick={props.onClickMove("/mypage/coach")}
             >
               Coach Mypage
             </S.MyPageButton>
           ) : (
             <S.MyPageButton
-              onClick={props.moveToPage("/mypage/coach/register")}
+              onClick={props.onClickMove("/mypage/coach/register")}
             >
               Coach Register
             </S.MyPageButton>
@@ -73,12 +73,12 @@ export default function CoachpageMenuUI(props: IMyPageMenuUIProps) {
             <Blank height="20px" />
             <S.ProfileContents>
               <span>팔로우</span>
-              <p onClick={props.moveToPage("/mypage/coach/follow")}>112</p>
+              <p onClick={props.onClickMove("/mypage/coach/follow")}>112</p>
             </S.ProfileContents>
             <Blank height="20px" />
             <S.ProfileContents>
               <span>팔로워</span>
-              <p onClick={props.moveToPage("/mypage/coach/follower")}>20</p>
+              <p onClick={props.onClickMove("/mypage/coach/follower")}>20</p>
             </S.ProfileContents>
             <Blank height="20px" />
             <S.ProfileContents>
@@ -88,18 +88,18 @@ export default function CoachpageMenuUI(props: IMyPageMenuUIProps) {
                   출금
                 </S.ChargeButton>
                 <S.ChargeButton
-                  onClick={props.moveToPage("/mypage/coach/point")}
+                  onClick={props.onClickMove("/mypage/coach/point")}
                 >
                   내역
                 </S.ChargeButton>
-                {props.data?.fetchCoachUser.point}
+                {props.data?.fetchCoachUser.point} 원
               </div>
             </S.ProfileContents>
             <Blank height="20px" />
             <S.ProfileContents>
               <span>코치 랭킹</span>
-              <p onClick={props.moveToPage("/mypage/coach/ranking")}>
-                {props.data?.fetchCoachUser.score}
+              <p onClick={props.onClickMove("/mypage/coach/ranking")}>
+                {props.data?.fetchCoachUser.score} 점
               </p>
             </S.ProfileContents>
             <Blank height="10px" />
@@ -107,21 +107,23 @@ export default function CoachpageMenuUI(props: IMyPageMenuUIProps) {
               <span></span>
               <span>
                 <S.RankingButton
-                  onClick={props.moveToPage("/mypage/coach/ranking")}
+                  onClick={props.onClickMove("/mypage/coach/ranking")}
                 >{`전체 랭킹 보기 > `}</S.RankingButton>
                 <S.RankingButton
-                  onClick={props.moveToPage("/mypage/coach/ranking/history")}
+                  onClick={props.onClickMove("/mypage/coach/ranking/history")}
                 >{`점수 내역 보기 >`}</S.RankingButton>
               </span>
             </S.ProfileContents>
             <Blank height="30px" />
             <S.UserInfoEditBox>
-              <button onClick={props.moveToPage("/mypage/coach/register/edit")}>
+              <button
+                onClick={props.onClickMove("/mypage/coach/register/edit")}
+              >
                 코치 정보 수정
               </button>
               <Blank height="10px" />
               <button
-                onClick={props.moveToPage("/mypage/coach/portfolio/edit")}
+                onClick={props.onClickMove("/mypage/coach/portfolio/edit")}
               >
                 포트폴리오 추가/수정
               </button>
@@ -131,18 +133,12 @@ export default function CoachpageMenuUI(props: IMyPageMenuUIProps) {
           <S.MenuBox>
             <p>CoachingUs</p>
             <Blank height="40px" />
-            <S.MenuButton
-              isCurrent={props.getIsCurrentPage("/coach/comments")}
-              onClick={props.moveToPage("/mypage/coach/comments")}
-            >
+            <S.MenuButton onClick={props.onClickMove("/mypage/coach/comments")}>
               <FaCopyright size={24} />
               <Blank width="10px" />내 코칭 보기
             </S.MenuButton>
             <Blank height="50px" />
-            <S.MenuButton
-              isCurrent={props.getIsCurrentPage("/coach/columns")}
-              onClick={props.moveToPage("/mypage/coach/columns")}
-            >
+            <S.MenuButton onClick={props.onClickMove("/mypage/coach/columns")}>
               <BiNews size={24} />
               <Blank width="10px" /> 내 칼럼 보기
             </S.MenuButton>

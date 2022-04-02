@@ -2,6 +2,10 @@ import styled from "@emotion/styled";
 import Color from "../../../../commons/styles/color";
 import { breakPoints } from "../../../../commons/styles/media";
 
+type IProps = {
+  isSelect?: boolean;
+};
+
 export const Wrapper = styled.div`
   max-width: 320px;
   width: 260px;
@@ -23,7 +27,7 @@ export const TopMenu = styled.div`
 
 export const MyPageButton = styled.button`
   width: 100%;
-  background-color: ${(props) =>
+  background-color: ${(props: IProps) =>
     props.isSelect === true ? "black" : "#F6F5F5"};
   color: ${(props) => (props.isSelect === true ? "white" : "#333333")};
   padding: 10px 5px;
@@ -124,12 +128,12 @@ export const MenuButton = styled.div`
   font-size: 18px;
   background-color: transparent;
   display: flex;
-  color: ${(props: { isCurrent: boolean }) =>
+  color: ${(props: { isCurrent?: boolean }) =>
     props.isCurrent ? Color.dark : Color.medium};
-  font-weight: ${(props: { isCurrent: boolean }) =>
+  font-weight: ${(props: { isCurrent?: boolean }) =>
     props.isCurrent ? "700" : "400"};
   :hover {
-    cursor: ${(props: { isCurrent: boolean }) =>
+    cursor: ${(props: { isCurrent?: boolean }) =>
       props.isCurrent ? "none" : "pointer"};
   }
 `;

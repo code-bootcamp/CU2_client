@@ -156,7 +156,7 @@ export interface ICodingUsQnAUIProps {
 export interface IWatingItemProps {
   data: IStack;
   onClickAnswer: () => void;
-  isAnswered? : boolean;
+  isAnswered?: boolean;
 }
 
 export interface ICodingUsCardProps {
@@ -322,6 +322,7 @@ export interface IMyPageMenuUIProps {
       nickname: string;
       point: number;
       mainstack: string;
+      score: number;
     };
   };
   isModal: boolean;
@@ -329,6 +330,26 @@ export interface IMyPageMenuUIProps {
   onClickMove: (path: string) => () => void;
 }
 
+export interface ICoachPageMenuUIProps {
+  userData: {
+    fetchmyuser: {
+      role: string;
+      nickname: string;
+      point: number;
+      mainstack: string;
+    };
+  };
+  data: {
+    fetchCoachUser: {
+      nickname: string;
+      point: number;
+      score: number;
+    };
+  };
+  isModal: boolean;
+  onClickModal: () => void;
+  onClickMove: (path: string) => () => void;
+}
 export interface IUserUpdateUI {
   userInfo: {
     email: string;
