@@ -8,7 +8,7 @@ import { useMoveToPage } from "../../hooks/useMoveToPage";
 import LayoutHeaderPageUI from "./LayoutHeader.presenter";
 
 export default function LayoutHeaderPage() {
-  const accessToken = useStore((state) => state.accessToken);
+  const { accessToken, setAccessToken } = useStore((state) => state);
   const SearchRef = useRef(null);
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(false);
@@ -43,8 +43,12 @@ export default function LayoutHeaderPage() {
   };
 
   useEffect(() => {
+    console.log("accessToken", accessToken);
     if (accessToken) {
       setIsLogin(true);
+    } else {
+      setIsLogin(false);
+      setAccessToken("");
     }
   }, [accessToken]);
 
@@ -58,6 +62,7 @@ export default function LayoutHeaderPage() {
 
   function onClickLogOut() {
     logoutUser();
+    // setAccessToken("");
     alert("로그아웃이 됐습니다.");
     window.location.reload();
   }

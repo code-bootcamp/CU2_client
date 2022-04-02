@@ -50,8 +50,6 @@ export default function RecCoachCardPage(props: ICoachingUsRecCoachCardProps) {
     setTimeout(() => {
       setIsStart(false);
     }, 2200);
-
-    console.log(isStart);
   }, []);
 
   return (

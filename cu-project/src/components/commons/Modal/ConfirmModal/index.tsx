@@ -20,11 +20,24 @@ export default function ConfirmModal(props) {
           <p>{props.subText}</p>
         </S.ModalSubText>
         <Blank height="40px" />
-        <S.BtnBox>
-          <S.ConfirmBtn onClick={() => router.push(props.router)}>
-            {props.btnText}
-          </S.ConfirmBtn>
-        </S.BtnBox>
+        {props.type === "duo" ? (
+          <>
+            <S.BtnBox>
+              <S.ConfirmBtn onClick={props.yesBtn}>예</S.ConfirmBtn>
+            </S.BtnBox>
+            <S.BtnBox>
+              <S.ConfirmBtn onClick={() => router.push(props.router)}>
+                아니오
+              </S.ConfirmBtn>
+            </S.BtnBox>
+          </>
+        ) : (
+          <S.BtnBox>
+            <S.ConfirmBtn onClick={() => router.push(props.router)}>
+              {props.btnText}
+            </S.ConfirmBtn>
+          </S.BtnBox>
+        )}
       </S.PointModal>
     </>
   );

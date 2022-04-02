@@ -16,12 +16,10 @@ export function useAuth() {
   const router = useRouter();
 
   const accessToken = useStore((state) => state.accessToken);
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
 
   const { data } = useQuery(FETCH_MY_USER);
   const [isCoach, setIsCoach] = useState(false);
-  console.log("isCoach", isCoach);
-  console.log("data?.fetchmyuser", data?.fetchmyuser);
 
   useEffect(() => {
     async function Auth() {
@@ -31,7 +29,7 @@ export function useAuth() {
           alert("로그인을 먼저 해주세요!!!");
           router.push("/login");
         } else {
-          setIsLogin(false);
+          setIsLogin(true);
         }
       }
     }
