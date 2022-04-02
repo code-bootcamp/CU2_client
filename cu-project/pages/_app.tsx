@@ -36,18 +36,18 @@ function MyApp({ Component, pageProps }: AppProps) {
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {
     if (graphQLErrors) {
       for (const err of graphQLErrors) {
-        // if (err.extensions.code === "UNAUTHENTICATED") {
-        //   getAccessToken().then((newAccessToken) => {
-        //     setAccessToken(newAccessToken);
-        //     operation.setContext({
-        //       headers: {
-        //         ...operation.getContext().response.headers,
-        //         Authorization: `Bearer ${newAccessToken}` || null,
-        //       },
-        //     });
-        //     return forward(operation);
-        //   });
-        // }
+        if (err.extensions.code === "UNAUTHENTICATED") {
+          getAccessToken().then((newAccessToken) => {
+            setAccessToken(newAccessToken);
+            operation.setContext({
+              headers: {
+                ...operation.getContext().response.headers,
+                Authorization: `Bearer ${newAccessToken}` || null,
+              },
+            });
+            return forward(operation);
+          });
+        }
       }
     }
   });
@@ -69,7 +69,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       getLoggenInUser().then((userInfo) => {
         console.log("getLoggenInUser", userInfo);
         setUserInfo(userInfo);
-        setAccessToken(sessionStorage.getItem("accessToken") || "");
       });
       //   if (accessToken)
       //   setAccessToken(sessionStorage.getItem("accessToken") || "");

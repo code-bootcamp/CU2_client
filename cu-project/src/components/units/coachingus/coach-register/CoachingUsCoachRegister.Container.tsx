@@ -1,6 +1,6 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { KeyboardEvent, useCallback, useState } from "react";
+import { KeyboardEvent, useCallback, useEffect, useState } from "react";
 import useStore from "../../../../commons/store/store";
 import {
   IMutation,
@@ -11,24 +11,10 @@ import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import CoachingUsCoachRegisterUI from "./CoachingUsCoachRegister.Presenter";
 import { CREATE_COACH_PROFILE } from "./CoachingUsCoachRegister.Queries";
 
-const FETCH_MY_USER = gql`
-  query fetchmyuser {
-    fetchmyuser {
-      role
-    }
-  }
-`;
-
 export default function CoachingUsCoachRegisterPage() {
-  // const { isCoach } = useAuth();
+  const router = useRouter();
+  const { isCoach } = useAuth();
 
-  const { data } = useQuery(FETCH_MY_USER);
-  console.log(data?.fetchmyuser);
-
-  // if (isCoach) {
-  //   alert("이미 코치 등록이 된 유저입니다.");
-  //   return;
-  // }
   const [createCoachProfile] = useMutation<
     Pick<IMutation, "createCoachProfile">,
     IMutationCreateCoachProfileArgs
@@ -45,7 +31,6 @@ export default function CoachingUsCoachRegisterPage() {
   const userInfo = useStore((state) => state.userInfo);
   const [tags, setTags] = useState<string[]>([]);
   const [orgType, setOrgType] = useState("");
-  const router = useRouter();
   const { moveToPage } = useMoveToPage();
 
   const onChangeTags = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -105,6 +90,7 @@ export default function CoachingUsCoachRegisterPage() {
 
   const coachRegisterBtn = async () => {
     setActivateBtn(true);
+
     if (
       checkEmail(coachProfile.orgEmail) &&
       coachProfile.orgName &&
@@ -113,12 +99,6 @@ export default function CoachingUsCoachRegisterPage() {
       tags.length === 2 &&
       orgType
     ) {
-      // 유저 메일 인증 관련 내용 확인 후 진행 예정
-      //
-      //
-      //
-      //
-
       const variables = {
         createProfileInput: {
           ...coachProfile,
@@ -130,21 +110,25 @@ export default function CoachingUsCoachRegisterPage() {
         },
         stacktag: tags,
       };
-
+      console.log("히히");
       const result = await createCoachProfile({ variables });
+      console.log(result.data);
+      router.push("/mypage/coach/portfolio/");
 
       if (!result.data) {
         alert("코치 등록 실패");
 
         return;
       }
-      console.log(result.data);
-
-      router.push("/mypage/coach/portfolio/");
     }
   };
 
-  console.log(tags);
+  useEffect(() => {
+    if (isCoach) {
+      alert("이미 코치 등록이 된 유저입니다.");
+      router.push("/coachingus");
+    }
+  }, [isCoach]);
   return (
     <CoachingUsCoachRegisterUI
       onChangeTags={onChangeTags}
