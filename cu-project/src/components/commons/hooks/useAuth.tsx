@@ -24,7 +24,7 @@ export function useAuth() {
   useEffect(() => {
     async function Auth() {
       if (!accessToken) {
-        const newAccessToken = await getAccessToken();
+        const newAccessToken = await getAccessToken(accessToken);
         if (!newAccessToken) {
           alert("로그인을 먼저 해주세요!!!");
           router.push("/login");

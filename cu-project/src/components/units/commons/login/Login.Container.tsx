@@ -3,16 +3,11 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormValues, ILoginProps } from "../../../../commons/types/types";
 import LoginUI from "./Login.Presenter";
-import { FETCH_COACH_USER_LIST, LOGIN } from "./Login.Queries";
-import { useLazyQuery, useMutation } from "@apollo/client";
-import { useContext } from "react";
-import { GlobalContext } from "../../../../../pages/_app";
+import {  LOGIN } from "./Login.Queries";
+import {  useMutation } from "@apollo/client";
+import {  } from "../../../../../pages/_app";
 import { useRouter } from "next/router";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-import {
-  IQuery,
-  IQueryFetchCoachUserArgs,
-} from "../../../../commons/types/generated/types";
 import useStore from "../../../../commons/store/store";
 import { getLoggenInUser } from "../../../../commons/libraries/getLoggedInUser";
 
@@ -61,15 +56,9 @@ export default function Login(props: ILoginProps) {
       getLoggenInUser();
       // refresh토큰 관련 이슈
       setAccessToken(accessToken);
-      const loggedInUser = getLoggenInUser().then((userInfo) => {
-        console.log("getLoggenInUser", userInfo);
-        // setUserInfo(userInfo);
+      getLoggenInUser(accessToken).then((userInfo) => {
+        setUserInfo(userInfo);
       });
-      console.log(loggedInUser);
-      // if (!loginUser) {
-      //   alert("로그인 실패");
-      //   return;
-      // }
       router.push("/");
     } catch (error) {
       if (error instanceof Error) {

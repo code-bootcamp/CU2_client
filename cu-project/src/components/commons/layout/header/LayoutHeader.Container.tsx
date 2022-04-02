@@ -63,7 +63,7 @@ export default function LayoutHeaderPage() {
     logoutUser();
     // setAccessToken("");
     alert("로그아웃이 됐습니다.");
-    window.location.reload();
+    // window.location.reload();
   }
 
   useEffect(() => {

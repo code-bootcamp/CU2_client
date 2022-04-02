@@ -1,13 +1,10 @@
-import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { getIndexFromMD } from "../../../../../commons/libraries/mdUtils";
-import { IQuery } from "../../../../../commons/types/generated/types";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import { useScroll } from "../../../../commons/hooks/useScroll";
 import { dummyMD } from "../dummy";
 import CodingUsBlogDetailUI from "./BlogDetail.Presenter";
-import { FETCH_BLOG } from "./BlogDetail.Queries";
 
 export default function CodingUsBlogDetail() {
   const { moveToPage } = useMoveToPage();
