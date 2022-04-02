@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Blank from "../../../commons/Blank";
+import ConfirmModal from "../../../commons/Modal/ConfirmModal";
 import * as S from "./CoachingUsCoachRegister.Style";
 
 export default function CoachingUsCoachRegisterUI(props) {
@@ -166,6 +167,14 @@ export default function CoachingUsCoachRegisterUI(props) {
         </S.RegisterContainerLeft>
         <S.RegisterContainerRight></S.RegisterContainerRight>
       </S.CoachingRegisterContainer>
+      {props.isCoach && (
+        <ConfirmModal
+          router="/coachingus"
+          mainText="이미 코치 등록이 완료된 유저입니다"
+          subText="돌아가기를 눌러주세요"
+          btnText="돌아가기"
+        />
+      )}
     </S.Wrapper>
   );
 }
