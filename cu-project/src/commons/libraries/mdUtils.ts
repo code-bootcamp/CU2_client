@@ -45,3 +45,9 @@ export const getIndexFromMD = (mdString: string) => {
   }
   return indexArr;
 };
+
+export const getImagesFromMD = (mdString: string) => {
+  const splitArr = splitMarkDown(mdString);
+  const images = splitArr.filter(el => el.gubun === "image").map(el => el.value);
+  return images;
+}
