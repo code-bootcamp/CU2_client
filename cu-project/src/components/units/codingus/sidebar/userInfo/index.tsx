@@ -39,7 +39,7 @@ export default function SidebarUserInfo(props: ICodingUsSidebarProps) {
             <S.ProfileImage />
             <Blank width="10px" />
             <S.UserInfo>
-              <Label01 size="18px" weight="700" value={props.userInfo.name} />
+              <Label01 size="14px" weight="700" value={props.userInfo.name} />
               <S.Point>
                 <PointIcon size={20} />
                 <Blank width="5px" />
@@ -51,7 +51,7 @@ export default function SidebarUserInfo(props: ICodingUsSidebarProps) {
           <S.LoginLabel onClick={moveToPage("/login")}>로그인</S.LoginLabel>
         )}
       </S.UserInfoHeader>
-      {props.userInfo && <Blank height="35px" />}
+      {props.userInfo && <Blank height="24px" />}
       <S.UserInfoBody>
         {props.userInfo && (
           <S.Toggle onClick={chgToggleState("userInfo")}>
@@ -61,29 +61,29 @@ export default function SidebarUserInfo(props: ICodingUsSidebarProps) {
         )}
         {props.userInfo && toggleState.userInfo && (
           <div>
-            <Blank height="40px" />
+            <Blank height="240px" />
             <S.Item>
               <S.StackLabel>{`상위 ${props.todayPercent}%`}</S.StackLabel>
               <S.StackLabel>오늘활동</S.StackLabel>
             </S.Item>
-            <Blank height="40px" />
+            <Blank height="240px" />
             <S.Item>
               <S.StackLabel>{`${props.todayPoint}p`}</S.StackLabel>
               <S.StackLabel>획득한 점수</S.StackLabel>
             </S.Item>
-            <Blank height="40px" />
+            <Blank height="240px" />
             <S.Item>
               <S.StackLabel>{`${props.todayRanking?.today}위(${todayDiff}위)`}</S.StackLabel>
               <S.StackLabel>오늘 순위</S.StackLabel>
             </S.Item>
-            <Blank height="40px" />
+            <Blank height="240px" />
             <S.Item>
               <S.StackLabel>{`${props.totalRanking?.today}위(${totalDiff}위)`}</S.StackLabel>
               <S.StackLabel>전체 순위</S.StackLabel>
             </S.Item>
           </div>
         )}
-        <Blank height="36px" />
+        <Blank height="24px" />
         <S.Toggle onClick={chgToggleState("stack")}>
           {"관심 스택"}
           <DropDownIcon isUp={toggleState.stack} />
