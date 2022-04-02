@@ -6,11 +6,11 @@ const useStore = create(
   devtools((set: any) => ({
     isDark: false,
     toggleIsDark: () => set((state: any) => ({ isDark: !state.isDark })),
-    userInfo: {},
+    userInfo: null,
     setUserInfo: (userInfo: IUser | undefined) =>
       set((_: any) => ({ userInfo: userInfo })),
     accessToken: null,
-    setAccessToken: (token: string | null) =>
+    setAccessToken: (token: string) =>
       set((_: any) => ({ accessToken: token })),
   }))
 );

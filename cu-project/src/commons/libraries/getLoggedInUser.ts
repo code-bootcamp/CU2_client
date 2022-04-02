@@ -1,5 +1,4 @@
 import { gql, GraphQLClient } from "graphql-request";
-import useStore from "../store/store";
 
 const FETCH_MY_USER = gql`
   query fetchmyuser {

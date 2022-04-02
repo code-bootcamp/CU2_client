@@ -58,7 +58,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   useEffect(() => {
-    getAccessToken(accessToken).then((newAccessToken) => {
+    getAccessToken().then((newAccessToken) => {
       setAccessToken(newAccessToken);
     });
   }, [accessToken]);
