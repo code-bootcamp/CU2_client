@@ -9,4 +9,5 @@ export const Wrapper = styled.div`
   flex-direction: row;
   align-items: flex-start;
   margin: 100px 0px 0px 0px;
+  
 `;

@@ -13,7 +13,7 @@ import React, {
   SetStateAction,
 } from "react";
 import { Editor } from "@toast-ui/react-editor";
-import { IBlog, IQuestion, IStack } from "./generated/types";
+import { IBlog, IStack, IUser } from "./generated/types";
 
 export interface ILayoutProps {
   children: ReactChild;
@@ -123,6 +123,10 @@ export interface ICodingUsMainUIProps {
   onClickItem: (id: string) => () => void;
   onClickFollow: (id: string) => () => void;
   onClickLike: (id: string) => () => void;
+  data: {
+    fetchUserOrderbyscore: IUser,
+    fetchBlogAll: IBlog
+  }
 }
 
 export interface ICodingUsBlogDetailUIProps {

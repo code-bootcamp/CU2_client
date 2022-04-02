@@ -27,3 +27,24 @@ export const FETCH_BLOG_LIKE = gql`
     }
   }
 `;
+
+export const FETCH_BEST_USER_AND_BLOG = gql`
+  query {
+    fetchUserOrderbyscore {
+      id
+      name
+    }
+    fetchBlogAll {
+      title
+      contents
+      blogtag {
+        tag
+      }
+      blogcategorytag {
+        tag
+      }
+      like
+      createAt
+    }
+  }
+`;

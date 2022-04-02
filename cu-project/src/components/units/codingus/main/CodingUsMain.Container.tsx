@@ -1,10 +1,12 @@
-import { useState } from "react";
-import {
-  ICodingUsMainProps,
-} from "../../../../commons/types/types";
+import { useLazyQuery, useQuery } from "@apollo/client";
+import { useEffect, useState } from "react";
+import useStore from "../../../../commons/store/store";
+import { IBlog, IQuery, IUser } from "../../../../commons/types/generated/types";
+import { ICodingUsMainProps } from "../../../../commons/types/types";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import CodingUsLayout from "../layout/CodingUsLayout";
 import CodingUsMainUI from "./CodingUsMain.Presenter";
+import { FETCH_BEST_USER_AND_BLOG } from "./CodingUsMain.Queries";
 
 const bestUserItems = [
   {
@@ -84,36 +86,48 @@ const bestUserItems = [
   },
 ];
 
-export const dummyData = 
-  {"id": "0c35241b-6f7e-4de8-94b8-30203974aaa8",
-      "title": "test",
-      "contents": "test",
-      "blogtag": [
-        {
-          "tag": "asd"
-        },
-        {
-          "tag": "ddd"
-        },
-        {
-          "tag": "kkk"
-        }
-      ],
-      "blogcategorytag": [
-        {
-          "tag": "JavaScript"
-        }
-      ],
-      "user": {
-        "nickname": "asd"
-      },
-      "createAt": "2022-04-01T12:53:49.788Z",
-      "like": 1
-    }
-
+export const dummyData = {
+  id: "0c35241b-6f7e-4de8-94b8-30203974aaa8",
+  title: "test",
+  contents: "test",
+  blogtag: [
+    {
+      tag: "asd",
+    },
+    {
+      tag: "ddd",
+    },
+    {
+      tag: "kkk",
+    },
+  ],
+  blogcategorytag: [
+    {
+      tag: "JavaScript",
+    },
+  ],
+  user: {
+    nickname: "asd",
+  },
+  createAt: "2022-04-01T12:53:49.788Z",
+  like: 1,
+};
 
 export default function CodingUsMain(props: ICodingUsMainProps) {
+  const { data } = useQuery(FETCH_BEST_USER_AND_BLOG);
   const { moveToPage } = useMoveToPage();
+  const [bestUserItems, setBestUserItems] = useState<{items: {
+    user: IUser;
+    Blog: IBlog;
+  }}>();
+  useEffect(() => {
+    if (data) {
+      data.fetchUserOrderbyscore.filter((el: IUser,idx: number) => idx < 3).map((el: IUser) => {
+        
+      })
+    };
+  }, []);
+
   const [bestQuestions, setBestQuestions] = useState<
     {
       tags?: string[];
@@ -148,6 +162,7 @@ export default function CodingUsMain(props: ICodingUsMainProps) {
           bestUserItems={bestUserItems}
           blogRecommendItems={new Array(8).fill(dummyData)}
           bestQuestions={bestQuestions}
+          data={data}
         />
       }
     ></CodingUsLayout>

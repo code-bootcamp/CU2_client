@@ -6,8 +6,9 @@ const RESTORE_ACCESS_TOKEN = gql`
   }
 `;
 
-export async function getAccessToken() {
+export async function getAccessToken(accessToken : string) {
   try {
+    // if(!accessToken)return
     const graphQLClient = new GraphQLClient(
       process.env.NEXT_PUBLIC_GRAPHQL_URL!,
       {
