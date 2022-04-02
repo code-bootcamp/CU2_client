@@ -32,9 +32,6 @@ export default function CodingUsBlogDetail() {
       const result = await fetchBlogAll();
       console.log("asd", result);
       if (result.data?.fetchBlogAll) {
-        console.log(
-          data?.fetchBlogAll.filter((el) => el.id === router.query.blogId)[0]
-        );
         setFetchBlogData(
           data?.fetchBlogAll.filter((el) => el.id === router.query.blogId)[0]
         );

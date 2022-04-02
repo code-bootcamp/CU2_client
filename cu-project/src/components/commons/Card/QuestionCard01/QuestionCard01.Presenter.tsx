@@ -1,13 +1,13 @@
-import { getShortDateString } from "../../../../../commons/libraries/dateUtils";
-import { IWatingItemProps } from "../../../../../commons/types/types";
-import Blank from "../../../../commons/Blank";
-import Icon01 from "../../../../commons/Icon/Icon01/Icon01";
-import Label01 from "../../../../commons/Label/Label01";
-import Tag01 from "../../../../commons/Tag/Tag01";
-import Tag02 from "../../../../commons/Tag/Tag02";
-import * as S from "./WaitingItem.Style";
+import { getShortDateString } from "../../../../commons/libraries/dateUtils";
+import { IWatingItemProps } from "../../../../commons/types/types";
+import Blank from "../../Blank";
+import Icon01 from "../../Icon/Icon01/Icon01";
+import Label01 from "../../Label/Label01";
+import Tag01 from "../../Tag/Tag01";
+import Tag02 from "../../Tag/Tag02";
+import * as S from "./QuestionCard01.Style";
 
-export default function WaitingItemUI(props: IWatingItemProps) {
+export default function QuestionCard01UI(props: IWatingItemProps) {
   return (
     <S.Wrapper>
       <S.RowWrapper>

@@ -1,4 +1,4 @@
-schema: http://34.64.206.255:3000/graphql
+schema: asd
 generates:
   ./src/commons/types/generated/types.ts:
     plugins:

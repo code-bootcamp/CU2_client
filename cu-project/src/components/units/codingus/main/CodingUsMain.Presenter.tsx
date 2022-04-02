@@ -4,17 +4,12 @@ import CodingUsHistory from "../history/History.Container";
 import { v4 as uuidv4 } from "uuid";
 import * as S from "./CodingUsMain.Style";
 import BestUserCard from "../card/bestUserCard/BestUserCard";
-import BlogCard from "../card/blogCard/BlogCard01/BlogCard01";
-import React from "react";
+import BlogCard from "../../../commons/Card/BlogCard01/BlogCard01";
 import QnACard from "../card/qnaCard/QnACard";
-
+import { dummyData } from "./CodingUsMain.Container";
 export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
   return (
     <S.CodingUsMain>
-      <S.WriteButton onClick={props.moveToPage("/codingus/write")}>
-        <img src="/write-button.png" />
-        글쓰기
-      </S.WriteButton>
       <S.SearchWrapper>
         <S.SearchInput placeholder="검색"></S.SearchInput>
         <S.SearchBtn></S.SearchBtn>
@@ -28,7 +23,7 @@ export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
           채택: 0,
           댓글: 13,
         }}
-        title="CodingMaster 님의 7일간 활동"
+        title={"My History"}
       />
       <Blank height="88px" />
       <S.BestUserWrapper>
@@ -42,7 +37,9 @@ export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
             fontSize="18px"
             fontWeight="300"
             style={{ cursor: "pointer" }}
-            onClick={props.moveToPage("/codingus/ASD")}
+            onClick={() => {
+              props.moveToPage("/codingus/ASD");
+            }}
           >
             {"더보기 >"}
           </S.Label>
@@ -70,17 +67,19 @@ export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
             fontSize="18px"
             fontWeight="300"
             style={{ cursor: "pointer" }}
-            onClick={props.moveToPage("/codingus/ASD")}
+            onClick={() => {
+              props.moveToPage("/codingus/ASD");
+            }}
           >
             {"더보기 >"}
           </S.Label>
         </S.RowWrapper>
         <Blank height="26px" />
         <S.BlogItemWrapper>
-          {props.blogItems.map((el) => (
+          {props.blogRecommendItems?.map((el) => (
             <div key={uuidv4()}>
-              <BlogCard blogData={el}  />
-              <Blank height="40px"/>
+              <BlogCard data={dummyData} />
+              <Blank height="40px" />
             </div>
           ))}
         </S.BlogItemWrapper>
@@ -93,7 +92,7 @@ export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
         <Blank height="17px" />
         <S.StackItemWrapper>
           {props.bestQuestions.map((el, idx) => (
-            <QnACard key={uuidv4()} {...el}/>
+            <QnACard key={uuidv4()} {...el} />
           ))}
         </S.StackItemWrapper>
       </S.RecomendStackWrapper>

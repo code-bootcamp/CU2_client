@@ -13,7 +13,7 @@ import React, {
   SetStateAction,
 } from "react";
 import { Editor } from "@toast-ui/react-editor";
-import { IBlog } from "./generated/types";
+import { IBlog, IQuestion, IStack } from "./generated/types";
 
 export interface ILayoutProps {
   children: ReactChild;
@@ -118,7 +118,7 @@ export interface ICodingUsMainProps {}
 export interface ICodingUsMainUIProps {
   moveToPage: (page: string) => void;
   bestUserItems: any[];
-  blogItems: ICodingUsBlogCardProps[];
+  blogRecommendItems: IBlog[];
   bestQuestions: any[];
   onClickItem: (id: string) => () => void;
   onClickFollow: (id: string) => () => void;
@@ -154,15 +154,9 @@ export interface ICodingUsQnAUIProps {
   myWaitingCnt: number;
 }
 export interface IWatingItemProps {
-  data: {
-    stack: string;
-    tags?: string[];
-    title: string;
-    images?: string[];
-    commentCnt: number;
-    createdAt: string;
-  };
+  data: IStack;
   onClickAnswer: () => void;
+  isAnswered? : boolean;
 }
 
 export interface ICodingUsCardProps {

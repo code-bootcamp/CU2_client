@@ -14,11 +14,12 @@ export const Wrapper = styled.div`
 `;
 
 export const CodingUsMain = styled.div`
-  /* width: 100vw;
-  height: 100vh;
-  max-width: 1200px;
-  margin: 0 0 0 20%; */
-  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  width: 1920px;
+  @media screen and (max-width: 1200px) {
+    width: 1200px;
+  }
 `;
 export const RowWrapper = styled.div`
   display: flex;
