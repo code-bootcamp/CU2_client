@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import Color from "../../../../commons/styles/color";
 import { breakPoints } from "../../../../commons/styles/media";
 
 type Iprops = {
@@ -128,12 +127,7 @@ export const MenuButton = styled.div`
   font-size: 18px;
   background-color: transparent;
   display: flex;
-  color: ${(props: { isCurrent: boolean }) =>
-    props.isCurrent ? Color.dark : Color.medium};
-  font-weight: ${(props: { isCurrent: boolean }) =>
-    props.isCurrent ? "700" : "400"};
   :hover {
-    cursor: ${(props: { isCurrent: boolean }) =>
-      props.isCurrent ? "none" : "pointer"};
+    cursor: pointer;
   }
 `;

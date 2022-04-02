@@ -319,15 +319,43 @@ export interface ICoachingUsColumnWriteUIProps {
 export interface IMyPageProps {}
 export interface IMyPageUIProps {}
 export interface IMyPageMenuUIProps {
+  mainstack: {
+    fetchmainstack: {};
+  };
+  data: {
+    fetchmyuser: {
+      role: string;
+      nickname: string;
+      point: number;
+      mainstack: string;
+    };
+  };
   isModal: boolean;
   onClickModal: () => void;
-  moveToPage: (page: string) => () => void;
-  getIsCurrentPage: (page: string) => boolean;
+  onClickMove: (path: string) => () => void;
+}
+
+export interface IUserUpdateUI {
   userInfo: {
-    role: string;
+    email: string;
+    name: string;
     nickname: string;
-    point: number;
+    phonenumber: string;
   } | null;
+  isVerify: boolean;
+  tokenResult: boolean;
+  isToken: boolean;
+
+  onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeNickName: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangePhone: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeToken: (event: ChangeEvent<HTMLInputElement>) => void;
+  onClickCheckToken: () => void;
+  onClickSendToken: () => void;
+  onClickVerifyNicName: () => void;
+  onClickUpdate: () => void;
+  onClickMove: (path: string) => () => void;
+  setPhone: Dispatch<SetStateAction<string>>;
 }
 // #endregion
 

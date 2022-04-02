@@ -1,9 +1,10 @@
+import { IUserUpdateUI } from "../../../../../commons/types/types";
 import Blank from "../../../../commons/Blank";
 import { UserPageNav } from "../../../../commons/Mypage/MypageNav";
 import MypageMenu from "../MypageMenu.Container";
 import * as S from "./UserUpdate.Style";
 
-export default function UserUpdateUI(props) {
+export default function UserUpdateUI(props: IUserUpdateUI) {
   return (
     <S.AllWrapper>
       <S.Web>
@@ -70,7 +71,7 @@ export default function UserUpdateUI(props) {
           <Blank height="50px" />
           <button onClick={props.onClickUpdate}>유저정보 변경</button>
           <Blank height="10px" />
-          <button onClick={props.moveToPage("/mypage/user/update/password")}>
+          <button onClick={props.onClickMove("/mypage/user/update/password")}>
             비밀번호 변경
           </button>
         </S.Box>

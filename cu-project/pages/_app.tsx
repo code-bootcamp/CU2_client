@@ -36,18 +36,18 @@ function MyApp({ Component, pageProps }: AppProps) {
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {
     if (graphQLErrors) {
       for (const err of graphQLErrors) {
-        // if (err.extensions.code === "UNAUTHENTICATED") {
-        //   getAccessToken().then((newAccessToken) => {
-        //     setAccessToken(newAccessToken);
-        //     operation.setContext({
-        //       headers: {
-        //         ...operation.getContext().response.headers,
-        //         Authorization: `Bearer ${newAccessToken}` || null,
-        //       },
-        //     });
-        //     return forward(operation);
-        //   });
-        // }
+        if (err.extensions.code === "UNAUTHENTICATED") {
+          getAccessToken().then((newAccessToken) => {
+            setAccessToken(newAccessToken);
+            operation.setContext({
+              headers: {
+                ...operation.getContext().response.headers,
+                Authorization: `Bearer ${newAccessToken}` || null,
+              },
+            });
+            return forward(operation);
+          });
+        }
       }
     }
   });
