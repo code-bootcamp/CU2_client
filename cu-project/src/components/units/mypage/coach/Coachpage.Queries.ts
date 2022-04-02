@@ -9,3 +9,12 @@ export const FETCH_COACH_USER = gql`
     }
   }
 `;
+
+export const FETCH_MY_USER = gql`
+  query fetchmyuser {
+    fetchmyuser {
+      id
+      role
+    }
+  }
+`;

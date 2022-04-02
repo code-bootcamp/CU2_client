@@ -6,13 +6,12 @@ export const RowWrapper = styled.div`
 `;
 interface ICardWrapperProps {
   width: string;
-  height: string;
+  height?: string;
 }
 export const Wrapper = styled.div`
   width: ${(props: ICardWrapperProps) => props.width};
-  min-height: : ${(props: ICardWrapperProps) => props.height};
   border-radius: 8px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   /* border: 1px solid #F0F0F0; */
 `;
 
@@ -31,16 +30,14 @@ export const Body = styled.div`
 
 export const StackWrapper = styled(RowWrapper)``;
 
-
 export const Title = styled.div`
   font-weight: 700;
-font-size: 18px;
-line-height: 25px;
+  font-size: 18px;
+  line-height: 25px;
 `;
 
 export const FooterWrapper = styled(RowWrapper)`
   display: flex;
-  
 `;
 export const ButtonWrapper = styled(RowWrapper)`
   display: flex;
@@ -48,9 +45,9 @@ export const ButtonWrapper = styled(RowWrapper)`
 
 export const Contents = styled.div`
   font-weight: 400;
-font-size: 16px;
-line-height: 24px;
-max-height: 48px;
+  font-size: 16px;
+  line-height: 24px;
+  max-height: 48px;
 `;
 
 export const Writer = styled.div`
