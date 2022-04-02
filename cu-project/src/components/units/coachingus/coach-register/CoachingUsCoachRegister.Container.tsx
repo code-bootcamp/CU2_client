@@ -8,6 +8,7 @@ import {
 } from "../../../../commons/types/generated/types";
 import { useAuth } from "../../../commons/hooks/useAuth";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
+import ConfirmModal from "../../../commons/Modal/ConfirmModal";
 import CoachingUsCoachRegisterUI from "./CoachingUsCoachRegister.Presenter";
 import { CREATE_COACH_PROFILE } from "./CoachingUsCoachRegister.Queries";
 
@@ -117,18 +118,11 @@ export default function CoachingUsCoachRegisterPage() {
 
       if (!result.data) {
         alert("코치 등록 실패");
-
         return;
       }
     }
   };
 
-  useEffect(() => {
-    if (isCoach) {
-      alert("이미 코치 등록이 된 유저입니다.");
-      router.push("/coachingus");
-    }
-  }, [isCoach]);
   return (
     <CoachingUsCoachRegisterUI
       onChangeTags={onChangeTags}
@@ -144,6 +138,7 @@ export default function CoachingUsCoachRegisterPage() {
       emailTextErr={emailTextErr}
       activateBtn={activateBtn}
       userInfo={userInfo}
+      isCoach={isCoach}
     />
   );
 }
