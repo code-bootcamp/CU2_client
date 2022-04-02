@@ -4,6 +4,7 @@ import Color from "../../../../commons/styles/color";
 export const CodingUsBlog = styled.div`
   display: flex;
   width: 100%;
+  height: 100%;
   /* max-width: 1200px; */
 `;
 export const CodingUsBlogBody = styled.div`

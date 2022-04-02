@@ -1,6 +1,5 @@
 import Blank from "../../../commons/Blank";
 import {
-  ICodingUsBlogCardProps,
   ICodingUsBlogUIProps,
 } from "../../../../commons/types/types";
 import BlogShortCard from "../card/blogShortCard/BlogShortCard";
@@ -8,9 +7,9 @@ import * as S from "./CodingUsBlog.Style";
 import Label01 from "../../../commons/Label/Label01";
 import { v4 as uuidV4 } from "uuid";
 import InfiniteScroll from "react-infinite-scroller";
-import BlogCard02 from "../card/blogCard/BlogCard02/BlogCard02";
 import CodingUsHistory from "../history/History.Container";
 import WriteBtn from "../writeBtn/WriteBtn";
+import BlogCard01 from "../../../commons/Card/BlogCard01/BlogCard01";
 export default function CodingUsBlogUI(props: ICodingUsBlogUIProps) {
   return (
       <S.CodingUsBlog>
@@ -50,20 +49,20 @@ export default function CodingUsBlogUI(props: ICodingUsBlogUIProps) {
             />
             <Blank height="21px" />
             <S.SortGubun>
-              <S.GubunLabel isSelected={props.isSortByPopular} onClick={props.onToggleSortGubun}>인기</S.GubunLabel>
+              <S.GubunLabel isSelected={props.isOrderByPopular} onClick={props.onToggleSortGubun}>인기</S.GubunLabel>
               <S.GubunLabel isSelected={false}>|</S.GubunLabel>
-              <S.GubunLabel isSelected={!props.isSortByPopular} onClick={props.onToggleSortGubun}>최신</S.GubunLabel>
+              <S.GubunLabel isSelected={!props.isOrderByPopular} onClick={props.onToggleSortGubun}>최신</S.GubunLabel>
             </S.SortGubun>
             <Blank height="34px" />
             <InfiniteScroll
               pageStart={0}
               loadMore={props.onLoadMore}
               hasMore={true || false}
-              useWindow={true}
+              useWindow={false}
             >
               <S.CardWrapper>
-                {props.sortedBlogList?.map((el: ICodingUsBlogCardProps) => (
-                  <BlogCard02 key={uuidV4()} blogData={el} />
+                {props.blogList?.map((el) => (
+                  <BlogCard01 key={uuidV4()} data={el.blog} isLike={el.isLike}/>
                 ))}
               </S.CardWrapper>
             </InfiniteScroll>

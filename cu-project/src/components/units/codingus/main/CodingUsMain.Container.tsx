@@ -79,7 +79,7 @@ export default function CodingUsMain(props: ICodingUsMainProps) {
           onClickFollow={onClickFollow}
           onClickLike={onClickLike}
           bestUserItems={bestUserItems}
-          blogRecommendItems={fetchBlogAllData && fetchBlogAllData.fetchBlogAll.filter((_,idx) => idx < 8)}
+          blogRecommendItems={fetchBlogAllData && fetchBlogAllData.fetchBlogAll?.filter((_,idx) => idx < 8)}
           bestQuestions={questionData?.fetchotherStackorderbylike.filter((_, idx) => idx <6)!}
           data={data}
         />
