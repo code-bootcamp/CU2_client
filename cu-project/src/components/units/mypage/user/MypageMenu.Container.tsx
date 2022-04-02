@@ -1,36 +1,33 @@
 import { useQuery } from "@apollo/client";
+import { useRouter } from "next/router";
 import { useState } from "react";
-import useStore from "../../../../commons/store/store";
 // import { useAuth } from "../../../commons/hooks/useAuth";
-import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-import { FETCH_MY_USER } from "./Mypage.Queries";
+import { FETCH_MAINSTACK, FETCH_MY_USER } from "./Mypage.Queries";
 import MypageMenuUI from "./MypageMenu.Presenter";
 
 export default function MypageMenu() {
   const [isModal, setIsModal] = useState(false);
-  const { moveToPage, currentPage } = useMoveToPage();
-  const userInfo = useStore((state) => state.userInfo);
+  const router = useRouter();
   const { data } = useQuery(FETCH_MY_USER);
+  const { data: mainstack } = useQuery(FETCH_MAINSTACK);
   // useAuth
-  console.log(userInfo);
-  console.log(data);
+  console.log(mainstack);
 
   const onClickModal = () => {
     setIsModal((prev) => !prev);
   };
 
-  const getIsCurrentPage = (page: string) => {
-    return currentPage.endsWith(page);
+  const onClickMove = (path: string) => () => {
+    router.push(`/${path}`);
   };
 
   return (
     <MypageMenuUI
+      mainstack={mainstack}
       data={data}
-      userInfo={userInfo}
       isModal={isModal}
-      moveToPage={moveToPage}
+      onClickMove={onClickMove}
       onClickModal={onClickModal}
-      getIsCurrentPage={getIsCurrentPage}
     />
   );
 }
