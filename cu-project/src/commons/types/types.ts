@@ -117,16 +117,16 @@ export interface ICodingUsBlogWriteUIProps {
 export interface ICodingUsMainProps {}
 export interface ICodingUsMainUIProps {
   moveToPage: (page: string) => void;
-  bestUserItems: any[];
+  bestUserItems: { user: IUser; blog: IBlog }[];
   blogRecommendItems: IBlog[];
-  bestQuestions: any[];
+  bestQuestions: IStack[];
   onClickItem: (id: string) => () => void;
   onClickFollow: (id: string) => () => void;
   onClickLike: (id: string) => () => void;
   data: {
-    fetchUserOrderbyscore: IUser,
-    fetchBlogAll: IBlog
-  }
+    fetchUserOrderbyscore: IUser;
+    fetchBlogAll: IBlog;
+  };
 }
 
 export interface ICodingUsBlogDetailUIProps {
@@ -160,7 +160,7 @@ export interface ICodingUsQnAUIProps {
 export interface IWatingItemProps {
   data: IStack;
   onClickAnswer: () => void;
-  isAnswered? : boolean;
+  isAnswered?: boolean;
 }
 
 export interface ICodingUsCardProps {
