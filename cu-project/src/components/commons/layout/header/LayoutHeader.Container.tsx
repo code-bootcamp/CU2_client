@@ -43,7 +43,6 @@ export default function LayoutHeaderPage() {
   };
 
   useEffect(() => {
-    console.log("accessToken", accessToken);
     if (accessToken) {
       setIsLogin(true);
     } else {

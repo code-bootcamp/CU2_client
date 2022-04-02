@@ -100,7 +100,10 @@ export default function Register(props: IRegisterProps) {
   };
 
   const onClickGetAuthNum = (data: FormValues) => {
-    if (phone.length < 1) alert("번호입력해요");
+    if (phone.length < 1) {
+      alert("번호를 입력해주세요.");
+      return;
+    }
 
     try {
       setIsToken(true);

@@ -36,10 +36,7 @@ export default function CoachingUsLanding(props: ICoachingUsLandingProps) {
   const onClickStart = () => {
     if (!favorList.length) alert("관심 카테고리를 선택해주세요.");
     else {
-      if (!props.isLogin) localStorage.setItem("favorList", String(favorList));
-      else {
-        props.setFavorString(...favorList);
-      }
+      localStorage.setItem("favorList", String(favorList));
       props.setIsFavorites(true);
     }
   };
