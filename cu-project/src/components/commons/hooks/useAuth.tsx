@@ -35,7 +35,7 @@ export function useAuth() {
     }
 
     Auth();
-    if (data?.fetchmyuser.role !== "COACH") {
+    if (data?.fetchmyuser.role === "COACH") {
       setIsCoach(true);
     }
   }, []);
