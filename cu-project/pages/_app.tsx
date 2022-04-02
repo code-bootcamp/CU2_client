@@ -37,7 +37,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     if (graphQLErrors) {
       for (const err of graphQLErrors) {
         if (err.extensions.code === "UNAUTHENTICATED") {
-          getAccessToken(accessToken).then((newAccessToken) => {
+          getAccessToken().then((newAccessToken) => {
             setAccessToken(newAccessToken);
             operation.setContext({
               headers: {
@@ -62,24 +62,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       setAccessToken(newAccessToken);
     });
     console.log("app", accessToken);
-
-    // refresh토큰 관련 이슈
-    // if (sessionStorage.getItem("accessToken"))
-    //   setAccessToken(sessionStorage.getItem("accessToken") || "");
-    // if (sessionStorage.getItem("accessToken")) {
-    //   getLoggenInUser().then((userInfo) => {
-    //     console.log("getLoggenInUser", userInfo);
-    //     setUserInfo(userInfo);
-    //   });
-    //   if (accessToken)
-    //   setAccessToken(sessionStorage.getItem("accessToken") || "");
-    // if (accessToken) {
-    //   getLoggenInUser().then((userInfo) => {
-    //     console.log("getLoggenInUser", userInfo);
-    //     setUserInfo(userInfo);
-    //   });
-    // }
-    // }
   }, [accessToken]);
 
   return (
