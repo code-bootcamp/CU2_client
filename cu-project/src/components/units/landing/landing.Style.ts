@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
+  height: 100vh;
+  overflow: hidden;
   margin-top: -20px;
   margin-left: -1px;
-  overflow: hidden;
   ::-webkit-scrollbar {
     display: none;
   }
@@ -11,6 +12,7 @@ export const Wrapper = styled.div`
 
 export const Outer = styled.div`
   height: 100vh;
+  overscroll-behavior: contain;
   overflow-y: auto;
 
   ::-webkit-scrollbar {

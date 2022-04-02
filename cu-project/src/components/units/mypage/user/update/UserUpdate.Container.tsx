@@ -7,6 +7,7 @@ import {
   IMutationChecktokenArgs,
   IMutationSendTokenTosmsArgs,
   IMutationUpdateUserArgs,
+  IQuery,
 } from "../../../../../commons/types/generated/types";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import UserEditUI from "./UserUpdate.Presenter";
@@ -113,13 +114,17 @@ export default function UserUpdate() {
     }
   };
 
+  const onClickMove = (path: string) => () => {
+    router.push(`/${path}`);
+  };
+
   return (
     <UserEditUI
       isToken={isToken}
       isVerify={isVerify}
       tokenResult={tokenResult}
-      moveToPage={moveToPage}
       userInfo={userInfo}
+      onClickMove={onClickMove}
       setPhone={setPhone}
       onChangeNickName={onChangeNickName}
       onChangePassword={onChangePassword}

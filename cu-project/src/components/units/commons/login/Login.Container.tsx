@@ -36,7 +36,7 @@ export default function Login(props: ILoginProps) {
   const [login] = useMutation(LOGIN);
 
   const { moveToPage } = useMoveToPage();
-  const { setAccessToken, setUserInfo } = useStore((state) => state);
+  const { setUserInfo, setAccessToken } = useStore((state) => state);
 
   const onClickLogin = async (data: FormValues) => {
     try {
@@ -53,7 +53,8 @@ export default function Login(props: ILoginProps) {
         return;
       }
 
-      // localStorage.setItem("accessToken", accessToken);
+      getLoggenInUser();
+      // refresh토큰 관련 이슈
       setAccessToken(accessToken);
       getLoggenInUser(accessToken).then((userInfo) => {
         setUserInfo(userInfo);

@@ -36,8 +36,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {
     if (graphQLErrors) {
       for (const err of graphQLErrors) {
-        if (err.extensions.code === "UNAUTHENTICATED" ) {
-          getAccessToken(accessToken).then((newAccessToken) => {
+        if (err.extensions.code === "UNAUTHENTICATED") {
+          getAccessToken().then((newAccessToken) => {
             setAccessToken(newAccessToken);
             operation.setContext({
               headers: {
@@ -60,12 +60,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     getAccessToken(accessToken).then((newAccessToken) => {
       setAccessToken(newAccessToken);
-      getLoggenInUser(newAccessToken).then((userInfo) => {
-        console.log("getLoggenInUser", userInfo);
-        setUserInfo(userInfo);
-      });
     });
-  }, []);
+    console.log("app", accessToken);
+  }, [accessToken]);
 
   return (
     <ApolloProvider client={client}>
