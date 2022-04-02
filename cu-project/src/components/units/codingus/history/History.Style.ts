@@ -25,7 +25,8 @@ export const HistoryItem = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: ${Color.light};
-  padding: 12px 77px 12px 77px;
+  width: 230px;
+  padding: 15px 0px 15px 0px;
 `;
 
 export const Top = styled.div`

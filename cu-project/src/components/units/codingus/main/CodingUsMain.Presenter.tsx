@@ -10,10 +10,6 @@ import { dummyData } from "./CodingUsMain.Container";
 export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
   return (
     <S.CodingUsMain>
-      <S.WriteButton onClick={props.moveToPage("/codingus/write")}>
-        <img src="/write-button.png" />
-        글쓰기
-      </S.WriteButton>
       <S.SearchWrapper>
         <S.SearchInput placeholder="검색"></S.SearchInput>
         <S.SearchBtn></S.SearchBtn>
@@ -27,7 +23,7 @@ export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
           채택: 0,
           댓글: 13,
         }}
-        title="CodingMaster 님의 7일간 활동"
+        title={"My History"}
       />
       <Blank height="88px" />
       <S.BestUserWrapper>
@@ -41,7 +37,9 @@ export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
             fontSize="18px"
             fontWeight="300"
             style={{ cursor: "pointer" }}
-            onClick={props.moveToPage("/codingus/ASD")}
+            onClick={() => {
+              props.moveToPage("/codingus/ASD");
+            }}
           >
             {"더보기 >"}
           </S.Label>
@@ -69,7 +67,9 @@ export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
             fontSize="18px"
             fontWeight="300"
             style={{ cursor: "pointer" }}
-            onClick={props.moveToPage("/codingus/ASD")}
+            onClick={() => {
+              props.moveToPage("/codingus/ASD");
+            }}
           >
             {"더보기 >"}
           </S.Label>
@@ -78,8 +78,8 @@ export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
         <S.BlogItemWrapper>
           {props.blogRecommendItems?.map((el) => (
             <div key={uuidv4()}>
-              <BlogCard data={dummyData}  />
-              <Blank height="40px"/>
+              <BlogCard data={dummyData} />
+              <Blank height="40px" />
             </div>
           ))}
         </S.BlogItemWrapper>
@@ -92,7 +92,7 @@ export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
         <Blank height="17px" />
         <S.StackItemWrapper>
           {props.bestQuestions.map((el, idx) => (
-            <QnACard key={uuidv4()} {...el}/>
+            <QnACard key={uuidv4()} {...el} />
           ))}
         </S.StackItemWrapper>
       </S.RecomendStackWrapper>
