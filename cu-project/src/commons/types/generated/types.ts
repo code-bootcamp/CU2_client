@@ -10,6 +10,8 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
+  DateTime: any;
   /** The `Upload` scalar type represents a file upload. */
   Upload: any;
 };
@@ -36,13 +38,17 @@ export type IAnswerLike = {
 
 export type IBlog = {
   __typename?: 'Blog';
-  blogcategorytag: Array<IBlogCategoryTag>;
-  blogtag: Array<IBlogTag>;
+  blogcategorytag?: Maybe<Array<IBlogCategoryTag>>;
+  blogtag?: Maybe<Array<IBlogTag>>;
   contents: Scalars['String'];
+  createAt: Scalars['DateTime'];
+  deletdAt: Scalars['DateTime'];
   dislike: Scalars['Int'];
   id: Scalars['String'];
   like: Scalars['Int'];
   title: Scalars['String'];
+  updatedat: Scalars['DateTime'];
+  url: Scalars['String'];
   user: IUser;
 };
 
@@ -57,6 +63,7 @@ export type IBlogComment = {
   __typename?: 'BlogComment';
   blog: IBlog;
   contents: Scalars['String'];
+  dislike: Scalars['Int'];
   id: Scalars['String'];
   like: Scalars['Int'];
   user: IUser;
@@ -66,6 +73,7 @@ export type IBlogCommentLike = {
   __typename?: 'BlogCommentLike';
   blogcomment: IBlogComment;
   id: Scalars['String'];
+  isdislike: Scalars['Boolean'];
   islike: Scalars['Boolean'];
   user: IUser;
 };
@@ -104,16 +112,23 @@ export type ICoachColumn = {
 
 export type ICoachProfile = {
   __typename?: 'CoachProfile';
-  answerInitAmount?: Maybe<Scalars['Int']>;
-  department: Scalars['String'];
+  answerInitAmount: Scalars['Int'];
+  department?: Maybe<Scalars['String']>;
   id: Scalars['String'];
-  image: Scalars['String'];
-  job: Scalars['String'];
-  orgEmail: Scalars['String'];
-  orgName: Scalars['String'];
-  orgType: Scalars['String'];
-  profileContents: Scalars['String'];
-  profileTitle: Scalars['String'];
+  image?: Maybe<Scalars['String']>;
+  job?: Maybe<Scalars['String']>;
+  orgEmail?: Maybe<Scalars['String']>;
+  orgName?: Maybe<Scalars['String']>;
+  orgType?: Maybe<Scalars['String']>;
+  profileContents?: Maybe<Scalars['String']>;
+  profileTitle?: Maybe<Scalars['String']>;
+};
+
+export type ICoachTag = {
+  __typename?: 'CoachTag';
+  id: Scalars['String'];
+  tag: Scalars['String'];
+  user: Array<IUser>;
 };
 
 export type IColumnComment = {
@@ -142,15 +157,15 @@ export type ICreateAnswerInput = {
 };
 
 export type ICreateCoachProfileInput = {
-  answerInitAmount?: InputMaybe<Scalars['Int']>;
-  department: Scalars['String'];
-  image: Scalars['String'];
-  job: Scalars['String'];
-  orgEmail: Scalars['String'];
-  orgName: Scalars['String'];
-  orgType: Scalars['String'];
-  profileContents: Scalars['String'];
-  profileTitle: Scalars['String'];
+  answerInitAmount: Scalars['Int'];
+  department?: InputMaybe<Scalars['String']>;
+  image?: InputMaybe<Scalars['String']>;
+  job?: InputMaybe<Scalars['String']>;
+  orgEmail?: InputMaybe<Scalars['String']>;
+  orgName?: InputMaybe<Scalars['String']>;
+  orgType?: InputMaybe<Scalars['String']>;
+  profileContents?: InputMaybe<Scalars['String']>;
+  profileTitle?: InputMaybe<Scalars['String']>;
 };
 
 export type ICreateColumnInput = {
@@ -194,18 +209,20 @@ export type IMainStack = {
 
 export type IMutation = {
   __typename?: 'Mutation';
-  Blogcommenttoggle: IBlogCommentLike;
+  Blogcommentdisliketoggle: IBlogCommentLike;
+  Blogcommentliketoggle: IBlogCommentLike;
+  Blogdisliketoggle: IBlogLike;
+  Blogliketoggle: IBlogLike;
   DislikeColumnToggle: IColumnLike;
   LikeColumnToggle: IColumnLike;
-  Stacktoggle: IStackLike;
+  Stackdisliketoggle: IStackLike;
+  Stackliketoggle: IStackLike;
   cancelAnswerOrder: IOrderHistory;
   cancelPointTransaction: IPointTransaction;
   checktoken: Scalars['Boolean'];
   createAnswerOrder: IOrderHistory;
   createBlog: IBlog;
   createBlogComment: IBlogComment;
-  createBlogManyTag: Array<IStackTag>;
-  createBlogManycategoryTag: Array<IBlogCategoryTag>;
   createBlogTag: IStackTag;
   createBlogcategoryTag: IBlogCategoryTag;
   createCoachAnswer: IAnswer;
@@ -229,11 +246,11 @@ export type IMutation = {
   deleteStack: Scalars['String'];
   deleteStackComment: IStackComment;
   deleteUser: Scalars['Boolean'];
+  deletemyBlog: Scalars['String'];
+  deletemyBlogComment: Scalars['Boolean'];
   dislikeAnswerToggle: IAnswerLike;
-  dislikeBlogtoggle: IBlogLike;
   increaseColumnHit: ICoachColumn;
   likeAnswerToggle: IAnswerLike;
-  likeBlogtoggle: IBlogLike;
   login: Scalars['String'];
   logout: Scalars['String'];
   minususerscore: IUser;
@@ -252,13 +269,29 @@ export type IMutation = {
   updateStack: IStack;
   updateStackComment: IStackComment;
   updateUser: IUser;
-  uploadFile: Array<Scalars['String']>;
   uploadStackFile: Array<Scalars['String']>;
+  uploadblogFile: Array<Scalars['String']>;
+  usernulliddelete: Scalars['Boolean'];
 };
 
 
-export type IMutationBlogcommenttoggleArgs = {
+export type IMutationBlogcommentdisliketoggleArgs = {
   blogcommentid: Scalars['String'];
+};
+
+
+export type IMutationBlogcommentliketoggleArgs = {
+  blogcommentid: Scalars['String'];
+};
+
+
+export type IMutationBlogdisliketoggleArgs = {
+  blogid: Scalars['String'];
+};
+
+
+export type IMutationBlogliketoggleArgs = {
+  blogid: Scalars['String'];
 };
 
 
@@ -272,7 +305,12 @@ export type IMutationLikeColumnToggleArgs = {
 };
 
 
-export type IMutationStacktoggleArgs = {
+export type IMutationStackdisliketoggleArgs = {
+  stackid: Scalars['String'];
+};
+
+
+export type IMutationStackliketoggleArgs = {
   stackid: Scalars['String'];
 };
 
@@ -305,22 +343,13 @@ export type IMutationCreateBlogArgs = {
   blogtag: Array<Scalars['String']>;
   contents: Scalars['String'];
   title: Scalars['String'];
+  url: Scalars['String'];
 };
 
 
 export type IMutationCreateBlogCommentArgs = {
   blogid: Scalars['String'];
   contents: Scalars['String'];
-};
-
-
-export type IMutationCreateBlogManyTagArgs = {
-  stacktag: Array<Scalars['String']>;
-};
-
-
-export type IMutationCreateBlogManycategoryTagArgs = {
-  blogcategorytag: Array<Scalars['String']>;
 };
 
 
@@ -342,6 +371,7 @@ export type IMutationCreateCoachAnswerArgs = {
 
 export type IMutationCreateCoachProfileArgs = {
   createProfileInput: ICreateCoachProfileInput;
+  stacktag: Array<Scalars['String']>;
 };
 
 
@@ -432,7 +462,7 @@ export type IMutationDeleteColumnCommentArgs = {
 
 
 export type IMutationDeleteStackArgs = {
-  blogid: Scalars['String'];
+  stackid: Scalars['String'];
 };
 
 
@@ -441,13 +471,18 @@ export type IMutationDeleteStackCommentArgs = {
 };
 
 
-export type IMutationDislikeAnswerToggleArgs = {
-  answerId: Scalars['String'];
+export type IMutationDeletemyBlogArgs = {
+  blogid: Scalars['String'];
 };
 
 
-export type IMutationDislikeBlogtoggleArgs = {
-  blogid: Scalars['String'];
+export type IMutationDeletemyBlogCommentArgs = {
+  blogcommentid: Scalars['String'];
+};
+
+
+export type IMutationDislikeAnswerToggleArgs = {
+  answerId: Scalars['String'];
 };
 
 
@@ -458,11 +493,6 @@ export type IMutationIncreaseColumnHitArgs = {
 
 export type IMutationLikeAnswerToggleArgs = {
   answerId: Scalars['String'];
-};
-
-
-export type IMutationLikeBlogtoggleArgs = {
-  blogid: Scalars['String'];
 };
 
 
@@ -491,6 +521,7 @@ export type IMutationUpdateBlogArgs = {
   blogid: Scalars['String'];
   contents: Scalars['String'];
   title: Scalars['String'];
+  url: Scalars['String'];
 };
 
 
@@ -543,8 +574,8 @@ export type IMutationUpdateColumnCommentArgs = {
 
 
 export type IMutationUpdateStackArgs = {
-  blogid: Scalars['String'];
   contents: Scalars['String'];
+  stackid: Scalars['String'];
   title: Scalars['String'];
 };
 
@@ -563,12 +594,12 @@ export type IMutationUpdateUserArgs = {
 };
 
 
-export type IMutationUploadFileArgs = {
+export type IMutationUploadStackFileArgs = {
   files: Array<Scalars['Upload']>;
 };
 
 
-export type IMutationUploadStackFileArgs = {
+export type IMutationUploadblogFileArgs = {
   files: Array<Scalars['Upload']>;
 };
 
@@ -610,9 +641,12 @@ export enum IQuestion_Field_Enum {
 export type IQuery = {
   __typename?: 'Query';
   coachAnsweredList: Array<IAnswer>;
-  fetchAllBlogcomment: IStackComment;
-  fetchBlog: Array<IBlog>;
-  fetchBlogCommentorderby: Array<IBlogComment>;
+  fetchAllBlogcomment: Array<IBlogComment>;
+  fetchAllStackcomment: IStackComment;
+  fetchAllUser: Array<IUser>;
+  fetchBlogAll: Array<IBlog>;
+  fetchBlogCommentorderbycreate: Array<IBlogComment>;
+  fetchBlogCommentorderbylike: Array<IBlogComment>;
   fetchBlogSearch: Array<IBlog>;
   fetchBlogcommentlike: Array<IBlogComment>;
   fetchBloglike: Array<IBlog>;
@@ -621,27 +655,35 @@ export type IQuery = {
   fetchCoachUserList: Array<IUser>;
   fetchColumnCommentList: Array<IColumnComment>;
   fetchColumnList: Array<ICoachColumn>;
+  fetchColumnListWhatILike: Array<IColumnLike>;
   fetchDetailColumn: ICoachColumn;
   fetchHighHitColumnList: Array<ICoachColumn>;
   fetchHighHitColumnListArgs: Array<ICoachColumn>;
+  fetchMyCoachInfo: IUser;
   fetchMyColumn: Array<ICoachColumn>;
+  fetchMyColumnComment: Array<IColumnComment>;
+  fetchMyPointHistory: Array<IPointTransaction>;
   fetchMyQuestionList: Array<IQuestion>;
   fetchQuestion: IQuestion;
   fetchRecommendColumnList: Array<ICoachColumn>;
   fetchRecommendColumnListArgs: Array<ICoachColumn>;
-  fetchStack: Array<IStack>;
+  fetchSearchedColumnList: Array<ICoachColumn>;
+  fetchStackAll: Array<IStack>;
+  fetchStackOnebystackid: IStack;
   fetchStackmylike: Array<IStack>;
+  fetchUserOrderbyscore: Array<IUser>;
+  fetchUsersearch: Array<IUser>;
+  fetchblogone: IBlog;
+  fetchisnicknameuser: Scalars['Boolean'];
   fetchmainstack: Scalars['String'];
   fetchmyBlog: Array<IBlog>;
   fetchmyStack: Array<IStack>;
+  fetchmyuser: IUser;
   fetchotherBlogorderbycreateAt: Array<IBlog>;
   fetchotherBlogorderbylikeAll: Array<IBlog>;
-  fetchotherBlogorderbylikecreate: Array<IBlog>;
   fetchotherStackorderbycreateAt: Array<IStack>;
   fetchotherStackorderbylike: Array<IStack>;
-  findAllUser: IUser;
-  findUserOrderbylike: Array<IUser>;
-  findUsersearch: Array<IUser>;
+  fetchuserbypage: Array<IUser>;
   goodEvalAnswerList: Array<IAnswer>;
   myCoachingListHasAnswer: Array<IAnswer>;
   stringReturn: Scalars['String'];
@@ -649,22 +691,27 @@ export type IQuery = {
 
 
 export type IQueryFetchAllBlogcommentArgs = {
+  blogid: Scalars['String'];
+};
+
+
+export type IQueryFetchAllStackcommentArgs = {
   stackid: Scalars['String'];
 };
 
 
-export type IQueryFetchBlogCommentorderbyArgs = {
+export type IQueryFetchBlogCommentorderbycreateArgs = {
+  blogid: Scalars['String'];
+};
+
+
+export type IQueryFetchBlogCommentorderbylikeArgs = {
   blogid: Scalars['String'];
 };
 
 
 export type IQueryFetchBlogSearchArgs = {
   search: Scalars['String'];
-};
-
-
-export type IQueryFetchCoachQuestionListArgs = {
-  coachId: Scalars['String'];
 };
 
 
@@ -700,8 +747,34 @@ export type IQueryFetchRecommendColumnListArgsArgs = {
 };
 
 
-export type IQueryFindUsersearchArgs = {
+export type IQueryFetchSearchedColumnListArgs = {
   search: Scalars['String'];
+};
+
+
+export type IQueryFetchStackOnebystackidArgs = {
+  stackid: Scalars['String'];
+};
+
+
+export type IQueryFetchUsersearchArgs = {
+  search: Scalars['String'];
+};
+
+
+export type IQueryFetchblogoneArgs = {
+  blogid: Scalars['String'];
+};
+
+
+export type IQueryFetchisnicknameuserArgs = {
+  nickname: Scalars['String'];
+};
+
+
+export type IQueryFetchuserbypageArgs = {
+  page?: InputMaybe<Scalars['Float']>;
+  perpage?: InputMaybe<Scalars['Float']>;
 };
 
 
@@ -728,9 +801,10 @@ export enum IRole {
 export type IStack = {
   __typename?: 'Stack';
   contents: Scalars['String'];
+  dislike: Scalars['Int'];
   id: Scalars['String'];
   like: Scalars['Int'];
-  stacktag: Array<IStackTag>;
+  stacktag?: Maybe<Array<IStackTag>>;
   title: Scalars['String'];
   user: IUser;
 };
@@ -738,7 +812,9 @@ export type IStack = {
 export type IStackComment = {
   __typename?: 'StackComment';
   contents: Scalars['String'];
+  dislike: Scalars['Int'];
   id: Scalars['String'];
+  like: Scalars['Int'];
   stack: IStack;
   user: IUser;
 };
@@ -746,6 +822,7 @@ export type IStackComment = {
 export type IStackLike = {
   __typename?: 'StackLike';
   id: Scalars['String'];
+  isdislike: Scalars['Boolean'];
   islike: Scalars['Boolean'];
   stack: IStack;
   user: IUser;
@@ -765,12 +842,12 @@ export type IUpdateAnswerInput = {
 };
 
 export type IUpdateCoachInput = {
-  answerInitAmount?: InputMaybe<Scalars['Int']>;
-  department: Scalars['String'];
-  image: Scalars['String'];
-  job: Scalars['String'];
-  profileContents: Scalars['String'];
-  profileTitle: Scalars['String'];
+  answerInitAmount: Scalars['Int'];
+  department?: InputMaybe<Scalars['String']>;
+  image?: InputMaybe<Scalars['String']>;
+  job?: InputMaybe<Scalars['String']>;
+  profileContents?: InputMaybe<Scalars['String']>;
+  profileTitle?: InputMaybe<Scalars['String']>;
 };
 
 export type IUpdateColumnInput = {
@@ -786,9 +863,10 @@ export type IUpdateQuestionInput = {
 
 export type IUser = {
   __typename?: 'User';
-  coachInterest: Scalars['String'];
-  coachProfile: ICoachProfile;
-  codeInterest: Scalars['String'];
+  coachInterest?: Maybe<Scalars['String']>;
+  coachProfile?: Maybe<ICoachProfile>;
+  coachtag?: Maybe<Array<ICoachTag>>;
+  codeInterest?: Maybe<Scalars['String']>;
   email: Scalars['String'];
   id: Scalars['String'];
   mainstack: IMainStack;
@@ -798,5 +876,4 @@ export type IUser = {
   point: Scalars['Int'];
   role: IRole;
   score: Scalars['Int'];
-  user: IMainStack;
 };

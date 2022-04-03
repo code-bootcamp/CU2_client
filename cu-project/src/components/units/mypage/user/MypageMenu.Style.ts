@@ -1,6 +1,9 @@
 import styled from "@emotion/styled";
-import Color from "../../../../commons/styles/color";
 import { breakPoints } from "../../../../commons/styles/media";
+
+type Iprops = {
+  isSelect?: boolean;
+};
 
 export const Wrapper = styled.div`
   max-width: 320px;
@@ -11,15 +14,21 @@ export const Wrapper = styled.div`
   justify-content: center;
 `;
 
+export const Web = styled.div`
+  @media ${breakPoints.mobile} {
+    width: 260px;
+  }
+`;
+
 export const TopMenu = styled.div`
   display: flex;
 `;
 
 export const MyPageButton = styled.button`
   width: 100%;
-  background-color: ${(props) =>
+  background-color: ${(props: Iprops) =>
     props.isSelect === true ? "black" : "#F6F5F5"};
-  color: ${(props) => (props.isSelect === true ? "white" : "#333333")};
+  color: ${(props: Iprops) => (props.isSelect === true ? "white" : "#333333")};
   padding: 10px 5px;
   border: none;
   border-radius: 10px;
@@ -51,9 +60,7 @@ export const ProfileContents = styled.div`
     color: #808080;
   }
   & p {
-    :hover {
-      cursor: pointer;
-    }
+    margin: 0;
   }
 `;
 export const RankingButton = styled.button`
@@ -118,7 +125,6 @@ export const MenuButton = styled.div`
   font-size: 18px;
   background-color: transparent;
   display: flex;
-  color: ${Color.medium};
   :hover {
     cursor: pointer;
   }

@@ -4,9 +4,20 @@ import {
   UseFormHandleSubmit,
   UseFormRegister,
 } from "react-hook-form";
-import { IPage } from "../../components/commons/hooks/useMoveToPage";
-import React, { ChangeEvent, Dispatch, MouseEvent, ReactChild, RefObject, SetStateAction } from "react";
+import React, {
+  ChangeEvent,
+  Dispatch,
+  MouseEvent,
+  ReactChild,
+  RefObject,
+  SetStateAction,
+} from "react";
 import { Editor } from "@toast-ui/react-editor";
+
+
+import { RadioChangeEvent } from "antd";
+import { IBlog, IStack, IUser } from "./generated/types";
+
 
 export interface ILayoutProps {
   children: ReactChild;
@@ -25,7 +36,7 @@ export interface ILoginUIProps {
   formState: FormState<FieldValues>;
   handleSubmit: UseFormHandleSubmit<FieldValues>;
   onClickLogin: (data: FormValues) => void;
-  moveToPage: (page: IPage) => () => void;
+  moveToPage: (page: string) => () => void;
 }
 export interface ILoginProps {}
 
@@ -35,7 +46,7 @@ export interface IRegisterUIProps {
   handleSubmit: UseFormHandleSubmit<FieldValues>;
   onClickRegister: () => void;
   onClickGetAuthNum: (data: FormValues) => void;
-  onChangeInput: (event: ChangeEvent<HTMLInputElement>) =>void;
+  onChangeInput: (event: ChangeEvent<HTMLInputElement>) => void;
   phone: string;
   isToken: boolean;
   codeRef: RefObject<HTMLInputElement>;
@@ -90,27 +101,48 @@ export interface ICodingUsBlogCardProps {
 }
 export interface ICodingUsBlogUIProps {
   onLoadMore: () => void;
-  sortedBlogList: ICodingUsBlogCardProps[];
   onToggleSortGubun: (_: MouseEvent<HTMLDivElement>) => void;
-  isSortByPopular: boolean;
+  blogList: { blog: IBlog; isLike: boolean }[];
+  isOrderByPopular: boolean;
 }
 export interface ICodingUsBlogWriteProps {}
 export interface ICodingUsBlogWriteUIProps {
   editorRef: RefObject<Editor>;
   tags: string[];
   setTags: (tags: React.SetStateAction<string[]>) => void;
+  setStack: (tags: React.SetStateAction<string>) => void;
   onClickExit: (event: MouseEvent<HTMLButtonElement>) => void;
   onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
+  title: string;
+  onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeStack: (event: ChangeEvent<HTMLSelectElement>) => void;
+  stack: string;
 }
 export interface ICodingUsMainProps {}
 export interface ICodingUsMainUIProps {
   moveToPage: (page: string) => void;
-  bestUserItems: any[];
-  blogItems: ICodingUsBlogCardProps[];
-  bestQuestions: any[];
+  bestUserItems: { user: IUser; blog: IBlog }[];
+  blogRecommendItems: IBlog[];
+  bestQuestions: IStack[];
   onClickItem: (id: string) => () => void;
   onClickFollow: (id: string) => () => void;
   onClickLike: (id: string) => () => void;
+  data: {
+    fetchUserOrderbyscore: IUser;
+    fetchBlogAll: IBlog;
+  };
+}
+
+export interface ICodingUsBlogDetailUIProps {
+  width?: string | number;
+  height?: string | number;
+  data: IBlog;
+  onClickDelete: () => void;
+  onClickUpdate: () => void;
+  index: string[];
+  currentIndex: number;
+  indexPositions?: number[];
+  setCurrentIndex: Dispatch<SetStateAction<number>>;
 }
 
 export interface ICodingUsCommentsProps {
@@ -126,19 +158,15 @@ export interface ICodingUsQnAProps {}
 export interface ICodingUsQnAUIProps {
   isMyQuestion: boolean;
   toogleIsMyQuestion: () => void;
+  stackListOrderByLike: IStack[];
+  stackListAll: IStack[];
+  myStackList: IStack[];
   waitingCnt: number;
   myWaitingCnt: number;
 }
 export interface IWatingItemProps {
-  data: {
-    stack: string;
-    tags?: string[];
-    title: string;
-    images?: string[];
-    commentCnt: number;
-    createdAt: string;
-  };
-  onClickAnswer: () => void;
+  data: IStack;
+  isAnswered?: boolean;
 }
 
 export interface ICodingUsCardProps {
@@ -188,15 +216,21 @@ export interface IRankingInfo {
   };
 }
 export interface ICodingUsRankUIProps {
-  rankingInfos: IRankingInfo[];
-  myRankingInfo: IRankingInfo;
-  moveToPage: (page: string) => () => void;
-  gubun: string;
-  onClickPeriodGubun: (gubun: string) => () => void;
-  onLoadMore: () => void;
-  onClickMyPage: (userId: string) => () => void;
+  rankingInfos: IUser[];
+  myInfo: IUser | null;
+  // gubun: string;
+  // onClickPeriodGubun: (gubun: string) => () => void;
 }
-
+export interface ICodingUsRankingProps{
+  rankingInfos: IUser[];
+    myInfo: IUser | null;
+  }
+export interface ICogindUsRankingProps {
+  height?: number;
+  data?: IUser;
+  ranking: number;
+  isMyRanking: boolean;
+}
 // #endregion
 
 // #region CoachingUs
@@ -294,16 +328,124 @@ export interface ICoachingUsColumnWriteUIProps {
 // #region MyPage
 export interface IMyPageProps {}
 export interface IMyPageUIProps {}
+
+export interface IUserBlogUIProps {
+  data: {
+    fetchmyBlog: {
+      title: string;
+      contents: string;
+      like: number;
+      createAt: number;
+    };
+  };
+}
+
 export interface IMyPageMenuUIProps {
-  isCoach: boolean;
-  moveToPage: (page: IPage) => () => void;
+  mainstack: {
+    fetchmainstack: {};
+  };
+  data: {
+    fetchmyuser: {
+      role: string;
+      nickname: string;
+      point: number;
+      mainstack: string;
+      score: number;
+    };
+  };
+  isModal: boolean;
+  onClickModal: () => void;
+  onClickMove: (path: string) => () => void;
+}
+
+export interface IUserQuestionsUI {
+  data: {
+    fetchmyStack: [
+      {
+        id: string;
+        title: string;
+        contents: string;
+        like: number;
+        length: number;
+        user: {
+          nickname: string;
+        };
+        stacktag: {
+          tag: string;
+        };
+      }
+    ];
+  };
+}
+
+export interface IQuestionCardMyPage01 {
+  id: string;
+}
+
+export interface ICoachPageMenuUIProps {
+  userData: {
+    fetchmyuser: {
+      role: string;
+      nickname: string;
+      point: number;
+      mainstack: string;
+    };
+  };
+  data: {
+    fetchCoachUser: {
+      nickname: string;
+      point: number;
+      score: number;
+    };
+  };
+  isModal: boolean;
+  onClickModal: () => void;
+  onClickMove: (path: string) => () => void;
+}
+export interface IUserUpdateUI {
+  userData: {
+    fetchmyuser: {
+      email: string;
+      name: string;
+      nickname: string;
+      phonenumber: string;
+    };
+  };
+  isVerify: boolean;
+  tokenResult: boolean;
+  isToken: boolean;
+
+  onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeNickName: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangePhone: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeToken: (event: ChangeEvent<HTMLInputElement>) => void;
+  onClickCheckToken: () => void;
+  onClickSendToken: () => void;
+  onClickVerifyNicName: () => void;
+  onClickUpdate: () => void;
+  onClickMove: (path: string) => () => void;
+  setPhone: Dispatch<SetStateAction<string>>;
+}
+
+export interface IUserPointUI {
+  isModal: boolean;
+  onClickModal: () => void;
+}
+
+export interface IUserRankingUI {
+  onChangeDuration: (e: RadioChangeEvent) => void;
 }
 // #endregion
 
 // #region MainPage
 export interface MainPageProps {}
 export interface MainPageUIProps {
-  moveToPage: (page: IPage) => () => void;
+  moveToPage: (page: string) => () => void;
+  settings: {
+    infinite: boolean;
+    slidesToShow: number;
+    slidesToScroll: number;
+  };
   blogSettings: {
     infinite: boolean;
     slidesToShow: number;
@@ -313,7 +455,28 @@ export interface MainPageUIProps {
     prevArrow: any;
   };
   SampleNextArrow: any;
-  SamplePrevArrow: any;
+
+  responsiveSettings: {};
+  blogData: {
+    fetchotherBlogorderbylikeAll: {
+      id: string;
+      url: string;
+      blogcategorytag: {
+        tag: string;
+      };
+      title: string;
+      contents: string;
+      user: {
+        nickname: string;
+      };
+      createAt: string;
+      updatedat: string;
+      like: number;
+    };
+  };
+  stackData: {
+    fetchotherStackorderbylike: IStack[];
+  };
 }
 
 // #endregion

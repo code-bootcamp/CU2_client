@@ -15,22 +15,35 @@ export default function LoginUI(props: ILoginUIProps) {
           placeholder="EMAIL ADDRESS"
           {...props.register("email")}
         />
-        {props.formState.errors.email?.message}
+        {props.formState.errors.email?.message ? (
+          <S.ErrorMessageBox>
+            {props.formState.errors.email?.message}
+          </S.ErrorMessageBox>
+        ) : (
+          <Blank height="20px" />
+        )}
+
         <Blank height="10px" />
         <S.RegisterInput
           type="password"
           placeholder="PASSWORD"
           {...props.register("password")}
         />
-        <Blank height="10px" />
-        {props.formState.errors.password?.message}
 
+        {props.formState.errors.password?.message ? (
+          <S.ErrorMessageBox>
+            {props.formState.errors.password?.message}
+          </S.ErrorMessageBox>
+        ) : (
+          <Blank height="20px" />
+        )}
+        <Blank height="10px" />
         <S.LoginBtn type="submit">
           <p>Sign In</p>
         </S.LoginBtn>
 
         <Blank height="10px" />
-        <S.LoginBtn>
+        <S.LoginBtn type="button" onClick={props.moveToPage("/register")}>
           <p>Sign Up</p>
         </S.LoginBtn>
         <Blank height="10px" />
@@ -44,16 +57,13 @@ export default function LoginUI(props: ILoginUIProps) {
             비밀번호 찾기
           </S.FindPasswordBtn>
         </S.FindBtnBox>
-        <Blank height="40px" />
-        <S.SocialLogin>Login with Google</S.SocialLogin>
-        <Blank height="15px" />
-        <S.SocialLogin>Login with GitHub</S.SocialLogin>
-        <Blank height="15px" />
-        <S.SocialLogin>Login with Kakao</S.SocialLogin>
       </S.RegisterForm>
-      <S.FormContainer>
-        <S.FormContainerBorder></S.FormContainerBorder>
-      </S.FormContainer>
+      <Blank height="40px" />
+      <S.SocialLogin>Login with Google</S.SocialLogin>
+      <Blank height="15px" />
+      <S.SocialLogin>Login with GitHub</S.SocialLogin>
+      <Blank height="15px" />
+      <S.SocialLogin>Login with Kakao</S.SocialLogin>
     </S.Wrapper>
   );
 }

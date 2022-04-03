@@ -6,6 +6,10 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import Blank from "../../commons/Blank";
 import Card from "../codingus/main/Card/Card.container";
 import { BsSearch } from "react-icons/bs";
+import BlogCard01MyPage from "../../commons/Card/BlogCard01/BlogCard01MyPage";
+import QuestionCard01MyPage from "../../commons/Card/QuestionCard01/QuestionCard01MyPage.Container";
+import { IStack } from "../../../commons/types/generated/types";
+import CoachesCardPage from "../coachingus/main/coachescard/CoachesCard.Container";
 
 export default function MainUI(props: MainPageUIProps) {
   return (
@@ -63,30 +67,13 @@ export default function MainUI(props: MainPageUIProps) {
         </S.ServiceSubHead>
         <S.ServiceBody>
           <S.SliderContentBox {...props.responsiveSettings}>
-            <div>
-              <h3>1</h3>
-            </div>
-            <div>
-              <h3>2</h3>
-            </div>
-            <div>
-              <h3>3</h3>
-            </div>
-            <div>
-              <h3>4</h3>
-            </div>
-            <div>
-              <h3>5</h3>
-            </div>
-            <div>
-              <h3>6</h3>
-            </div>
-            <div>
-              <h3>7</h3>
-            </div>
-            <div>
-              <h3>8</h3>
-            </div>
+            {props.blogData?.fetchotherBlogorderbylikeAll
+              .filter((el, index) => index < 8)
+              .map((el) => (
+                <div key={el.id}>
+                  <BlogCard01MyPage data={el} />
+                </div>
+              ))}
           </S.SliderContentBox>
         </S.ServiceBody>
       </S.ServiceBox>
@@ -101,27 +88,18 @@ export default function MainUI(props: MainPageUIProps) {
           style={{
             width: "100%",
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
             flexWrap: "wrap",
           }}
         >
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-        </div>
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            flexWrap: "wrap",
-          }}
-        >
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {props.stackData?.fetchotherStackorderbylike
+            .filter((el: IStack, index: number) => index < 4)
+            .map((el) => (
+              <div key={el.id}>
+                <QuestionCard01MyPage data={el} />
+              </div>
+            ))}
         </div>
       </S.ServiceBox>
       <Blank height="100px" />
@@ -151,9 +129,7 @@ export default function MainUI(props: MainPageUIProps) {
             flexWrap: "wrap",
           }}
         >
-          <Card />
-          <Card />
-          <Card />
+          <CoachesCardPage />
         </div>
       </S.ServiceBox>
       <Blank height="100px" />

@@ -10,30 +10,34 @@ export default function CoachesCardUI(props: ICoachingUsCoachesCardUIProps) {
       <S.CoachesSubTitle>CU2 코치에게 물어보세요!</S.CoachesSubTitle>
       <Blank height="20px" />
       <S.ContainerCoachesListBody>
-        {props.coachesList.map((coach) => (
+        {props.coachesList?.map((coach) => (
           <S.CoachList
             key={coach.id}
             onClick={props.moveToPage(`/coachingus/coaches/${coach.id}`)}
           >
             <S.CoachListHeader>
               <S.CoachTitle>
-                <S.CoachCor>{coach.corName}</S.CoachCor>
-                <S.CoachSubCor>{coach.subCorName}</S.CoachSubCor>
+                <S.CoachCor>{coach.coachProfile?.orgName}</S.CoachCor>
+                <S.CoachSubCor>{coach.coachProfile?.department}</S.CoachSubCor>
               </S.CoachTitle>
               <S.CoachFollowBtn>Follow</S.CoachFollowBtn>
             </S.CoachListHeader>
             <Blank height="10px" />
             <S.CoachListPicture></S.CoachListPicture>
             <Blank height="10px" />
-            <S.CoachListPosition>직책</S.CoachListPosition>
+            <S.CoachListPosition>
+              {coach.coachProfile?.orgType}
+            </S.CoachListPosition>
             <S.CoachListName>
-              {coach.profile.name} &nbsp; <div>coach</div>
+              {coach.name} &nbsp; <div>coach</div>
             </S.CoachListName>
-            <S.CoachListTags>
-              {coach.profile.tags.map((tag: string, index: number) => (
-                <S.CoachTag key={index}>{tag}</S.CoachTag>
-              ))}
-            </S.CoachListTags>
+            {coach.coachtag?.tag && (
+              <S.CoachListTags>
+                {coach.coachtag?.tag.map((tag: string, index: number) => (
+                  <S.CoachTag key={index}>{tag}</S.CoachTag>
+                ))}
+              </S.CoachListTags>
+            )}
             <Blank height="10px" />
             <S.CoachListInfo>
               <S.CoachInfoFollower>
@@ -45,7 +49,7 @@ export default function CoachesCardUI(props: ICoachingUsCoachesCardUIProps) {
                   }}
                 />
                 <Blank width="8px" />
-                {getMoney(coach.profile.followers)}명
+                {getMoney(coach?.score)}명
               </S.CoachInfoFollower>
               <Blank width="10px" />
               <S.CoachInfoScore>
@@ -57,7 +61,7 @@ export default function CoachesCardUI(props: ICoachingUsCoachesCardUIProps) {
                   }}
                 />
                 <Blank width="8px" />
-                {getMoney(coach.profile.score)}점
+                {getMoney(coach?.score)}점
               </S.CoachInfoScore>
             </S.CoachListInfo>
           </S.CoachList>

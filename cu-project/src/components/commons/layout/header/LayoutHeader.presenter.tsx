@@ -76,7 +76,7 @@ export default function LayoutHeaderPageUI(props) {
                 isCurrent={props.select === "Us & Coaches"}
               >
                 Us {"&"} Coaches
-                {props.select === "us" && (
+                {props.select === "Us & Coaches" && (
                   <S.CategoryLine
                     isCategory={props.select === "Us & Coaches"}
                   />
@@ -97,9 +97,9 @@ export default function LayoutHeaderPageUI(props) {
             </S.SearchBar>
           </S.SearchBarDetail>
         )}
-        {props.isSearch && (
+        {props.isSearch && !props.router.asPath.includes("search") && (
           <S.SearchBarCancleBtn onClick={() => props.setIsSearch(false)}>
-            cancle
+            Cancle
           </S.SearchBarCancleBtn>
         )}
       </S.HeaderBody>

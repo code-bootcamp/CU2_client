@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { getIndexFromMD } from "../../../../../commons/libraries/mdUtils";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
@@ -7,8 +8,11 @@ import CodingUsBlogDetailUI from "./BlogDetail.Presenter";
 
 export default function CodingUsBlogDetail() {
   const { moveToPage } = useMoveToPage();
+  const router = useRouter();
   const [indexPositions, setIndexPositions] = useState<number[]>([]);
   const [currentIndex, setCurrentIndex] = useState(-1);
+  // const {data: fetchBlogData} = useQuery<Pick<IQuery,"fetchBlog">,IQueryFetchBlogArgs>(FETCH_BLOG, {variables: {blogId: router.query.blogId}})
+  // const {data: fetchBlogData} = useQuery(FETCH_BLOG, {variables: {blogId: router.query.blogId}})
   const onClickDelete = () => {
     // 삭제 확인
   };
@@ -50,11 +54,14 @@ export default function CodingUsBlogDetail() {
       title={"Zustand - 상태 관리 라이브러리"}
       createdAt="2022-02-07T14:42:53.532Z"
       tags={["JavaScript", "React", "Zustand"]}
-      index={getIndexFromMD(dummyMD)}
+
+      // fetchBlogData={fetchBlogData}
+      // index={getIndexFromMD(fetchBlogData.contents)}
+      // isPicked={true}
+
       currentIndex={currentIndex}
       indexPositions={indexPositions}
       setCurrentIndex={setCurrentIndex}
-      isPicked={true}
       onClickDelete={onClickDelete}
       onClickUpdate={onClickUpdate}
     />

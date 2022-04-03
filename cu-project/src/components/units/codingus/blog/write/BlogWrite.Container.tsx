@@ -1,55 +1,67 @@
 import { ICodingUsBlogWriteProps } from "../../../../../commons/types/types";
 import CodingUsBlogWriteUI from "./BlogWrite.Presenter";
-import {} from "./BlogWrite.Queries";
+import { CREATE_BLOG } from "./BlogWrite.Queries";
 import { Editor } from "@toast-ui/react-editor";
-import { MouseEvent, useRef, useState } from "react";
+import { ChangeEvent, MouseEvent, useRef, useState } from "react";
+import { useMutation } from "@apollo/client";
+import {
+  IMutation,
+  IMutationCreateBlogArgs,
+} from "../../../../../commons/types/generated/types";
+import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
+import { useAuth } from "../../../../commons/hooks/useAuth";
+import { useRouter } from "next/router";
+
 export default function CodingUsBlogWrite(props: ICodingUsBlogWriteProps) {
+  useAuth();
+  const [createBlog] = useMutation<
+    Pick<IMutation, "createBlog">,
+    IMutationCreateBlogArgs
+  >(CREATE_BLOG);
+  const { moveToPage } = useMoveToPage();
   const editorRef = useRef<Editor>(null);
   const [tags, setTags] = useState<string[]>([]);
-  const onClickSubmit = (_: MouseEvent<HTMLButtonElement>) => {
+  const [title, setTitle] = useState("");
+  const [stack, setStack] = useState<string>("");
+  const router = useRouter();
+  const onClickSubmit = async (_: MouseEvent<HTMLButtonElement>) => {
     console.log("a");
-    const value = editorRef.current?.getInstance().getMarkdown();
-    console.log(value);
-    if (!value?.length) {
-      alert("내용을 입력해주세요");
+    const contents = editorRef.current?.getInstance().getMarkdown();
+    if (!(contents && title)) {
+      alert("필수 입력 항목 누락");
       return;
     }
-    const splitArr = value.split(/!\[([-_.]?[0-9a-zA-Z])*\]\(/);
-    const imageArr = [];
-    const textArr = [];
-    const gubunArr = [];
-    let cnt = 0;
-    for (let i = 0; i < splitArr.length; i++) {
-      if (!splitArr[i]) continue;
-      if (splitArr[i].startsWith("data")) {
-        imageArr.push(splitArr[i].split(")")[0]);
-        gubunArr.push({
-          gubun: "image",
-          value: splitArr[i].split(")")[0],
-          index: cnt,
-        });
-        cnt++;
-        if (splitArr[i].split(")")[1]) {
-          textArr.push(splitArr[i].split(")")[1]);
-          gubunArr.push({
-            gubun: "text",
-            value: splitArr[i]
-              .split(")")
-              .filter((_, idx) => idx !== 0)
-              .join(")"),
-            index: cnt,
-          });
-          cnt++;
-        }
-      } else {
-        gubunArr.push({ gubun: "text", value: splitArr[i], index: cnt });
-        textArr.push(splitArr[i]);
-        cnt++;
-      }
+    if(!stack){
+      alert("스택을 선택해 주세요");
+      return;
     }
-    alert(value);
+    try {
+      const variables = {
+        blogcategorytag: [stack],
+        blogtag: tags,
+        contents,
+        title,
+      };
+      if (tags.length < 1) variables.blogtag = [""];
+      const result = await createBlog({ variables });
+      if (result.errors) {
+        alert("등록 실패");
+        return;
+      }
+      // moveToPage(`/codingus/blog/${result?.data?.createBlog?.id}`);
+      router.push(`/codingus/blog/${result.data?.createBlog.id}`)
+    } catch (error: any) {
+      alert(error.message);
+    }
   };
   const onClickExit = (_: MouseEvent<HTMLButtonElement>) => {};
+  const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
+    setTitle(event.target.value);
+  };
+  const onChangeStack = (event: ChangeEvent<HTMLSelectElement>) => {
+    
+    setStack(event.target.value);
+  };
   return (
     <CodingUsBlogWriteUI
       editorRef={editorRef}
@@ -57,6 +69,11 @@ export default function CodingUsBlogWrite(props: ICodingUsBlogWriteProps) {
       setTags={setTags}
       onClickExit={onClickExit}
       onClickSubmit={onClickSubmit}
+      title={title}
+      onChangeTitle={onChangeTitle}
+      setStack={setStack}
+      stack={stack}
+      onChangeStack={onChangeStack}
     />
   );
 }

@@ -11,10 +11,12 @@ export default function ColumnsCardUI(props: ICoachingUsColumnsCardUIProps) {
       <S.ColumnsListSubTitle>코치들의 칼럼을 읽어보세요!</S.ColumnsListSubTitle>
       <Blank height="20px" />
       <S.ContainerColumnsListBody>
-        {props.columnList.map((column) => (
+        {props.columnList?.map((column) => (
           <S.ColumnsList
             key={column.id}
-            onClick={props.moveToPage(`/coachingus/column/${column.id}`)}
+            onClick={props.moveToPage(
+              `/coachingus/coaches/${column?.user.coachProfile.id}/columns/${column?.id}`
+            )}
           >
             <S.ColumnPicture>{column.picture}</S.ColumnPicture>
             <Blank height="10px" />

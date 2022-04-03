@@ -7,17 +7,22 @@ export const AllWrapper = styled.div`
   flex-direction: row;
   align-items: flex-start;
 `;
+
 export const Web = styled.div`
-  @media ${breakPoints.tablet} {
+  @media ${breakPoints.tablet && breakPoints.mobile} {
     display: none;
   }
 `;
+
 export const Wrapper = styled.div`
-  max-width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
+  @media ${breakPoints.mobile} {
+    margin: 0;
+  }
 `;
 
 export const Box = styled.div`
@@ -40,23 +45,6 @@ export const BlogHeader = styled.div`
   }
 `;
 
-export const BlogHeaderRight = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-export const SearchBar = styled.div`
-  border: 1px solid #bdbdbd;
-  border-radius: 10px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 20px;
-  & input {
-    width: 300px;
-    border: none;
-  }
-`;
 export const RowWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -67,4 +55,7 @@ export const CardWrapper = styled(RowWrapper)`
   justify-content: space-between;
   flex-wrap: wrap;
   width: 100%;
+  @media ${breakPoints.tablet && breakPoints.mobile} {
+    justify-content: center;
+  }
 `;

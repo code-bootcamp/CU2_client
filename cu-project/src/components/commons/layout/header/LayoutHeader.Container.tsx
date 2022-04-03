@@ -1,19 +1,14 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
-import { GlobalContext } from "../../../../../pages/_app";
+import { LOGOUT } from "./LayoutHeader.Queries";
+import useStore from "../../../../commons/store/store";
 import { useAuth } from "../../hooks/useAuth";
 import { useMoveToPage } from "../../hooks/useMoveToPage";
 import LayoutHeaderPageUI from "./LayoutHeader.presenter";
 
-const LOGOUT_USER = gql`
-  mutation logoutUser {
-    logoutUser
-  }
-`;
-
 export default function LayoutHeaderPage() {
-  const { accessToken } = useContext(GlobalContext);
+  const { accessToken, setAccessToken } = useStore((state) => state);
   const SearchRef = useRef(null);
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(false);
@@ -24,7 +19,7 @@ export default function LayoutHeaderPage() {
   const { moveToPage } = useMoveToPage();
   const currentPath = router.asPath;
 
-  const [logoutUser] = useMutation(LOGOUT_USER);
+  const [logoutUser] = useMutation(LOGOUT);
 
   const SendQuery = (category, keyword) => {
     router.push({
@@ -50,6 +45,9 @@ export default function LayoutHeaderPage() {
   useEffect(() => {
     if (accessToken) {
       setIsLogin(true);
+    } else {
+      setIsLogin(false);
+      setAccessToken("");
     }
   }, [accessToken]);
 
@@ -63,6 +61,7 @@ export default function LayoutHeaderPage() {
 
   function onClickLogOut() {
     logoutUser();
+    // setAccessToken("");
     alert("로그아웃이 됐습니다.");
     window.location.reload();
   }
@@ -96,6 +95,7 @@ export default function LayoutHeaderPage() {
       onChangeSearch={onChangeSearch}
       SearchRef={SearchRef}
       onClickSearch={onClickSearch}
+      router={router}
     />
   );
 }

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Color from "../../../../../../commons/styles/color";
 interface IBlogDetailIndexProps {
@@ -48,7 +48,7 @@ export default function BlogDetailIndex(props: IBlogDetailIndexProps) {
 
   return (
     <Wrapper>
-      {props.index.map((el, idx) => (
+      {props.index?.map((el, idx) => (
         <Item
           key={uuidv4()}
           level={getLevel(el)}

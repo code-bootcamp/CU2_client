@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import Color from "../../../../commons/styles/color";
 
 export const Wrapper = styled.div`
-  margin: 100px auto 0;
+  margin: 200px auto 0;
   width: 75%;
   display: flex;
   flex-direction: column;
@@ -151,21 +151,27 @@ export const RowWrapper = styled.div`
   width: 75%;
 `;
 
-export const SortGubun = styled(RowWrapper)``;
+export const SortGubun = styled(RowWrapper)`
+  width: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+`;
 interface IGubunProps {
   isSelected: boolean;
 }
 export const GubunLabel = styled.div`
-  padding: 10px 20px;
-  border: 3px solid ${Color.sub};
+  width: max-content;
+  padding: ${(props: IGubunProps) =>
+    props.isSelected ? "5px 22px" : "5px 20px"};
+  border: 2px solid ${Color.sub};
   border-radius: 30px;
-  font-weight: ${(props: IGubunProps) => (props.isSelected ? "700" : "300")};
+  font-weight: ${(props: IGubunProps) => (props.isSelected ? "600" : "300")};
   font-size: 18px;
   color: ${(props: IGubunProps) =>
     props.isSelected ? Color.light : Color.sub};
   background-color: ${(props: IGubunProps) =>
-    props.isSelected ? Color.sub : ""};
-  :hover {
-    cursor: pointer;
-  }
+    props.isSelected ? Color.sub : Color.white};
+  margin-right: 10px;
+  cursor: pointer;
 `;

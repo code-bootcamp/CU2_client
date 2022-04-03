@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   min-width: 100vw;
-  min-height: calc(100vh - 30px);
+  min-height: calc(100vh - 20px);
   box-sizing: border-box;
   margin: 0;
   display: flex;
@@ -67,6 +67,13 @@ export const FormTitle = styled.h1`
 `;
 export const FormSubTitle = styled.p``;
 
+export const ErrorMessageBox = styled.div`
+  height: 20px;
+  font-size: 12px;
+  padding-top: 3px;
+  color: red;
+  padding-left: 5px;
+`;
 export const FormInput = styled.input`
   all: unset;
   width: 70%;
@@ -74,8 +81,8 @@ export const FormInput = styled.input`
   padding: 5px;
   transition: border 1s ease-in-out;
 
-  border-bottom: ${({ isFull }) =>
-    isFull ? "1px solid #bdbdbd" : "1px solid white"};
+  border-bottom: ${(props: { isFull: boolean }) =>
+    props.isFull ? "1px solid #bdbdbd" : "1px solid white"};
 
   :focus {
     auto: true;

@@ -3,12 +3,13 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormValues, ILoginProps } from "../../../../commons/types/types";
 import LoginUI from "./Login.Presenter";
-import { LOGIN } from "./Login.Queries";
-import { useMutation } from "@apollo/client";
-import { useContext } from "react";
-import { GlobalContext } from "../../../../../pages/_app";
+import {  LOGIN } from "./Login.Queries";
+import {  useMutation } from "@apollo/client";
+import {  } from "../../../../../pages/_app";
 import { useRouter } from "next/router";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
+import useStore from "../../../../commons/store/store";
+import { getLoggenInUser } from "../../../../commons/libraries/getLoggedInUser";
 
 const schema = yup.object().shape({
   email: yup
@@ -28,12 +29,14 @@ const schema = yup.object().shape({
 
 export default function Login(props: ILoginProps) {
   const router = useRouter();
-  const [login] = useMutation(LOGIN);
-  const { moveToPage } = useMoveToPage();
-  const { setAccessToken } = useContext(GlobalContext);
   const { register, formState, handleSubmit } = useForm({
     resolver: yupResolver(schema),
   });
+
+  const [login] = useMutation(LOGIN);
+
+  const { moveToPage } = useMoveToPage();
+  const { setUserInfo, setAccessToken } = useStore((state) => state);
 
   const onClickLogin = async (data: FormValues) => {
     try {
@@ -44,10 +47,17 @@ export default function Login(props: ILoginProps) {
         },
       });
       const accessToken = result.data?.login;
-      if (setAccessToken) {
-        setAccessToken(accessToken || "");
-        router.push("/");
+
+      if (!accessToken) {
+        alert("로그인 실패");
+        return;
       }
+
+      setAccessToken(accessToken);
+      getLoggenInUser(accessToken).then((userInfo) => {
+        setUserInfo(userInfo);
+      });
+      router.push("/");
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message);

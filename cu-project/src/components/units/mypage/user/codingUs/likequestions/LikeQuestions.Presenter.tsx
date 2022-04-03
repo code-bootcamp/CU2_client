@@ -3,7 +3,8 @@ import MypageMenu from "../../MypageMenu.Container";
 import * as S from "./LikeQuestions.Style";
 import { UserPageNav } from "../../../../../commons/Mypage/MypageNav";
 import { MyPageSearchBar } from "../../../../../commons/Mypage/MypageSearchBar";
-import WaitingItem from "../../../../codingus/question/waitingItem/WaitingItem.Container";
+
+import QuestionCard01MyPage from "../../../../../commons/Card/QuestionCard01/QuestionCard01MyPage.Container";
 
 export default function LikeQuestionsUI(props) {
   return (
@@ -14,22 +15,19 @@ export default function LikeQuestionsUI(props) {
       <S.Wrapper>
         <UserPageNav menu={"Good한 Q&A"} />
         <S.BlogHeader>
-          <h2>질문 14 | 답변 2</h2>
+          <h2>전체 {props.data?.fetchStackmylike.length} 개</h2>
           <MyPageSearchBar />
         </S.BlogHeader>
         <Blank height="30px" />
         <div style={{ width: "90%" }}>
-          {new Array(4).fill(0).map((el, idx) => (
-            <div key={idx}>
-              <WaitingItem
-                data={{
-                  stack: "스택",
-                  tags: ["컴퓨터 부품", "JAVA"],
-                  title: "모든 국민은 학문과 예술의 자유를 가진다.",
-                  images: ["https://source.unsplash.com/random"],
-                  commentCnt: 3,
-                  createdAt: "2022-02-07T14:42:53.532Z",
-                }}
+          {props.data?.fetchStackmylike.length === 0 && (
+            <div style={{ textAlign: "center" }}>데이터 없음 </div>
+          )}
+          {props.data?.fetchStackmylike.map((el) => (
+            <div key={el.id}>
+              <QuestionCard01MyPage
+                data={el}
+                isAnswered={true}
                 onClickAnswer={() => {}}
               />
               <Blank height="30px" />

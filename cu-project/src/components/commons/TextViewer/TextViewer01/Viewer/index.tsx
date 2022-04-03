@@ -9,7 +9,6 @@ import Prism from "prismjs";
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import { Viewer as ToastViewer2 } from "@toast-ui/react-editor";
 import styled from "@emotion/styled";
-import { useEffect, useState } from "react";
 
 interface ITextViewerUIProps {
   value: string;

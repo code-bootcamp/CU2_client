@@ -11,10 +11,10 @@ export default function WaitingItemUI(props: IWatingItemProps) {
   return (
     <S.Wrapper>
       <S.RowWrapper>
-        <Tag01 value={props.data.stack} isShort={true} />
+        <Tag01 value={props.data.stacktag[0].tag} isShort={true} />
         <Blank width="20px" />
-        {props.data.tags &&
-          props.data.tags.map((el, idx) => (
+        {props.data.contents.split("![contents]")[0].split(",") &&
+          props.data.contents.split("![contents]")[0].split(",").map((el, idx) => (
             <S.TagWrapper key={idx}>
               <Tag02 value={el} />
               <Blank width="10px" />
@@ -25,16 +25,13 @@ export default function WaitingItemUI(props: IWatingItemProps) {
       <S.RowWrapper style={{ justifyContent: "space-between" }}>
         <S.Title>
           {props.data.title}
-          {props.data.images?.[0] && (
-            <img src="/Icon_photo.png" style={{ margin: "0px 0px 0px 10px" }} />
-          )}
         </S.Title>
-        <Label01 value={getShortDateString(props.data.createdAt)} size="24px" weight="200"/>
-        <S.AnswerBtn onClick={props.onClickAnswer}>답변하기</S.AnswerBtn>
+        <Label01 value={getShortDateString(props.data.createdAt ?? "2022-02-07T14:42:53.532Z")} size="24px" weight="200"/>
+        {props.isAnswered && <S.AnswerBtn onClick={props.onClickAnswer}>답변하기</S.AnswerBtn>}
       </S.RowWrapper>
       <Blank height="17px" />
       <S.RowWrapper>
-        <Icon01 src="/Icon_Unfill_Comment.png" value={props.data.commentCnt} />
+        <Icon01 src="/Icon_Unfill_Comment.png" value={0} />
       </S.RowWrapper>
     </S.Wrapper>
   );

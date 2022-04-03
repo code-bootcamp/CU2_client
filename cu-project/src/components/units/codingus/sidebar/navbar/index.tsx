@@ -24,6 +24,8 @@ export default function CodingUsNavbar() {
 
   return (
     <S.Wrapper>
+      <S.CodingUs>CodingUs</S.CodingUs>
+      <Blank height="30px" />
       {["CodingUs", "Blog", "Q&A", "Us"].map((el) => printNavbarItem(el))}
     </S.Wrapper>
   );

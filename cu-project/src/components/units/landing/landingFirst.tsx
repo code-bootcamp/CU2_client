@@ -8,16 +8,16 @@ interface IButtonProps {
 }
 
 const Wrapper = styled.div`
-  width: 100vw;
+  min-width: 100vw;
   height: 100vh;
-  box-sizing: border-box;
   margin: 0;
+  padding-top: 50px;
+
+  box-sizing: border-box;
+  background-color: #303030;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #f6f5f5;
-  padding: 0 10%;
+
   @media ${breakPoints.tablet} {
     min-width: 100%;
   }
@@ -26,64 +26,38 @@ const Wrapper = styled.div`
   }
 `;
 
-const TitleBox = styled.div`
+const BackgroundImageFix = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-bottom: 70px;
-  @media ${breakPoints.tablet} {
-  }
-  @media ${breakPoints.mobile} {
-    min-width: 100%;
-    align-items: center;
-    padding-bottom: 30px;
-  }
-`;
+  height: calc(100vh - 150px);
+  background-image: url("/landingback.png");
+  background-size: cover;
 
-const Title = styled.h1`
-  font-size: 64px;
-  text-align: center;
-  color: #333333;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  padding-bottom: 30px;
-  @media ${breakPoints.tablet} {
-    font-size: 48px;
-  }
-  @media ${breakPoints.mobile} {
-    font-size: 28px;
-    min-width: 100%;
-    padding-bottom: 20px;
-  }
-`;
-
-const SubTitle = styled.div`
-  font-family: "Apple SD Gothic Neo";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 38px;
-  color: #bdbdbd;
-  @media ${breakPoints.tablet} {
-    width: 100%;
-    font-size: 28px;
-  }
-  @media ${breakPoints.mobile} {
-    width: 100%;
-    font-size: 18px;
-    text-align: center;
+  animation: firstFadeIn 1s ease-in-out;
+  @keyframes firstFadeIn {
+    0% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 `;
 
 const ButtonBox = styled.div`
+  width: 100%;
+  position: relative;
+  top: 100px;
   display: flex;
+  border: none;
+  padding-bottom: 200px;
+  justify-content: center;
   @media ${breakPoints.mobile} {
     flex-direction: column;
   }
 `;
 
 const MoveButton = styled.button`
-  border: 4px solid #333333;
+  border: none;
   border-radius: 10px;
   width: 240px;
   height: 72px;
@@ -92,13 +66,10 @@ const MoveButton = styled.button`
   font-size: 24px;
   line-height: 32px;
   text-align: center;
-  color: #333333;
+  color: ${(props: IButtonProps) => (props.cate ? Color.main : Color.white)};
   margin-right: 30px;
-  :hover {
-    color: #ffffff;
-    background-color: ${(props: IButtonProps) =>
-      props.cate ? Color.main : Color.sub};
-  }
+  background-color: ${(props: IButtonProps) =>
+    props.cate ? Color.white : Color.main};
   @media ${breakPoints.mobile} {
     width: 100%;
     font-size: 18px;
@@ -110,10 +81,7 @@ export default function FirstPage() {
   const { moveToPage } = useMoveToPage();
   return (
     <Wrapper>
-      <TitleBox>
-        <Title>내가 쓴 글이 스펙이 된다!</Title>
-        <SubTitle>초보 개발자의 Self Study Solution, CU2</SubTitle>
-      </TitleBox>
+      <BackgroundImageFix />
       <ButtonBox>
         <MoveButton onClick={moveToPage("/codingus")} cate={true}>
           CodingUS

@@ -11,8 +11,6 @@ export default function CoachingUsSidebarUI() {
       <CoachingUsSidebarPage />
       <Blank height="50px" />
       <CoachingUsSidebarMyFavorite />
-      <Blank height="50px" />
-      <CoachingUsSidebarMyActivity />
     </S.Wrapper>
   );
 }

@@ -1,11 +1,17 @@
+import { useQuery } from "@apollo/client";
 import "antd/dist/antd.css";
 import { MainPageProps } from "../../../commons/types/types";
 import { useMoveToPage } from "../../commons/hooks/useMoveToPage";
 import MainUI from "./main.Presenter";
-import {} from "./main.Queries";
+import {
+  FETCH_OTHER_BLOG_ORDER_BY_LIKE_ALL,
+  FETCH_OTHER_STACK_ORDER_BY_LIKE,
+} from "./main.Queries";
 
 export default function Main(props: MainPageProps) {
   const { moveToPage } = useMoveToPage();
+  const { data: blogData } = useQuery(FETCH_OTHER_BLOG_ORDER_BY_LIKE_ALL);
+  const { data: stackData } = useQuery(FETCH_OTHER_STACK_ORDER_BY_LIKE);
 
   const settings = {
     infinite: true,
@@ -13,7 +19,7 @@ export default function Main(props: MainPageProps) {
     slidesToScroll: 1,
   };
 
-  function SampleNextArrow(props) {
+  function SampleNextArrow(props: any) {
     const { className, style, onClick } = props;
     return (
       <div
@@ -64,6 +70,8 @@ export default function Main(props: MainPageProps) {
   return (
     <>
       <MainUI
+        blogData={blogData}
+        stackData={stackData}
         settings={settings}
         responsiveSettings={responsiveSettings}
         moveToPage={moveToPage}

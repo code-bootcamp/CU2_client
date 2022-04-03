@@ -1,155 +1,115 @@
 import styled from "@emotion/styled";
-import { breakPoints } from "../../../commons/styles/media";
+import Color from "../../../commons/styles/color";
+import Blank from "../../commons/Blank";
+// import { breakPoints } from "../../../commons/styles/media";
 
 const Wrapper = styled.div`
   min-width: 100vw;
-  min-height: 100vh;
-  box-sizing: border-box;
+  height: 100vh;
   margin: 0;
-  padding: 10% 10%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  @media ${breakPoints.tablet} {
-    min-width: 100%;
-    flex-direction: column;
-  }
-  @media ${breakPoints.mobile} {
-    min-width: 100%;
-    flex-direction: column;
-  }
+  box-sizing: border-box;
+  background-color: ${Color.light};
 `;
 
-const CodingUsBox = styled.div`
-  width: 40%;
-  margin-bottom: 50px;
-  @media ${breakPoints.tablet} {
-    min-width: 100%;
+const TitleBox = styled.div`
+  width: 730px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  & h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: ${Color.dark};
   }
-  @media ${breakPoints.mobile} {
-    min-width: 100%;
-  }
-`;
-const CoachingUsBox = styled.div`
-  width: 60%;
-  margin-bottom: 50px;
-  @media ${breakPoints.tablet} {
-    min-width: 100%;
-  }
-  @media ${breakPoints.mobile} {
-    min-width: 100%;
-  }
-`;
-
-const CategoryName = styled.div`
-  font-weight: 700;
-  font-size: 32px;
-  color: #c4c4c4;
-  margin-bottom: 30px;
-  @media ${breakPoints.tablet} {
-  }
-  @media ${breakPoints.mobile} {
+  & p {
     font-size: 24px;
   }
 `;
 
-const ServiceBox = styled.div`
-  width: 100%;
+const ContentsBox = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
 `;
-const Service = styled.div`
-  width: 100%;
+
+const ContentBox = styled.div`
   display: flex;
   flex-direction: column;
-  @media ${breakPoints.tablet} {
-  }
-  @media ${breakPoints.mobile} {
-    align-items: center;
+  justify-content: center;
+  align-items: center;
+  & img {
+    width: 285px;
+    height: 285px;
+    border-radius: 50%;
+    border: 1px solid;
   }
 `;
 
-const ServiceIcon = styled.img`
-  width: 50%;
-  margin-bottom: 30px;
-  @media ${breakPoints.tablet} {
-    width: 150px;
-    height: 150px;
+const ContentDesc = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 32px;
+  & h3 {
+    font-size: 24px;
   }
-  @media ${breakPoints.mobile} {
-    margin-bottom: 10px;
-    width: 50px;
-    height: 50px;
-  }
-`;
-const ServiceName = styled.div`
-  font-family: "Apple SD Gothic Neo";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 29px;
-  margin-bottom: 20px;
-  color: #000000;
-  @media ${breakPoints.tablet} {
-    font-size: 20px;
-  }
-  @media ${breakPoints.mobile} {
-    margin-bottom: 10px;
+  & p {
     font-size: 18px;
-  }
-`;
-const ServiceButton = styled.button`
-  border: 1px solid #c4c4c4;
-  border-radius: 8px;
-  width: 123px;
-  height: 66px;
-  @media ${breakPoints.tablet} {
-    width: 80px;
-    height: 55px;
-  }
-  @media ${breakPoints.mobile} {
-    width: 80px;
-    height: 44px;
   }
 `;
 
 export default function SixthPage() {
   return (
     <Wrapper>
-      <CodingUsBox>
-        <CategoryName>CodingUs</CategoryName>
-        <ServiceBox>
-          <Service>
-            <ServiceIcon src="/Group 414.png" />
-            <ServiceName>Blog</ServiceName>
-            <ServiceButton>보러가기</ServiceButton>
-          </Service>
-          <Service>
-            <ServiceIcon src="/Group 414.png" />
-            <ServiceName>{`Stack Q&A`}</ServiceName>
-            <ServiceButton>보러가기</ServiceButton>
-          </Service>
-        </ServiceBox>
-      </CodingUsBox>
-      <CoachingUsBox>
-        <CategoryName>CoachingUs</CategoryName>
-        <ServiceBox>
-          <Service>
-            <ServiceIcon src="/Group 414.png" />
-            <ServiceName>Coaches</ServiceName>
-            <ServiceButton>보러가기</ServiceButton>
-          </Service>
-          <Service>
-            <ServiceIcon src="/Group 414.png" />
-            <ServiceName>Comments</ServiceName>
-            <ServiceButton>보러가기</ServiceButton>
-          </Service>
-          <Service>
-            <ServiceIcon src="/Group 414.png" />
-            <ServiceName>Columns</ServiceName>
-            <ServiceButton>보러가기</ServiceButton>
-          </Service>
-        </ServiceBox>
-      </CoachingUsBox>
+      <TitleBox>
+        <h1>현직자에게 궁금한 것들을 물어보세요</h1>
+        <Blank height="15px" />
+        <p>원하는 회사, 원하는 직무의 코치들에게 취업 코칭을 받아보세요</p>
+      </TitleBox>
+      <Blank height="45px" />
+      <ContentsBox>
+        <ContentBox>
+          <img src="/fifth1.png" />
+          <Blank height="20px" />
+          <ContentDesc>
+            <p>배달의 민족 | 프론트엔드 6년차</p>
+            <h3>백진상</h3>
+          </ContentDesc>
+        </ContentBox>
+        <Blank width="20px" />
+        <ContentBox>
+          <img src="/fifth1.png" />
+          <Blank height="20px" />
+          <ContentDesc>
+            <p>배달의 민족 | 프론트엔드 6년차</p>
+            <h3>백진상</h3>
+          </ContentDesc>
+        </ContentBox>
+        <Blank width="20px" />
+        <ContentBox>
+          <img src="/fifth1.png" />
+          <Blank height="20px" />
+          <ContentDesc>
+            <p>배달의 민족 | 프론트엔드 6년차</p>
+            <h3>백진상</h3>
+          </ContentDesc>
+        </ContentBox>
+        <Blank width="20px" />
+        <ContentBox>
+          <img src="/fifth1.png" />
+          <Blank height="20px" />
+          <ContentDesc>
+            <p>배달의 민족 | 프론트엔드 6년차</p>
+            <h3>백진상</h3>
+          </ContentDesc>
+        </ContentBox>
+      </ContentsBox>
     </Wrapper>
   );
 }
