@@ -18,6 +18,7 @@ interface ICodingUsCardProps {
   width?: number;
   height?: number;
   data: IBlog;
+  isLike?: boolean;
 }
 
 const FETCH_COMMENT_ORDERBY_LIKE = gql`
@@ -31,7 +32,6 @@ const FETCH_COMMENT_ORDERBY_LIKE = gql`
 export default function BlogCard01(props: ICodingUsCardProps) {
   const router = useRouter();
   const [commentCount, setCommentCount] = useState(0);
-  const [isLike, setIsLike] = useState(false);
   const [fetchBlogComments] = useLazyQuery<
     Pick<IQuery, "fetchBlogCommentorderbycreate">,
     IQueryFetchBlogCommentorderbycreateArgs
@@ -42,7 +42,7 @@ export default function BlogCard01(props: ICodingUsCardProps) {
         const result = await fetchBlogComments({
           variables: { blogid: blogId },
         });
-        
+
         return result.data?.fetchBlogCommentorderbycreate.length;
       } catch (err: any) {
         return 0;
@@ -52,22 +52,20 @@ export default function BlogCard01(props: ICodingUsCardProps) {
     if (props.data?.id)
       getCommentCount(props.data?.id).then((cnt) => setCommentCount(cnt || 0));
 
-      const getIsLike = async (blogId: string) => {
-        try {
-          const result = await fetchBlogComments({
-            variables: { blogid: blogId },
-          });
-          
-          return result.data?.fetchBlogCommentorderbycreate.length;
-        } catch (err: any) {
-          return 0;
-        }
-      };
-  
-      if (props.data?.id)
+    const getIsLike = async (blogId: string) => {
+      try {
+        const result = await fetchBlogComments({
+          variables: { blogid: blogId },
+        });
+
+        return result.data?.fetchBlogCommentorderbycreate.length;
+      } catch (err: any) {
+        return 0;
+      }
+    };
+
+    if (props.data?.id)
       getIsLike(props.data?.id).then((cnt) => setCommentCount(cnt || 0));
-
-
   }, []);
   return (
     <S.Wrapper
@@ -77,7 +75,9 @@ export default function BlogCard01(props: ICodingUsCardProps) {
         router.push("/codingus/blog/detail");
       }}
     >
-      <S.Image src={getImagesFromMD(props.data?.contents)[0] ??  "/CU2_LOGO.png"} />
+      <S.Image
+        src={getImagesFromMD(props.data?.contents)[0] ?? "/CU2_LOGO.png"}
+      />
       <S.Body>
         <Blank height="18px" />
         <S.StackWrapper>
@@ -107,9 +107,7 @@ export default function BlogCard01(props: ICodingUsCardProps) {
           <img
             style={{ width: "20px", height: "20px" }}
             src={
-              props.data.isLike
-                ? "/Icon_Unfill_Good.png"
-                : "/Icon_Unfill_Good.png"
+              props.isLike ? "/Icon_Unfill_Good.png" : "/Icon_Unfill_Good.png"
             }
           />
           <Blank width="10px" />
