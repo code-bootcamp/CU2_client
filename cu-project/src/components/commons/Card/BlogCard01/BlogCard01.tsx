@@ -7,13 +7,15 @@ import HorizontalLine from "../../Line/HorizontalLine";
 import { useRouter } from "next/router";
 import {
   IBlog,
+  IMutation,
+  IMutationBlogliketoggleArgs,
   IQuery,
   IQueryFetchBlogCommentorderbycreateArgs,
 } from "../../../../commons/types/generated/types";
-import { gql, useLazyQuery } from "@apollo/client";
+import { gql, useLazyQuery, useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { getImagesFromMD } from "../../../../commons/libraries/mdUtils";
-
+import { AiFillLike, AiOutlineLike, AiOutlineComment } from "react-icons/ai";
 interface ICodingUsCardProps {
   width?: number;
   height?: number;
@@ -29,14 +31,35 @@ const FETCH_COMMENT_ORDERBY_LIKE = gql`
   }
 `;
 
+const BLOG_LIKE_TOGGLE = gql`
+  mutation Blogliketoggle($blogid: String!) {
+    Blogliketoggle(blogid: $blogid) {
+      islike
+    }
+  }
+`;
+
 export default function BlogCard01(props: ICodingUsCardProps) {
   const router = useRouter();
   const [commentCount, setCommentCount] = useState(0);
+  const [likeInfo, setLikeInfo] = useState<{
+    isLike: boolean;
+    likeCnt: number;
+  }>({ isLike: false, likeCnt: 0 });
   const [fetchBlogComments] = useLazyQuery<
     Pick<IQuery, "fetchBlogCommentorderbycreate">,
     IQueryFetchBlogCommentorderbycreateArgs
   >(FETCH_COMMENT_ORDERBY_LIKE);
+  const [blogLikeToggle] = useMutation<
+    Pick<IMutation, "Blogliketoggle">,
+    IMutationBlogliketoggleArgs
+  >(BLOG_LIKE_TOGGLE);
+
   useEffect(() => {
+    setLikeInfo({
+      isLike: props.isLike || false,
+      likeCnt: props.data?.like || 0,
+    });
     const getCommentCount = async (blogId: string) => {
       try {
         const result = await fetchBlogComments({
@@ -51,32 +74,37 @@ export default function BlogCard01(props: ICodingUsCardProps) {
 
     if (props.data?.id)
       getCommentCount(props.data?.id).then((cnt) => setCommentCount(cnt || 0));
-
-    const getIsLike = async (blogId: string) => {
-      try {
-        const result = await fetchBlogComments({
-          variables: { blogid: blogId },
-        });
-
-        return result.data?.fetchBlogCommentorderbycreate.length;
-      } catch (err: any) {
-        return 0;
-      }
-    };
-
-    if (props.data?.id)
-      getIsLike(props.data?.id).then((cnt) => setCommentCount(cnt || 0));
   }, []);
+
+  const onClickLikeBtn = async () => {
+    try {
+      const result = await blogLikeToggle({
+        variables: { blogid: props.data?.id },
+      });
+      console.log(result);
+      const isLike = result.data?.Blogliketoggle?.islike;
+      setLikeInfo((prev) => {
+        return {
+          isLike: isLike || false,
+          likeCnt: isLike ? prev.likeCnt + 1 : prev.likeCnt - 1,
+        };
+      });
+      if (!result) return;
+    } catch (err: any) {
+      alert(err.message);
+    }
+  };
+
   return (
     <S.Wrapper
       width={props.width ? `${props.width}px` : "285px"}
       height={props.height ? `${props.height}px` : "440px"}
-      onClick={() => {
-        router.push("/codingus/blog/detail");
-      }}
     >
       <S.Image
         src={getImagesFromMD(props.data?.contents)[0] ?? "/CU2_LOGO.png"}
+        onClick={() => {
+          router.push(`/codingus/blog/${props.data.id}`);
+        }}
       />
       <S.Body>
         <Blank height="18px" />
@@ -86,9 +114,21 @@ export default function BlogCard01(props: ICodingUsCardProps) {
           )}
         </S.StackWrapper>
         <Blank height="16px" />
-        <S.Title>{props.data?.title ?? ""}</S.Title>
+        <S.Title
+          onClick={() => {
+            router.push(`/codingus/blog/${props.data.id}`);
+          }}
+        >
+          {props.data?.title ?? ""}
+        </S.Title>
         <Blank height="8px" />
-        <S.Contents>{props.data?.contents}</S.Contents>
+        <S.Contents
+          onClick={() => {
+            router.push(`/codingus/blog/${props.data.id}`);
+          }}
+        >
+          {props.data?.contents}
+        </S.Contents>
       </S.Body>
       <Blank height="18px" />
       <S.RowWrapper style={{ justifyContent: "space-between" }}>
@@ -104,18 +144,16 @@ export default function BlogCard01(props: ICodingUsCardProps) {
       <HorizontalLine margin={10} />
       <S.RowWrapper>
         <S.GoodBad>
-          <img
-            style={{ width: "20px", height: "20px" }}
-            src={
-              props.isLike ? "/Icon_Unfill_Good.png" : "/Icon_Unfill_Good.png"
-            }
-          />
+          {likeInfo.isLike ? 
+        <AiFillLike style={{width: "25px", height: "25px"}}onClick={onClickLikeBtn}/>
+        :
+        <AiOutlineLike style={{width: "25px", height: "25px"}}onClick={onClickLikeBtn}/>
+        }
           <Blank width="10px" />
-          <Label01 value={String(props.data?.like)} size="15px" padding="0px" />
+          <Label01 value={String(likeInfo.likeCnt)} size="15px" padding="0px" />
           <Blank width="26px" />
-          <img
+          <AiOutlineComment
             style={{ width: "20px", height: "20px" }}
-            src={"/Icon_Unfill_Comment.png"}
           />
           <Blank width="10px" />
           <Label01 value={String(commentCount)} size="15px" padding="0px" />
