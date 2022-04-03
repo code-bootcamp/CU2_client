@@ -8,23 +8,24 @@ const FETCH_MY_USER = gql`
       email
       nickname
       point
+      score
       role
       phonenumber
-      # coachProfile {
-      #   job
-      # }
+      coachProfile {
+        job
+      }
     }
   }
 `;
 
-export const getLoggenInUser = async () => {
+export const getLoggenInUser = async (accessToken: string) => {
   try {
     const graphQLClient = new GraphQLClient(
       process.env.NEXT_PUBLIC_GRAPHQL_URL!,
       {
         headers: {
           authorization: `Bearer ${
-            process.browser && sessionStorage.getItem("accessToken")
+            accessToken
           }`,
         },
         credentials: "include",

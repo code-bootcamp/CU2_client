@@ -13,8 +13,11 @@ import React, {
   SetStateAction,
 } from "react";
 import { Editor } from "@toast-ui/react-editor";
-import { IBlog, IStack } from "./generated/types";
+
+
 import { RadioChangeEvent } from "antd";
+import { IBlog, IStack, IUser } from "./generated/types";
+
 
 export interface ILayoutProps {
   children: ReactChild;
@@ -98,9 +101,9 @@ export interface ICodingUsBlogCardProps {
 }
 export interface ICodingUsBlogUIProps {
   onLoadMore: () => void;
-  sortedBlogList: ICodingUsBlogCardProps[];
   onToggleSortGubun: (_: MouseEvent<HTMLDivElement>) => void;
-  isSortByPopular: boolean;
+  blogList: {blog: IBlog, isLike: boolean}[];
+  isOrderByPopular: boolean;
 }
 export interface ICodingUsBlogWriteProps {}
 export interface ICodingUsBlogWriteUIProps {
@@ -118,12 +121,16 @@ export interface ICodingUsBlogWriteUIProps {
 export interface ICodingUsMainProps {}
 export interface ICodingUsMainUIProps {
   moveToPage: (page: string) => void;
-  bestUserItems: any[];
+  bestUserItems: { user: IUser; blog: IBlog }[];
   blogRecommendItems: IBlog[];
-  bestQuestions: any[];
+  bestQuestions: IStack[];
   onClickItem: (id: string) => () => void;
   onClickFollow: (id: string) => () => void;
   onClickLike: (id: string) => () => void;
+  data: {
+    fetchUserOrderbyscore: IUser;
+    fetchBlogAll: IBlog;
+  };
 }
 
 export interface ICodingUsBlogDetailUIProps {

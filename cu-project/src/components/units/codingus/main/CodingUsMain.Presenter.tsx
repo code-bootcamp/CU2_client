@@ -6,7 +6,7 @@ import * as S from "./CodingUsMain.Style";
 import BestUserCard from "../card/bestUserCard/BestUserCard";
 import BlogCard from "../../../commons/Card/BlogCard01/BlogCard01";
 import QnACard from "../card/qnaCard/QnACard";
-import { dummyData } from "./CodingUsMain.Container";
+import { IBlog, IUser } from "../../../../commons/types/generated/types";
 export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
   return (
     <S.CodingUsMain>
@@ -46,10 +46,12 @@ export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
         </S.RowWrapper>
         <Blank height="24px" />
         <S.BestUserItemWrapper>
-          {props.bestUserItems.map((el) => (
+          {console.log(props.bestUserItems)}
+          {props.bestUserItems?.map((el: {user: IUser, blog: IBlog}, idx: number) => (
             <BestUserCard
               key={uuidv4()}
               data={el}
+              ranking={idx + 1}
               onClickBlogItem={props.onClickItem}
               onClickFollow={props.onClickFollow}
               onClickLike={props.onClickLike}
@@ -78,7 +80,7 @@ export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
         <S.BlogItemWrapper>
           {props.blogRecommendItems?.map((el) => (
             <div key={uuidv4()}>
-              <BlogCard data={dummyData} />
+              <BlogCard data={el} />
               <Blank height="40px" />
             </div>
           ))}
@@ -91,8 +93,9 @@ export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
         </S.Label>
         <Blank height="17px" />
         <S.StackItemWrapper>
-          {props.bestQuestions.map((el, idx) => (
-            <QnACard key={uuidv4()} {...el} />
+          {console.log(props.bestQuestions)}
+          {props.bestQuestions?.map(el => (
+            <QnACard key={uuidv4()} data={el} />
           ))}
         </S.StackItemWrapper>
       </S.RecomendStackWrapper>

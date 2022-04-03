@@ -7,6 +7,7 @@ import PointIcon from "../../../../commons/Icon/Icon01/PointIcon";
 import DropDownIcon from "../../../../commons/Icon/DropDownIcon";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import { ICodingUsSidebarProps } from "../../../../../commons/types/types";
+import useStore from "../../../../../commons/store/store";
 
 
 
@@ -24,7 +25,7 @@ export default function SidebarUserInfo(props: ICodingUsSidebarProps) {
     userInfo: false,
     stack: false,
   });
-
+  const userInfo = useStore(state => state.userInfo);
   const chgToggleState = (gubun: "userInfo" | "stack") => () => {
     const temp = { ...toggleState };
     temp[gubun] = !temp[gubun];
@@ -34,16 +35,16 @@ export default function SidebarUserInfo(props: ICodingUsSidebarProps) {
   return (
     <S.Wrapper>
       <S.UserInfoHeader>
-        {props.userInfo ? (
+        {userInfo ? (
           <>
             <S.ProfileImage />
             <Blank width="10px" />
             <S.UserInfo>
-              <Label01 size="14px" weight="700" value={props.userInfo.name} />
+              <Label01 size="14px" weight="700" value={userInfo.nickname} />
               <S.Point>
                 <PointIcon size={20} />
                 <Blank width="5px" />
-                {props.userInfo.point}
+                {userInfo.score}
               </S.Point>
             </S.UserInfo>
           </>
@@ -51,42 +52,42 @@ export default function SidebarUserInfo(props: ICodingUsSidebarProps) {
           <S.LoginLabel onClick={moveToPage("/login")}>로그인</S.LoginLabel>
         )}
       </S.UserInfoHeader>
-      {props.userInfo && <Blank height="24px" />}
+      {userInfo && <Blank height="24px" />}
       <S.UserInfoBody>
-        {props.userInfo && (
+        {userInfo && (
           <S.Toggle onClick={chgToggleState("userInfo")}>
             {"나의 정보"}
-            <DropDownIcon isUp={toggleState.userInfo} />
+            <DropDownIcon isUp={toggleState.userInfo || false} />
           </S.Toggle>
         )}
-        {props.userInfo && toggleState.userInfo && (
+        {userInfo && toggleState.userInfo && (
           <div>
-            <Blank height="240px" />
+            <Blank height="24px" />
             <S.Item>
               <S.StackLabel>{`상위 ${props.todayPercent}%`}</S.StackLabel>
               <S.StackLabel>오늘활동</S.StackLabel>
             </S.Item>
-            <Blank height="240px" />
+            <Blank height="24px" />
             <S.Item>
               <S.StackLabel>{`${props.todayPoint}p`}</S.StackLabel>
               <S.StackLabel>획득한 점수</S.StackLabel>
             </S.Item>
-            <Blank height="240px" />
+            <Blank height="24px" />
             <S.Item>
               <S.StackLabel>{`${props.todayRanking?.today}위(${todayDiff}위)`}</S.StackLabel>
               <S.StackLabel>오늘 순위</S.StackLabel>
             </S.Item>
-            <Blank height="240px" />
+            <Blank height="24px" />
             <S.Item>
               <S.StackLabel>{`${props.totalRanking?.today}위(${totalDiff}위)`}</S.StackLabel>
               <S.StackLabel>전체 순위</S.StackLabel>
             </S.Item>
           </div>
         )}
-        <Blank height="24px" />
+        <Blank height="12px" />
         <S.Toggle onClick={chgToggleState("stack")}>
           {"관심 스택"}
-          <DropDownIcon isUp={toggleState.stack} />
+          <DropDownIcon isUp={toggleState.stack || false} />
         </S.Toggle>
         {toggleState.stack &&
           props.stacks?.map((el) => (
