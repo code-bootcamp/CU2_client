@@ -20,6 +20,9 @@ export const Image = styled.img`
   height: 189px;
   border: none;
   border-radius: 8px;
+  :hover{
+    cursor: pointer;
+  }
 `;
 
 export const Body = styled.div`
@@ -34,6 +37,9 @@ export const Title = styled.div`
   font-weight: 700;
   font-size: 18px;
   line-height: 25px;
+  :hover{
+    cursor: pointer;
+  }
 `;
 
 export const FooterWrapper = styled(RowWrapper)`
@@ -48,6 +54,9 @@ export const Contents = styled.div`
   font-size: 16px;
   line-height: 24px;
   max-height: 48px;
+  :hover{
+    cursor: pointer;
+  }
 `;
 
 export const Writer = styled.div`
