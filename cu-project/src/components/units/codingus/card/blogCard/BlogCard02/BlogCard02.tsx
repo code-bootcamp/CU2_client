@@ -17,7 +17,6 @@ export default function BlogCard(props: ICodingUsCardProps) {
       width={props.width ? `${props.width}px` : "285px"}
       height={props.height ? `${props.height}px` : "532px"}
     >
-      {/* {console.log(props.blogData.images[0])} */}
       <S.Image src={props.blogData?.images?.[0]} />
       <S.Body>
         <Blank height="16px" />

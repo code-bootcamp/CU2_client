@@ -25,7 +25,6 @@ export default function CodingUsBlogComment(props: IBlogCommentProps) {
   const onClickDeleteComment = (id: string) => () => {};
   const onClickEditComment = (idx: number) => () => {
     setIsEdits(isEdits.map((el, index) => idx === index));
-    console.log("a")
   };
   const onClickEditSubmit = (id: string) => () => {};
   const onLoadMore = () => {};

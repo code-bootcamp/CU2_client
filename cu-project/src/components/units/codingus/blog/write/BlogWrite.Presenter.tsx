@@ -9,6 +9,8 @@ import { AiOutlineEdit } from "react-icons/ai";
 import TagInput from "../../../../commons/Tag/TagInput";
 import { stackList } from "../../../../../commons/data/stack";
 import { v4 as uuidv4 } from "uuid";
+import React from "react";
+import StackSelect from "../../../../commons/Select/StackSelect";
 export default function CodingUsBlogWriteUI(props: ICodingUsBlogWriteUIProps) {
   return (
     <S.CodingUsBlogWrite>
@@ -29,19 +31,7 @@ export default function CodingUsBlogWriteUI(props: ICodingUsBlogWriteUIProps) {
       <HorizontalLine margin={30} color="#DBDBDB" />
       <S.RowWrapper>
         <TagInput tags={props.tags} setTags={props.setTags} />
-        <S.CategorySelect onChange={props.onChangeStack} value={props.stack}>
-          <S.StackOption key={uuidv4()} value={""}>
-            Stack 선택
-          </S.StackOption>
-          {stackList.map((el) => (
-            <S.StackOption key={uuidv4()} value={el}>
-              {el}
-            </S.StackOption>
-          ))}
-          <S.StackOption key={uuidv4()} value={"etc"}>
-            기타
-          </S.StackOption>
-        </S.CategorySelect>
+        <StackSelect onChange={props.onChangeStack} value= {props.stack} list={stackList}/>
       </S.RowWrapper>
       <Blank height="32px" />
       <TextEditor01 width="100%" height="100%" editorRef={props.editorRef} />

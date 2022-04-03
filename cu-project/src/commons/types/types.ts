@@ -11,6 +11,7 @@ import React, {
   ReactChild,
   RefObject,
   SetStateAction,
+  KeyboardEvent,
 } from "react";
 import { Editor } from "@toast-ui/react-editor";
 
@@ -199,6 +200,20 @@ export interface ICodingQuestionCardProps {
   setEditValue: Dispatch<SetStateAction<string>>;
 }
 
+export interface ICodingUsQuestionUIProps {
+  nickname?: string;
+  onChangeInput: (
+    gubun: string
+  ) => (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onClickSubmit: () => void;
+  inputs: {
+    title: string;
+    contents: string;
+  };
+  onChangeTags: (e: KeyboardEvent<HTMLInputElement>) => void
+  onClickDeleteTags: (event: any) => void
+  tags: string[];
+}
 export interface ICodingUsRankProps {}
 
 export interface IRankingInfo {
@@ -216,8 +231,8 @@ export interface IRankingInfo {
   };
 }
 export interface ICodingUsRankUIProps {
-  rankingInfos: IUser[];
-  myInfo: IUser | null;
+  rankingInfos: IUser[] | undefined;
+  myInfo: IUser | null | undefined;
   // gubun: string;
   // onClickPeriodGubun: (gubun: string) => () => void;
 }

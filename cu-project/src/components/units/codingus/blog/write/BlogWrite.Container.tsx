@@ -18,14 +18,12 @@ export default function CodingUsBlogWrite(props: ICodingUsBlogWriteProps) {
     Pick<IMutation, "createBlog">,
     IMutationCreateBlogArgs
   >(CREATE_BLOG);
-  const { moveToPage } = useMoveToPage();
   const editorRef = useRef<Editor>(null);
   const [tags, setTags] = useState<string[]>([]);
   const [title, setTitle] = useState("");
   const [stack, setStack] = useState<string>("");
   const router = useRouter();
   const onClickSubmit = async (_: MouseEvent<HTMLButtonElement>) => {
-    console.log("a");
     const contents = editorRef.current?.getInstance().getMarkdown();
     if (!(contents && title)) {
       alert("필수 입력 항목 누락");
@@ -59,7 +57,6 @@ export default function CodingUsBlogWrite(props: ICodingUsBlogWriteProps) {
     setTitle(event.target.value);
   };
   const onChangeStack = (event: ChangeEvent<HTMLSelectElement>) => {
-    
     setStack(event.target.value);
   };
   return (

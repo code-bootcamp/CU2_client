@@ -43,7 +43,6 @@ export default function BlogDetailIndex(props: IBlogDetailIndexProps) {
     if (!process.browser) return;
     window.scrollTo(0, props.indexPositions[idx] + 5);
     props.setCurrentIndex(idx);
-    console.log(props.indexPositions[idx]);
   };
 
   return (

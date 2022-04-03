@@ -22,7 +22,6 @@ export default function CodingUsQnA(props: ICodingUsQnAProps) {
     setIsMyQuestion((prev) => !prev);
   };
   useEffect(() => {
-    console.log(stackListOrderByLike);
   }, []);
   return (
     <CodingUsLayout

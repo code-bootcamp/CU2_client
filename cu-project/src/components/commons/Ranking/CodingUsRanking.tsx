@@ -20,7 +20,7 @@ export default function CodingUsRanking(props: ICodingUsRankingProps) {
       );
       setCurrentPage((prev) => prev + 1);
     }
-  }, []);
+  }, [props.rankingInfos]);
 
   const calcMyRanking = () => {
     for (let i = 0; i < props.rankingInfos.length; i++) {
@@ -30,10 +30,13 @@ export default function CodingUsRanking(props: ICodingUsRankingProps) {
   };
 
   const onLoadMore = () => {
+    console.log("a",props.rankingInfos);
     if (props.rankingInfos) {
         setDisplayRankgings(
-          props.rankingInfos.filter((_, idx) => idx < (currentPage + 1) * 10)
+          [...props.rankingInfos.filter((_, idx) => idx < (currentPage + 1) * 10)]
         );
+        console.log(currentPage);
+        console.log(props.rankingInfos.filter((_, idx) => idx < (currentPage + 1) * 10));
         setCurrentPage((prev) => prev + 1);
       }
   };
@@ -65,7 +68,7 @@ export default function CodingUsRanking(props: ICodingUsRankingProps) {
       )}
       <Blank height="31px" />
       <S.TopWrapper>
-        {props.rankingInfos
+        {displayRankings
           .filter((_, idx) => idx < 3)
           .map((el, idx) => (
             <TopThreeCard data={el} ranking={idx + 1} key={uuidv4()} />
@@ -80,7 +83,7 @@ export default function CodingUsRanking(props: ICodingUsRankingProps) {
               key={uuidv4()}
               data={el}
               isMyRanking={false}
-              ranking={idx + 1}
+              ranking={idx + 4}
             />
           ))}
       </S.CardWrapper>
