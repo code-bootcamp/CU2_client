@@ -31,7 +31,7 @@ export function splitMarkDown(mdString: string) {
   return gubunArr;
 }
 export const getIndexFromMD = (mdString: string) => {
-  if(!mdString) return [""];
+  if (!mdString) return [""];
   const splitArr = mdString.split("\n");
   const indexArr = [];
   let isSummary = false;
@@ -48,6 +48,8 @@ export const getIndexFromMD = (mdString: string) => {
 
 export const getImagesFromMD = (mdString: string) => {
   const splitArr = splitMarkDown(mdString);
-  const images = splitArr.filter(el => el.gubun === "image").map(el => el.value);
+  const images = splitArr
+    .filter((el) => el.gubun === "image")
+    .map((el) => el.value);
   return images;
-}
+};

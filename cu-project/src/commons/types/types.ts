@@ -13,7 +13,7 @@ import React, {
   SetStateAction,
 } from "react";
 import { Editor } from "@toast-ui/react-editor";
-import { IBlog, IQuestion, IStack } from "./generated/types";
+import { IBlog, IStack, IUser } from "./generated/types";
 
 export interface ILayoutProps {
   children: ReactChild;
@@ -117,12 +117,16 @@ export interface ICodingUsBlogWriteUIProps {
 export interface ICodingUsMainProps {}
 export interface ICodingUsMainUIProps {
   moveToPage: (page: string) => void;
-  bestUserItems: any[];
+  bestUserItems: { user: IUser; blog: IBlog }[];
   blogRecommendItems: IBlog[];
-  bestQuestions: any[];
+  bestQuestions: IStack[];
   onClickItem: (id: string) => () => void;
   onClickFollow: (id: string) => () => void;
   onClickLike: (id: string) => () => void;
+  data: {
+    fetchUserOrderbyscore: IUser;
+    fetchBlogAll: IBlog;
+  };
 }
 
 export interface ICodingUsBlogDetailUIProps {
@@ -156,7 +160,7 @@ export interface ICodingUsQnAUIProps {
 export interface IWatingItemProps {
   data: IStack;
   onClickAnswer: () => void;
-  isAnswered? : boolean;
+  isAnswered?: boolean;
 }
 
 export interface ICodingUsCardProps {
@@ -322,6 +326,7 @@ export interface IMyPageMenuUIProps {
       nickname: string;
       point: number;
       mainstack: string;
+      score: number;
     };
   };
   isModal: boolean;
@@ -329,6 +334,26 @@ export interface IMyPageMenuUIProps {
   onClickMove: (path: string) => () => void;
 }
 
+export interface ICoachPageMenuUIProps {
+  userData: {
+    fetchmyuser: {
+      role: string;
+      nickname: string;
+      point: number;
+      mainstack: string;
+    };
+  };
+  data: {
+    fetchCoachUser: {
+      nickname: string;
+      point: number;
+      score: number;
+    };
+  };
+  isModal: boolean;
+  onClickModal: () => void;
+  onClickMove: (path: string) => () => void;
+}
 export interface IUserUpdateUI {
   userInfo: {
     email: string;

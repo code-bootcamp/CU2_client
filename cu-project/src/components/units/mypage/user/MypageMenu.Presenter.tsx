@@ -8,6 +8,7 @@ import { AiFillLike, AiFillQuestionCircle } from "react-icons/ai";
 import { FaCopyright } from "react-icons/fa";
 
 export default function MypageMenuUI(props: IMyPageMenuUIProps) {
+  console.log(props.data);
   return (
     <S.Web>
       <S.Wrapper>
@@ -43,7 +44,7 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
             User Mypage
           </S.MyPageButton>
           <Blank width="30px" />
-          {props.data?.fetchmyuser?.role === "COACH" ? (
+          {props.data?.fetchmyuser.role === "COACH" ? (
             <S.MyPageButton onClick={props.onClickMove("/mypage/coach")}>
               Coach Mypage
             </S.MyPageButton>
@@ -98,7 +99,7 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
             <S.ProfileContents>
               <span>유저 랭킹</span>
               <p onClick={props.onClickMove("/mypage/user/ranking")}>
-                {props.data?.fetchmyuser.point} 점
+                {props.data?.fetchmyuser.score} 점
               </p>
             </S.ProfileContents>
             <Blank height="10px" />

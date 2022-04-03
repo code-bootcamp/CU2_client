@@ -3,7 +3,7 @@ import MypageMenu from "../../MypageMenu.Container";
 import * as S from "./MyQuestions.Style";
 import { UserPageNav } from "../../../../../commons/Mypage/MypageNav";
 import { MyPageSearchBar } from "../../../../../commons/Mypage/MypageSearchBar";
-import WaitingItem from "../../../../codingus/question/waitingItem/WaitingItem.Container";
+import QuestionCard01 from "../../../../../commons/Card/QuestionCard01/QuestionCard01.Container";
 
 export default function UserQuestionsUI(props) {
   return (
@@ -21,15 +21,16 @@ export default function UserQuestionsUI(props) {
         <div style={{ width: "90%" }}>
           {new Array(4).fill(0).map((el, idx) => (
             <div key={idx}>
-              <WaitingItem
+              <QuestionCard01
                 data={{
-                  stack: "스택",
-                  tags: ["컴퓨터 부품", "JAVA"],
-                  title: "모든 국민은 학문과 예술의 자유를 가진다.",
-                  images: ["https://source.unsplash.com/random"],
-                  commentCnt: 3,
+                  id: "asdasdsadsadasdsadsa",
+                  title: "이것이 궁금해요~~~~~!!!",
+                  contents:
+                    "JAVA,컴퓨터부품![contents]궁금해요~~~~알려주세요~~~~~~~",
                   createdAt: "2022-02-07T14:42:53.532Z",
+                  stacktag: [{ tag: "JavaScript" }],
                 }}
+                isAnswered={true}
                 onClickAnswer={() => {}}
               />
               <Blank height="30px" />
