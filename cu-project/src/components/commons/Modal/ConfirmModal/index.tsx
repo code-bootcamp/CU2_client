@@ -19,6 +19,16 @@ export default function ConfirmModal(props) {
         <S.ModalSubText>
           <p>{props.subText}</p>
         </S.ModalSubText>
+        {props.list && (
+          <>
+            {props.list.map((el, index) => (
+              <S.ModalSubText key={index}>
+                <p>{el}</p>
+              </S.ModalSubText>
+            ))}
+          </>
+        )}
+
         <Blank height="40px" />
         {props.type === "duo" ? (
           <>

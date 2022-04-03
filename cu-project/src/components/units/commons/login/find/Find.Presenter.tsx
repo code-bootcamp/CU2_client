@@ -105,7 +105,7 @@ export default function FindUI(props: IFindUIProps) {
         <ConfirmModal
           router="/login"
           mainText="아래 아이디를 복사해주세요."
-          subText={props.myEmail}
+          list={props.myEmail}
           btnText="로그인 하러가기"
         />
       )}
