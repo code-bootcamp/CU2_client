@@ -97,9 +97,9 @@ export interface ICodingUsBlogCardProps {
 }
 export interface ICodingUsBlogUIProps {
   onLoadMore: () => void;
-  sortedBlogList: ICodingUsBlogCardProps[];
   onToggleSortGubun: (_: MouseEvent<HTMLDivElement>) => void;
-  isSortByPopular: boolean;
+  blogList: {blog: IBlog, isLike: boolean}[];
+  isOrderByPopular: boolean;
 }
 export interface ICodingUsBlogWriteProps {}
 export interface ICodingUsBlogWriteUIProps {

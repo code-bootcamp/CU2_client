@@ -53,8 +53,6 @@ export default function Login(props: ILoginProps) {
         return;
       }
 
-      getLoggenInUser();
-      // refresh토큰 관련 이슈
       setAccessToken(accessToken);
       getLoggenInUser(accessToken).then((userInfo) => {
         setUserInfo(userInfo);

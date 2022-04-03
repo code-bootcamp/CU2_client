@@ -1,55 +1,91 @@
+import { useLazyQuery, useQuery } from "@apollo/client";
 import { MouseEvent, useEffect, useState } from "react";
-import {
-  ICodingUsBlogCardProps,
-  ICodingUsBlogProps,
-} from "../../../../commons/types/types";
+import useStore from "../../../../commons/store/store";
+import { IBlog, IQuery } from "../../../../commons/types/generated/types";
+import {} from "../../../../commons/types/types";
 import CodingUsLayout from "../layout/CodingUsLayout";
 import CodingUsBlogUI from "./CodingUsBlog.Presenter";
-import {} from "./CodingUsBlog.Queries";
+import {
+  FETCH_BLOG_LIKE,
+  FETCH_OTHER_BLOG_ORDERBY_CREATEAT,
+  FETCH_OTHER_BLOG_ORDERBY_LIKE,
+} from "./CodingUsBlog.Queries";
 
-const dummy: ICodingUsBlogProps = {
-  images: [
-    "https://source.unsplash.com/random",
-    "https://source.unsplash.com/random",
-  ],
-  stacks: ["JavaScript"],
-  title: "모든 국민은 학문과 예술의 자유를 가진다. ",
-  content:
-    "모든 국민은 학문과 예술의 자유를 가진다. 근로조건의 기준은 인간의 존엄성을 보장하도록 법률로 정한다.…",
-  writer: "작성자",
-  likeCnt: 31,
-  commentCnt: 12,
-  createdAt: "2022-02-07T14:42:53.532Z",
-  isLike: true,
-};
+export default function CodingUsBlog() {
+  const { data: blogListOrderByCreatedAt } = useQuery<
+    Pick<IQuery, "fetchotherBlogorderbycreateAt">
+  >(FETCH_OTHER_BLOG_ORDERBY_CREATEAT);
+  const { data: blogListOrderByLike } = useQuery<
+    Pick<IQuery, "fetchotherBlogorderbylikeAll">
+  >(FETCH_OTHER_BLOG_ORDERBY_LIKE);
+  const [fetchBloglike, { data: bloglikeList }] =
+    useLazyQuery<Pick<IQuery, "fetchBloglike">>(FETCH_BLOG_LIKE);
 
-export default function CodingUsBlog(props: ICodingUsBlogProps) {
-  const [sortedBlogList, setSortedBlogList] = useState<
-    ICodingUsBlogCardProps[]
-  >(new Array(10).fill(dummy));
-  const [isSortByPopular, setIsSortByPopular] = useState(true);
+  const userInfo = useStore((state) => state.userInfo);
 
+  const [currentPage, setCurrentPage] = useState(0);
+  const [isOrderByPopular, setIsOrderByPopular] = useState(true);
+  const [blogList, setBlogList] = useState<{ blog: IBlog; isLike: boolean }[]>(
+    []
+  );
   const onToggleSortGubun = (_: MouseEvent<HTMLDivElement>) => {
-    setIsSortByPopular((prev) => !prev);
+    setIsOrderByPopular((prev) => !prev);
   };
 
-  const onLoadMore = () => {
-    const temp = [...sortedBlogList];
-    setSortedBlogList([...temp, ...new Array(10).fill(dummy)]);
+  const setBlogLiet = (isChanged?: boolean) => {
+    const page = isChanged ? 0 : currentPage;
+
+    if (
+      !isChanged && blogList.length ===
+      blogListOrderByCreatedAt?.fetchotherBlogorderbycreateAt.length
+    )
+      return;
+
+    console.log("isOrderByPopular", isOrderByPopular);
+    if (!blogListOrderByLike || !blogListOrderByCreatedAt) return;
+    let currentList = isOrderByPopular
+      ? [...blogListOrderByLike?.fetchotherBlogorderbylikeAll]
+      : [...blogListOrderByCreatedAt?.fetchotherBlogorderbycreateAt];
+      currentList = currentList!.filter((_, idx) => idx < (page + 1) * 10);
+
+    const result = currentList.map((blog) => {
+      return {
+        blog: blog,
+        isLike:
+          (bloglikeList?.fetchBloglike &&
+            bloglikeList?.fetchBloglike.map(
+              (like) => like.id === blog.id
+            )[0]) ??
+          false,
+      };
+    });
+    setBlogList(result);
+    setCurrentPage((prev) => prev + 1);
   };
 
   useEffect(() => {
-    // 정렬 구분 변경 -> 데이터 요청
-  }, [isSortByPopular]);
+    const getBlogLike = async () => {
+      await fetchBloglike;
+    };
+    if (userInfo) getBlogLike();
+  }, []);
+
+  const onLoadMore = () => {
+    setBlogLiet();
+  };
+
+  useEffect(() => {
+    setBlogLiet(isOrderByPopular);
+  }, [isOrderByPopular]);
 
   return (
     <CodingUsLayout
       children={
         <CodingUsBlogUI
           onLoadMore={onLoadMore}
-          sortedBlogList={sortedBlogList}
+          blogList={blogList}
           onToggleSortGubun={onToggleSortGubun}
-          isSortByPopular={isSortByPopular}
+          isOrderByPopular={isOrderByPopular}
         />
       }
     />
