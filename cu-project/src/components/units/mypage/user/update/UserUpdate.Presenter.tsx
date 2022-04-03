@@ -5,6 +5,7 @@ import MypageMenu from "../MypageMenu.Container";
 import * as S from "./UserUpdate.Style";
 
 export default function UserUpdateUI(props: IUserUpdateUI) {
+  console.log(props.userData);
   return (
     <S.AllWrapper>
       <S.Web>
@@ -16,12 +17,12 @@ export default function UserUpdateUI(props: IUserUpdateUI) {
         <S.Box>
           <S.InfoBox>
             <p>이메일</p>
-            {props.userInfo?.email}
+            {props.userData?.fetchmyuser.email}
           </S.InfoBox>
           <Blank height="20px" />
           <S.InfoBox>
             <p>이름</p>
-            {props.userInfo?.name}
+            {props.userData?.fetchmyuser.name}
           </S.InfoBox>
           <Blank height="20px" />
           <S.InfoBox>
@@ -38,7 +39,7 @@ export default function UserUpdateUI(props: IUserUpdateUI) {
             <input
               type="text"
               onChange={props.onChangeNickName}
-              placeholder={props.userInfo?.nickname}
+              placeholder={props.userData?.fetchmyuser.nickname}
               disabled={props.isVerify}
             />
             <button onClick={props.onClickVerifyNicName}>
@@ -51,7 +52,7 @@ export default function UserUpdateUI(props: IUserUpdateUI) {
             <p>연락처</p>
             <input
               type="text"
-              placeholder={props.userInfo?.phonenumber}
+              placeholder={props.userData?.fetchmyuser.phonenumber}
               onChange={props.onChangePhone}
             />
             <button onClick={props.onClickSendToken}>인증번호 받기</button>

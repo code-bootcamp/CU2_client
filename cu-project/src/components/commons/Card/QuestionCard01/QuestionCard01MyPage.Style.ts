@@ -3,9 +3,12 @@ import Color from "../../../../commons/styles/color";
 
 export const Wrapper = styled.div`
   width: 100%;
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 20px;
 `;
 
-export const RowWrapper = styled(Wrapper)`
+export const RowWrapper = styled.div`
   display: flex;
   align-items: center;
 `;

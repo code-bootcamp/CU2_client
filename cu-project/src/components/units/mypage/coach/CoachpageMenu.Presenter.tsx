@@ -71,7 +71,7 @@ export default function CoachpageMenuUI(props: ICoachPageMenuUIProps) {
           <Blank height="20px" />
           <S.ProfileBody>
             <Blank height="20px" />
-            <S.ProfileContents>
+            {/* <S.ProfileContents>
               <span>팔로우</span>
               <p onClick={props.onClickMove("/mypage/coach/follow")}>112</p>
             </S.ProfileContents>
@@ -79,7 +79,7 @@ export default function CoachpageMenuUI(props: ICoachPageMenuUIProps) {
             <S.ProfileContents>
               <span>팔로워</span>
               <p onClick={props.onClickMove("/mypage/coach/follower")}>20</p>
-            </S.ProfileContents>
+            </S.ProfileContents> */}
             <Blank height="20px" />
             <S.ProfileContents>
               <span>포인트</span>
@@ -109,9 +109,9 @@ export default function CoachpageMenuUI(props: ICoachPageMenuUIProps) {
                 <S.RankingButton
                   onClick={props.onClickMove("/mypage/coach/ranking")}
                 >{`전체 랭킹 보기 > `}</S.RankingButton>
-                <S.RankingButton
+                {/* <S.RankingButton
                   onClick={props.onClickMove("/mypage/coach/ranking/history")}
-                >{`점수 내역 보기 >`}</S.RankingButton>
+                >{`점수 내역 보기 >`}</S.RankingButton> */}
               </span>
             </S.ProfileContents>
             <Blank height="30px" />

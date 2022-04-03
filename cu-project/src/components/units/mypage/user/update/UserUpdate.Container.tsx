@@ -1,27 +1,23 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
-import useStore from "../../../../../commons/store/store";
 import {
   IMutation,
   IMutationChecktokenArgs,
   IMutationSendTokenTosmsArgs,
   IMutationUpdateUserArgs,
-  IQuery,
 } from "../../../../../commons/types/generated/types";
-import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
+import { FETCH_MY_USER } from "../Mypage.Queries";
 import UserEditUI from "./UserUpdate.Presenter";
 import {
   CHECK_TOKEN,
   FETCH_USER_ORDER_BY_SCORE,
-  LOGOUT,
   SEND_TOKEN_TO_SMS,
   UPDATE_USER,
 } from "./UserUpdate.Queries";
 
 export default function UserUpdate() {
   const router = useRouter();
-  const userInfo = useStore((state) => state.userInfo);
   const [phone, setPhone] = useState("");
   const [token, setToken] = useState("");
   const [password, setPassword] = useState("");
@@ -29,7 +25,6 @@ export default function UserUpdate() {
   const [isVerify, setIsVerify] = useState(false);
   const [isToken, setIsToken] = useState(true);
   const [tokenResult, setTokenResult] = useState<boolean>(false);
-  const [logout] = useMutation(LOGOUT);
   const [sendTokenToSMS] = useMutation<
     Pick<IMutation, "sendTokenTOSMS">,
     IMutationSendTokenTosmsArgs
@@ -43,7 +38,7 @@ export default function UserUpdate() {
     IMutationUpdateUserArgs
   >(UPDATE_USER);
   const { data } = useQuery(FETCH_USER_ORDER_BY_SCORE);
-  const { moveToPage } = useMoveToPage();
+  const { data: userData, refetch } = useQuery(FETCH_MY_USER);
 
   const onChangeNickName = (event: ChangeEvent<HTMLInputElement>) => {
     setNickName(event.target.value);
@@ -64,7 +59,9 @@ export default function UserUpdate() {
   const onClickVerifyNicName = () => {
     // if (data?.fetchAllUser.nickname.includes(nickName))
     if (
-      data?.fetchUserOrderbyscore.map((el) => el.nickname).includes(nickName)
+      data?.fetchUserOrderbyscore
+        .map((el: { name: string; nickname: string }) => el.nickname)
+        .includes(nickName)
     ) {
       alert("중복된 닉네임입니다.");
     } else setIsVerify((prev) => !prev);
@@ -101,13 +98,14 @@ export default function UserUpdate() {
     try {
       await updateUser({
         variables: {
-          name: userInfo?.name,
+          name: userData?.fetchmyuser.name,
           nickname: nickName,
           phonenumber: phone,
           password: password,
         },
       });
       alert("회원정보 수정 완료!");
+      refetch();
       // logout();
     } catch (error: any) {
       alert(error.message);
@@ -120,10 +118,10 @@ export default function UserUpdate() {
 
   return (
     <UserEditUI
+      userData={userData}
       isToken={isToken}
       isVerify={isVerify}
       tokenResult={tokenResult}
-      userInfo={userInfo}
       onClickMove={onClickMove}
       setPhone={setPhone}
       onChangeNickName={onChangeNickName}

@@ -17,7 +17,7 @@ export default function UserLikePostsUI(props) {
         <UserPageNav menu={"Good한 포스트"} />
 
         <S.BlogHeader>
-          <h2>전체글</h2>
+          <h2>전체글 {props.data?.fetchBloglike.length}개</h2>
           <MyPageSearchBar />
         </S.BlogHeader>
         <div style={{ width: "90%" }}>

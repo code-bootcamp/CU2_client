@@ -5,8 +5,9 @@ import { Modal } from "antd";
 import "antd/dist/antd.css";
 import { MyPageButton } from "../../../../commons/Mypage/MypageButton";
 import { UserPageNav } from "../../../../commons/Mypage/MypageNav";
+import { IUserPointUI } from "../../../../../commons/types/types";
 
-export default function UserPointUI(props) {
+export default function UserPointUI(props: IUserPointUI) {
   return (
     <S.AllWrapper>
       <S.Web>

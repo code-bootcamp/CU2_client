@@ -13,7 +13,8 @@ import React, {
   SetStateAction,
 } from "react";
 import { Editor } from "@toast-ui/react-editor";
-import { IBlog, IQuestion, IStack } from "./generated/types";
+import { IBlog, IStack } from "./generated/types";
+import { RadioChangeEvent } from "antd";
 
 export interface ILayoutProps {
   children: ReactChild;
@@ -312,6 +313,18 @@ export interface ICoachingUsColumnWriteUIProps {
 // #region MyPage
 export interface IMyPageProps {}
 export interface IMyPageUIProps {}
+
+export interface IUserBlogUIProps {
+  data: {
+    fetchmyBlog: {
+      title: string;
+      contents: string;
+      like: number;
+      createAt: number;
+    };
+  };
+}
+
 export interface IMyPageMenuUIProps {
   mainstack: {
     fetchmainstack: {};
@@ -328,6 +341,30 @@ export interface IMyPageMenuUIProps {
   isModal: boolean;
   onClickModal: () => void;
   onClickMove: (path: string) => () => void;
+}
+
+export interface IUserQuestionsUI {
+  data: {
+    fetchmyStack: [
+      {
+        id: string;
+        title: string;
+        contents: string;
+        like: number;
+        length: number;
+        user: {
+          nickname: string;
+        };
+        stacktag: {
+          tag: string;
+        };
+      }
+    ];
+  };
+}
+
+export interface IQuestionCardMyPage01 {
+  id: string;
 }
 
 export interface ICoachPageMenuUIProps {
@@ -351,12 +388,14 @@ export interface ICoachPageMenuUIProps {
   onClickMove: (path: string) => () => void;
 }
 export interface IUserUpdateUI {
-  userInfo: {
-    email: string;
-    name: string;
-    nickname: string;
-    phonenumber: string;
-  } | null;
+  userData: {
+    fetchmyuser: {
+      email: string;
+      name: string;
+      nickname: string;
+      phonenumber: string;
+    };
+  };
   isVerify: boolean;
   tokenResult: boolean;
   isToken: boolean;
@@ -372,12 +411,26 @@ export interface IUserUpdateUI {
   onClickMove: (path: string) => () => void;
   setPhone: Dispatch<SetStateAction<string>>;
 }
+
+export interface IUserPointUI {
+  isModal: boolean;
+  onClickModal: () => void;
+}
+
+export interface IUserRankingUI {
+  onChangeDuration: (e: RadioChangeEvent) => void;
+}
 // #endregion
 
 // #region MainPage
 export interface MainPageProps {}
 export interface MainPageUIProps {
   moveToPage: (page: string) => () => void;
+  settings: {
+    infinite: boolean;
+    slidesToShow: number;
+    slidesToScroll: number;
+  };
   blogSettings: {
     infinite: boolean;
     slidesToShow: number;
@@ -387,7 +440,28 @@ export interface MainPageUIProps {
     prevArrow: any;
   };
   SampleNextArrow: any;
-  SamplePrevArrow: any;
+
+  responsiveSettings: {};
+  blogData: {
+    fetchotherBlogorderbylikeAll: {
+      id: string;
+      url: string;
+      blogcategorytag: {
+        tag: string;
+      };
+      title: string;
+      contents: string;
+      user: {
+        nickname: string;
+      };
+      createAt: string;
+      updatedat: string;
+      like: number;
+    };
+  };
+  stackData: {
+    fetchotherStackorderbylike: IStack[];
+  };
 }
 
 // #endregion

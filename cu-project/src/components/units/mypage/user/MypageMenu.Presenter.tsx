@@ -6,9 +6,9 @@ import "antd/dist/antd.css";
 import { BsFillPencilFill } from "react-icons/bs";
 import { AiFillLike, AiFillQuestionCircle } from "react-icons/ai";
 import { FaCopyright } from "react-icons/fa";
+import getMoney from "../../../../commons/libraries/getMoney";
 
 export default function MypageMenuUI(props: IMyPageMenuUIProps) {
-  console.log(props.data);
   return (
     <S.Web>
       <S.Wrapper>
@@ -92,28 +92,28 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
                 >
                   내역
                 </S.ChargeButton>
-                {props.data?.fetchmyuser.point}
+                {getMoney(props.data?.fetchmyuser.point)}원
               </div>
             </S.ProfileContents>
             <Blank height="20px" />
             <S.ProfileContents>
               <span>유저 랭킹</span>
-              <p onClick={props.onClickMove("/mypage/user/ranking")}>
-                {props.data?.fetchmyuser.score} 점
+              <p>
+                {props.rankData?.fetchUserOrderbyscore.map((el, idx) => {
+                  return el.id === props.data?.fetchmyuser.id ? idx : "";
+                })}
               </p>
             </S.ProfileContents>
             <Blank height="10px" />
             <S.ProfileContents>
               <span></span>
               <span>
-                <S.RankingButton
-                  onClick={props.onClickMove("/mypage/user/ranking")}
-                >
+                <S.RankingButton onClick={props.onClickMove("/codingus/us")}>
                   {`전체 랭킹 보기 > `}
                 </S.RankingButton>
-                <S.RankingButton
+                {/* <S.RankingButton
                   onClick={props.onClickMove("/mypage/user/ranking/history")}
-                >{`점수 내역 보기 >`}</S.RankingButton>
+                >{`점수 내역 보기 >`}</S.RankingButton> */}
               </span>
             </S.ProfileContents>
             <Blank height="30px" />

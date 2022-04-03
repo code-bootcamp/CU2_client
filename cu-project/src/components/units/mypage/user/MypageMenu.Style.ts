@@ -60,9 +60,7 @@ export const ProfileContents = styled.div`
     color: #808080;
   }
   & p {
-    :hover {
-      cursor: pointer;
-    }
+    margin: 0;
   }
 `;
 export const RankingButton = styled.button`
