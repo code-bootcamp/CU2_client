@@ -84,9 +84,9 @@ export const CoachProfile = styled.div`
   align-items: center;
   height: 100%;
   min-width: 50%;
-  padding: 20px 30px 10px 30px;
+  padding: 20px 10px 10px 10px;
   @media screen and (max-width: 1440px) {
-    padding: 10px 20px;
+    padding: 10px 15px;
   }
 `;
 export const RecommendCoachHeader = styled.div`

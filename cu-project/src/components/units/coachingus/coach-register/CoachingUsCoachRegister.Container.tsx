@@ -123,6 +123,8 @@ export default function CoachingUsCoachRegisterPage() {
     }
   };
 
+  console.log(isCoach);
+
   return (
     <CoachingUsCoachRegisterUI
       onChangeTags={onChangeTags}
