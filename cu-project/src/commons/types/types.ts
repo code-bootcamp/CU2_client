@@ -159,7 +159,6 @@ export interface ICodingUsQnAUIProps {
 }
 export interface IWatingItemProps {
   data: IStack;
-  onClickAnswer: () => void;
   isAnswered?: boolean;
 }
 
