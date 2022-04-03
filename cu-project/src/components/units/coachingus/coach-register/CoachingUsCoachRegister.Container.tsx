@@ -1,6 +1,6 @@
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { KeyboardEvent, useCallback, useEffect, useState } from "react";
+import { KeyboardEvent, useState } from "react";
 import useStore from "../../../../commons/store/store";
 import {
   IMutation,
@@ -8,7 +8,6 @@ import {
 } from "../../../../commons/types/generated/types";
 import { useAuth } from "../../../commons/hooks/useAuth";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-import ConfirmModal from "../../../commons/Modal/ConfirmModal";
 import CoachingUsCoachRegisterUI from "./CoachingUsCoachRegister.Presenter";
 import { CREATE_COACH_PROFILE } from "./CoachingUsCoachRegister.Queries";
 
