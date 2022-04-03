@@ -1,6 +1,31 @@
-// import {gql} from "@apollo/client"
+// fetchStackAll
+// fetchmyStack
+// fetchotherStackorderbylike
 
-// export const sample = gql`
-// `;
+import { gql } from "@apollo/client";
 
-export {}
+export const FETCH_OTHER_STACK_OREDRBY_LIKE = gql`
+  query fetchotherStackorderbylike {
+    fetchotherStackorderbylike {
+      id
+      title
+      contents
+      user {
+        nickname
+      }
+      like
+      stacktag {
+        tag
+      }
+      # createAt
+    }
+  }
+`;
+
+// id: String!
+// title: String!
+// contents: String!
+// user: User!
+// like: Int!
+// dislike: Int!
+// stacktag: {tag : string}[]

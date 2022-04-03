@@ -6,7 +6,7 @@ import QnACard from "../card/qnaCard/QnACard";
 import CodingUsHistory from "../history/History.Container";
 import * as S from "./CodingUsQnA.Style";
 import QuestionCard01 from "../../../commons/Card/QuestionCard01/QuestionCard01.Container";
-
+import { v4 as uuidv4 } from "uuid";
 const dummyData = {
   id: "asdasdsadsadasdsadsa",
   title: "이것이 궁금해요~~~~~!!!",
@@ -37,17 +37,15 @@ export default function CodingUsQnAUI(props: ICodingUsQnAUIProps) {
         <Label01 value={"많이 본 Q&A"} weight="700" size="18px" />
         <Blank height="15px" />
         <S.CardWrapper>
-          {new Array(4).fill(0).map((_, idx) => (
-            <QnACard
-              key={idx}
-              title="Q. 국회는 의장 1인과 부의장 2인을 선출한다?"
-              contents="국회는 의장 1인과 부의장 2인을 선출한다. 국무위원은 국정에 관하여 대통령을 보좌하며, 국무회의의 구성원으로서 국정"
-              writer="작성자"
-              tags={["JAVA", "CSS"]}
-              likeCnt={5}
-              // onClick={props.moveToPage(`/codingUs/qna/${idx}`)}
-            ></QnACard>
-          ))}
+          {props.data?.fetchotherStackorderbylike
+            .filter((_, idx) => idx < 4)
+            .map((el) => (
+              <QnACard
+                key={uuidv4()}
+                data={el}
+                // onClick={props.moveToPage(`/codingUs/qna/${idx}`)}
+              ></QnACard>
+            ))}
         </S.CardWrapper>
         <Blank height="135px" />
         <S.WaitingWrapper>
@@ -81,10 +79,10 @@ export default function CodingUsQnAUI(props: ICodingUsQnAUIProps) {
           </S.RowWrapper>
           <Blank height="30px" />
           <Blank height="30px" />
-          {new Array(4).fill(0).map((el, idx) => (
-            <div key={idx}>
+          {props.data?.fetchotherStackorderbylike.map((el) => (
+            <div key={uuidv4()}>
               <QuestionCard01
-                data={dummyData}
+                data={el}
                 isAnswered={true}
                 onClickAnswer={() => {}}
               />
