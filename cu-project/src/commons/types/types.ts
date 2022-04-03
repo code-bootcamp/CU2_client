@@ -216,15 +216,21 @@ export interface IRankingInfo {
   };
 }
 export interface ICodingUsRankUIProps {
-  rankingInfos: IRankingInfo[];
-  myRankingInfo: IRankingInfo;
-  moveToPage: (page: string) => () => void;
-  gubun: string;
-  onClickPeriodGubun: (gubun: string) => () => void;
-  onLoadMore: () => void;
-  onClickMyPage: (userId: string) => () => void;
+  rankingInfos: IUser[];
+  myInfo: IUser | null;
+  // gubun: string;
+  // onClickPeriodGubun: (gubun: string) => () => void;
 }
-
+export interface ICodingUsRankingProps{
+  rankingInfos: IUser[];
+    myInfo: IUser | null;
+  }
+export interface ICogindUsRankingProps {
+  height?: number;
+  data?: IUser;
+  ranking: number;
+  isMyRanking: boolean;
+}
 // #endregion
 
 // #region CoachingUs

@@ -1,91 +1,48 @@
 import CodingUsLayout from "../layout/CodingUsLayout";
-import { ICodingUsRankProps } from "../../../../commons/types/types";
 import CodingUsRankUI from "./CodingUsUs.Presenter";
-import {} from "./CodingUsUs.Queries";
-import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
+import { FETCH_USER_ORDER_BY_SCORE } from "./CodingUsUs.Queries";
 import { useEffect, useState } from "react";
+import { useQuery } from "@apollo/client";
+import { IQuery, IUser } from "../../../../commons/types/generated/types";
+import useStore from "../../../../commons/store/store";
 
-const myRankingInfo = {
-  user: {
-    name: "userName",
-    image: "https://source.unsplash.com/random",
-  },
-  currInfo: {
-    ranking: 20,
-    point: 1050,
-  },
-  prevInfo: {
-    ranking: 22,
-    point: 1020,
-  },
-};
+export default function CodingUsRank() {
+  const { data: userListOrderByScore } = useQuery<
+    Pick<IQuery, "fetchUserOrderbyscore">
+  >(FETCH_USER_ORDER_BY_SCORE);
+  const [rankingInfos, setRankingInfos] = useState<IUser[]>([]);
+  const [currentPage, setCurrentPage] = useState(0);
 
-export default function CodingUsRank(props: ICodingUsRankProps) {
-  const { moveToPage } = useMoveToPage();
-  const [gubun, setGubun] = useState("일간");
-  const [rankingInfos, setRankingInfos] = useState(
-    new Array(10).fill(0).map((_, idx) => {
-      return {
-        user: {
-          name: `userName${idx + 1}`,
-          image: "https://source.unsplash.com/random",
-        },
-        currInfo: {
-          ranking: idx + 1,
-          point: 1050,
-        },
-        prevInfo: {
-          ranking: idx + 3,
-          point: 1020,
-        },
-      };
-    })
-  );
-
-  const onLoadMore = () => {
-    setRankingInfos([
-      ...rankingInfos,
-      ...new Array(10).fill(0).map((el, idx) => {
-        return {
-          user: {
-            name: `userName${idx + 1}`,
-            image: "https://source.unsplash.com/random",
-          },
-          currInfo: {
-            ranking: 10 * Math.floor(rankingInfos.length / 10) + idx + 1,
-            point: 1050,
-          },
-          prevInfo: {
-            ranking: idx + 3,
-            point: 1020,
-          },
-        };
-      }),
-    ]);
-  };
-  const onClickPeriodGubun = (gubun: string) => () => {
-    setGubun(gubun);
-  };
-
-  const onClickMyPage = (userId: string) => () => {
-    moveToPage(`/mypage/${userId}`);
-  };
+  const myInfo = useStore((state) => state.userInfo);
 
   useEffect(() => {
-    // 바뀐 정렬 기준으로 재 요청
-  }, [gubun]);
+    if (!userListOrderByScore) return;
+    const temp = [
+      ...userListOrderByScore.fetchUserOrderbyscore.filter(
+        (_, idx) => idx < (currentPage + 1) * 10
+      ),
+    ];
+    setRankingInfos(temp);
+    setCurrentPage((prev) => prev + 1);
+  }, []);
+
+  // 랭킹 api미구현... 나중에 합시다....
+  // const onClickPeriodGubun = (gubun: string) => () => {
+  //   setGubun(gubun);
+  // };
+  // useEffect(() => {
+  //   // 바뀐 정렬 기준으로 재 요청
+  // }, [gubun]);
 
   return (
     <CodingUsLayout
       children={
         <CodingUsRankUI
-          moveToPage={moveToPage}
           rankingInfos={rankingInfos}
-          myRankingInfo={myRankingInfo}
-          gubun={gubun}
-          onClickPeriodGubun={onClickPeriodGubun}
-          onLoadMore={onLoadMore}
-          onClickMyPage={onClickMyPage}
+          myInfo={myInfo}
+          // gubun={gubun}
+          // onClickPeriodGubun={onClickPeriodGubun}
+          // onLoadMore={onLoadMore}
         />
       }
     ></CodingUsLayout>

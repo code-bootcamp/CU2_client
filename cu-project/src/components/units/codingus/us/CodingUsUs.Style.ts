@@ -23,10 +23,7 @@ export const Banner = styled.div`
   background: #fafafa;
   border-radius: 8px;
 `;
-export const RankingWrapper = styled.div`
-  
-`;
-export const SortGubun = styled(RowWrapper)``;
+
 interface IGubunProps {
   isSelected: boolean;
 }
@@ -40,20 +37,4 @@ export const GubunLabel = styled.div`
       }
 `;
 
-export const TopWrapper  = styled(RowWrapper)`
-  justify-content: space-between;
-`;
 
-export const CardWrapper = styled.div`
-  
-`;
-
-export const LoadMoreBtn = styled(RowWrapper)`
-  width: 100%;
-  min-height: 100px;
-  font-size: 32px;
-  justify-content: center;
-  :hover {
-    cursor: pointer;
-  }
-`;
