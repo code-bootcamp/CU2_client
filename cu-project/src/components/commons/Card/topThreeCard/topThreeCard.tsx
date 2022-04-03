@@ -1,12 +1,12 @@
-import Label01 from "../../../../../commons/Label/Label01";
 import * as S from "./topThreeCard.Style";
-import { IRankingInfo } from "../../../../../../commons/types/types";
 import { Avatar } from "antd";
-import Blank from "../../../../../commons/Blank";
+import Label01 from "../../Label/Label01";
+import Blank from "../../Blank";
+import { IUser } from "../../../../commons/types/generated/types";
 interface ICodingUsCardProps {
   width?: number;
   height?: number;
-  data: IRankingInfo;
+  data: IUser;
   ranking: number;
 }
 
@@ -29,10 +29,10 @@ export default function TopThreeCard(props: ICodingUsCardProps) {
             backgroundSize: "cover",
           }}
         />
-          <Blank height="22px"/>
-        <Label01 value={props.data.user.name} />
-        <Blank height="10px"/>
-        <Label01 value={`${String(props.data.currInfo?.point)} 점`} />
+        <Blank height="22px" />
+        <Label01 value={props.data.nickname} />
+        <Blank height="10px" />
+        <Label01 value={`${String(props.data.score)} 점`} />
       </S.UserWrapper>
     </S.Wrapper>
   );

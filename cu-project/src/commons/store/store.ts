@@ -1,17 +1,20 @@
 import create from "zustand";
 import { devtools } from "zustand/middleware";
 import { IUser } from "../types/generated/types";
-
-const useStore = create(
-  devtools((set: any) => ({
-    isDark: false,
-    toggleIsDark: () => set((state: any) => ({ isDark: !state.isDark })),
+interface IStoreProps {
+  userInfo: IUser | null;
+  setUserInfo: (userInfo: IUser) => void;
+  accessToken: string;
+  setAccessToken: (token: string) => void;
+}
+const useStore = create<IStoreProps>(
+  devtools((set) => ({
     userInfo: null,
-    setUserInfo: (userInfo: IUser | undefined) =>
-      set((_: any) => ({ userInfo: userInfo })),
-    accessToken: null,
+    setUserInfo: (userInfo: IUser) =>
+      set({ userInfo: userInfo }),
+    accessToken: "",
     setAccessToken: (token: string) =>
-      set((_: any) => ({ accessToken: token })),
+      set({accessToken: token}),
   }))
 );
 
