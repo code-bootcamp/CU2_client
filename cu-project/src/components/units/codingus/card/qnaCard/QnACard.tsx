@@ -5,6 +5,8 @@ import { AiOutlineLike } from "react-icons/ai";
 import Label01 from "../../../../commons/Label/Label01";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import { IStack } from "../../../../../commons/types/generated/types";
+import {BsQuestionCircleFill} from "react-icons/bs";
+import { useRouter } from "next/router";
 interface ICodingUsCardProps {
   width?: number;
   height?: number;
@@ -12,16 +14,23 @@ interface ICodingUsCardProps {
 }
 
 export default function QnACard(props: ICodingUsCardProps) {
-  const {moveToPage} = useMoveToPage();
+  const router = useRouter();
   return (
-    <S.Wrapper width={props.width ? `${props.width}px` : "590px"} onClick = {moveToPage("/codingus/question/detail")}>
-      <S.Title>
-        <img src="/Icon_Fill_Question.png" />
+    <S.Wrapper width={props.width ? `${props.width}px` : "590px"}>
+      <S.Title onClick={() => {router.push(`/codingus/question/${props.data.id}`)}}>
+      <BsQuestionCircleFill
+              style={{
+                color: "#EA345A",
+                height: "25px",
+                width: "25px",
+                marginBottom: "4px",
+              }}
+            />
         <Blank width="10px" />
         {props.data?.title}
       </S.Title>
       <Blank height="13px" />
-      <S.Contents>{props.data?.contents}</S.Contents>
+      <S.Contents onClick={() => {router.push(`/codingus/question/${props.data.id}`)}}>{props.data?.contents}</S.Contents>
       <Blank height="8px" />
       <S.TagWrapper>
         { props.data?.stacktag&&

@@ -17,8 +17,9 @@ import { RowWrapper } from "../../../coachingus/columns/detail/Columns.Style";
 import Color from "../../../../../commons/styles/color";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import { ICodingQuestionCardProps } from "../../../../../commons/types/types";
+import { BsQuestionCircleFill } from "react-icons/bs";
 
-export default function QnAAnswerCard(props: ICodingQuestionCardProps) {
+export default function QnAQuestionCard(props: ICodingQuestionCardProps) {
   const [isEdit, setIsEdit] = useState(false);
   const onChangeEditText = (event: ChangeEvent<HTMLTextAreaElement>) => {
     props.setEditValue(event.target.value);
@@ -54,17 +55,18 @@ export default function QnAAnswerCard(props: ICodingQuestionCardProps) {
           />
         </RowWrapper>
       </S.MyButtonWrapper>
-      {/* isMine */}
       {true && <Blank height="10px" />}
       <S.RowWrapper>
         <S.Title>
-          <img
-            style={{ width: "32px" }}
-            src={
-                "/Icon_Fill_Question.png"
-            }
-          />
-          <Blank width="10px" /> {props.title}
+        <BsQuestionCircleFill
+              style={{
+                color: "#EA345A",
+                height: "35px",
+                width: "35px",
+                marginBottom: "4px",
+              }}
+            />
+          <Blank width="20px" /> {props.title}
         </S.Title>
         <Label01 value={props.writer} size="24px" weight="700" />
       </S.RowWrapper>

@@ -9,8 +9,6 @@ import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import { ICodingUsSidebarProps } from "../../../../../commons/types/types";
 import useStore from "../../../../../commons/store/store";
 
-
-
 export default function SidebarUserInfo(props: ICodingUsSidebarProps) {
   const todayDiff =
     props.todayRanking?.prev - props.todayRanking?.today > 0
@@ -25,84 +23,88 @@ export default function SidebarUserInfo(props: ICodingUsSidebarProps) {
     userInfo: false,
     stack: false,
   });
-  const userInfo = useStore(state => state.userInfo);
+  const userInfo = useStore((state) => state.userInfo);
   const chgToggleState = (gubun: "userInfo" | "stack") => () => {
     const temp = { ...toggleState };
     temp[gubun] = !temp[gubun];
     setToggleState(temp);
   };
-  const {moveToPage} = useMoveToPage()
+  const { moveToPage } = useMoveToPage();
   return (
-    <S.Wrapper>
-      <S.UserInfoHeader>
-        {userInfo ? (
-          <>
-            <S.ProfileImage />
-            <Blank width="10px" />
-            <S.UserInfo>
-              <Label01 size="14px" weight="700" value={userInfo.nickname} />
-              <S.Point>
-                <PointIcon size={20} />
-                <Blank width="5px" />
-                {userInfo.score}
-              </S.Point>
-            </S.UserInfo>
-          </>
-        ) : (
-          <S.LoginLabel onClick={moveToPage("/login")}>로그인</S.LoginLabel>
-        )}
-      </S.UserInfoHeader>
-      {userInfo && <Blank height="24px" />}
-      <S.UserInfoBody>
-        {userInfo && (
-          <S.Toggle onClick={chgToggleState("userInfo")}>
-            {"나의 정보"}
-            <DropDownIcon isUp={toggleState.userInfo || false} />
-          </S.Toggle>
-        )}
-        {userInfo && toggleState.userInfo && (
-          <div>
-            <Blank height="24px" />
-            <S.Item>
-              <S.StackLabel>{`상위 ${props.todayPercent}%`}</S.StackLabel>
-              <S.StackLabel>오늘활동</S.StackLabel>
-            </S.Item>
-            <Blank height="24px" />
-            <S.Item>
-              <S.StackLabel>{`${props.todayPoint}p`}</S.StackLabel>
-              <S.StackLabel>획득한 점수</S.StackLabel>
-            </S.Item>
-            <Blank height="24px" />
-            <S.Item>
-              <S.StackLabel>{`${props.todayRanking?.today}위(${todayDiff}위)`}</S.StackLabel>
-              <S.StackLabel>오늘 순위</S.StackLabel>
-            </S.Item>
-            <Blank height="24px" />
-            <S.Item>
-              <S.StackLabel>{`${props.totalRanking?.today}위(${totalDiff}위)`}</S.StackLabel>
-              <S.StackLabel>전체 순위</S.StackLabel>
-            </S.Item>
-          </div>
-        )}
-        <Blank height="12px" />
-        <S.Toggle onClick={chgToggleState("stack")}>
-          {"관심 스택"}
-          <DropDownIcon isUp={toggleState.stack || false} />
-        </S.Toggle>
-        {toggleState.stack &&
-          props.stacks?.map((el) => (
-            <div key={uuidv4()}>
+    <div style={{width: "180px"}}>
+      <S.Title>내 정보</S.Title>
+      <Blank height="30px" />
+      <S.Wrapper>
+        <S.UserInfoHeader>
+          {userInfo ? (
+            <>
+              <S.ProfileImage />
+              <Blank width="10px" />
+              <S.UserInfo>
+                <Label01 size="14px" weight="700" value={userInfo.nickname} />
+                <S.Point>
+                  <PointIcon size={20} />
+                  <Blank width="5px" />
+                  {userInfo.score}
+                </S.Point>
+              </S.UserInfo>
+            </>
+          ) : (
+            <S.LoginLabel onClick={moveToPage("/login")}>로그인</S.LoginLabel>
+          )}
+        </S.UserInfoHeader>
+        {userInfo && <Blank height="24px" />}
+        <S.UserInfoBody>
+          {userInfo && (
+            <S.Toggle onClick={chgToggleState("userInfo")}>
+              {"나의 정보"}
+              <DropDownIcon isUp={toggleState.userInfo || false} />
+            </S.Toggle>
+          )}
+          {userInfo && toggleState.userInfo && (
+            <div>
               <Blank height="24px" />
-              <S.StackLabel>{el}</S.StackLabel>
+              <S.Item>
+                <S.StackLabel>{`상위 ${props.todayPercent}%`}</S.StackLabel>
+                <S.StackLabel>오늘활동</S.StackLabel>
+              </S.Item>
+              <Blank height="24px" />
+              <S.Item>
+                <S.StackLabel>{`${props.todayPoint}p`}</S.StackLabel>
+                <S.StackLabel>획득한 점수</S.StackLabel>
+              </S.Item>
+              <Blank height="24px" />
+              <S.Item>
+                <S.StackLabel>{`${props.todayRanking?.today}위(${todayDiff}위)`}</S.StackLabel>
+                <S.StackLabel>오늘 순위</S.StackLabel>
+              </S.Item>
+              <Blank height="24px" />
+              <S.Item>
+                <S.StackLabel>{`${props.totalRanking?.today}위(${totalDiff}위)`}</S.StackLabel>
+                <S.StackLabel>전체 순위</S.StackLabel>
+              </S.Item>
             </div>
-          ))}
-        {toggleState.stack && (
-          <div>
-            <Blank height="24px" />
-            <S.StackLabel>관심 스택 추가하기</S.StackLabel>
-          </div>
-        )}
-      </S.UserInfoBody>
-    </S.Wrapper>
+          )}
+          <Blank height="12px" />
+          <S.Toggle onClick={chgToggleState("stack")}>
+            {"관심 스택"}
+            <DropDownIcon isUp={toggleState.stack || false} />
+          </S.Toggle>
+          {toggleState.stack &&
+            props.stacks?.map((el) => (
+              <div key={uuidv4()}>
+                <Blank height="24px" />
+                <S.StackLabel>{el}</S.StackLabel>
+              </div>
+            ))}
+          {toggleState.stack && (
+            <div>
+              <Blank height="24px" />
+              <S.StackLabel>관심 스택 추가하기</S.StackLabel>
+            </div>
+          )}
+        </S.UserInfoBody>
+      </S.Wrapper>
+    </div>
   );
 }
