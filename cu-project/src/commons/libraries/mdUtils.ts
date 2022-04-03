@@ -4,7 +4,7 @@ export function splitMarkDown(mdString: string) {
   let cnt = 0;
   for (let i = 0; i < splitArr.length; i++) {
     if (!splitArr[i]) continue;
-    if (splitArr[i].startsWith("data")) {
+    if (splitArr[i].startsWith("https")) {
       gubunArr.push({
         gubun: "image",
         value: splitArr[i].split(")")[0],
@@ -53,3 +53,12 @@ export const getImagesFromMD = (mdString: string) => {
     .map((el) => el.value);
   return images;
 };
+
+export const getTextFromMD = (mdString: string) => {
+  let text = mdString
+  while(text.indexOf("\n") >=0 || text.indexOf("#") >= 0 || text.indexOf("*")>= 0 || text.indexOf("`")>= 0){
+  	text = text.replace(/\n+|#+|\*|`/,"");
+  }
+  const splitArr = splitMarkDown(text);
+  return splitArr.filter(el => el.gubun === "text")[0].value.trimStart() ?? "";
+}

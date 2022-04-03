@@ -1,6 +1,5 @@
 import "prismjs/themes/prism.css";
 import "@toast-ui/editor/dist/toastui-editor.css";
-// import "./toastui-editor.css";
 import "tui-color-picker/dist/tui-color-picker.css";
 import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css";
 import "@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css";
@@ -27,10 +26,10 @@ export default function ViewerUI(props: ITextViewerUIProps) {
 
   return (
     <Wrapper>
-      <ToastViewer2
+      {props.value && <ToastViewer2
         initialValue={props.value}
         plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
-      />
+      />}
     </Wrapper>
   );
 }

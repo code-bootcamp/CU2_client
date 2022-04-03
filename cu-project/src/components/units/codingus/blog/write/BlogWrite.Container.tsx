@@ -8,7 +8,6 @@ import {
   IMutation,
   IMutationCreateBlogArgs,
 } from "../../../../../commons/types/generated/types";
-import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import { useAuth } from "../../../../commons/hooks/useAuth";
 import { useRouter } from "next/router";
 
@@ -18,7 +17,6 @@ export default function CodingUsBlogWrite(props: ICodingUsBlogWriteProps) {
     Pick<IMutation, "createBlog">,
     IMutationCreateBlogArgs
   >(CREATE_BLOG);
-  const { moveToPage } = useMoveToPage();
   const editorRef = useRef<Editor>(null);
   const [tags, setTags] = useState<string[]>([]);
   const [title, setTitle] = useState("");
@@ -41,6 +39,7 @@ export default function CodingUsBlogWrite(props: ICodingUsBlogWriteProps) {
         blogtag: tags,
         contents,
         title,
+        url: ""
       };
       if (tags.length < 1) variables.blogtag = [""];
       const result = await createBlog({ variables });

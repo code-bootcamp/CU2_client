@@ -1,4 +1,3 @@
-import { getDateString } from "../../../../../commons/libraries/dateUtils";
 import Label01 from "../../../../commons/Label/Label01";
 import TextViewer01 from "../../../../commons/TextViewer/TextViewer01";
 import * as S from "./BlogDetail.Style";
@@ -6,25 +5,11 @@ import { v4 as uuidv4 } from "uuid";
 import Blank from "../../../../commons/Blank";
 import Tag03 from "../../../../commons/Tag/Tag03";
 import BlogDetailIndex from "./index/BlogDetailIndex";
-import { Dispatch, SetStateAction } from "react";
 import CodingUsBlogComment from "./comment/BlogComment.Containter";
+import { ICodingUsBlogDetailUIProps } from "../../../../../commons/types/types";
+import { getDateString } from "../../../../../commons/libraries/dateUtils";
 
-interface ICodingUsBlogDetailUIProps {
-  width?: string | number;
-  height?: string | number;
-  contents: string;
-  title: string;
-  writer: string;
-  createdAt: string;
-  tags: string[];
-  isPicked?: boolean;
-  onClickDelete: () => void;
-  onClickUpdate: () => void;
-  index: string[];
-  currentIndex: number;
-  indexPositions?: number[];
-  setCurrentIndex: Dispatch<SetStateAction<number>>;
-}
+
 export default function CodingUsBlogDetailUI(
   props: ICodingUsBlogDetailUIProps
 ) {
@@ -33,38 +18,38 @@ export default function CodingUsBlogDetailUI(
       <S.BlogDetailLayout>
         <S.BlogDetailBody>
           <S.RowWrapper style={{ justifyContent: "space-between" }}>
-            <S.Title>{props.title}</S.Title>
+            <S.Title>{props.data?.title}</S.Title>
             {/* <S.BookMarkIcon></S.BookMarkIcon> */}
           </S.RowWrapper>
           <Blank height="22px" />
           <S.RowWrapper style={{ justifyContent: "space-between" }}>
             <S.RowWrapper>
-              <Label01 value={props.writer} size="16px" />
+              <Label01 value={String(props.data?.user?.nickname)} size="16px" />
               <Blank width="8px" />
               <Label01
-                value={getDateString(props.createdAt, ".")}
+                value={getDateString(props.data?.createAt, ".")}
                 size="16px"
               />
             </S.RowWrapper>
-            {props.writer !== "로그인한 유저" && (
+            {props.data?.user?.nickname !== "로그인한 유저" && (
               <S.RowWrapper>
-                <S.BtnLabel>수정</S.BtnLabel>
+                <S.BtnLabel onClick ={props.onClickEdit}>수정</S.BtnLabel>
                 <Blank width="8px" />
-                <S.BtnLabel>삭제</S.BtnLabel>
+                <S.BtnLabel onClick={props.onClickDelete}>삭제</S.BtnLabel>
               </S.RowWrapper>
             )}
           </S.RowWrapper>
           <Blank height="12px" />
           <S.RowWrapper>
-            {props.tags.map((el) => (
+            {props.data?.blogtag?.map((el) => (
               <div key={uuidv4()} style={{ display: "flex" }}>
-                <Tag03 value={el} />
+                <Tag03 value={el.tag} />
                 <Blank width="10px" />
               </div>
             ))}
           </S.RowWrapper>
           <Blank height="55px" />
-          <TextViewer01 width={"100%"} height={"100%"} value={props.contents} />
+          <TextViewer01 width={"100%"} height={"100%"} value={props?.data?.contents} />
         <CodingUsBlogComment />
         </S.BlogDetailBody>
         <BlogDetailIndex

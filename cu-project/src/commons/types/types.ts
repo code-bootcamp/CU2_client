@@ -138,7 +138,7 @@ export interface ICodingUsBlogDetailUIProps {
   height?: string | number;
   data: IBlog;
   onClickDelete: () => void;
-  onClickUpdate: () => void;
+  onClickEdit: () => void;
   index: string[];
   currentIndex: number;
   indexPositions?: number[];

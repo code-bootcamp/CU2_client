@@ -14,7 +14,7 @@ import {
 } from "../../../../commons/types/generated/types";
 import { gql, useLazyQuery, useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
-import { getImagesFromMD } from "../../../../commons/libraries/mdUtils";
+import { getImagesFromMD, getTextFromMD, splitMarkDown } from "../../../../commons/libraries/mdUtils";
 import { AiFillLike, AiOutlineLike, AiOutlineComment } from "react-icons/ai";
 interface ICodingUsCardProps {
   width?: number;
@@ -100,6 +100,7 @@ export default function BlogCard01(props: ICodingUsCardProps) {
       width={props.width ? `${props.width}px` : "285px"}
       height={props.height ? `${props.height}px` : "440px"}
     >
+      {console.log(splitMarkDown(props.data?.contents))}
       <S.Image
         src={getImagesFromMD(props.data?.contents)[0] ?? "/CU2_LOGO.png"}
         onClick={() => {
@@ -127,7 +128,7 @@ export default function BlogCard01(props: ICodingUsCardProps) {
             router.push(`/codingus/blog/${props.data.id}`);
           }}
         >
-          {props.data?.contents}
+          {getTextFromMD(props.data?.contents)}
         </S.Contents>
       </S.Body>
       <Blank height="18px" />

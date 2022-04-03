@@ -54,6 +54,8 @@ export const Contents = styled.div`
   font-size: 16px;
   line-height: 24px;
   max-height: 48px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   :hover{
     cursor: pointer;
   }

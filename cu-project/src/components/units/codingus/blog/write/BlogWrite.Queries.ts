@@ -9,12 +9,14 @@ export const CREATE_BLOG = gql`
     $blogtag: [String!]!
     $contents: String!
     $title: String!
+    $url: String!
   ) {
     createBlog(
       blogcategorytag: $blogcategorytag
       blogtag: $blogtag
       contents: $contents
       title: $title
+      url: $url
     ) {
       id
     }
