@@ -93,7 +93,6 @@ export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
         </S.Label>
         <Blank height="17px" />
         <S.StackItemWrapper>
-          {console.log(props.bestQuestions)}
           {props.bestQuestions?.map(el => (
             <QnACard key={uuidv4()} data={el} />
           ))}

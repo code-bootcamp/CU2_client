@@ -77,3 +77,16 @@ export const LoginLabel = styled(RowWrapper)`
       cursor: pointer;
   }
 `;
+
+export const Title = styled.div`
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  font-size: 18px;
+  padding-bottom: 10px;
+
+  border-bottom: 2px solid black;
+  @media screen and (max-width: 1440px) {
+    font-size: 21px;
+  }
+`;

@@ -32,7 +32,7 @@ export default function CodingUsBlog() {
     setIsOrderByPopular((prev) => !prev);
   };
 
-  const setBlogLiet = (isChanged?: boolean) => {
+  const updateBlogList = (isChanged?: boolean) => {
     const page = isChanged ? 0 : currentPage;
 
     if (
@@ -46,7 +46,7 @@ export default function CodingUsBlog() {
     let currentList = isOrderByPopular
       ? [...blogListOrderByLike?.fetchotherBlogorderbylikeAll]
       : [...blogListOrderByCreatedAt?.fetchotherBlogorderbycreateAt];
-      currentList = currentList!.filter((_, idx) => idx < (page + 1) * 10);
+      currentList = currentList!.filter((_, idx) => idx < (page + 1) * 8);
 
     const result = currentList.map((blog) => {
       return {
@@ -71,11 +71,11 @@ export default function CodingUsBlog() {
   }, []);
 
   const onLoadMore = () => {
-    setBlogLiet();
+    updateBlogList();
   };
 
   useEffect(() => {
-    setBlogLiet(isOrderByPopular);
+    updateBlogList(isOrderByPopular);
   }, [isOrderByPopular]);
 
   return (
