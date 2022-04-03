@@ -12,12 +12,17 @@ import { v4 as uuidv4 } from "uuid";
 export default function CodingUsBlogWriteUI(props: ICodingUsBlogWriteUIProps) {
   return (
     <S.CodingUsBlogWrite>
+      {console.log(props)}
       <S.ButtonWrapper>
-        <Button01 value="나가기" onClick={() => {}} padding="12px 38px" />
+        <Button01
+          value={props.isEdit ? "취소" : "나가기"}
+          onClick={props.onClickExit}
+          padding="12px 38px"
+        />
         <Button02
-          value="완료"
+          value={props.isEdit ? "수정" : "완료"}
           icon={AiOutlineEdit}
-          onClick={props.onClickSubmit}
+          onClick={props.isEdit ? props.onClickEdit : props.onClickSubmit}
         />
       </S.ButtonWrapper>
       <Blank height="150px" />
@@ -44,7 +49,13 @@ export default function CodingUsBlogWriteUI(props: ICodingUsBlogWriteUIProps) {
         </S.CategorySelect>
       </S.RowWrapper>
       <Blank height="32px" />
-      <TextEditor01 width="100%" height="100%" editorRef={props.editorRef} />
+      <TextEditor01
+        width="100%"
+        height="100%"
+        editorRef={props.editorRef}
+        data={props.data}
+        isEdit={props.isEdit}
+      />
     </S.CodingUsBlogWrite>
   );
 }

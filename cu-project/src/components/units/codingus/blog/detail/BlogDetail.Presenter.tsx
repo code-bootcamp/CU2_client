@@ -49,7 +49,7 @@ export default function CodingUsBlogDetailUI(
             ))}
           </S.RowWrapper>
           <Blank height="55px" />
-          <TextViewer01 width={"100%"} height={"100%"} value={props?.data?.contents} />
+          <TextViewer01 width={"100%"} height={"100%"} value={props?.data?.contents || ""} />
         <CodingUsBlogComment />
         </S.BlogDetailBody>
         <BlogDetailIndex

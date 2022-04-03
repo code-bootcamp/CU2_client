@@ -105,10 +105,15 @@ export interface ICodingUsBlogUIProps {
   blogList: { blog: IBlog; isLike: boolean }[];
   isOrderByPopular: boolean;
 }
-export interface ICodingUsBlogWriteProps {}
+export interface ICodingUsBlogWriteProps {
+  isEdit?: boolean;
+  data?: IBlog | undefined;
+}
 export interface ICodingUsBlogWriteUIProps {
+  isEdit: boolean;
   editorRef: RefObject<Editor>;
   tags: string[];
+  data?: IBlog;
   setTags: (tags: React.SetStateAction<string[]>) => void;
   setStack: (tags: React.SetStateAction<string>) => void;
   onClickExit: (event: MouseEvent<HTMLButtonElement>) => void;
@@ -116,6 +121,7 @@ export interface ICodingUsBlogWriteUIProps {
   title: string;
   onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeStack: (event: ChangeEvent<HTMLSelectElement>) => void;
+  onClickEdit: (event: MouseEvent<HTMLButtonElement>) => void;
   stack: string;
 }
 export interface ICodingUsMainProps {}
@@ -136,7 +142,7 @@ export interface ICodingUsMainUIProps {
 export interface ICodingUsBlogDetailUIProps {
   width?: string | number;
   height?: string | number;
-  data: IBlog;
+  data: IBlog | undefined;
   onClickDelete: () => void;
   onClickEdit: () => void;
   index: string[];

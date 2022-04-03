@@ -23,6 +23,7 @@ export default function CodingUsBlogDetail() {
   >(DELETE_BLOG);
   const onClickDelete = async () => {
     try {
+      // 삭제확인
       const result = await deleteBlog({
         variables: { blogid: String(router.query.blogId) },
       });
