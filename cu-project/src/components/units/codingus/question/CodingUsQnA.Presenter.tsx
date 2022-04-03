@@ -7,13 +7,6 @@ import CodingUsHistory from "../history/History.Container";
 import * as S from "./CodingUsQnA.Style";
 import QuestionCard01 from "../../../commons/Card/QuestionCard01/QuestionCard01.Container";
 import { v4 as uuidv4 } from "uuid";
-const dummyData = {
-  id: "asdasdsadsadasdsadsa",
-  title: "이것이 궁금해요~~~~~!!!",
-  contents: "JAVA,컴퓨터부품![contents]궁금해요~~~~알려주세요~~~~~~~",
-  createdAt: "2022-02-07T14:42:53.532Z",
-  stacktag: [{ tag: "JavaScript" }],
-};
 
 export default function CodingUsQnAUI(props: ICodingUsQnAUIProps) {
   return (
@@ -37,7 +30,7 @@ export default function CodingUsQnAUI(props: ICodingUsQnAUIProps) {
         <Label01 value={"많이 본 Q&A"} weight="700" size="18px" />
         <Blank height="15px" />
         <S.CardWrapper>
-          {props.data?.fetchotherStackorderbylike
+          {props.stackListOrderByLike && props.stackListOrderByLike
             .filter((_, idx) => idx < 4)
             .map((el) => (
               <QnACard
@@ -49,6 +42,7 @@ export default function CodingUsQnAUI(props: ICodingUsQnAUIProps) {
         </S.CardWrapper>
         <Blank height="135px" />
         <S.WaitingWrapper>
+        <S.RowWrapper style={{justifyContent: "space-between"}}>
           <Label01 value={"답변을 기다리고 있어요"} weight="700" size="36px" />
           <Label01
             value={"더 보기 >"}
@@ -56,6 +50,8 @@ export default function CodingUsQnAUI(props: ICodingUsQnAUIProps) {
             size="18px"
             textAlign="right"
           />
+          </S.RowWrapper>
+          <Blank height="14px"/>
           <S.RowWrapper>
             <S.GubunLabel
               isSelected={props.isMyQuestion}
@@ -63,7 +59,7 @@ export default function CodingUsQnAUI(props: ICodingUsQnAUIProps) {
                 !props.isMyQuestion && props.toogleIsMyQuestion();
               }}
             >
-              질문<p>{props.waitingCnt ?? 0}</p>
+              질문<p>{props.stackListAll?.length ?? 0}</p>
             </S.GubunLabel>
             <Blank width="22px" />
             |
@@ -74,17 +70,15 @@ export default function CodingUsQnAUI(props: ICodingUsQnAUIProps) {
                 props.isMyQuestion && props.toogleIsMyQuestion();
               }}
             >
-              내 질문 <p>{props.myWaitingCnt ?? 0}</p>
+              내 질문 <p>{props.myStackList?.length ?? 0}</p>
             </S.GubunLabel>
           </S.RowWrapper>
           <Blank height="30px" />
-          <Blank height="30px" />
-          {props.data?.fetchotherStackorderbylike.map((el) => (
+          {props.stackListAll && props.stackListAll.map((el) => (
             <div key={uuidv4()}>
               <QuestionCard01
                 data={el}
                 isAnswered={true}
-                onClickAnswer={() => {}}
               />
               <Blank height="30px" />
             </div>

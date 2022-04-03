@@ -98,7 +98,7 @@ export interface ICodingUsBlogCardProps {
 export interface ICodingUsBlogUIProps {
   onLoadMore: () => void;
   onToggleSortGubun: (_: MouseEvent<HTMLDivElement>) => void;
-  blogList: {blog: IBlog, isLike: boolean}[];
+  blogList: { blog: IBlog; isLike: boolean }[];
   isOrderByPopular: boolean;
 }
 export interface ICodingUsBlogWriteProps {}
@@ -154,6 +154,9 @@ export interface ICodingUsQnAProps {}
 export interface ICodingUsQnAUIProps {
   isMyQuestion: boolean;
   toogleIsMyQuestion: () => void;
+  stackListOrderByLike: IStack[];
+  stackListAll: IStack[];
+  myStackList: IStack[];
   waitingCnt: number;
   myWaitingCnt: number;
 }
