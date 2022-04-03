@@ -1,3 +1,4 @@
+import { AiOutlineLike } from "react-icons/ai";
 import { getShortDateString } from "../../../../commons/libraries/dateUtils";
 import { IWatingItemProps } from "../../../../commons/types/types";
 import Blank from "../../Blank";
@@ -5,10 +6,9 @@ import Icon01 from "../../Icon/Icon01/Icon01";
 import Label01 from "../../Label/Label01";
 import Tag01 from "../../Tag/Tag01";
 import Tag02 from "../../Tag/Tag02";
-import * as S from "./QuestionCard01.Style";
+import * as S from "./QuestionCard01MyPage.Style";
 
 export default function QuestionCard01MyPageUI(props: IWatingItemProps) {
-  console.log(props.data);
   return (
     <S.Wrapper>
       <S.RowWrapper>
@@ -42,6 +42,9 @@ export default function QuestionCard01MyPageUI(props: IWatingItemProps) {
       <Blank height="17px" />
       <S.RowWrapper>
         <Icon01 src="/Icon_Unfill_Comment.png" value={0} />
+      </S.RowWrapper>
+      <S.RowWrapper>
+        <AiOutlineLike /> {props.data.like}
       </S.RowWrapper>
     </S.Wrapper>
   );

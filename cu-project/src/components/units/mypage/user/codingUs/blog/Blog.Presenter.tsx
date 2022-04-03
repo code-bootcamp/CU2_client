@@ -5,8 +5,9 @@ import * as S from "./Blog.Style";
 import { v4 as uuidV4 } from "uuid";
 import { UserPageNav } from "../../../../../commons/Mypage/MypageNav";
 import { MyPageSearchBar } from "../../../../../commons/Mypage/MypageSearchBar";
+import { IUserBlogUIProps } from "../../../../../../commons/types/types";
 
-export default function UserBlogUI(props) {
+export default function UserBlogUI(props: IUserBlogUIProps) {
   return (
     <S.AllWrapper>
       <S.Web>

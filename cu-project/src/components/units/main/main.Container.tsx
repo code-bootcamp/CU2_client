@@ -19,7 +19,7 @@ export default function Main(props: MainPageProps) {
     slidesToScroll: 1,
   };
 
-  function SampleNextArrow(props) {
+  function SampleNextArrow(props: any) {
     const { className, style, onClick } = props;
     return (
       <div

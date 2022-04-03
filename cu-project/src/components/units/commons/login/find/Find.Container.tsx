@@ -13,6 +13,7 @@ export default function Find(props: IFindProps) {
   const [sendTokenToSMS] = useMutation(SEND_TOKEN_TO_SMS);
   const [checkToken] = useMutation(CHECK_TOKEN);
   const [name, setName] = useState("");
+
   const [myEmail, setMyEmail] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -100,6 +101,7 @@ export default function Find(props: IFindProps) {
         }
         return user.name === name && user.phonenumber === phone;
       });
+
 
       const result = findedName.map((el) => el.email);
       if (findedName.length > 0) setMyEmail(result);

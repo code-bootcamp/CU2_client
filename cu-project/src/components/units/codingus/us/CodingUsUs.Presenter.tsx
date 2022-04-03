@@ -7,7 +7,7 @@ import * as S from "./CodingUsUs.Style";
 import { v4 as uuidv4 } from "uuid";
 import RankingCard from "../card/usCard/rankingCard/rankingCard";
 import TopThreeCard from "../card/usCard/topThreeCard/topThreeCard";
-import {MdExpandMore} from "react-icons/md"
+import { MdExpandMore } from "react-icons/md";
 export default function CodingUsRankUI(props: ICodingUsRankUIProps) {
   return (
     <S.CodingUsUs>
@@ -68,7 +68,9 @@ export default function CodingUsRankUI(props: ICodingUsRankUIProps) {
                 />
               ))}
           </S.CardWrapper>
-          <S.LoadMoreBtn onClick={props.onLoadMore} ><MdExpandMore size="50px"/></S.LoadMoreBtn>
+          <S.LoadMoreBtn onClick={props.onLoadMore}>
+            <MdExpandMore size="50px" />
+          </S.LoadMoreBtn>
         </S.RankingWrapper>
       </S.CodingUsUsBody>
     </S.CodingUsUs>

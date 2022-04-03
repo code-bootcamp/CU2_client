@@ -6,13 +6,12 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import Blank from "../../commons/Blank";
 import Card from "../codingus/main/Card/Card.container";
 import { BsSearch } from "react-icons/bs";
-import BlogCard from "../codingus/card/blogCard/BlogCard02/BlogCard02";
 import BlogCard01MyPage from "../../commons/Card/BlogCard01/BlogCard01MyPage";
-import QuestionCard01MyPageUI from "../../commons/Card/QuestionCard01/QuestionCard01MyPage.Presenter";
 import QuestionCard01MyPage from "../../commons/Card/QuestionCard01/QuestionCard01MyPage.Container";
+import { IStack } from "../../../commons/types/generated/types";
+import CoachesCardPage from "../coachingus/main/coachescard/CoachesCard.Container";
 
 export default function MainUI(props: MainPageUIProps) {
-  console.log(props.stackData);
   return (
     <S.Wrapper>
       <S.SliderBox {...props.settings}>
@@ -89,20 +88,13 @@ export default function MainUI(props: MainPageUIProps) {
           style={{
             width: "100%",
             display: "flex",
-            justifyContent: "center",
-            flexWrap: "wrap",
-          }}
-        ></div>
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
             flexWrap: "wrap",
           }}
         >
           {props.stackData?.fetchotherStackorderbylike
-            .filter((el, index) => index < 4)
+            .filter((el: IStack, index: number) => index < 4)
             .map((el) => (
               <div key={el.id}>
                 <QuestionCard01MyPage data={el} />
@@ -137,9 +129,7 @@ export default function MainUI(props: MainPageUIProps) {
             flexWrap: "wrap",
           }}
         >
-          <Card />
-          <Card />
-          <Card />
+          <CoachesCardPage />
         </div>
       </S.ServiceBox>
       <Blank height="100px" />

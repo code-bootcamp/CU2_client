@@ -7,12 +7,12 @@ export const FETCH_MY_BLOG = gql`
       contents
       like
       createAt
-      #   blogtag {
-      #     tag
-      #   }
-      #   blogcategorytag {
-      #     tag
-      #   }
+      # blogtag {
+      #   tag
+      # }
+      # blogcategorytag {
+      #   tag
+      # }
     }
   }
 `;
