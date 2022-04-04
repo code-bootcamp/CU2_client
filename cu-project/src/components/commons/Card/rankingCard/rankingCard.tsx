@@ -8,7 +8,9 @@ import Color from "../../../../commons/styles/color";
 import { Avatar } from "antd";
 import { useRouter } from "next/router";
 import { ICogindUsRankingProps } from "../../../../commons/types/types";
-
+import { BsFillPersonFill } from "react-icons/bs";
+import React from "react";
+import { RestCoachPicture } from "../../../units/coachingus/coaches/CoachingUsCoaches.Style";
 
 export default function RankingCard(props: ICogindUsRankingProps) {
   // 랭킹 비교 기능 미구현... ㅠㅠ.... api가 없어요 ㅠㅠㅠ........
@@ -74,17 +76,9 @@ export default function RankingCard(props: ICogindUsRankingProps) {
         </S.MyRanking>
         <Blank width="40px" />
         <S.UserInfo>
-          <Avatar
-            style={{
-              backgroundColor: "#C4C4C4",
-              borderRadius: "50%",
-              padding: "5px",
-              width: "50px",
-              height: "50px",
-              objectFit: "cover",
-              backgroundSize: "cover",
-            }}
-          />
+        <S.RestUserPicture>
+          <BsFillPersonFill style={{width: "40px", height: "40px"}}/>
+        </S.RestUserPicture>
           <Blank width="50px" />
           <S.UserDetail>
             <Label01

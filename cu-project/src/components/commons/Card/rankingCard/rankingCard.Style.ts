@@ -45,7 +45,15 @@ export const MyRanking = styled.div`
 `;
 export const UserInfo = styled(RowWrapper)``;
 export const UserImage = styled.img``;
-
+export const RestUserPicture = styled.div`
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: #f6f5f5;
+  border-radius: 100%;
+`;
 export const UserDetail = styled.div`
   display:flex;
   flex-direction: column;
