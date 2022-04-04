@@ -6,6 +6,7 @@ import { SiAnsible } from "react-icons/si";
 import { MdLockOpen, MdOutlineQuestionAnswer } from "react-icons/md";
 
 export default function AnswerPresenter(props) {
+  console.log(props.answer);
   return (
     <S.CoachAnswerContainer>
       <S.CommentsContainer>
@@ -13,13 +14,12 @@ export default function AnswerPresenter(props) {
           <S.CommentsTitleLeft>
             <S.TitlePicture></S.TitlePicture>
             <Blank width="10px" />
-            <p>김태훈 coach</p>
+            <p>{props.answer?.name} coach</p>
           </S.CommentsTitleLeft>
           <S.CommentsTitleRight>
             <S.CommentsInfo>
-              <S.CommentsInfoHits>조회수 302</S.CommentsInfoHits>
+              {/* <S.CommentsInfoHits>조회수 302</S.CommentsInfoHits> */}
               <Blank width="20px" />
-              <S.CommentsInfoLikes>좋아요 21</S.CommentsInfoLikes>
             </S.CommentsInfo>
           </S.CommentsTitleRight>
         </S.CommentsTitle>
@@ -28,31 +28,23 @@ export default function AnswerPresenter(props) {
           <Blank height="20px" />
           {props.isOpen ? (
             <S.ContentsAnwer>
-              <S.QuestionIcon>
-                <SiAnsible
-                  style={{
-                    background: "#EA345A",
-                    color: "white",
-                    height: "25px",
-                    width: "25px",
-                    padding: "1px",
-                    borderRadius: "100%",
-                  }}
-                />
-              </S.QuestionIcon>
-              <Blank width="20px" />
-              <S.QuestionText>
-                답변 내용입니다앙~~답변 내용입니다앙~~답변 내용입니다앙~~답변
-                내용입니다앙~~답변 내용입니다앙~~답변 내용입니다앙~~답변
-                내용입니다앙~~답변 내용입니다앙~~답변 내용입니다앙~~답변
-                내용입니다앙~~답변 내용입니다앙~~답변 내용입니다앙~~답변
-                내용입니다앙~~답변 내용입니다앙~~답변 내용입니다앙~~답변
-                내용입니다앙~~답변 내용입니다앙~~답변 내용입니다앙~~답변
-                내용입니다앙~~답변 내용입니다앙~~답변 내용입니다앙~~답변
-                내용입니다앙~~답변 내용입니다앙~~답변 내용입니다앙~~답변
-                내용입니다앙~~답변 내용입니다앙~~답변 내용입니다앙~~답변
-                내용입니다앙~~
-              </S.QuestionText>
+              <S.QuestionTitle>
+                <S.QuestionIcon>
+                  <SiAnsible
+                    style={{
+                      background: "#EA345A",
+                      color: "white",
+                      height: "25px",
+                      width: "25px",
+                      padding: "1px",
+                      borderRadius: "100%",
+                    }}
+                  />
+                </S.QuestionIcon>
+                <Blank width="20px" />
+                <S.QuestionText>{props.answer[0]?.title}</S.QuestionText>
+              </S.QuestionTitle>
+              <S.QuestionText2>{props.answer[0]?.contents}</S.QuestionText2>
             </S.ContentsAnwer>
           ) : (
             <S.LockAnswer>
@@ -83,7 +75,7 @@ export default function AnswerPresenter(props) {
                   }}
                 />
                 <Blank width="10px" />
-                Good 12
+                Good {props.answer[0]?.likecount || 0}
               </S.ContentsInfoLikes>
               <Blank width="30px" />
               <S.ContentsInfoDislikes>
@@ -94,7 +86,7 @@ export default function AnswerPresenter(props) {
                   }}
                 />
                 <Blank width="10px" />
-                Bad 1
+                Bad {props.answer[0]?.dislikecount || 0}
               </S.ContentsInfoDislikes>
             </S.InfoBox>
           </S.ContentsInfo>

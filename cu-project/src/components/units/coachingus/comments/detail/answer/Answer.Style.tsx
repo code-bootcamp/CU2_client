@@ -48,6 +48,7 @@ export const CommentsContents = styled.div`
 
 export const ContentsAnwer = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   font-weight: 300;
   font-size: 14px;
@@ -55,12 +56,23 @@ export const ContentsAnwer = styled.div`
 
   cursor: pointer;
 `;
+export const QuestionTitle = styled.div`
+  display: flex;
+`;
 export const QuestionIcon = styled.div`
   width: 30px;
 `;
 export const QuestionText = styled.div`
+  min-width: calc(100%);
+  margin-left: 10px;
+  font-size: 18px;
+  font-weight: 600;
+`;
+export const QuestionText2 = styled.div`
   padding: 3px;
-  min-width: calc(100% - 30px);
+  min-width: calc(100%);
+  font-size: 14px;
+  margin-left: 35px;
 `;
 export const ContentsInfo = styled.div`
   display: flex;

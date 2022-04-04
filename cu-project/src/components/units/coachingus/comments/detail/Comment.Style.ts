@@ -50,7 +50,14 @@ export const CommentsBody = styled.div`
 
 // coach question 영역
 export const CoachQuestionContainer = styled.div``;
-export const QuestionContainer = styled.div``;
+export const QuestionContainer = styled.div`
+  width: 100%;
+  height: fit-content;
+  min-height: 300px;
+  border-radius: 15px;
+  padding: 20px;
+  border: 1px solid #ccc;
+`;
 export const QuestionPicture = styled.div`
   width: 100%;
   height: 400px;
@@ -67,7 +74,7 @@ export const QuestionTitle = styled.div`
 export const QuestionProfile = styled.div``;
 export const QuestionContents = styled.div`
   font-size: 14px;
-  padding: 20px 0 0 0px;
+  padding: 20px 0 20px 35px;
   font-weight: 300;
 `;
 

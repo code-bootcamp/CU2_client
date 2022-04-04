@@ -15,7 +15,7 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
         {props.isModal && (
           <Modal
             visible={true}
-            // onOk={}
+            onOk={props.onClickOkBtn}
             onCancel={props.onClickModal}
             okText="충전하기"
             cancelText="취소하기"
@@ -23,16 +23,16 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
           >
             <h1>CU2 포인트 충전</h1>
             <select
-              // onChange={}
+              onChange={props.onChangeAmount}
               style={{ width: "80%", textAlign: "center", fontSize: "18px" }}
             >
               <option selected disabled>
                 CU Point 충전 금액을 선택해주세요.
               </option>
-              <option value="5000">5,000 포인트</option>
-              <option value="10000">10,000 포인트</option>
-              <option value="20000">20,000 포인트</option>
-              <option value="30000">30,000 포인트</option>
+              <option defaultValue={5000}>5,000 포인트</option>
+              <option value={10000}>10,000 포인트</option>
+              <option value={20000}>20,000 포인트</option>
+              <option value={30000}>30,000 포인트</option>
             </select>
           </Modal>
         )}

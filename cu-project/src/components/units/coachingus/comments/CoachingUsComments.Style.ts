@@ -47,8 +47,27 @@ export const CommentsTitle = styled.div`
 `;
 export const CommentsTitleLeft = styled.div`
   display: flex;
+  width: fit-content;
+  justify-content: center;
   align-items: center;
-  font-size: 16px;
+  text-align: center;
+
+  font-size: 12px;
+  & > h1 {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    font-size: 16px;
+    margin-right: 5px;
+  }
+
+  & > p {
+    font-size: 12px;
+    font-weight: 300;
+    color: #b4b4b4;
+    margin-right: 10px;
+    padding-top: 4px;
+  }
 
   cursor: pointer;
 `;
@@ -116,4 +135,9 @@ export const ContentsInfoDislikes = styled.div`
   border-radius: 10px;
   border: 1px solid #808080;
   color: #808080;
+`;
+
+export const AnswerSheet = styled.div`
+  display: flex;
+  flex-direction: column;
 `;

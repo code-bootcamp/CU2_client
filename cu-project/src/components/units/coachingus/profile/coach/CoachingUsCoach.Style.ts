@@ -16,9 +16,8 @@ export const CoachComments = styled.div`
 `;
 export const CommentsBody = styled.div`
   width: 810px;
-
   height: 175px;
-  padding: 25px 150px 25px 25px;
+  padding: 30px 150px 25px 25px;
   border: 1px solid #c4c4c4;
   border-radius: 15px;
   color: black;
@@ -27,11 +26,17 @@ export const CommentsBody = styled.div`
 `;
 export const CommentsTitle = styled.div`
   display: flex;
+  align-items: center;
   font-weight: 300;
+  & > p {
+    font-size: 14px;
+    font-weight: 300;
+    color: #c4c4c4;
+  }
 `;
 export const CommentsContents = styled.div`
-  font-size: 14px;
-  font-weight: 200;
+  font-size: 16px;
+  font-weight: 300;
   overflow: hidden;
   padding: 0 20px;
 `;
@@ -60,7 +65,7 @@ export const CommentsInfoLikes = styled.div`
 `;
 export const MoreBtn = styled.div`
   position: relative;
-  bottom: 107px;
+  bottom: 100px;
   left: 116%;
   width: 100px;
   height: 100px;

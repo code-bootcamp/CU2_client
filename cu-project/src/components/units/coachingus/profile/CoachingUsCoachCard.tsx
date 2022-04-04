@@ -200,12 +200,9 @@ function CoachingUsCoachCard(props) {
   const getMyRanking = () => {
     coachTotalList?.forEach((el, index) => {
       if (el.id === router.query.coachId) {
-        console.log(index + 1);
         setCoachRank(Math.ceil(((index + 1) / coachTotalList.length) * 100));
       }
     });
-
-    console.log(coachRank);
   };
 
   const coach = data?.fetchCoachUser;

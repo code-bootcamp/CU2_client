@@ -26,13 +26,10 @@ export default function CoachingUsColumnPage() {
 
   const onLoadMore = () => {
     if (columnList && isActive) {
-      setTotalColumn([
-        ...columnList.slice(0, 10),
-        ...columnList?.slice(nextPage, nextPage + 10),
-      ]);
+      setTotalColumn([...columnList?.slice(0, nextPage + 10)]);
       setNextPage((prev) => prev + 10);
     }
-    if (columnList?.length < nextPage + 10) setIsActive(false);
+    if (columnList?.length < nextPage) setIsActive(false);
     else {
       setIsActive(true);
     }

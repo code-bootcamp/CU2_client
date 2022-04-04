@@ -61,6 +61,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     getAccessToken().then((newAccessToken) => {
       setAccessToken(newAccessToken);
     });
+    console.log("accessToken", accessToken);
   }, [accessToken]);
 
   return (

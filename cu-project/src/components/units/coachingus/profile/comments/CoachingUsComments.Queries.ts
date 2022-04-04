@@ -1,5 +1,3 @@
-// import {gql} from "@apollo/client"
+import { gql } from "@apollo/client";
 
-// export const sample = gql`
-// `;
-export {}
+export const sample = gql``;
