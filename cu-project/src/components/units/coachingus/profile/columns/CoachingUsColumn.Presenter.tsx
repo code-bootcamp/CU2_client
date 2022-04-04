@@ -8,12 +8,12 @@ export default function CoachingUsColumnUI(props) {
     <S.CoachCommentsWrapper>
       <S.CoachCommentsTitle>Coach Colomns</S.CoachCommentsTitle>
       <S.ContainerColumnsListBody>
-        {props.columnList.map((column) => (
+        {props.columnList?.map((column) => (
           <S.ColumnsList
             key={column.id}
             onClick={props.moveToPage(`/coachingus/column/${column.id}`)}
           >
-            <S.ColumnPicture>{column.picture}</S.ColumnPicture>
+            <S.ColumnPicture></S.ColumnPicture>
             <Blank height="20px" />
             <S.ColumnText>
               <S.ColumnTitle>
@@ -36,7 +36,7 @@ export default function CoachingUsColumnUI(props) {
               </S.ColumnContents>
               <Blank height="5px" />
               <S.ColumnFooter>
-                <div>김태훈</div>2일전
+                <div>{column.user.name}</div>2일전
               </S.ColumnFooter>
               <S.ExtraBox>
                 <S.LikeInfo>
@@ -48,18 +48,17 @@ export default function CoachingUsColumnUI(props) {
                     }}
                   />{" "}
                   <Blank width="5px" />
-                  20
+                  {column.likecount}
                 </S.LikeInfo>
                 <Blank width="20px" />
                 <S.CommentsInfo>
-                  <BsChatDots
+                  <AiOutlineDislike
                     style={{
                       height: "20px",
                       width: "20px",
-                      marginBottom: "5px",
                     }}
                   />{" "}
-                  <Blank width="5px" /> 20
+                  <Blank width="5px" /> {column.dislikecount}
                 </S.CommentsInfo>
               </S.ExtraBox>
             </S.ColumnText>

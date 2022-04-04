@@ -84,9 +84,9 @@ export const CoachProfile = styled.div`
   align-items: center;
   height: 100%;
   min-width: 50%;
-  padding: 20px 30px 10px 30px;
+  padding: 20px 10px 10px 10px;
   @media screen and (max-width: 1440px) {
-    padding: 10px 20px;
+    padding: 10px 15px;
   }
 `;
 export const RecommendCoachHeader = styled.div`
@@ -114,14 +114,18 @@ export const CoachCor = styled.div`
 `;
 export const CoachSubCor = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  font-size: 18px;
+
   font-weight: lighter;
-  & > p {
-    font-size: 18px;
+  & > div:first-child {
+    font-size: 16px;
     font-weight: 400;
+  }
+  & > div {
+    font-size: 14px;
   }
 
   @media screen and (max-width: 1440px) {

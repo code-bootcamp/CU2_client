@@ -1,172 +1,57 @@
+import { useQuery } from "@apollo/client";
+import { useEffect, useState } from "react";
+import { useAuthCoach } from "../../../commons/hooks/useAuthCoach";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import CoachingUsColumnUI from "./CoachingUsColumn.Presenter";
+import {
+  FETCH_RECOMMEND_COLUMN_LIST,
+  FETCH_COLUMN_LIST,
+} from "./CoachingUsColumn.Queries";
 
 export default function CoachingUsColumnPage() {
-  const { moveToPage } = useMoveToPage();
-  const columnBestList = [
-    {
-      id: 0,
-      title: "형제들에서 알립니다!",
-      contents:
-        "내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~",
-      picture: "이미지입니다!",
-      profile: {
-        picture: "이미지! 입니다!",
-        name: "손오공",
-        tags: ["IT", "개발직군아님"],
-        followers: 203312,
-        score: 3123,
-      },
-    },
-    {
-      id: 1,
-      title: "초기 컨텐츠 입니다.",
-      contents:
-        "내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~",
-      picture: "이미지입니다!",
-      profile: {
-        picture: "이미지! 입니다!",
-        name: "아이폰",
-        tags: ["IT", "개발직군아님"],
-        followers: 203312,
-        score: 3123,
-      },
-    },
-    {
-      id: 1,
-      title: "초기 컨텐츠 입니다.",
-      contents:
-        "내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~",
-      picture: "이미지입니다!",
-      profile: {
-        picture: "이미지! 입니다!",
-        name: "아이폰",
-        tags: ["IT", "개발직군아님"],
-        followers: 203312,
-        score: 3123,
-      },
-    },
-  ];
+  const { isCoach } = useAuthCoach();
+  const { data } = useQuery(FETCH_RECOMMEND_COLUMN_LIST);
+  const { data: totalColumns } = useQuery(FETCH_COLUMN_LIST);
 
-  const columnList = [
-    {
-      id: 0,
-      title: "형제들에서 알립니다!",
-      contents:
-        "내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~",
-      picture: "이미지입니다!",
-      profile: {
-        picture: "이미지! 입니다!",
-        name: "손오공",
-        tags: ["IT", "개발직군아님"],
-        followers: 203312,
-        score: 3123,
-      },
-    },
-    {
-      id: 1,
-      title: "초기 컨텐츠 입니다.",
-      contents:
-        "내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~",
-      picture: "이미지입니다!",
-      profile: {
-        picture: "이미지! 입니다!",
-        name: "아이폰",
-        tags: ["IT", "개발직군아님"],
-        followers: 203312,
-        score: 3123,
-      },
-    },
-    {
-      id: 2,
-      title: "초기 컨텐츠 입니다.",
-      contents:
-        "내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~",
-      picture: "이미지입니다!",
-      profile: {
-        picture: "이미지! 입니다!",
-        name: "아이폰",
-        tags: ["IT", "개발직군아님"],
-        followers: 203312,
-        score: 3123,
-      },
-    },
-    {
-      id: 3,
-      title: "초기 컨텐츠 입니다.",
-      contents:
-        "내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~",
-      picture: "이미지입니다!",
-      profile: {
-        picture: "이미지! 입니다!",
-        name: "아이폰",
-        tags: ["IT", "개발직군아님"],
-        followers: 203312,
-        score: 3123,
-      },
-    },
-    {
-      id: 4,
-      title: "초기 컨텐츠 입니다.",
-      contents:
-        "내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~",
-      picture: "이미지입니다!",
-      profile: {
-        picture: "이미지! 입니다!",
-        name: "아이폰",
-        tags: ["IT", "개발직군아님"],
-        followers: 203312,
-        score: 3123,
-      },
-    },
-    {
-      id: 5,
-      title: "초기 컨텐츠 입니다.",
-      contents:
-        "내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~",
-      picture: "이미지입니다!",
-      profile: {
-        picture: "이미지! 입니다!",
-        name: "아이폰",
-        tags: ["IT", "개발직군아님"],
-        followers: 203312,
-        score: 3123,
-      },
-    },
-    {
-      id: 6,
-      title: "초기 컨텐츠 입니다.",
-      contents:
-        "내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~",
-      picture: "이미지입니다!",
-      profile: {
-        picture: "이미지! 입니다!",
-        name: "아이폰",
-        tags: ["IT", "개발직군아님"],
-        followers: 203312,
-        score: 3123,
-      },
-    },
-    {
-      id: 7,
-      title: "초기 컨텐츠 입니다.",
-      contents:
-        "내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~내용이 들어가지요오~~",
-      picture: "이미지입니다!",
-      profile: {
-        picture: "이미지! 입니다!",
-        name: "아이폰",
-        tags: ["IT", "개발직군아님"],
-        followers: 203312,
-        score: 3123,
-      },
-    },
-  ];
+  const [totalColumn, setTotalColumn] = useState([]);
+  const [nextPage, setNextPage] = useState(10);
+  const [isActive, setIsActive] = useState(true);
+
+  console.log(data);
+
+  const { moveToPage } = useMoveToPage();
+  const columnBestList = data?.fetchRecommendColumnList.slice(0, 3);
+
+  const columnList = totalColumns?.fetchColumnList;
+
+  const onLoadMore = () => {
+    if (columnList && isActive) {
+      setTotalColumn([
+        ...columnList.slice(0, 10),
+        ...columnList?.slice(nextPage, nextPage + 10),
+      ]);
+      setNextPage((prev) => prev + 10);
+    }
+    if (columnList?.length < nextPage + 10) setIsActive(false);
+    else {
+      setIsActive(true);
+    }
+  };
+
+  useEffect(() => {
+    if (columnList) {
+      setTotalColumn([...columnList?.slice(0, 10)]);
+    }
+  }, [totalColumns]);
+
   return (
     <CoachingUsColumnUI
       columnBestList={columnBestList}
       moveToPage={moveToPage}
-      columnList={columnList}
+      totalColumn={totalColumn}
+      onLoadMore={onLoadMore}
+      isActive={isActive}
+      isCoach={isCoach}
     />
   );
 }

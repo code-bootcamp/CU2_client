@@ -11,6 +11,9 @@ export const FETCH_COACH_ORDER_LIST = gql`
         orgType
       }
       role
+      coachtag {
+        tag
+      }
     }
   }
 `;

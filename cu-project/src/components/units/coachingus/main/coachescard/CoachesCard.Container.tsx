@@ -12,5 +12,11 @@ export default function CoachesCardPage(props: ICoachingUsCoachesCardProps) {
 
   const coachesList = data?.fetchCoachUserList.slice(0, 3);
 
-  return <CoachesCardUI coachesList={coachesList} moveToPage={moveToPage} />;
+  return (
+    <CoachesCardUI
+      main={props.main}
+      coachesList={coachesList}
+      moveToPage={moveToPage}
+    />
+  );
 }

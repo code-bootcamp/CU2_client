@@ -13,3 +13,13 @@ export const Wrapper = styled.div`
   align-items: center;
   box-sizing: border-box;
 `;
+
+export const TitleInput = styled.input`
+  margin: 0;
+  font-weight: 700;
+  font-size: 24px;
+  border: none;
+  :focus {
+    outline: none;
+  }
+`;

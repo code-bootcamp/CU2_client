@@ -73,7 +73,7 @@ export const BestRankingCoaches = styled.div`
   padding: 0 0 30px 0;
 
   :hover {
-    background-color: #7918f2;
+    background-color: #ea345a;
     color: white;
   }
   cursor: pointer;
@@ -104,6 +104,9 @@ export const RestRanking = styled.div`
   width: 100%;
   padding: 20px 10px;
   border-top: 1px solid #bdbdbd;
+
+  background-color: ${({ isMyInfo }) => (isMyInfo ? "#EA345A" : "none")};
+  color: ${({ isMyInfo }) => (isMyInfo ? "white" : "black")};
 `;
 
 export const TrophyBox = styled.div`
@@ -154,7 +157,7 @@ export const RestCoachPicture = styled.div`
 export const RestCoachText = styled.div`
   p:first-child {
     font-size: 16px;
-    color: black;
+    color: ${({ isMyInfo }) => (isMyInfo ? "white" : "black")};
   }
   p {
     font-size: 14px;
@@ -182,7 +185,8 @@ export const MyPageBtn = styled.button`
   border-radius: 10px;
 
   :hover {
-    background-color: #e9345a;
+    background-color: ${({ isMyInfo }) => (isMyInfo ? "white" : "#e9345a")};
+    color: ${({ isMyInfo }) => (isMyInfo ? "#e9345a" : "white")};
   }
 `;
 export const MyPageBtn2 = styled.button`
@@ -204,10 +208,7 @@ export const BottonBox = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export const LoadMoreBtn = styled.div`
+export const LoadMoreBtn = styled.button`
+  all: unset;
   font-size: 32px;
-
-  :hover {
-    cursor: pointer;
-  }
 `;

@@ -1,4 +1,4 @@
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { KeyboardEvent, useState } from "react";
 import useStore from "../../../../commons/store/store";
@@ -121,6 +121,8 @@ export default function CoachingUsCoachRegisterPage() {
       }
     }
   };
+
+  console.log(isCoach);
 
   return (
     <CoachingUsCoachRegisterUI

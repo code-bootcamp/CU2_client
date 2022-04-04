@@ -52,46 +52,52 @@ export default function CoachingUsCoachUI(props) {
       <S.CoachColumn>
         Coach Columns
         <Blank height="30px" />
-        <S.ContainerColumnsListBody>
-          {props.columnList.map((column) => (
-            <S.ColumnsList
-              key={column.id}
-              onClick={props.moveToPage(`/coachingus/coaches/0/columns/0`)}
-            >
-              <S.ColumnPicture>{column.picture}</S.ColumnPicture>
+        {props.columnList?.length === 0 ? (
+          <S.ContainerColumnsListNoBody>
+            <S.ColumnsNoList> Column이 비어있습니다!</S.ColumnsNoList>
+          </S.ContainerColumnsListNoBody>
+        ) : (
+          <S.ContainerColumnsListBody>
+            {props.columnList?.map((column) => (
+              <S.ColumnsList
+                key={column.id}
+                onClick={props.moveToPage(`/coachingus/coaches/0/columns/0`)}
+              >
+                <S.ColumnPicture>{column.picture}</S.ColumnPicture>
 
-              <S.ColumnText>
-                <S.ColumnTitle>
-                  {column.title.length > 25 ? (
-                    <S.ColumnShortenTitle>
-                      {column.title.slice(0, 25) + "..."}
-                    </S.ColumnShortenTitle>
-                  ) : (
-                    <S.ColumnTitle>{column.title}</S.ColumnTitle>
-                  )}
-                </S.ColumnTitle>
-                <S.ColumnContents>
-                  {column.contents.length > 30 ? (
-                    <S.ColumnShortenContents>
-                      {column.contents.slice(0, 30) + "..."}
-                    </S.ColumnShortenContents>
-                  ) : (
-                    <S.ColumnContents>{column.contents}</S.ColumnContents>
-                  )}
-                </S.ColumnContents>
-                <Blank height="5px" />
-                <S.ColumnFooter>
-                  <div>김태훈</div>2일전
-                </S.ColumnFooter>
-              </S.ColumnText>
-            </S.ColumnsList>
-          ))}
-          <>
-            <S.ListMoreBtn onClick={() => props.setComponent(`columns`)}>
-              <p>{">"}</p>더보기
-            </S.ListMoreBtn>
-          </>
-        </S.ContainerColumnsListBody>
+                <S.ColumnText>
+                  <S.ColumnTitle>
+                    {column.title.length > 25 ? (
+                      <S.ColumnShortenTitle>
+                        {column.title.slice(0, 25) + "..."}
+                      </S.ColumnShortenTitle>
+                    ) : (
+                      <S.ColumnTitle>{column.title}</S.ColumnTitle>
+                    )}
+                  </S.ColumnTitle>
+                  <S.ColumnContents>
+                    {column.contents.length > 30 ? (
+                      <S.ColumnShortenContents>
+                        {column.contents.slice(0, 30) + "..."}
+                      </S.ColumnShortenContents>
+                    ) : (
+                      <S.ColumnContents>{column.contents}</S.ColumnContents>
+                    )}
+                  </S.ColumnContents>
+                  <Blank height="5px" />
+                  <S.ColumnFooter>
+                    <div>김태훈</div>2일전
+                  </S.ColumnFooter>
+                </S.ColumnText>
+              </S.ColumnsList>
+            ))}
+            <>
+              <S.ListMoreBtn onClick={() => props.setComponent(`columns`)}>
+                <p>{">"}</p>더보기
+              </S.ListMoreBtn>
+            </>
+          </S.ContainerColumnsListBody>
+        )}
       </S.CoachColumn>
     </>
   );

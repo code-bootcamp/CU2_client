@@ -114,6 +114,7 @@ export const CodingUsButton = styled.button`
   font-size: 18px;
   color: white;
   background-color: ${Color.main};
+  cursor: pointer;
 
   @media ${breakPoints.mobile} {
     margin-top: 10px;
@@ -230,4 +231,11 @@ export const SearchBarBody = styled.input`
   :focus {
     outline: none;
   }
+`;
+
+export const Box = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: "wrap";
 `;

@@ -35,10 +35,13 @@ export function useAuth() {
     }
 
     Auth();
+  }, []);
+
+  useEffect(() => {
     if (data?.fetchmyuser.role === "COACH") {
       setIsCoach(true);
     }
-  }, []);
+  }, [data]);
 
   return {
     isLogin,
