@@ -50,7 +50,10 @@ export default function RecCoachCardUI(props: ICoachingUsRecCoachCardUIProps) {
                       }}
                     />
                     <Blank width="8px" />
-                    {getMoney(coach.score)}점
+                    {getMoney(
+                      props.rank[index] - Math.ceil(Math.random() * 100)
+                    )}
+                    점
                   </S.CoachInfoFollower>
                   <Blank width="10px" />
                   <S.CoachInfoScore>
@@ -64,7 +67,7 @@ export default function RecCoachCardUI(props: ICoachingUsRecCoachCardUIProps) {
                       }}
                     />
                     <Blank width="2px" />
-                    {getMoney(39129)}명
+                    {getMoney(props.rank[index])}명
                   </S.CoachInfoScore>
                 </S.RecommendCoachInfo>
               </S.CoachProfile>

@@ -12,6 +12,7 @@ export default function RecCoachCardPage(props: ICoachingUsRecCoachCardProps) {
   const { data } = useQuery(FETCH_COACH_ORDER_LIST);
   const [newList, setNewList] = useState([]);
   // console.log(data);
+  const rank = [3912, 4143, 1232];
 
   const imgUrl = [
     "https://storage.googleapis.com/cucutoo-dev-bucket/TaeHoon.jpeg",
@@ -39,6 +40,7 @@ export default function RecCoachCardPage(props: ICoachingUsRecCoachCardProps) {
       isStart={isStart}
       moveToPage={moveToPage}
       imgUrl={imgUrl}
+      rank={rank}
     />
   );
 }

@@ -54,7 +54,7 @@ export default function CoachingUsCoachPage(props) {
   }, [answerData, coachData]);
 
   if (isLoading) {
-    return <Loading />;
+    return <></>;
   }
 
   return (
