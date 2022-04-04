@@ -257,6 +257,7 @@ export interface ICodingUsRankingProps{
 export interface ICogindUsRankingProps {
   height?: number;
   data?: IUser;
+  prevData?: {ranking: number, data:IUser};
   ranking: number;
   isMyRanking: boolean;
 }

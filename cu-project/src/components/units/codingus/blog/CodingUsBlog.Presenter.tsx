@@ -11,6 +11,7 @@ import CodingUsHistory from "../history/History.Container";
 import WriteBtn from "../writeBtn/WriteBtn";
 import BlogCard01 from "../../../commons/Card/BlogCard01/BlogCard01";
 import Color from "../../../../commons/styles/color";
+import { getImagesFromMD } from "../../../../commons/libraries/mdUtils";
 export default function CodingUsBlogUI(props: ICodingUsBlogUIProps) {
   return (
       <S.CodingUsBlog>
@@ -30,16 +31,14 @@ export default function CodingUsBlogUI(props: ICodingUsBlogUIProps) {
             <Label01 value="팔로잉" padding="0px" weight="700" size="36px" />
             <Blank height="32px" />
             <S.CardWrapper>
-             {false ? new Array(4).fill(0).map((_, idx) => (
+             {props.blogList && props.blogList.sort((a, b)=> a.blog.like - b.blog.like).filter((_,idx)=> idx < 4).map((el, idx) => (
                 <BlogShortCard
-                  key={idx}
-                  image="https://source.unsplash.com/random"
-                  stacks={["스택"]}
-                  title="모든 국민은 학문과 예술의 자유를 가진다. 근로조건의 기..."
+                  key={uuidV4()}
+                  image={getImagesFromMD(el.blog.contents)[0] || ""}
+                  stacks={el.blog.blogcategorytag?.map(el => el.tag)}
+                  title={el.blog.title}
                 />
               ))
-              :
-              <div style={{width: "100%", height: "327px", backgroundColor: Color.medium}}/>
             }
             </S.CardWrapper>
           </S.HotTopicWrapper>
@@ -66,7 +65,10 @@ export default function CodingUsBlogUI(props: ICodingUsBlogUIProps) {
             >
               <S.CardWrapper>
                 {props.blogList?.map((el) => (
-                  <BlogCard01 key={uuidV4()} data={el.blog} isLike={el.isLike}/>
+                  <div key={uuidV4()}>
+                  <BlogCard01  data={el.blog} isLike={el.isLike}/>
+                  <Blank height="40px"/>
+                  </div>
                 ))}
               </S.CardWrapper>
             </InfiniteScroll>

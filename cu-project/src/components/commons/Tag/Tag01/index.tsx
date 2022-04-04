@@ -18,5 +18,5 @@ interface ITagProps {
 }
 
 export default function Tag01(props: ITagProps) {
-  return <Tag style={{padding: props.isShort ? "7px 30px" : "7px 15px", minWidth:props.isShort? "120px" : "0px" }} color={props.color ? "main" : 'dark'}>{props.value}</Tag>;
+  return <Tag style={{padding: props.isShort ? "5px 30px" : "5px 13px", minWidth:props.isShort? "120px" : "0px" }} color={props.color ? "main" : 'dark'}>{props.value}</Tag>;
 }

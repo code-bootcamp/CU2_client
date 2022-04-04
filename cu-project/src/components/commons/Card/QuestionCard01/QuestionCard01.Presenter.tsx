@@ -26,7 +26,7 @@ export default function QuestionCard01UI(props: IWatingItemProps) {
             </S.TagWrapper>
           ))}
       </S.RowWrapper>
-      <Blank height="17px" />
+      <Blank height="10px" />
       <S.RowWrapper style={{ justifyContent: "space-between" }}>
         <S.Title>{props.data.title}</S.Title>
         <Label01
