@@ -5,6 +5,10 @@ import { BsFillTriangleFill } from "react-icons/bs";
 import CoachingUsProfileRate from "./CoachingUsProfileRate";
 import { useRouter } from "next/router";
 import { gql, useQuery } from "@apollo/client";
+import { useAuthCoach } from "../../../commons/hooks/useAuthCoach";
+import { FETCH_ANSWER } from "./coach/CoachingUsCoach.Queries";
+import { FETCH_MY_USER } from "./question/CoachingUsQuestion.Queries";
+import Loading from "../../../commons/Loading/Loading";
 
 const CoachCard = styled.div`
   width: 250px;
@@ -14,6 +18,20 @@ const CoachCard = styled.div`
 
   cursor: pointer;
 `;
+const LoadingCard = styled.div`
+  width: 250px;
+  min-height: 389px;
+  border-radius: 15px;
+  height: fit-content;
+  background-color: #f6f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: #c4c4c4;
+  font-weight: 700;
+`;
+
 const CardPicture = styled.div`
   width: 100%;
   height: 200px;
@@ -148,6 +166,11 @@ export const RateTextActive = styled.div`
   font-weight: lighter;
 `;
 
+const NoneBlank = styled.div`
+  width: 100%;
+  height: 1px;
+`;
+
 const FETCH_COACH_USER = gql`
   query fetchCoachUser($userId: String!) {
     fetchCoachUser(userId: $userId) {
@@ -190,8 +213,12 @@ function CoachingUsCoachCard(props) {
     },
   });
   const { data: coachRankingList } = useQuery(FETCH_COACH_ORDER_LIST);
+  const { isCoach } = useAuthCoach();
+  const { data: myData } = useQuery(FETCH_MY_USER);
 
+  const [IsMyCoach, setIsMyCoach] = useState(false);
   const [coachRank, setCoachRank] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   const coachTotalList = coachRankingList?.fetchUserOrderbyscore.filter(
     (el) => el.role === "COACH"
@@ -200,24 +227,36 @@ function CoachingUsCoachCard(props) {
   const getMyRanking = () => {
     coachTotalList?.forEach((el, index) => {
       if (el.id === router.query.coachId) {
-        console.log(index + 1);
         setCoachRank(Math.ceil(((index + 1) / coachTotalList.length) * 100));
       }
     });
-
-    console.log(coachRank);
   };
 
   const coach = data?.fetchCoachUser;
 
   useEffect(() => {
     getMyRanking();
-  });
+
+    if (isCoach && myData?.fetchmyuser?.id === router.query.coachId) {
+      setIsMyCoach(true);
+    }
+  }, [coachTotalList]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 600);
+  }, [coachRank, myData]);
+
+  if (isLoading) {
+    return <LoadingCard>Loading...</LoadingCard>;
+  }
+
   return (
     <CoachCard
       onClick={() => {
         if (props.setComponent) return props.setComponent(`/`);
-        router.push("/coachingus/coaches/1");
+        router.push(`/coachingus/coaches/${router.query.coachId}`);
       }}
     >
       <CardPicture></CardPicture>
@@ -228,6 +267,7 @@ function CoachingUsCoachCard(props) {
           <p>{coach?.name} </p> &nbsp;| {coach?.coachProfile.job}
         </ContentsSubTitle>
         <Blank height="15px" />
+        {IsMyCoach && <Blank height="15px" />}
         <ContentsPersentage>
           <AnswerRate>
             <RateText>
@@ -266,20 +306,24 @@ function CoachingUsCoachCard(props) {
           </Rantangle>
         </ContentsPersentage>
         <Blank height="20px" />
-        <ProfileBtn>
-          <ContentsFollowBtn>팔로우</ContentsFollowBtn>
-          <ContentsFollowBtn
-            onClick={(event) => {
-              props.setComponent && props.setComponent("question");
-              router.push(
-                `/coachingus/coaches/${router.query.coachId}/question`
-              );
-              event.stopPropagation();
-            }}
-          >
-            질문하기
-          </ContentsFollowBtn>
-        </ProfileBtn>
+        {!IsMyCoach ? (
+          <ProfileBtn>
+            <ContentsFollowBtn>팔로우</ContentsFollowBtn>
+            <ContentsFollowBtn
+              onClick={(event) => {
+                props.setComponent && props.setComponent("question");
+                router.push(
+                  `/coachingus/coaches/${router.query.coachId}/question`
+                );
+                event.stopPropagation();
+              }}
+            >
+              질문하기
+            </ContentsFollowBtn>
+          </ProfileBtn>
+        ) : (
+          <NoneBlank />
+        )}
       </CardContents>
     </CoachCard>
   );

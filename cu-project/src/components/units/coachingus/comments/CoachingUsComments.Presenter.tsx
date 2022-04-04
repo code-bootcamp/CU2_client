@@ -5,104 +5,144 @@ import { BiLike, BiDislike } from "react-icons/bi";
 import Blank from "../../../commons/Blank";
 import CoachingUsSidebar from "../sidebar/CoachingUsSidebar.Container";
 import * as S from "./CoachingUsComments.Style";
+import InfiniteScroll from "react-infinite-scroller";
 import { useRouter } from "next/router";
 
 export default function CoachingUsCommentsUI(
   props: ICoachingUsCommentsUIProps
 ) {
+  console.log("zzz", props.totalAnswer);
   return (
     <S.Wrapper>
       <S.LeftSideBar>
         <CoachingUsSidebar />
       </S.LeftSideBar>
-      <S.CommentsBody>
-        <p>Comments</p>
+      <InfiniteScroll
+        pageStart={0}
+        loadMore={props.onLoadMore}
+        hasMore={true}
+        useWindow={true}
+      >
+        <S.CommentsBody>
+          <p>Comments</p>
+          {props.commentsList?.map((comment, index) => (
+            <S.CommentsContainer key={index}>
+              <S.CommentsTitle>
+                <S.CommentsTitleLeft
+                  onClick={props.moveToPage(
+                    `/coachingus/coaches/${comment.toCoach.id}/${comment.id}`
+                  )}
+                >
+                  <S.TitlePicture></S.TitlePicture>
+                  <Blank width="10px" />
+                  <h1>{comment.toCoach.name} coach </h1>
+                  <p>님이 받은 질문</p>
+                </S.CommentsTitleLeft>
+                <S.CommentsTitleRight>{"22-03-14"}</S.CommentsTitleRight>
+              </S.CommentsTitle>
+              <S.CommentsContents>
+                <S.ContentsQuestion
+                  onClick={props.moveToPage(
+                    `/coachingus/coaches/${comment.toCoach.id}/${comment.id}`
+                  )}
+                >
+                  <S.QuestionIcon>
+                    <BsQuestionCircleFill
+                      style={{
+                        color: "#EA345A",
+                        height: "24px",
+                        width: "24px",
+                        marginBottom: "4px",
+                      }}
+                    />
+                  </S.QuestionIcon>
+                  <Blank width="20px" />
+                  <S.QuestionText>{comment.title}</S.QuestionText>
+                </S.ContentsQuestion>
+                <Blank height="20px" />
+                <S.ContentsAnwer
+                  onClick={props.moveToPage(
+                    `/coachingus/coaches/${comment.toCoach.id}/${comment.id}`
+                  )}
+                >
+                  <S.QuestionIcon>
+                    <SiAnsible
+                      style={{
+                        background: "#EA345A",
+                        color: "white",
+                        height: "25px",
+                        width: "25px",
+                        padding: "1px",
+                        borderRadius: "100%",
+                      }}
+                    />
+                  </S.QuestionIcon>
+                  <Blank width="20px" />
+                  <S.QuestionText>
+                    {props.totalAnswer?.filter(
+                      (el) => el.question.id === comment.id
+                    )[0]?.title || (
+                      <div style={{ color: "red", fontWeight: "500" }}>
+                        아직 답변이 달리지 않았습니다.
+                      </div>
+                    )}
 
-        {props.commentsList.map((comment, index) => (
-          <S.CommentsContainer key={index}>
-            <S.CommentsTitle>
-              <S.CommentsTitleLeft
-                onClick={props.moveToPage(
-                  `/coachingus/coaches/${comment.id}/${comment.id}`
-                )}
-              >
-                <S.TitlePicture></S.TitlePicture>
-                <Blank width="10px" />
-                <p>
-                  {comment.mento.name} | {comment.mento.cor}
-                </p>
-              </S.CommentsTitleLeft>
-              <S.CommentsTitleRight>{comment.createdAt}</S.CommentsTitleRight>
-            </S.CommentsTitle>
-            <S.CommentsContents>
-              <S.ContentsQuestion
-                onClick={props.moveToPage(
-                  `/coachingus/coaches/${comment.id}/${comment.id}`
-                )}
-              >
-                <S.QuestionIcon>
-                  <BsQuestionCircleFill
-                    style={{
-                      color: "#EA345A",
-                      height: "24px",
-                      width: "24px",
-                      marginBottom: "4px",
-                    }}
-                  />
-                </S.QuestionIcon>
-                <Blank width="20px" />
-                <S.QuestionText>{comment.question}</S.QuestionText>
-              </S.ContentsQuestion>
-              <Blank height="20px" />
-              <S.ContentsAnwer
-                onClick={props.moveToPage(
-                  `/coachingus/coaches/${comment.id}/${comment.id}`
-                )}
-              >
-                <S.QuestionIcon>
-                  <SiAnsible
-                    style={{
-                      background: "#EA345A",
-                      color: "white",
-                      height: "25px",
-                      width: "25px",
-                      padding: "1px",
-                      borderRadius: "100%",
-                    }}
-                  />
-                </S.QuestionIcon>
-                <Blank width="20px" />
-                <S.QuestionText>{comment.answer}</S.QuestionText>
-              </S.ContentsAnwer>
-              <Blank height="15px" />
-              <S.ContentsInfo>
-                <S.ContentsInfoLikes>
-                  <BiLike
-                    style={{
-                      height: "20px",
-                      width: "20px",
-                      marginBottom: "1px",
-                    }}
-                  />
-                  <Blank width="10px" />
-                  Good {comment.likes}
-                </S.ContentsInfoLikes>
-                <Blank width="30px" />
-                <S.ContentsInfoDislikes>
-                  <BiDislike
-                    style={{
-                      height: "20px",
-                      width: "20px",
-                    }}
-                  />
-                  <Blank width="10px" />
-                  Bad {comment.disLiske}
-                </S.ContentsInfoDislikes>
-              </S.ContentsInfo>
-            </S.CommentsContents>
-          </S.CommentsContainer>
-        ))}
-      </S.CommentsBody>
+                    {/* {
+                      props.totalAnswer?.filter(
+                        (answer) => comment.id === answer.question.id
+                      )[0]
+                      <S.AnswerSheet>
+                              {answer?.title}
+                              {answer?.contents}
+                            </S.AnswerSheet>
+                    } */}
+                    {/* {<>zz</> || (
+                      <div style={{ color: "red", fontWeight: "500" }}>
+                        아직 답변이 달리지 않았습니다.
+                      </div>
+                    )} */}
+                  </S.QuestionText>
+                </S.ContentsAnwer>
+                <Blank height="15px" />
+                <S.ContentsInfo>
+                  <S.ContentsInfoLikes>
+                    <BiLike
+                      style={{
+                        height: "20px",
+                        width: "20px",
+                        marginBottom: "1px",
+                      }}
+                    />
+                    <Blank width="10px" />
+                    Good{" "}
+                    {props.totalAnswer?.map((answer) => {
+                      if (comment.id === answer.question.id) {
+                        return <>{answer.likecount || 0}</>;
+                      }
+                    })[0] || <>0</>}
+                  </S.ContentsInfoLikes>
+                  <Blank width="30px" />
+                  <S.ContentsInfoDislikes>
+                    <BiDislike
+                      style={{
+                        height: "20px",
+                        width: "20px",
+                      }}
+                    />
+                    <Blank width="10px" />
+                    Bad{" "}
+                    {props.totalAnswer?.map((answer) => {
+                      if (comment.id === answer.question.id) {
+                        return <>{answer.dislikecount || 0}</>;
+                      }
+                    })[0] || <>0</>}
+                  </S.ContentsInfoDislikes>
+                </S.ContentsInfo>
+              </S.CommentsContents>
+            </S.CommentsContainer>
+          ))}
+        </S.CommentsBody>
+      </InfiniteScroll>
     </S.Wrapper>
   );
 }
@@ -111,7 +151,7 @@ export const CommentsCard = (props) => {
   const router = useRouter();
   return (
     <>
-      <S.CommentsContainer>
+      <S.CommentsContainer key={index}>
         <S.CommentsTitle>
           <S.CommentsTitleLeft
             onClick={() =>
@@ -123,19 +163,16 @@ export const CommentsCard = (props) => {
             <S.TitlePicture></S.TitlePicture>
             <Blank width="10px" />
             <p>
-              {props.data.toCoach.name} |{" "}
-              {props.data.toCoach.coachProfile.orgName}
+              {comment.toCoach.name} | {comment.toCoach.coachProfile.orgName}
             </p>
           </S.CommentsTitleLeft>
-          {/* <S.CommentsTitleRight>{props.data.id}</S.CommentsTitleRight> */}
+          <S.CommentsTitleRight>{"22-03-14"}</S.CommentsTitleRight>
         </S.CommentsTitle>
         <S.CommentsContents>
           <S.ContentsQuestion
-            onClick={() =>
-              router.push(
-                `/coachingus/coaches/${props.toCoach.id}/${props.data.id}`
-              )
-            }
+            onClick={props.moveToPage(
+              `/coachingus/coaches/${comment.toCoach.id}/${comment.id}`
+            )}
           >
             <S.QuestionIcon>
               <BsQuestionCircleFill
@@ -148,15 +185,13 @@ export const CommentsCard = (props) => {
               />
             </S.QuestionIcon>
             <Blank width="20px" />
-            <S.QuestionText>{props.data.title}</S.QuestionText>
+            <S.QuestionText>{comment.title}</S.QuestionText>
           </S.ContentsQuestion>
           <Blank height="20px" />
           <S.ContentsAnwer
-            onClick={() =>
-              router.push(
-                `/coachingus/coaches/${props.data.toCoach.id}/${props.data.id}`
-              )
-            }
+            onClick={props.moveToPage(
+              `/coachingus/coaches/${comment.toCoach.id}/${comment.id}`
+            )}
           >
             {/* <S.QuestionIcon>
               <SiAnsible
@@ -171,7 +206,7 @@ export const CommentsCard = (props) => {
               />
             </S.QuestionIcon> */}
             <Blank width="20px" />
-            <S.QuestionText>{props.data.contents}</S.QuestionText>
+            <S.QuestionText>{comment.contents}</S.QuestionText>
           </S.ContentsAnwer>
           {/* <Blank height="15px" />
           <S.ContentsInfo>
@@ -184,7 +219,7 @@ export const CommentsCard = (props) => {
                 }}
               />
               <Blank width="10px" />
-              Good {props.data.likes}
+              Good {index * 3}
             </S.ContentsInfoLikes>
             <Blank width="30px" />
             <S.ContentsInfoDislikes>
@@ -195,7 +230,7 @@ export const CommentsCard = (props) => {
                 }}
               />
               <Blank width="10px" />
-              Bad {props.data.disLiske}
+              Bad {index}
             </S.ContentsInfoDislikes>
           </S.ContentsInfo> */}
         </S.CommentsContents>

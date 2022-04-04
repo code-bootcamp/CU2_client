@@ -27,8 +27,11 @@ export default function CommentUI(props) {
         <p>Coach Comment</p>
         <Blank height="20px" />
         <S.CoachQuestionContainer>
+          <S.QuestionName>
+            <p>{props.commentsList?.fromUser?.nickname}</p>님이 질문한
+            내용입니다
+          </S.QuestionName>
           <S.QuestionContainer>
-            <S.QuestionPicture />
             <Blank height="20px" />
             <S.QuestionTitle>
               <BsQuestionCircleFill
@@ -39,25 +42,27 @@ export default function CommentUI(props) {
                   marginRight: "10px",
                 }}
               />
-              <p>
-                질문 제목입니당~질문 제목입니당~질문 제목입니당~질문
-                제목입니당~질문 제목입니당~질문 제목입니당~질문 제목입니당~질문
-              </p>
+              <p>{props.commentsList?.title}</p>
             </S.QuestionTitle>
             <S.QuestionProfile></S.QuestionProfile>
             <S.QuestionContents>
-              질문 내용입니당~~~질문 내용입니당~~~질문 내용입니당~~~질문
-              내용입니당~~~질문 내용입니당~~~질문 내용입니당~~~
+              {props.commentsList?.contents}
             </S.QuestionContents>
           </S.QuestionContainer>
         </S.CoachQuestionContainer>
         <Blank height="50px" />
 
-        {/* 답변 내용 */}
-        {props.answerList.length ? (
-          <AnswerComponent />
+        {props.answerList?.[0] ? (
+          <AnswerComponent
+            answer={props.answerList}
+            isCoach={props.isCoach}
+            myData={props.myData?.fetchmyuser.id}
+            router={props.router.query.coachId}
+            onClicklikeBtn={props.onClicklikeBtn}
+            onClickDislikeBtn={props.onClickDislikeBtn}
+          />
         ) : (
-          <S.CoachAnswerContainer>
+          <S.CoachAnswerContainer onClick={props.onAnswerClick}>
             <S.CommentsContainer>
               <AiOutlineFieldTime
                 style={{
@@ -69,6 +74,12 @@ export default function CommentUI(props) {
               <Blank height="10px" />
               <p>답변 대기 중입니다.</p>
             </S.CommentsContainer>
+            {props.isCoach &&
+              props.myData?.fetchmyuser.id === props.router.query.coachId && (
+                <S.AnswerButton onClick={props.onAnswerClick}>
+                  답변하러 가기
+                </S.AnswerButton>
+              )}
           </S.CoachAnswerContainer>
         )}
       </S.CommentsBody>

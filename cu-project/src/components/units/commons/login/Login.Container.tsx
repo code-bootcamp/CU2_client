@@ -3,9 +3,9 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormValues, ILoginProps } from "../../../../commons/types/types";
 import LoginUI from "./Login.Presenter";
-import {  LOGIN } from "./Login.Queries";
-import {  useMutation } from "@apollo/client";
-import {  } from "../../../../../pages/_app";
+import { LOGIN } from "./Login.Queries";
+import { useMutation } from "@apollo/client";
+import {} from "../../../../../pages/_app";
 import { useRouter } from "next/router";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import useStore from "../../../../commons/store/store";
@@ -47,6 +47,7 @@ export default function Login(props: ILoginProps) {
         },
       });
       const accessToken = result.data?.login;
+      console.log(accessToken);
 
       if (!accessToken) {
         alert("로그인 실패");

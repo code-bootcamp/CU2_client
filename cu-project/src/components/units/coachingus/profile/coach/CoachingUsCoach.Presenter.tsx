@@ -7,10 +7,20 @@ export default function CoachingUsCoachUI(props) {
     <>
       <S.CoachIntro>
         <S.CoachIntroTitle>멘토소개</S.CoachIntroTitle>
-        <S.CoachIntroContents>멘토소개글</S.CoachIntroContents>
+        <S.CoachIntroContents>
+          {props.coachData?.fetchCoachUser.coachProfile.profileTitle ||
+            "멘토 소개글이 없습니다."}
+        </S.CoachIntroContents>
+        <S.CoachIntroContents>
+          {props.coachData?.fetchCoachUser.coachProfile.profileContents}
+        </S.CoachIntroContents>
       </S.CoachIntro>
       <Blank height="100px" />
-      <S.CoachComments onClick={props.moveToPage(`/coachingus/coaches/0/0`)}>
+      <S.CoachComments
+        onClick={props.moveToPage(
+          `/coachingus/coaches/${props.router.query.coachId}/${props.comment?.[0]?.id}`
+        )}
+      >
         Coach Comments
         <Blank height="20px" />
         <S.CommentsBody>
@@ -24,19 +34,19 @@ export default function CoachingUsCoachUI(props) {
               }}
             />{" "}
             <Blank width="10px" />
-            멘티 질문 제목
+            {props.comment?.[0]?.title} <Blank width="10px" />
+            <p>{props.comment?.[0]?.fromUser.name}님의 질문입니다</p>
           </S.CommentsTitle>
           <Blank height="10px" />
           <S.CommentsContents>
-            A) 멘토 답변 내용 멘토 답변 내용 멘토 답변 내용 멘토 답변 내용 멘토
-            답변 내용멘토 답변 내용멘토 답변 내용멘토 답변 내용멘토 답변
-            내용멘토 답변 내용멘토 답변 내용멘토 답변 내용
+            {props.comment?.[0]?.contents}
           </S.CommentsContents>
           <Blank height="20px" />
           <S.CommentsInfo>
-            <S.CommentsInfoHits>조회수 302</S.CommentsInfoHits>
+            <S.CommentsInfoLikes>
+              좋아요 {props.answer?.[0]?.likecount}
+            </S.CommentsInfoLikes>
             <Blank width="20px" />
-            <S.CommentsInfoLikes>좋아요 21</S.CommentsInfoLikes>
           </S.CommentsInfo>
           <S.MoreBtn
             onClick={(event) => {
@@ -61,7 +71,9 @@ export default function CoachingUsCoachUI(props) {
             {props.columnList?.map((column) => (
               <S.ColumnsList
                 key={column.id}
-                onClick={props.moveToPage(`/coachingus/coaches/0/columns/0`)}
+                onClick={props.moveToPage(
+                  `/coachingus/coaches/${props.router.query.coachId}/columns/${column.id}`
+                )}
               >
                 <S.ColumnPicture>{column.picture}</S.ColumnPicture>
 

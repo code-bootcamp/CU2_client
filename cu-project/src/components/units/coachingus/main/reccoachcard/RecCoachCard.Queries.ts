@@ -9,6 +9,8 @@ export const FETCH_COACH_ORDER_LIST = gql`
       coachProfile {
         orgName
         orgType
+        department
+        job
       }
       role
       coachtag {
