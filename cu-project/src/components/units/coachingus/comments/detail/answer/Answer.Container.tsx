@@ -10,9 +10,8 @@ export default function AnswerComponent(props) {
   useEffect(() => {
     if (props.isCoach && props.myData === props.router) {
       setIsOpen(true);
-      // setIsModalOpen(true);
     }
-  }, []);
+  }, [props.isCoach, props.myData]);
 
   return (
     <AnswerPresenter
@@ -21,6 +20,8 @@ export default function AnswerComponent(props) {
       isModalOpen={isModalOpen}
       setIsModalOpen={setIsModalOpen}
       answer={props.answer}
+      onClicklikeBtn={props.onClicklikeBtn}
+      onClickDislikeBtn={props.onClickDislikeBtn}
     />
   );
 }

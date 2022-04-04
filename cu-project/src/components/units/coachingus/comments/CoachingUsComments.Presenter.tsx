@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 export default function CoachingUsCommentsUI(
   props: ICoachingUsCommentsUIProps
 ) {
+  console.log("zzz", props.totalAnswer);
   return (
     <S.Wrapper>
       <S.LeftSideBar>
@@ -78,20 +79,28 @@ export default function CoachingUsCommentsUI(
                   </S.QuestionIcon>
                   <Blank width="20px" />
                   <S.QuestionText>
-                    {props.totalAnswer?.map((answer) => {
-                      if (comment.id === answer.question.id) {
-                        return (
-                          <S.AnswerSheet>
-                            {answer?.title}
-                            {answer?.contents}
-                          </S.AnswerSheet>
-                        );
-                      }
-                    })[0] || (
+                    {props.totalAnswer?.filter(
+                      (el) => el.question.id === comment.id
+                    )[0]?.title || (
                       <div style={{ color: "red", fontWeight: "500" }}>
                         아직 답변이 달리지 않았습니다.
                       </div>
                     )}
+
+                    {/* {
+                      props.totalAnswer?.filter(
+                        (answer) => comment.id === answer.question.id
+                      )[0]
+                      <S.AnswerSheet>
+                              {answer?.title}
+                              {answer?.contents}
+                            </S.AnswerSheet>
+                    } */}
+                    {/* {<>zz</> || (
+                      <div style={{ color: "red", fontWeight: "500" }}>
+                        아직 답변이 달리지 않았습니다.
+                      </div>
+                    )} */}
                   </S.QuestionText>
                 </S.ContentsAnwer>
                 <Blank height="15px" />

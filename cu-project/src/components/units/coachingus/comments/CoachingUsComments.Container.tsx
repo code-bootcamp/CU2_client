@@ -14,7 +14,7 @@ export default function CoachingUsCommentsPage(
   const router = useRouter();
 
   const { data } = useQuery(FETCH_COMMENTS);
-
+  const { data: answerList } = useQuery(FETCH_ANSWER);
   const { moveToPage } = useMoveToPage();
 
   const [totalComments, setTotalComments] = useState([]);
