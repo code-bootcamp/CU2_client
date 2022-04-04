@@ -27,6 +27,13 @@ export const RankingWrapper = styled.div`
 export const CurrentRanking = styled.div`
   font-weight: 700;
   font-size: 24px;
+  text-align: center;
+  width: 50px;
+  .p{
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
 `;
 export const RankingDiff = styled.div`
   font-weight: 700;

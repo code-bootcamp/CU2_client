@@ -12,18 +12,62 @@ import { IUser } from "../../../commons/types/generated/types";
 export default function CodingUsRanking(props: ICodingUsRankingProps) {
   const [currentPage, setCurrentPage] = useState(0);
   const [displayRankings, setDisplayRankgings] = useState<IUser[]>([]);
-
+  const [prevRanking, setPrevRanking] = useState<
+    { ranking: number; data: IUser }[]
+  >([]);
+  const [currRanking, setCurrRanking] = useState<IUser[]>([]);
   useEffect(() => {
     if (props.rankingInfos) {
       setDisplayRankgings(
         props.rankingInfos.filter((_, idx) => idx < (currentPage + 1) * 10)
       );
       setCurrentPage((prev) => prev + 1);
+      const tempCurrent: IUser[] = props.rankingInfos
+      .map((el) => {
+        return {
+          ...el,
+          score:
+            Math.random() > 0.5
+              ? el.score + Math.floor(Math.random() * 100)
+              : el.score - Math.floor(Math.random() * 100),
+        };
+      });
+      setCurrRanking(tempCurrent);
+      setPrevRanking(
+        tempCurrent
+          .map((el) => {
+            return {
+              ...el,
+              score:
+                Math.random() > 0.5
+                  ? el.score + Math.floor(Math.random() * 100)
+                  : el.score - Math.floor(Math.random() * 100),
+            };
+          })
+          .sort((a, b) => b.score - a.score)
+          .map((el, idx) => {
+            return { ranking: idx + 1, data: el };
+          })
+      );
+      console.log(props.rankingInfos
+        .map((el) => {
+          return {
+            ...el,
+            score:
+              Math.random() > 0.5
+                ? el.score + Math.floor(Math.random() * 100)
+                : el.score - Math.floor(Math.random() * 100),
+          };
+        })
+        .sort((a, b) => a.score - b.score)
+        .map((el, idx) => {
+          return { ranking: idx + 1, data: el };
+        }))
     }
   }, [props.rankingInfos]);
 
   const calcMyRanking = () => {
-    if(!props.rankingInfos) return;
+    if (!props.rankingInfos) return;
     for (let i = 0; i < props.rankingInfos.length; i++) {
       if (props.rankingInfos[i].id === props.myInfo?.id) return i + 1;
     }
@@ -31,23 +75,20 @@ export default function CodingUsRanking(props: ICodingUsRankingProps) {
   };
 
   const onLoadMore = () => {
-    console.log("a",props.rankingInfos);
     if (props.rankingInfos) {
-        setDisplayRankgings(
-          [...props.rankingInfos.filter((_, idx) => idx < (currentPage + 1) * 10)]
-        );
-        console.log(currentPage);
-        console.log(props.rankingInfos.filter((_, idx) => idx < (currentPage + 1) * 10));
-        setCurrentPage((prev) => prev + 1);
-      }
+      setDisplayRankgings([
+        ...props.rankingInfos.filter((_, idx) => idx < (currentPage + 1) * 10),
+      ]);
+      setCurrentPage((prev) => prev + 1);
+    }
   };
 
   return (
     <S.RankingWrapper>
       <Label01 value="User Ranking" size="36px" weight="700" />
       <Blank height="20px" />
-      <S.SortGubun>
-        {/* {["일간", "주간", "월간", "전체"].map((el) => (
+      {/* <S.SortGubun> */}
+      {/* {["일간", "주간", "월간", "전체"].map((el) => (
             <div style={{ display: "flex" }} key={uuidv4()}>
               <S.GubunLabel
                 isSelected={el === props.gubun}
@@ -58,8 +99,8 @@ export default function CodingUsRanking(props: ICodingUsRankingProps) {
               <VerticalLine thickness={2} margin={16} />
             </div>
           ))} */}
-      </S.SortGubun>
-      <Blank height="31px" />
+      {/* </S.SortGubun> */}
+      {/* <Blank height="31px" /> */}
       {props.myInfo && (
         <RankingCard
           data={props.myInfo}
@@ -69,7 +110,7 @@ export default function CodingUsRanking(props: ICodingUsRankingProps) {
       )}
       <Blank height="31px" />
       <S.TopWrapper>
-        {displayRankings
+        {currRanking
           .filter((_, idx) => idx < 3)
           .map((el, idx) => (
             <TopThreeCard data={el} ranking={idx + 1} key={uuidv4()} />
@@ -77,14 +118,15 @@ export default function CodingUsRanking(props: ICodingUsRankingProps) {
       </S.TopWrapper>
       <Blank height="24px" />
       <S.CardWrapper>
-        {displayRankings
-          .filter((_, idx) => idx > 2)
+        {currRanking
+          .filter((_, idx) => idx > 2 && idx < (currentPage + 1) * 10)
           .map((el, idx) => (
             <RankingCard
               key={uuidv4()}
               data={el}
               isMyRanking={false}
               ranking={idx + 4}
+              prevData={prevRanking.filter((prev) => prev.data.id === el.id)[0]}
             />
           ))}
       </S.CardWrapper>
