@@ -39,7 +39,7 @@ export const AddSideBar = styled.div`
 
 // body 영역 // detail 영역
 export const ColumnBody = styled.div`
-  width: 800px;
+  width: 1100px;
   padding: 0 0 50px 0;
 
   & > p {

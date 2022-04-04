@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
-import styled from "@emotion/styled";
-import Blank from "../../../commons/Blank";
-import { BsFillTriangleFill } from "react-icons/bs";
-import CoachingUsProfileRate from "./CoachingUsProfileRate";
-import { useRouter } from "next/router";
 import { gql, useQuery } from "@apollo/client";
+import styled from "@emotion/styled";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import { BsFillTriangleFill } from "react-icons/bs";
+import useCoachRate from "../../../../commons/store/coachRate";
+import Blank from "../../../commons/Blank";
 import { useAuthCoach } from "../../../commons/hooks/useAuthCoach";
-import { FETCH_ANSWER } from "./coach/CoachingUsCoach.Queries";
+import CoachingUsProfileRate from "./CoachingUsProfileRate";
 import { FETCH_MY_USER } from "./question/CoachingUsQuestion.Queries";
-import Loading from "../../../commons/Loading/Loading";
 
 const CoachCard = styled.div`
   width: 250px;
@@ -207,6 +206,8 @@ const FETCH_COACH_ORDER_LIST = gql`
 
 function CoachingUsCoachCard(props) {
   const router = useRouter();
+  const answerRate = useCoachRate((state) => state.answerRate);
+  console.log(answerRate);
   const { data } = useQuery(FETCH_COACH_USER, {
     variables: {
       userId: router.query.coachId,
@@ -271,9 +272,9 @@ function CoachingUsCoachCard(props) {
         <ContentsPersentage>
           <AnswerRate>
             <RateText>
-              답변률 <p>90%</p>
+              답변률 <p>{answerRate}%</p>
             </RateText>
-            <CoachingUsProfileRate coachRank={coachRank} />
+            <CoachingUsProfileRate answerRate={answerRate} />
           </AnswerRate>
           <ActivityRankingBox>
             <ActivityRanking coachRank={coachRank}>

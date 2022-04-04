@@ -36,7 +36,7 @@ export const ContainerColumnsListBody = styled.div`
   display: flex;
   justify-content: center;
   min-width: 800px;
-
+  width: 1000px;
 `;
 
 export const ColumnsList = styled.div`
@@ -45,14 +45,16 @@ export const ColumnsList = styled.div`
   align-items: center;
   justify-content: flex-start;
   border-radius: 20px;
+
   padding: 15px 20px;
   min-width: 230px;
   width: 100%;
 
   height: fit-content;
-  margin: 20px 0;
-  background: #fbfafa;
+  margin: 20px 30px;
+  background-color: white;
   overflow: hidden;
+  box-shadow: 0 3px 15px 0 rgb(0 0 0 / 16%);
   cursor: pointer;
 
   :hover {
@@ -62,12 +64,14 @@ export const ColumnsList = styled.div`
 `;
 
 export const ColumnPicture = styled.div`
+  background-image: url(${({ imgCover }) => imgCover});
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 150px;
-  background-color: #c4c4c4;
+  /* background-color: #c4c4c4; */
   border-radius: 15px;
 `;
 export const ColumnText = styled.div`

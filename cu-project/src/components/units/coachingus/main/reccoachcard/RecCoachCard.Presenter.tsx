@@ -18,7 +18,7 @@ export default function RecCoachCardUI(props: ICoachingUsRecCoachCardUIProps) {
             isStart={props.isStart}
             onClick={props.moveToPage(`/coachingus/coaches/${coach.id}`)}
           >
-            <S.RecommendCoachPicture></S.RecommendCoachPicture>
+            <S.RecommendCoachPicture imgCover={props.imgUrl[index]} />
             <S.ProfileWapper>
               <S.CoachProfile>
                 <S.RecommendCoachHeader>
@@ -44,8 +44,8 @@ export default function RecCoachCardUI(props: ICoachingUsRecCoachCardUIProps) {
                       style={{
                         width: "2.5em",
                         height: "2.5em",
-                        color: "black",
                         borderRadius: "100%",
+                        marginRight: "-5px",
                         // marginBottom: "2px",
                       }}
                     />
@@ -58,6 +58,7 @@ export default function RecCoachCardUI(props: ICoachingUsRecCoachCardUIProps) {
                       style={{
                         width: "2.5em",
                         height: "2.5em",
+                        color: "black",
                         marginBottom: "2px",
                         borderRadius: "100%",
                       }}

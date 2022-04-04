@@ -2,6 +2,8 @@ import { ICoachingUsCoachesCardUIProps } from "../../../../../commons/types/type
 import Blank from "../../../../commons/Blank";
 import * as S from "./CoachesCard.Style";
 import getMoney from "../../../../../commons/libraries/getMoney";
+import { IoPersonCircle } from "react-icons/io5";
+import { FaSpeakap } from "react-icons/fa";
 
 export default function CoachesCardUI(props: ICoachingUsCoachesCardUIProps) {
   return (
@@ -16,7 +18,7 @@ export default function CoachesCardUI(props: ICoachingUsCoachesCardUIProps) {
       </S.Main>
       <Blank height="20px" />
       <S.ContainerCoachesListBody>
-        {props.coachesList?.map((coach) => (
+        {props.coachesList?.map((coach, index) => (
           <S.CoachList
             key={coach.id}
             onClick={props.moveToPage(`/coachingus/coaches/${coach.id}`)}
@@ -29,7 +31,7 @@ export default function CoachesCardUI(props: ICoachingUsCoachesCardUIProps) {
               <S.CoachFollowBtn>Follow</S.CoachFollowBtn>
             </S.CoachListHeader>
             <Blank height="10px" />
-            <S.CoachListPicture></S.CoachListPicture>
+            <S.CoachListPicture imgCover={props.imgUrl[index]} />
             <Blank height="10px" />
             <S.CoachListPosition>
               {coach.coachProfile?.orgType}
@@ -47,11 +49,12 @@ export default function CoachesCardUI(props: ICoachingUsCoachesCardUIProps) {
             <Blank height="10px" />
             <S.CoachListInfo>
               <S.CoachInfoFollower>
-                <div
+                <FaSpeakap
                   style={{
-                    width: "20px",
-                    height: "20px",
-                    background: "gray",
+                    width: "2em",
+                    height: "2em",
+                    borderRadius: "100%",
+                    marginRight: "-5px",
                   }}
                 />
                 <Blank width="8px" />
@@ -59,11 +62,13 @@ export default function CoachesCardUI(props: ICoachingUsCoachesCardUIProps) {
               </S.CoachInfoFollower>
               <Blank width="10px" />
               <S.CoachInfoScore>
-                <div
+                <IoPersonCircle
                   style={{
-                    width: "20px",
-                    height: "20px",
-                    background: "gray",
+                    width: "2em",
+                    height: "2em",
+                    marginBottom: "2px",
+                    borderRadius: "100%",
+                    marginRight: "-5px",
                   }}
                 />
                 <Blank width="8px" />

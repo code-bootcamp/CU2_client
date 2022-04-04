@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import useCoachRate from "../../../../../commons/store/coachRate";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import Loading from "../../../../commons/Loading/Loading";
 import CoachingUsCoachUI from "./CoachingUsCoach.Presenter";
@@ -13,6 +14,7 @@ import {
 
 export default function CoachingUsCoachPage(props) {
   const { moveToPage } = useMoveToPage();
+  const setAnswerRate = useCoachRate((state) => state.setAnswerRate);
   const router = useRouter();
   const [answer, setAnswer] = useState([]);
   // const { data } = useQuery(FETCH_COACH_COLUMNS);
@@ -42,6 +44,13 @@ export default function CoachingUsCoachPage(props) {
       setIsLoading(false);
     }, 500);
     setAnswer(result);
+
+    const commentListMap = comment?.map((el) => el.id);
+    const newResult = answerList?.filter((answer) =>
+      commentListMap?.includes(answer?.question?.id)
+    );
+
+    setAnswerRate(Math.ceil((newResult?.length / comment?.length) * 100));
   }, [answerData, coachData]);
 
   if (isLoading) {

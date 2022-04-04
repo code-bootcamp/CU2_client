@@ -1,16 +1,17 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
-import { LOGOUT } from "./LayoutHeader.Queries";
+import { FETCH_BLOG_SEARCH, LOGOUT } from "./LayoutHeader.Queries";
 import useStore from "../../../../commons/store/store";
 import { useAuth } from "../../hooks/useAuth";
 import { useMoveToPage } from "../../hooks/useMoveToPage";
 import LayoutHeaderPageUI from "./LayoutHeader.presenter";
 
 export default function LayoutHeaderPage() {
+  const router = useRouter();
   const { accessToken, setAccessToken } = useStore((state) => state);
   const SearchRef = useRef(null);
-  const router = useRouter();
+
   const [isLogin, setIsLogin] = useState(false);
   const [keyword, setKeyword] = useState("");
   const [isSearch, setIsSearch] = useState(true);

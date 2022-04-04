@@ -119,9 +119,9 @@ export const ColumnShortenContents = styled.div`
 // body columns 영역
 export const ContainerColumnsBody = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   width: 1000px;
+  flex-wrap: wrap;
 `;
 
 export const ColumnList = styled.div`

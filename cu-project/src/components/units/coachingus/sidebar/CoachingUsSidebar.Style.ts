@@ -7,6 +7,6 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   height: fit-content;
-  /* position: sticky;
-  top: 12%; */
+  position: sticky;
+  top: 12%;
 `;

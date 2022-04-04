@@ -137,7 +137,9 @@ export const CoachSubCor = styled.div`
   }
 `;
 
-export const RecommendCoachPicture = styled.div`
+export const RecommendCoachPicture = styled.img`
+  background-image: url(${({ imgCover }) => imgCover});
+  background-size: cover;
   min-width: 50%;
   height: 100%;
   /* border-radius: 100%; */

@@ -1,6 +1,6 @@
 import { IFindUIProps } from "../../../../../commons/types/types";
 import Blank from "../../../../commons/Blank";
-import ConfirmModal from "../../../../commons/Modal/ConfirmModal";
+import ConfirmModal from "../../../../commons/Modal/ConfirmModal/ConfirmModal";
 import * as S from "./Find.Style";
 
 export default function FindUI(props: IFindUIProps) {

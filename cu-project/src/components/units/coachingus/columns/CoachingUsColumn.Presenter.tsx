@@ -1,8 +1,11 @@
 import { AiFillPlusCircle } from "react-icons/ai";
 import InfiniteScroll from "react-infinite-scroller";
 import Blank from "../../../commons/Blank";
+import BlogCard01 from "../../../commons/Card/BlogCard01/BlogCard01";
 import CoachingUsSidebar from "../sidebar/CoachingUsSidebar.Container";
+import { v4 as uuidV4 } from "uuid";
 import * as S from "./CoachingUsColumn.Style";
+import BlogCard02 from "../../codingus/card/blogCard/BlogCard02/BlogCard02";
 
 export default function CoachingUsColumnUI(props) {
   return (
@@ -18,7 +21,9 @@ export default function CoachingUsColumnUI(props) {
             {props.columnBestList?.map((column) => (
               <S.ColumnsList
                 key={column.id}
-                onClick={props.moveToPage(`/coachingus/coaches/0/columns/0`)}
+                onClick={props.moveToPage(
+                  `/coachingus/coaches/876cbaa9-b954-46e7-b6a3-b7e5f7cb0e7b/columns/0`
+                )}
               >
                 <S.ColumnPicture></S.ColumnPicture>
 
@@ -64,7 +69,19 @@ export default function CoachingUsColumnUI(props) {
             // useWindow={true}
           >
             <S.ContainerColumnsBody>
-              {props.totalColumn?.map((column) => (
+              {props.blogList?.map((el, index) => (
+                <div
+                  style={{ height: "500px", padding: "0 40px 0 0" }}
+                  key={index}
+                >
+                  <BlogCard01
+                    key={uuidV4()}
+                    data={el.blog}
+                    isLike={el.isLike}
+                  />
+                </div>
+              ))}
+              {/* {props.totalColumn?.map((column) => (
                 <S.ColumnList
                   key={column.id}
                   onClick={props.moveToPage(`/coachingus/columns/${column.id}`)}
@@ -96,7 +113,7 @@ export default function CoachingUsColumnUI(props) {
                     </S.ColumnFooter>
                   </S.ColumnText>
                 </S.ColumnList>
-              ))}
+              ))} */}
             </S.ContainerColumnsBody>
           </InfiniteScroll>
           {props.isCoach && (

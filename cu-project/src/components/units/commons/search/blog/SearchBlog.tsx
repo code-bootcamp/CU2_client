@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 import {
   ICodingUsBlogCardProps,
@@ -8,6 +8,8 @@ import {
 import BlogCard from "../../../codingus/card/blogCard/BlogCard02/BlogCard02";
 import { v4 as uuidV4 } from "uuid";
 import Blank from "../../../../commons/Blank";
+import { gql, useQuery } from "@apollo/client";
+import { useRouter } from "next/router";
 
 const Wrapper = styled.div`
   width: 75%;
@@ -51,7 +53,26 @@ export const CardWrapper = styled(RowWrapper)`
   width: 100%;
 `;
 
+const FETCH_BLOG_SEARCH = gql`
+  query fetchBlogSearch($search: String!) {
+    fetchBlogSearch(search: $search) {
+      id
+      title
+      contents
+      updatedat
+      like
+      user {
+        nickname
+      }
+      blogcategorytag {
+        tag
+      }
+    }
+  }
+`;
+
 export default function SearchBlog() {
+  const router = useRouter();
   const [sortedBlogList, setSortedBlogList] = useState<
     ICodingUsBlogCardProps[]
   >(new Array(10).fill(dummy));
@@ -60,6 +81,15 @@ export default function SearchBlog() {
     const temp = [...sortedBlogList];
     setSortedBlogList([...temp, ...new Array(10).fill(dummy)]);
   };
+
+  const { data, refetch } = useQuery(FETCH_BLOG_SEARCH, {
+    variables: { search: router.query.keyword },
+  });
+
+  useEffect(() => {
+    refetch({ search: router.query.keyword });
+    console.log(data);
+  }, []);
 
   return (
     <Wrapper>
