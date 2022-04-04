@@ -1,19 +1,27 @@
 import { useQuery } from "@apollo/client";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { ICoachingUsCommentsProps } from "../../../../commons/types/types";
+import { useAuthCoach } from "../../../commons/hooks/useAuthCoach";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import CoachingUsCommentsUI from "./CoachingUsComments.Presenter";
 import { FETCH_COMMENTS, FETCH_ANSWER } from "./CoachingUsComments.Queries";
+import { FETCH_MY_USER } from "./detail/Comment.Queries";
 
 export default function CoachingUsCommentsPage(
   props: ICoachingUsCommentsProps
 ) {
+  const router = useRouter();
+
   const { data } = useQuery(FETCH_COMMENTS);
-  const { data: answerList } = useQuery(FETCH_ANSWER);
+
   const { moveToPage } = useMoveToPage();
+
   const [totalComments, setTotalComments] = useState([]);
   const [nextPage, setNextPage] = useState(10);
   const [isActive, setIsActive] = useState(true);
+  const [IsMyCoach, setIsMyCoach] = useState(false);
+
   const commentsList = data?.fetchQuestionList;
   const totalAnswer = answerList?.coachAnsweredList;
 
@@ -43,6 +51,7 @@ export default function CoachingUsCommentsPage(
       onLoadMore={onLoadMore}
       totalAnswer={totalAnswer}
       isActive={isActive}
+      IsMyCoach={IsMyCoach}
     />
   );
 }

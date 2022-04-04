@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthCoach } from "../../../../../commons/hooks/useAuthCoach";
 import { useMoveToPage } from "../../../../../commons/hooks/useMoveToPage";
 import AnswerPresenter from "./Answer.Presenter";
@@ -7,7 +7,12 @@ export default function AnswerComponent(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  console.log(props.answer);
+  useEffect(() => {
+    if (props.isCoach && props.myData === props.router) {
+      setIsOpen(true);
+      // setIsModalOpen(true);
+    }
+  }, []);
 
   return (
     <AnswerPresenter

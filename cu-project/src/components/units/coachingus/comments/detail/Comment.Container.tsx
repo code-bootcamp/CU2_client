@@ -15,6 +15,7 @@ export default function CommentPage(props: ICoachingUsCommentsProps) {
   const { data } = useQuery(FETCH_QUESTION, {
     variables: { questionId: router.query.commentsId },
   });
+  console.log(router.query.commentsId);
   const { data: answerData } = useQuery(FETCH_ANSWER);
   const { data: myData } = useQuery(FETCH_MY_USER);
 
@@ -36,7 +37,6 @@ export default function CommentPage(props: ICoachingUsCommentsProps) {
     });
     setAnswer(result);
   }, [totalAnswer]);
-
   return (
     <CommentUI
       moveToPage={moveToPage}

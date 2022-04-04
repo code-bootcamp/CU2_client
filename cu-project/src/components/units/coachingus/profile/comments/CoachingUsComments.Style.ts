@@ -16,6 +16,8 @@ export const commentWrapper = styled.div`
   border: 1px solid #c4c4c4;
   border-radius: 15px;
   width: 800px;
+
+  cursor: pointer;
 `;
 export const WrapperLeft = styled.div`
   width: 65%;
@@ -41,8 +43,17 @@ export const commentContents = styled.div`
 `;
 
 export const WrapperRight = styled.div`
-  width: 250px;
+  width: fit-content;
+  padding: 5px 15px;
   height: 100%;
+  background-color: #ea345a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 300;
+  border-radius: 15px;
+  height: 20%;
 `;
 export const ContentsPicture = styled.div`
   background: black;

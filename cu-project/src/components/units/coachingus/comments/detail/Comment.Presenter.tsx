@@ -48,8 +48,13 @@ export default function CommentUI(props) {
         </S.CoachQuestionContainer>
         <Blank height="50px" />
 
-        {props.answerList?.length ? (
-          <AnswerComponent answer={props.answerList} />
+        {props.answerList?.[0] ? (
+          <AnswerComponent
+            answer={props.answerList}
+            isCoach={props.isCoach}
+            myData={props.myData?.fetchmyuser.id}
+            router={props.router.query.coachId}
+          />
         ) : (
           <S.CoachAnswerContainer onClick={props.onAnswerClick}>
             <S.CommentsContainer>
@@ -65,7 +70,9 @@ export default function CommentUI(props) {
             </S.CommentsContainer>
             {props.isCoach &&
               props.myData?.fetchmyuser.id === props.router.query.coachId && (
-                <button onClick={props.onAnswerClick}>답변하러 가기</button>
+                <S.AnswerButton onClick={props.onAnswerClick}>
+                  답변하러 가기
+                </S.AnswerButton>
               )}
           </S.CoachAnswerContainer>
         )}

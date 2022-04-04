@@ -6,7 +6,6 @@ import { SiAnsible } from "react-icons/si";
 import { MdLockOpen, MdOutlineQuestionAnswer } from "react-icons/md";
 
 export default function AnswerPresenter(props) {
-  console.log(props.answer);
   return (
     <S.CoachAnswerContainer>
       <S.CommentsContainer>

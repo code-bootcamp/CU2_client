@@ -1,39 +1,38 @@
+import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CoachingUsCommentsUI from "./CoachingUsComments.Presenter";
-import {} from "./CoachingUsComments.Queries";
+import {
+  FETCH_ANSWER,
+  FETCH_COACH_COMMENTS,
+} from "./CoachingUsComments.Queries";
 
 export default function CoachingUsCommentsPage() {
-  const coachComments = [
-    {
-      id: 0,
-      title: "멘토질문글멘토질문글멘토질문글멘토질문글",
-      contents:
-        "멘토 답변 글입니다. 멘토 답변 글입니다. 멘토 답변 글입니다. 멘토 답변 글입니다. 멘토 답변 글입니다. 멘토 답변 글입니다. 멘토 답변 글입니다. 멘토 답변 글입니다. 멘토 답변 글입니다. ",
-      hits: 250,
-      likes: 124,
+  const router = useRouter();
+  const [answer, setAnswer] = useState([]);
+  const { data: answerData } = useQuery(FETCH_ANSWER);
+  const { data } = useQuery(FETCH_COACH_COMMENTS, {
+    variables: {
+      coachId: String(router.query.coachId),
     },
-    {
-      id: 1,
-      title: "멘토질문글멘토질문글멘토질문글멘토질문글",
-      contents: "멘토 답변 글입니다. 멘토 답변 글입니다. 멘토 답변 글입니다. ",
-      hits: 250,
-      likes: 124,
-    },
-    {
-      id: 2,
-      title: "멘토질문글멘토질문글멘토질문글멘토질문글",
-      contents: "멘토 답변 글입니다. 멘토 답변 글입니다. 멘토 답변 글입니다. ",
-      hits: 250,
-      likes: 124,
-    },
-    {
-      id: 3,
-      title: "멘토질문글멘토질문글멘토질문글멘토질문글",
-      contents: "멘토 답변 글입니다. 멘토 답변 글입니다. 멘토 답변 글입니다. ",
-      hits: 250,
-      likes: 124,
-    },
-  ];
-  return <CoachingUsCommentsUI coachComments={coachComments} />;
+  });
+
+  const answerList = answerData?.coachAnsweredList;
+  const comment = data?.fetchQuestionListPerCoach;
+
+  useEffect(() => {
+    const result = answerList?.filter(
+      (answer) => answer?.question?.id === comment?.[0]?.id
+    );
+    console.log(result);
+    setAnswer(result);
+  }, [answerData]);
+
+  return (
+    <CoachingUsCommentsUI
+      coachComments={comment}
+      answer={answer}
+      router={router}
+    />
+  );
 }

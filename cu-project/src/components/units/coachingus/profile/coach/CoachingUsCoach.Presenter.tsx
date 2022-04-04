@@ -38,7 +38,9 @@ export default function CoachingUsCoachUI(props) {
             <p>{props.comment?.[0]?.fromUser.name}님의 질문입니다</p>
           </S.CommentsTitle>
           <Blank height="10px" />
-          <S.CommentsContents>{props.comment?.[0].contents}</S.CommentsContents>
+          <S.CommentsContents>
+            {props.comment?.[0]?.contents}
+          </S.CommentsContents>
           <Blank height="20px" />
           <S.CommentsInfo>
             <S.CommentsInfoLikes>

@@ -104,3 +104,18 @@ export const CommentsContainer = styled.div`
     font-weight: 300;
   }
 `;
+export const AnswerButton = styled.button`
+  all: unset;
+  padding: 5px 15px;
+
+  font-size: 14px;
+  color: black;
+  background-color: white;
+  border-radius: 15px;
+  border: 1px solid #ea345a;
+
+  :hover {
+    background-color: #ea345a;
+    color: white;
+  }
+`;
