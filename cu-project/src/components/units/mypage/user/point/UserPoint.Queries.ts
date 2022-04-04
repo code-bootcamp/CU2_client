@@ -18,3 +18,14 @@ export const FETCH_MY_USER = gql`
     }
   }
 `;
+
+export const FETCH_MY_POINT_HISTORY = gql`
+  query fetchMyPointHistory {
+    fetchMyPointHistory {
+      id
+      impUid
+      amount
+      status
+    }
+  }
+`;
