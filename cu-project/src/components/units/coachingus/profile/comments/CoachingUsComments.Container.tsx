@@ -19,10 +19,12 @@ export default function CoachingUsCommentsPage() {
 
   const answerList = answerData?.coachAnsweredList;
   const comment = data?.fetchQuestionListPerCoach;
+  console.log("comment", comment);
 
   useEffect(() => {
-    const result = answerList?.filter(
-      (answer) => answer?.question?.id === comment?.[0]?.id
+    const commentListMap = comment?.map((el) => el.id);
+    const result = answerList?.filter((answer) =>
+      commentListMap.includes(answer?.question?.id)
     );
     console.log(result);
     setAnswer(result);

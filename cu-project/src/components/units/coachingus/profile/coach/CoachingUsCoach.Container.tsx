@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
+import Loading from "../../../../commons/Loading/Loading";
 import CoachingUsCoachUI from "./CoachingUsCoach.Presenter";
 import {
   FETCH_COACH_COLUMNS,
@@ -31,14 +32,21 @@ export default function CoachingUsCoachPage(props) {
   // console.log(comment);
 
   const columnList = props.coachColumnsList?.slice(0, 2);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const result = answerList?.filter(
       (answer) => answer?.question?.id === comment?.[0]?.id
     );
-    console.log(result);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
     setAnswer(result);
-  }, [answerData]);
+  }, [answerData, coachData]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <CoachingUsCoachUI
