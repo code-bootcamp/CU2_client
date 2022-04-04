@@ -40,3 +40,17 @@ export const CREATE_STACK_COMMENT = gql`
     }
   }
 `
+
+export const UPDATE_STACK = gql`
+mutation updateStack($stackid: String!, $contents: String!, $title: String!){
+  updateStack(stackid: $stackid, contents: $contents, title: $title){
+    id
+  }
+}
+`;
+
+export const DELETE_STACK = gql`
+  mutation deleteStack($stackid: String!){
+    deleteStack(stackid: $stackid)
+  }
+`

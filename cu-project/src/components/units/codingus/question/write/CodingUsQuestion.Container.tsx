@@ -1,15 +1,28 @@
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { ChangeEvent, useState, KeyboardEvent } from "react";
-import useStore from "../../../../../commons/store/store";
+import { ChangeEvent, useState, KeyboardEvent, useEffect } from "react";
+import { useAuth } from "../../../../commons/hooks/useAuth";
 import {
   IMutation,
   IMutationCreateStackArgs,
+  IUser,
 } from "../../../../../commons/types/generated/types";
 import CodingUsLayout from "../../layout/CodingUsLayout";
 import CoachingUsQuestionUI from "./CodingUsQuestion.Presenter";
 import { CREATE_STACK } from "./CodingUsQuestion.Queries";
+import { getLoggenInUser } from "../../../../../commons/libraries/getLoggedInUser";
+import useStore from "../../../../../commons/store/store";
 export default function CodingUsQuestion() {
+  useAuth();
+  const accessToken = useStore((state) => state.accessToken);
+  const [userInfo, setUserInfo] = useState<IUser>();
+  useEffect(() => {
+    const getUserInfo = async () => {
+      const userInfo = await getLoggenInUser(accessToken);
+      setUserInfo(userInfo);
+    };
+    getUserInfo()
+  }, []);
   const [createQuestion] = useMutation<
     Pick<IMutation, "createStack">,
     IMutationCreateStackArgs
@@ -61,9 +74,9 @@ export default function CodingUsQuestion() {
       console.log(e.currentTarget.id);
       return setTags(tags.filter((_, i) => i + 1 !== tags.length));
     } else {
-      if (tags.length > 1) {
+      if (tags.length > 2) {
         e.currentTarget.value = "";
-        return alert("최대 두 개까지 입력 가능합니다.");
+        return alert("최대 3 개까지 입력 가능합니다.");
       } else {
         if (e.key === "Enter") {
           if (e.currentTarget.value === "") {
@@ -82,7 +95,7 @@ export default function CodingUsQuestion() {
       children={
         <CoachingUsQuestionUI
           // nickname={userInfo.nickname || ""}
-          nickname={""}
+          nickname={userInfo?.nickname}
           inputs={inputs}
           tags={tags}
           onChangeInput={onChangeInput}

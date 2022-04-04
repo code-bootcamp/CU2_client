@@ -1,4 +1,5 @@
 import { gql, GraphQLClient } from "graphql-request";
+import { IQuery } from "../types/generated/types";
 
 const FETCH_MY_USER = gql`
   query fetchmyuser {

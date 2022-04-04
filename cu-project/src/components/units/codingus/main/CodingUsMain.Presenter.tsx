@@ -10,10 +10,10 @@ import { IBlog, IUser } from "../../../../commons/types/generated/types";
 export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
   return (
     <S.CodingUsMain>
-      <S.SearchWrapper>
+      {/* <S.SearchWrapper>
         <S.SearchInput placeholder="검색"></S.SearchInput>
         <S.SearchBtn></S.SearchBtn>
-      </S.SearchWrapper>
+      </S.SearchWrapper> */}
       <Blank height="60px" />
       <CodingUsHistory
         historyData={{

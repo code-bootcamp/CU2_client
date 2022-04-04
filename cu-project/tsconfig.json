@@ -21,6 +21,6 @@
     "**/*.tsx",
     "pages/_app.tsx",
     "src/components/units/landing/landing.Presenter test.tsx "
-  ],
+, "src/components/units/landing/landing.Presenter.jsx"  ],
   "exclude": ["node_modules"]
 }

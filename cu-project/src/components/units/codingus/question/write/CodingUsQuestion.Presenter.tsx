@@ -11,23 +11,10 @@ export default function CodingUsQuestionUI(props: ICodingUsQuestionUIProps) {
         <S.CoachQuestionTitle>질문하기</S.CoachQuestionTitle>
         <Blank height="30px" />
         <S.CoachQuestionSubTitle>
-          <p>{props.nickname || "uesename"}님, 고민이 있나요?</p>
+          <p>{props.nickname && props.nickname}님, 고민이 있나요?</p>
           <Blank height="10px" />
-          <p>커리어, 직무 고민에 대한 해답을 코치님에게 직접 들어보세요!</p>
+          <p>고민에 대한 해답을 코치님에게 직접 들어보세요!</p>
         </S.CoachQuestionSubTitle>
-        <Blank height="50px" />
-        <S.CoachQuestionExample>
-          <h1>질문을 구체적으로 작성해 주세요.</h1>
-          <h2>
-            <p>예시.</p>
-            <Blank width="5px" /> 영업 직무 취업을 목표로 3개월 계획을
-            세웠습니다.
-          </h2>
-          <h2>
-            <p>예시.</p> <Blank width="5px" />
-            외국계 기업에서 좋은 조건으로 인터뷰를 제안했습니다.
-          </h2>
-        </S.CoachQuestionExample>
         <Blank height="50px" />
         <S.ContainerQuestionBody>
             <S.QuestionTitle
