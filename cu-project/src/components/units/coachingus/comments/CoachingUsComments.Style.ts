@@ -51,6 +51,9 @@ export const CommentsTitleLeft = styled.div`
   font-size: 16px;
 
   cursor: pointer;
+  & p {
+    margin: 0;
+  }
 `;
 export const TitlePicture = styled.div`
   border-radius: 100%;

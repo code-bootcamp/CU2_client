@@ -5,6 +5,7 @@ import { BiLike, BiDislike } from "react-icons/bi";
 import Blank from "../../../commons/Blank";
 import CoachingUsSidebar from "../sidebar/CoachingUsSidebar.Container";
 import * as S from "./CoachingUsComments.Style";
+import { useRouter } from "next/router";
 
 export default function CoachingUsCommentsUI(
   props: ICoachingUsCommentsUIProps
@@ -107,28 +108,34 @@ export default function CoachingUsCommentsUI(
 }
 
 export const CommentsCard = (props) => {
+  const router = useRouter();
   return (
     <>
       <S.CommentsContainer>
         <S.CommentsTitle>
           <S.CommentsTitleLeft
-            onClick={props.moveToPage(
-              `/coachingus/coaches/${props.toCoach.id}/${props.data.id}`
-            )}
+            onClick={() =>
+              router.push(
+                `/coachingus/coaches/${props.data?.toCoach.id}/${props.data.id}`
+              )
+            }
           >
             <S.TitlePicture></S.TitlePicture>
             <Blank width="10px" />
             <p>
-              {props.data.mento.name} | {props.data.mento.cor}
+              {props.data.toCoach.name} |{" "}
+              {props.data.toCoach.coachProfile.orgName}
             </p>
           </S.CommentsTitleLeft>
-          <S.CommentsTitleRight>{props.data.createdAt}</S.CommentsTitleRight>
+          {/* <S.CommentsTitleRight>{props.data.id}</S.CommentsTitleRight> */}
         </S.CommentsTitle>
         <S.CommentsContents>
           <S.ContentsQuestion
-            onClick={props.moveToPage(
-              `/coachingus/coaches/${props.toCoach.id}/${props.data.id}`
-            )}
+            onClick={() =>
+              router.push(
+                `/coachingus/coaches/${props.toCoach.id}/${props.data.id}`
+              )
+            }
           >
             <S.QuestionIcon>
               <BsQuestionCircleFill
@@ -141,15 +148,17 @@ export const CommentsCard = (props) => {
               />
             </S.QuestionIcon>
             <Blank width="20px" />
-            <S.QuestionText>{props.data.question}</S.QuestionText>
+            <S.QuestionText>{props.data.title}</S.QuestionText>
           </S.ContentsQuestion>
           <Blank height="20px" />
           <S.ContentsAnwer
-            onClick={props.moveToPage(
-              `/coachingus/coaches/${props.data.toCoach.id}/${props.data.id}`
-            )}
+            onClick={() =>
+              router.push(
+                `/coachingus/coaches/${props.data.toCoach.id}/${props.data.id}`
+              )
+            }
           >
-            <S.QuestionIcon>
+            {/* <S.QuestionIcon>
               <SiAnsible
                 style={{
                   background: "#EA345A",
@@ -160,11 +169,11 @@ export const CommentsCard = (props) => {
                   borderRadius: "100%",
                 }}
               />
-            </S.QuestionIcon>
+            </S.QuestionIcon> */}
             <Blank width="20px" />
-            <S.QuestionText>{props.data.answer}</S.QuestionText>
+            <S.QuestionText>{props.data.contents}</S.QuestionText>
           </S.ContentsAnwer>
-          <Blank height="15px" />
+          {/* <Blank height="15px" />
           <S.ContentsInfo>
             <S.ContentsInfoLikes>
               <BiLike
@@ -188,7 +197,7 @@ export const CommentsCard = (props) => {
               <Blank width="10px" />
               Bad {props.data.disLiske}
             </S.ContentsInfoDislikes>
-          </S.ContentsInfo>
+          </S.ContentsInfo> */}
         </S.CommentsContents>
       </S.CommentsContainer>
     </>

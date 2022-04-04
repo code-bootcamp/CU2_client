@@ -100,7 +100,9 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
               <span>유저 랭킹</span>
               <p>
                 {props.rankData?.fetchUserOrderbyscore.map((el, idx) => {
-                  return el.id === props.data?.fetchmyuser.id ? idx : "";
+                  return el.id === props.data?.fetchmyuser.id
+                    ? `${idx} 등 (${el.score} 점)`
+                    : "";
                 })}
               </p>
             </S.ProfileContents>

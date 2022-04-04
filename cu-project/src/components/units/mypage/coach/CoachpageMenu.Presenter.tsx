@@ -99,7 +99,11 @@ export default function CoachpageMenuUI(props: ICoachPageMenuUIProps) {
             <S.ProfileContents>
               <span>코치 랭킹</span>
               <p onClick={props.onClickMove("/mypage/coach/ranking")}>
-                {props.data?.fetchCoachUser.score} 점
+                {props.rankData?.fetchUserOrderbyscore.map((el, idx) => {
+                  return el.id === props.data?.fetchCoachUser.id
+                    ? `${idx} 등 (${el.score} 점)`
+                    : "";
+                })}
               </p>
             </S.ProfileContents>
             <Blank height="10px" />

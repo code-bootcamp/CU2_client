@@ -55,9 +55,9 @@ export const FETCH_COACH_USER_LIST = gql`
   }
 `;
 
-export const FETCH_COACH_QUESTION_LIST = gql`
-  query fetchCoachQuestionList {
-    fetchCoachQuestionList {
+export const FETCH_QUESTION_LIST = gql`
+  query fetchQuestionList {
+    fetchQuestionList {
       id
       title
       contents
@@ -67,14 +67,17 @@ export const FETCH_COACH_QUESTION_LIST = gql`
       toCoach {
         id
         name
+        coachProfile {
+          orgName
+        }
       }
     }
   }
 `;
 
 export const FETCH_RECOMMEND_COLUM_LIST = gql`
-  query fetchRecommendColumnList {
-    fetchRecommendColumnList {
+  query fetchHighHitColumnList {
+    fetchHighHitColumnList {
       id
       title
       contents
@@ -84,6 +87,23 @@ export const FETCH_RECOMMEND_COLUM_LIST = gql`
         coachProfile {
           id
         }
+      }
+    }
+  }
+`;
+
+export const FETCH_USER_ORDER_BY_SCORE = gql`
+  query fetchUserOrderbyscore {
+    fetchUserOrderbyscore {
+      id
+      score
+      name
+      role
+      coachProfile {
+        orgName
+        orgType
+        department
+        job
       }
     }
   }

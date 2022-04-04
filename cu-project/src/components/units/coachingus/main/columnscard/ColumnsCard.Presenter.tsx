@@ -66,7 +66,7 @@ export function ColumnsCardMain(props) {
           );
         }}
       >
-        <S.ColumnPicture>{props.column.picture}</S.ColumnPicture>
+        <S.ColumnPicture>{props.column?.picture}</S.ColumnPicture>
         <Blank height="10px" />
         <S.ColumnText>
           <S.ColumnTitle>
