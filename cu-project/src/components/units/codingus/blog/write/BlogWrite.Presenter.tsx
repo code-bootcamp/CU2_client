@@ -14,7 +14,6 @@ import StackSelect from "../../../../commons/Select/StackSelect";
 export default function CodingUsBlogWriteUI(props: ICodingUsBlogWriteUIProps) {
   return (
     <S.CodingUsBlogWrite>
-      {console.log(props)}
       <S.ButtonWrapper>
         <Button01
           value={props.isEdit ? "취소" : "나가기"}

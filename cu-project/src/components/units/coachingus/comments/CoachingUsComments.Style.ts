@@ -70,6 +70,9 @@ export const CommentsTitleLeft = styled.div`
   }
 
   cursor: pointer;
+  & p {
+    margin: 0;
+  }
 `;
 export const TitlePicture = styled.div`
   border-radius: 100%;

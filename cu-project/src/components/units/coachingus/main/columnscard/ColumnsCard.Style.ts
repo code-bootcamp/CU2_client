@@ -35,7 +35,8 @@ export const ColumnsListSubTitle = styled.div`
 export const ContainerColumnsListBody = styled.div`
   display: flex;
   justify-content: center;
-  width: 700px;
+  min-width: 800px;
+
 `;
 
 export const ColumnsList = styled.div`
@@ -45,7 +46,8 @@ export const ColumnsList = styled.div`
   justify-content: flex-start;
   border-radius: 20px;
   padding: 15px 20px;
-  width: 230px;
+  min-width: 230px;
+  width: 100%;
 
   height: fit-content;
   margin: 20px 0;

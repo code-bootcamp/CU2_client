@@ -6,6 +6,7 @@ import Blank from "../../../commons/Blank";
 import CoachingUsSidebar from "../sidebar/CoachingUsSidebar.Container";
 import * as S from "./CoachingUsComments.Style";
 import InfiniteScroll from "react-infinite-scroller";
+import { useRouter } from "next/router";
 
 export default function CoachingUsCommentsUI(
   props: ICoachingUsCommentsUIProps
@@ -138,14 +139,17 @@ export default function CoachingUsCommentsUI(
 }
 
 export const CommentsCard = (props) => {
+  const router = useRouter();
   return (
     <>
       <S.CommentsContainer key={index}>
         <S.CommentsTitle>
           <S.CommentsTitleLeft
-            onClick={props.moveToPage(
-              `/coachingus/coaches/${comment.toCoach.id}/${comment.id}`
-            )}
+            onClick={() =>
+              router.push(
+                `/coachingus/coaches/${props.data?.toCoach.id}/${props.data.id}`
+              )
+            }
           >
             <S.TitlePicture></S.TitlePicture>
             <Blank width="10px" />
@@ -180,7 +184,7 @@ export const CommentsCard = (props) => {
               `/coachingus/coaches/${comment.toCoach.id}/${comment.id}`
             )}
           >
-            <S.QuestionIcon>
+            {/* <S.QuestionIcon>
               <SiAnsible
                 style={{
                   background: "#EA345A",
@@ -191,11 +195,11 @@ export const CommentsCard = (props) => {
                   borderRadius: "100%",
                 }}
               />
-            </S.QuestionIcon>
+            </S.QuestionIcon> */}
             <Blank width="20px" />
             <S.QuestionText>{comment.contents}</S.QuestionText>
           </S.ContentsAnwer>
-          <Blank height="15px" />
+          {/* <Blank height="15px" />
           <S.ContentsInfo>
             <S.ContentsInfoLikes>
               <BiLike
@@ -219,7 +223,7 @@ export const CommentsCard = (props) => {
               <Blank width="10px" />
               Bad {index}
             </S.ContentsInfoDislikes>
-          </S.ContentsInfo>
+          </S.ContentsInfo> */}
         </S.CommentsContents>
       </S.CommentsContainer>
     </>
