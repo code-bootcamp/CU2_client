@@ -8,7 +8,14 @@ export default function CoachingUsCommentsUI(props) {
       <S.CoachCommentsTitle>Coach Comments</S.CoachCommentsTitle>
       <S.CoachCommentsContents>
         {props.coachComments.map((comment) => (
-          <S.commentWrapper key={comment.id}>
+          <S.commentWrapper
+            key={comment.id}
+            onClick={() =>
+              props.router.push(
+                `/coachingus/coaches/${props.router.query.coachId}/${comment.id}`
+              )
+            }
+          >
             <S.WrapperLeft>
               <S.commentTitle>
                 <BsQuestionCircleFill
@@ -26,14 +33,18 @@ export default function CoachingUsCommentsUI(props) {
               <S.commentContents>{comment.contents}</S.commentContents>
               <Blank height="20px" />
               <S.CommentsInfo>
-                <S.CommentsInfoHits>조회수 302</S.CommentsInfoHits>
-                <Blank width="20px" />
-                <S.CommentsInfoLikes>좋아요 21</S.CommentsInfoLikes>
+                <S.CommentsInfoLikes>
+                  좋아요{" "}
+                  {
+                    props.answer?.filter(
+                      (el) => el.question.id === comment.id
+                    )[0]?.likecount
+                  }
+                </S.CommentsInfoLikes>
               </S.CommentsInfo>
             </S.WrapperLeft>
-            <S.WrapperRight>
-              <S.ContentsPicture />
-            </S.WrapperRight>
+            {props.answer?.filter((el) => el.question.id === comment.id)[0] !==
+              undefined && <S.WrapperRight>답변완료</S.WrapperRight>}
           </S.commentWrapper>
         ))}
       </S.CoachCommentsContents>

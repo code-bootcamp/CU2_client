@@ -6,7 +6,7 @@ import { SiAnsible } from "react-icons/si";
 import { MdLockOpen, MdOutlineQuestionAnswer } from "react-icons/md";
 
 export default function AnswerPresenter(props) {
-  console.log(props.answer);
+  console.log(props.answer[0]?.likecount);
   return (
     <S.CoachAnswerContainer>
       <S.CommentsContainer>
@@ -66,7 +66,7 @@ export default function AnswerPresenter(props) {
             <p>답변이 도움이 되셨나용?</p>
             <Blank height="20px" />
             <S.InfoBox>
-              <S.ContentsInfoLikes>
+              <S.ContentsInfoLikes onClick={props.onClicklikeBtn}>
                 <BiLike
                   style={{
                     height: "20px",
@@ -78,7 +78,7 @@ export default function AnswerPresenter(props) {
                 Good {props.answer[0]?.likecount || 0}
               </S.ContentsInfoLikes>
               <Blank width="30px" />
-              <S.ContentsInfoDislikes>
+              <S.ContentsInfoDislikes onClick={props.onClickDislikeBtn}>
                 <BiDislike
                   style={{
                     height: "20px",

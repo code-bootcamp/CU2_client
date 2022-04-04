@@ -14,6 +14,7 @@ export default function CoachingUsQuestion(props: ICoachingUsQuestionProps) {
 
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
+  console.log(title, contents);
   const { data } = useQuery(FETCH_MY_USER);
   const [createCoachQuestion] = useMutation(CREATE_COACH_QUESTION);
 
@@ -29,11 +30,9 @@ export default function CoachingUsQuestion(props: ICoachingUsQuestionProps) {
         },
       });
 
-      if (result) {
-        router.push(
-          `/coachingus/coaches/${router.query.coachId}/${result?.data?.id}`
-        );
-      }
+      router.push(
+        `/coachingus/coaches/${router.query.coachId}/${result?.data?.createCoachQuestion?.id}`
+      );
     } catch (err) {
       console.dir(err);
     }

@@ -51,3 +51,20 @@ export const FETCH_MY_USER = gql`
     }
   }
 `;
+
+export const LIKE_TOGGLE = gql`
+  mutation likeAnswerToggle($answerId: String!) {
+    likeAnswerToggle(answerId: $answerId) {
+      id
+      isLike
+    }
+  }
+`;
+export const DISLIKE_TOGGLE = gql`
+  mutation dislikeAnswerToggle($answerId: String!) {
+    dislikeAnswerToggle(answerId: $answerId) {
+      id
+      isLike
+    }
+  }
+`;
