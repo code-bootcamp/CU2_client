@@ -24,6 +24,7 @@ export const FETCH_USER_ORDER_BY_SCORE = gql`
   query fetchUserOrderbyscore {
     fetchUserOrderbyscore {
       id
+      score
     }
   }
 `;

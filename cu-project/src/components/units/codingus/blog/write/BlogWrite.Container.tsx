@@ -92,8 +92,6 @@ export default function CodingUsBlogWrite(props: ICodingUsBlogWriteProps) {
       }
       router.push(`/codingus/blog/${router.query.blogId}`);
     } catch (err: any) {}
-
-    console.log();
   };
   const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);

@@ -1,21 +1,23 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import useStore from "../../../../commons/store/store";
 import { useAuth } from "../../../commons/hooks/useAuth";
-import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-import { FETCH_COACH_USER, FETCH_MY_USER } from "./Coachpage.Queries";
+import {
+  FETCH_COACH_USER,
+  FETCH_MY_USER,
+  FETCH_USER_ORDER_BY_SCORE,
+} from "./Coachpage.Queries";
 import CoachpageMenuUI from "./CoachpageMenu.Presenter";
 
 export default function CoachpageMenu() {
   const router = useRouter();
   const [isModal, setIsModal] = useState(false);
-  const { moveToPage, currentPage } = useMoveToPage();
   const { data: userData } = useQuery(FETCH_MY_USER);
+  const { data: rankData } = useQuery(FETCH_USER_ORDER_BY_SCORE);
   const { data } = useQuery(FETCH_COACH_USER, {
     variables: { userId: userData?.fetchmyuser.id },
   });
-  // useAuth();
+  useAuth();
 
   const onClickModal = () => {
     setIsModal((prev) => !prev);
@@ -29,6 +31,7 @@ export default function CoachpageMenu() {
     <CoachpageMenuUI
       data={data}
       userData={userData}
+      rankData={rankData}
       isModal={isModal}
       onClickMove={onClickMove}
       onClickModal={onClickModal}

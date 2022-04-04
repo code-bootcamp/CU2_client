@@ -4,15 +4,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import Blank from "../../commons/Blank";
-import Card from "../codingus/main/Card/Card.container";
 import { BsSearch } from "react-icons/bs";
 import QuestionCard01MyPage from "../../commons/Card/QuestionCard01/QuestionCard01MyPage.Container";
 import { IStack } from "../../../commons/types/generated/types";
 import BlogCard01 from "../../commons/Card/BlogCard01/BlogCard01";
-import CoachingUsCoachCard from "../coachingus/profile/CoachingUsCoachCard";
 import { CommentsCard } from "../coachingus/comments/CoachingUsComments.Presenter";
-import ColumnsCardPage from "../coachingus/main/columnscard/ColumnsCard.Container";
 import { ColumnsCardMain } from "../coachingus/main/columnscard/ColumnsCard.Presenter";
+import CoachingUsCoachCardMyPage from "../coachingus/profile/CoachingUsCoachCardMyPage";
 
 export default function MainUI(props: MainPageUIProps) {
   return (
@@ -66,7 +64,10 @@ export default function MainUI(props: MainPageUIProps) {
         <S.ServiceHead>🚀 오늘부터 시작해보세요!</S.ServiceHead>
         <S.ServiceSubHead>
           <p>블로그 쓰고 점수와 피드백을 받아봐요</p>
-          <p>{`전체보기 >`}</p>
+          <p
+            onClick={props.moveToPage("/codingus/blog")}
+            style={{ cursor: "pointer" }}
+          >{`전체보기 >`}</p>
         </S.ServiceSubHead>
         <S.ServiceBody>
           <S.SliderContentBox {...props.responsiveSettings}>
@@ -85,7 +86,10 @@ export default function MainUI(props: MainPageUIProps) {
         <S.ServiceHead>🙋 공부하다가 막히는 게 있나요?</S.ServiceHead>
         <S.ServiceSubHead>
           <p>CodingUs들이 서로 물어보고 알려줘요!</p>
-          <p>{`전체보기 >`}</p>
+          <p
+            onClick={props.moveToPage("/codingus/question")}
+            style={{ cursor: "pointer" }}
+          >{`전체보기 >`}</p>
         </S.ServiceSubHead>
         <div
           style={{
@@ -122,18 +126,27 @@ export default function MainUI(props: MainPageUIProps) {
         <S.ServiceHead>🔥 CU2만의 베스트 코치들</S.ServiceHead>
         <S.ServiceSubHead>
           <p>자기소개서와 포트폴리오, 취업에 관한 모든 것들 다 물어보세요</p>
-          <p>{`전체보기 >`}</p>
+          <p
+            onClick={props.moveToPage("/coachingus/coaches")}
+            style={{ cursor: "pointer" }}
+          >{`전체보기 >`}</p>
         </S.ServiceSubHead>
         <div
           style={{
             width: "100%",
             display: "flex",
-            justifyContent: "center",
+            // flexDirection: "column",
+            justifyContent: "space-around",
             flexWrap: "wrap",
           }}
         >
-          <CoachingUsCoachCard />
-          {/* <CoachesCardPage main={true} /> */}
+          {props.rankData?.fetchUserOrderbyscore
+            ?.filter((el) => el.role === "COACH")
+            ?.map((el) => (
+              <div key={el.id}>
+                <CoachingUsCoachCardMyPage coach={el} />
+              </div>
+            ))}
         </div>
       </S.ServiceBox>
       <Blank height="100px" />
@@ -141,20 +154,26 @@ export default function MainUI(props: MainPageUIProps) {
         <S.ServiceHead>🔥 코치들의 코멘트</S.ServiceHead>
         <S.ServiceSubHead>
           <p>양질의 피드백을 경험하세요</p>
-          <p>{`전체보기 >`}</p>
+          <p
+            onClick={props.moveToPage("/coachingus/comments")}
+            style={{ cursor: "pointer" }}
+          >
+            {" "}
+            {`전체보기 >`}
+          </p>
         </S.ServiceSubHead>
         <div
           style={{
             width: "100%",
             display: "flex",
-            justifyContent: "center",
+            justifyContent: "space-around",
             flexWrap: "wrap",
           }}
         >
-          {props.commentData?.fetchCoachQuestionList
+          {props.commentData?.fetchQuestionList
             .filter((el: IStack, index: number) => index < 4)
             .map((el) => (
-              <div key={el.id}>
+              <div key={el.id} style={{ width: "calc(50% - 20px)" }}>
                 <CommentsCard data={el} />
               </div>
             ))}
@@ -165,17 +184,21 @@ export default function MainUI(props: MainPageUIProps) {
         <S.ServiceHead>🔥 코치들의 칼럼</S.ServiceHead>
         <S.ServiceSubHead>
           <p>전문성이 더 한 콘텐츠를 읽어보세요</p>
-          <p>{`전체보기 >`}</p>
+          <p
+            onClick={props.moveToPage("/coachingus/columns")}
+            style={{ cursor: "pointer" }}
+          >{`전체보기 >`}</p>
         </S.ServiceSubHead>
         <div
           style={{
             width: "100%",
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "space-around",
             flexWrap: "wrap",
           }}
         >
-          {props.columnData?.fetchRecommendColumnList
+          {console.log(props.columnData)}
+          {props.columnData?.fetchHighHitColumnList
             .filter((el: IStack, index: number) => index < 4)
             .map((el) => (
               <div key={el.id}>
