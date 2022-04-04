@@ -17,7 +17,7 @@ import { Editor } from "@toast-ui/react-editor";
 
 
 import { RadioChangeEvent } from "antd";
-import { IBlog, IStack, IUser } from "./generated/types";
+import { IBlog, IStack, IStackComment, IUser } from "./generated/types";
 
 
 export interface ILayoutProps {
@@ -187,18 +187,17 @@ export interface ICodingUsCardProps {
 }
 
 export interface ICodingQuestionCardProps {
+  isQuestion?: boolean;
   width?: number;
   height?: number;
-  image?: string;
-  title?: string;
-  contents?: string;
-  writer: string;
-  isQuestion?: boolean;
-  createdAt: string;
-  goodCnt?: number;
-  badCnt?: number;
-  isGood?: boolean;
-  isBad?: boolean;
+  tags: string[] | undefined;
+  nickname: string | undefined;
+  contents: string | undefined;
+  title: string | undefined;
+  like: number | undefined;
+  dislike: number | undefined;
+  createAt: string | undefined;
+  // data?: IStack | IStackComment;
   onClickBtn: (event: MouseEvent<HTMLButtonElement>) => void;
   onClickDelete: (id: string) => () => void;
   onClickEditSubmit: (id: string) => () => void;

@@ -18,13 +18,13 @@ export type Scalars = {
 
 export type IAnswer = {
   __typename?: 'Answer';
-  amount: Scalars['Int'];
-  contents: Scalars['String'];
+  amount?: Maybe<Scalars['Int']>;
+  contents?: Maybe<Scalars['String']>;
   dislikecount: Scalars['Int'];
   id: Scalars['String'];
   likecount: Scalars['Int'];
   question: IQuestion;
-  title: Scalars['String'];
+  title?: Maybe<Scalars['String']>;
 };
 
 export type IAnswerLike = {
@@ -174,7 +174,7 @@ export type ICreateColumnInput = {
 };
 
 export type ICreateQuestionInput = {
-  QType?: InputMaybe<IQuestion_Field_Enum>;
+  QType?: InputMaybe<Scalars['String']>;
   contents: Scalars['String'];
   title: Scalars['String'];
 };
@@ -269,6 +269,7 @@ export type IMutation = {
   updateStack: IStack;
   updateStackComment: IStackComment;
   updateUser: IUser;
+  uploadCoachProfileImages: Array<Scalars['String']>;
   uploadStackFile: Array<Scalars['String']>;
   uploadblogFile: Array<Scalars['String']>;
   usernulliddelete: Scalars['Boolean'];
@@ -594,6 +595,11 @@ export type IMutationUpdateUserArgs = {
 };
 
 
+export type IMutationUploadCoachProfileImagesArgs = {
+  files: Array<Scalars['Upload']>;
+};
+
+
 export type IMutationUploadStackFileArgs = {
   files: Array<Scalars['Upload']>;
 };
@@ -664,7 +670,11 @@ export type IQuery = {
   fetchMyColumnComment: Array<IColumnComment>;
   fetchMyPointHistory: Array<IPointTransaction>;
   fetchMyQuestionList: Array<IQuestion>;
+  fetchQnACoachListPerCoach: Array<IAnswer>;
+  fetchQnACoachingList: Array<IAnswer>;
   fetchQuestion: IQuestion;
+  fetchQuestionList: Array<IQuestion>;
+  fetchQuestionListPerCoach: Array<IQuestion>;
   fetchRecommendColumnList: Array<ICoachColumn>;
   fetchRecommendColumnListArgs: Array<ICoachColumn>;
   fetchSearchedColumnList: Array<ICoachColumn>;
@@ -685,6 +695,7 @@ export type IQuery = {
   fetchotherStackorderbylike: Array<IStack>;
   fetchuserbypage: Array<IUser>;
   goodEvalAnswerList: Array<IAnswer>;
+  goodEvalAnswerListPerCoach: Array<IAnswer>;
   myCoachingListHasAnswer: Array<IAnswer>;
   stringReturn: Scalars['String'];
 };
@@ -736,8 +747,18 @@ export type IQueryFetchHighHitColumnListArgsArgs = {
 };
 
 
+export type IQueryFetchQnACoachListPerCoachArgs = {
+  coachId: Scalars['String'];
+};
+
+
 export type IQueryFetchQuestionArgs = {
   questionId: Scalars['String'];
+};
+
+
+export type IQueryFetchQuestionListPerCoachArgs = {
+  coachId: Scalars['String'];
 };
 
 
@@ -782,13 +803,19 @@ export type IQueryGoodEvalAnswerListArgs = {
   itemCount: Scalars['Float'];
 };
 
+
+export type IQueryGoodEvalAnswerListPerCoachArgs = {
+  coachId: Scalars['String'];
+  itemCount: Scalars['Float'];
+};
+
 export type IQuestion = {
   __typename?: 'Question';
   QType: IQuestion_Field_Enum;
-  contents: Scalars['String'];
+  contents?: Maybe<Scalars['String']>;
   fromUser: IUser;
   id: Scalars['String'];
-  title: Scalars['String'];
+  title?: Maybe<Scalars['String']>;
   toCoach: IUser;
 };
 
@@ -801,11 +828,13 @@ export enum IRole {
 export type IStack = {
   __typename?: 'Stack';
   contents: Scalars['String'];
+  createAt: Scalars['DateTime'];
   dislike: Scalars['Int'];
   id: Scalars['String'];
   like: Scalars['Int'];
   stacktag?: Maybe<Array<IStackTag>>;
   title: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
   user: IUser;
 };
 

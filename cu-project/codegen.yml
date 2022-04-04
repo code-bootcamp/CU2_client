@@ -1,4 +1,4 @@
-schema: asd
+schema: https://backend.cucutoo.com/graphql
 generates:
   ./src/commons/types/generated/types.ts:
     plugins:

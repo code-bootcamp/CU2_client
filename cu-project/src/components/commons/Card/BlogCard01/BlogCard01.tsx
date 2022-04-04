@@ -128,6 +128,7 @@ export default function BlogCard01(props: ICodingUsCardProps) {
             router.push(`/codingus/blog/${props.data.id}`);
           }}
         >
+          {console.log(getTextFromMD(props.data?.contents))}
           {getTextFromMD(props.data?.contents)}
         </S.Contents>
       </S.Body>
