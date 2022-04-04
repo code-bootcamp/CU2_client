@@ -105,3 +105,92 @@ export default function CoachingUsCommentsUI(
     </S.Wrapper>
   );
 }
+
+export const CommentsCard = (props) => {
+  return (
+    <>
+      <S.CommentsContainer>
+        <S.CommentsTitle>
+          <S.CommentsTitleLeft
+            onClick={props.moveToPage(
+              `/coachingus/coaches/${props.toCoach.id}/${props.data.id}`
+            )}
+          >
+            <S.TitlePicture></S.TitlePicture>
+            <Blank width="10px" />
+            <p>
+              {props.data.mento.name} | {props.data.mento.cor}
+            </p>
+          </S.CommentsTitleLeft>
+          <S.CommentsTitleRight>{props.data.createdAt}</S.CommentsTitleRight>
+        </S.CommentsTitle>
+        <S.CommentsContents>
+          <S.ContentsQuestion
+            onClick={props.moveToPage(
+              `/coachingus/coaches/${props.toCoach.id}/${props.data.id}`
+            )}
+          >
+            <S.QuestionIcon>
+              <BsQuestionCircleFill
+                style={{
+                  color: "#EA345A",
+                  height: "24px",
+                  width: "24px",
+                  marginBottom: "4px",
+                }}
+              />
+            </S.QuestionIcon>
+            <Blank width="20px" />
+            <S.QuestionText>{props.data.question}</S.QuestionText>
+          </S.ContentsQuestion>
+          <Blank height="20px" />
+          <S.ContentsAnwer
+            onClick={props.moveToPage(
+              `/coachingus/coaches/${props.data.toCoach.id}/${props.data.id}`
+            )}
+          >
+            <S.QuestionIcon>
+              <SiAnsible
+                style={{
+                  background: "#EA345A",
+                  color: "white",
+                  height: "25px",
+                  width: "25px",
+                  padding: "1px",
+                  borderRadius: "100%",
+                }}
+              />
+            </S.QuestionIcon>
+            <Blank width="20px" />
+            <S.QuestionText>{props.data.answer}</S.QuestionText>
+          </S.ContentsAnwer>
+          <Blank height="15px" />
+          <S.ContentsInfo>
+            <S.ContentsInfoLikes>
+              <BiLike
+                style={{
+                  height: "20px",
+                  width: "20px",
+                  marginBottom: "1px",
+                }}
+              />
+              <Blank width="10px" />
+              Good {props.data.likes}
+            </S.ContentsInfoLikes>
+            <Blank width="30px" />
+            <S.ContentsInfoDislikes>
+              <BiDislike
+                style={{
+                  height: "20px",
+                  width: "20px",
+                }}
+              />
+              <Blank width="10px" />
+              Bad {props.data.disLiske}
+            </S.ContentsInfoDislikes>
+          </S.ContentsInfo>
+        </S.CommentsContents>
+      </S.CommentsContainer>
+    </>
+  );
+};

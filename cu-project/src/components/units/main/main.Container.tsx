@@ -4,14 +4,18 @@ import { MainPageProps } from "../../../commons/types/types";
 import { useMoveToPage } from "../../commons/hooks/useMoveToPage";
 import MainUI from "./main.Presenter";
 import {
+  FETCH_COACH_QUESTION_LIST,
   FETCH_OTHER_BLOG_ORDER_BY_LIKE_ALL,
   FETCH_OTHER_STACK_ORDER_BY_LIKE,
+  FETCH_RECOMMEND_COLUM_LIST,
 } from "./main.Queries";
 
 export default function Main(props: MainPageProps) {
   const { moveToPage } = useMoveToPage();
   const { data: blogData } = useQuery(FETCH_OTHER_BLOG_ORDER_BY_LIKE_ALL);
   const { data: stackData } = useQuery(FETCH_OTHER_STACK_ORDER_BY_LIKE);
+  const { data: commentData } = useQuery(FETCH_COACH_QUESTION_LIST);
+  const { data: columnData } = useQuery(FETCH_RECOMMEND_COLUM_LIST);
 
   const settings = {
     infinite: true,
@@ -70,6 +74,8 @@ export default function Main(props: MainPageProps) {
   return (
     <>
       <MainUI
+        columnData={columnData}
+        commentData={commentData}
         blogData={blogData}
         stackData={stackData}
         settings={settings}

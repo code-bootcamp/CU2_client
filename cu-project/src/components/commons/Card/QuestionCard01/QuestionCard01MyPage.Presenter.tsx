@@ -41,10 +41,9 @@ export default function QuestionCard01MyPageUI(props: IWatingItemProps) {
       </S.RowWrapper>
       <Blank height="17px" />
       <S.RowWrapper>
-        <Icon01 src="/Icon_Unfill_Comment.png" value={0} />
-      </S.RowWrapper>
-      <S.RowWrapper>
-        <AiOutlineLike /> {props.data.like}
+        <AiOutlineLike style={{ width: "30px", height: "30px" }} />
+        <Blank width="10px" />
+        <Label01 value={String(props.data.like)} />
       </S.RowWrapper>
     </S.Wrapper>
   );

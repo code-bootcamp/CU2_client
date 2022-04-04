@@ -144,3 +144,7 @@ export const MoreCoachesListBtn = styled.div`
 
   cursor: pointer;
 `;
+
+export const Main = styled.div`
+  display: ${(props) => props.main && "none"};
+`;

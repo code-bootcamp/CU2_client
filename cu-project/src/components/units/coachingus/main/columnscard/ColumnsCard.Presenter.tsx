@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { ICoachingUsColumnsCardUIProps } from "../../../../../commons/types/types";
 import Blank from "../../../../commons/Blank";
 import * as S from "./ColumnsCard.Style";
@@ -50,5 +51,48 @@ export default function ColumnsCardUI(props: ICoachingUsColumnsCardUIProps) {
         더 많은 칼럼보기 {">"}
       </S.MoreCoachesListBtn>
     </S.ContainerColumnsList>
+  );
+}
+
+export function ColumnsCardMain(props) {
+  const router = useRouter();
+  return (
+    <>
+      <S.ColumnsList
+        key={props.column.id}
+        onClick={() => {
+          router.push(
+            `/coachingus/coaches/${props.column?.user.coachProfile.id}/columns/${props.column?.id}`
+          );
+        }}
+      >
+        <S.ColumnPicture>{props.column.picture}</S.ColumnPicture>
+        <Blank height="10px" />
+        <S.ColumnText>
+          <S.ColumnTitle>
+            {props.column.title.length > 25 ? (
+              <S.ColumnShortenTitle>
+                {props.column.title.slice(0, 25) + "..."}
+              </S.ColumnShortenTitle>
+            ) : (
+              <S.ColumnTitle>{props.column.title}</S.ColumnTitle>
+            )}
+          </S.ColumnTitle>
+          <S.ColumnContents>
+            {props.column.contents.length > 30 ? (
+              <S.ColumnShortenContents>
+                {props.column.contents.slice(0, 30) + "..."}
+              </S.ColumnShortenContents>
+            ) : (
+              <S.ColumnContents>{props.column.contents}</S.ColumnContents>
+            )}
+          </S.ColumnContents>
+          <Blank height="5px" />
+          <S.ColumnFooter>
+            {props.column.user.name} coach | 2일전
+          </S.ColumnFooter>
+        </S.ColumnText>
+      </S.ColumnsList>
+    </>
   );
 }

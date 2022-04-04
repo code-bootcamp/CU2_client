@@ -6,10 +6,13 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import Blank from "../../commons/Blank";
 import Card from "../codingus/main/Card/Card.container";
 import { BsSearch } from "react-icons/bs";
-import BlogCard01MyPage from "../../commons/Card/BlogCard01/BlogCard01MyPage";
 import QuestionCard01MyPage from "../../commons/Card/QuestionCard01/QuestionCard01MyPage.Container";
 import { IStack } from "../../../commons/types/generated/types";
-import CoachesCardPage from "../coachingus/main/coachescard/CoachesCard.Container";
+import BlogCard01 from "../../commons/Card/BlogCard01/BlogCard01";
+import CoachingUsCoachCard from "../coachingus/profile/CoachingUsCoachCard";
+import { CommentsCard } from "../coachingus/comments/CoachingUsComments.Presenter";
+import ColumnsCardPage from "../coachingus/main/columnscard/ColumnsCard.Container";
+import { ColumnsCardMain } from "../coachingus/main/columnscard/ColumnsCard.Presenter";
 
 export default function MainUI(props: MainPageUIProps) {
   return (
@@ -71,7 +74,7 @@ export default function MainUI(props: MainPageUIProps) {
               .filter((el, index) => index < 8)
               .map((el) => (
                 <div key={el.id}>
-                  <BlogCard01MyPage data={el} />
+                  <BlogCard01 data={el} />
                 </div>
               ))}
           </S.SliderContentBox>
@@ -129,7 +132,8 @@ export default function MainUI(props: MainPageUIProps) {
             flexWrap: "wrap",
           }}
         >
-          <CoachesCardPage />
+          <CoachingUsCoachCard />
+          {/* <CoachesCardPage main={true} /> */}
         </div>
       </S.ServiceBox>
       <Blank height="100px" />
@@ -147,8 +151,13 @@ export default function MainUI(props: MainPageUIProps) {
             flexWrap: "wrap",
           }}
         >
-          <Card />
-          <Card />
+          {props.commentData?.fetchCoachQuestionList
+            .filter((el: IStack, index: number) => index < 4)
+            .map((el) => (
+              <div key={el.id}>
+                <CommentsCard data={el} />
+              </div>
+            ))}
         </div>
       </S.ServiceBox>
       <Blank height="100px" />
@@ -162,27 +171,17 @@ export default function MainUI(props: MainPageUIProps) {
           style={{
             width: "100%",
             display: "flex",
-            justifyContent: "center",
+            justifyContent: "space-between",
             flexWrap: "wrap",
           }}
         >
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-        </div>
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            flexWrap: "wrap",
-          }}
-        >
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {props.columnData?.fetchRecommendColumnList
+            .filter((el: IStack, index: number) => index < 4)
+            .map((el) => (
+              <div key={el.id}>
+                <ColumnsCardMain column={el} />
+              </div>
+            ))}
         </div>
       </S.ServiceBox>
     </S.Wrapper>
