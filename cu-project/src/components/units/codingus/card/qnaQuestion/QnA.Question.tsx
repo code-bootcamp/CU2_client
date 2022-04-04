@@ -24,6 +24,7 @@ export default function QnAQuestionCard(props: ICodingQuestionCardProps) {
   const onChangeEditText = (event: ChangeEvent<HTMLTextAreaElement>) => {
     props.setEditValue(event.target.value);
   };
+
   const {moveToPage} = useMoveToPage();
   return (
     <S.Wrapper
@@ -68,11 +69,11 @@ export default function QnAQuestionCard(props: ICodingQuestionCardProps) {
             />
           <Blank width="20px" /> {props.title}
         </S.Title>
-        <Label01 value={props.writer} size="24px" weight="700" />
+        <Label01 value={props.nickname} size="24px" weight="700" />
       </S.RowWrapper>
       <Blank height="18px" />
       <HorizontalLine margin={6} />
-      <S.Date>{getYYYYMMDD(props.createdAt)}</S.Date>
+      <S.Date>{getYYYYMMDD(props.createAt)}</S.Date>
       <Blank height="28px" />
       {!isEdit ? (
         <>
@@ -105,7 +106,7 @@ export default function QnAQuestionCard(props: ICodingQuestionCardProps) {
               <Label01
                 size="18px"
                 weight="700"
-                value={String(props.goodCnt ?? 0)}
+                value={String(props.like ?? 0)}
                 color={Color.main}
               />
             </S.Button>
@@ -136,7 +137,7 @@ export default function QnAQuestionCard(props: ICodingQuestionCardProps) {
               <Label01
                 size="18px"
                 weight="700"
-                value={String(props.goodCnt ?? 0)}
+                value={String(props.like ?? 0)}
                 color={Color.medium}
               />
             </S.Button>

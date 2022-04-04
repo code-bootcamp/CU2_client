@@ -11,12 +11,13 @@ import React, {
   ReactChild,
   RefObject,
   SetStateAction,
+  KeyboardEvent,
 } from "react";
 import { Editor } from "@toast-ui/react-editor";
 
 
 import { RadioChangeEvent } from "antd";
-import { IBlog, IStack, IUser } from "./generated/types";
+import { IBlog, IStack, IStackComment, IUser } from "./generated/types";
 
 
 export interface ILayoutProps {
@@ -186,18 +187,17 @@ export interface ICodingUsCardProps {
 }
 
 export interface ICodingQuestionCardProps {
+  isQuestion?: boolean;
   width?: number;
   height?: number;
-  image?: string;
-  title?: string;
-  contents?: string;
-  writer: string;
-  isQuestion?: boolean;
-  createdAt: string;
-  goodCnt?: number;
-  badCnt?: number;
-  isGood?: boolean;
-  isBad?: boolean;
+  tags: string[] | undefined;
+  nickname: string | undefined;
+  contents: string | undefined;
+  title: string | undefined;
+  like: number | undefined;
+  dislike: number | undefined;
+  createAt: string | undefined;
+  // data?: IStack | IStackComment;
   onClickBtn: (event: MouseEvent<HTMLButtonElement>) => void;
   onClickDelete: (id: string) => () => void;
   onClickEditSubmit: (id: string) => () => void;
@@ -205,6 +205,20 @@ export interface ICodingQuestionCardProps {
   setEditValue: Dispatch<SetStateAction<string>>;
 }
 
+export interface ICodingUsQuestionUIProps {
+  nickname?: string;
+  onChangeInput: (
+    gubun: string
+  ) => (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onClickSubmit: () => void;
+  inputs: {
+    title: string;
+    contents: string;
+  };
+  onChangeTags: (e: KeyboardEvent<HTMLInputElement>) => void
+  onClickDeleteTags: (event: any) => void
+  tags: string[];
+}
 export interface ICodingUsRankProps {}
 
 export interface IRankingInfo {
@@ -222,8 +236,8 @@ export interface IRankingInfo {
   };
 }
 export interface ICodingUsRankUIProps {
-  rankingInfos: IUser[];
-  myInfo: IUser | null;
+  rankingInfos: IUser[] | undefined;
+  myInfo: IUser | null | undefined;
   // gubun: string;
   // onClickPeriodGubun: (gubun: string) => () => void;
 }

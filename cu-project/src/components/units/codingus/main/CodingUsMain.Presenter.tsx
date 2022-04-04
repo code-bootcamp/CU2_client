@@ -46,7 +46,6 @@ export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
         </S.RowWrapper>
         <Blank height="24px" />
         <S.BestUserItemWrapper>
-          {console.log(props.bestUserItems)}
           {props.bestUserItems?.map((el: {user: IUser, blog: IBlog}, idx: number) => (
             <BestUserCard
               key={uuidv4()}

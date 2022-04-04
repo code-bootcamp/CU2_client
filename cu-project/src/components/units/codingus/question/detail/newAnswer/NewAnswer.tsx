@@ -14,7 +14,7 @@ export default function QnANewAnswerCard(props: IQnANewAnswerProps) {
       alert("답변을 입력해주세요");
       return;
     }
-    props.onClickSubmitAnswer(contentsVal);
+    props.onClickSubmitAnswer(contentsVal)();
   };
   return (
     <>

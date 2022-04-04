@@ -70,10 +70,12 @@ export const BlogBody = styled.div`
 export const TagWrapper = styled(RowWrapper)``;
 
 export const Contents = styled.div`
+max-height: 96px;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   color: ${Color.dark};
+  overflow: hidden;
 `;
 export const ImageWrapper = styled.div`
   width: 347px;

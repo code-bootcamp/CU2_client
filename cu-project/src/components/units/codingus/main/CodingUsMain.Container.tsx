@@ -27,22 +27,18 @@ export default function CodingUsMain(props: ICodingUsMainProps) {
         const result = await fetchBestUserAndBlog();
         const data = result.data;
         if (data) {
-          console.log(data);
           const temp: {
             user: IUser;
             blog: IBlog;
           }[] = [];
           let cnt = 0;
           for (let i = 0; i < 3; i++) {
-            console.log(data.fetchUserOrderbyscore[i]);
             if (cnt === 3) break;
             for (let j = 0; j < data.fetchBlogAll.length; j++) {
               if (
                 data.fetchBlogAll[j]?.user?.nickname ===
                 data.fetchUserOrderbyscore[i].nickname
               ) {
-                console.log(data.fetchBlogAll[i]);
-                console.log(data.fetchUserOrderbyscore[j]);
                 temp.push({
                   user: data.fetchUserOrderbyscore[j],
                   blog: data.fetchBlogAll[i],
@@ -53,7 +49,6 @@ export default function CodingUsMain(props: ICodingUsMainProps) {
             cnt++;
           }
           if (temp.length < 1) return;
-          console.log("bestUserItems", temp);
           // temp = temp.map((el) => {
           //   return { ...el, blogtag: el.blog.blogtag.map((tag) => tag.tag) };
           // });

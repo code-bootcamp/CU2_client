@@ -9,23 +9,13 @@ import VerticalLine from "../../../../commons/Line/VerticalLine";
 import { Dispatch, MouseEvent, SetStateAction } from "react";
 import QnANewAnswerCard from "./newAnswer/NewAnswer";
 import QnAQuestionCard from "../../card/qnaQuestion/QnA.Question";
+import {
+  IStack,
+  IStackComment,
+} from "../../../../../commons/types/generated/types";
 interface ICodingUsQnaDetailUIProps {
-  question: {
-    writer: string;
-    createdAt: string;
-    title: string;
-    contents: string;
-    stack: string;
-    tags: string[];
-  };
-  answers: {
-    writer: string;
-    createdAt: string;
-    title: string;
-    contents: string;
-    stack: string;
-    tags: string[];
-  }[];
+  question: IStack | undefined;
+  answers: any[];
   isSortGood: boolean;
   toggleSortGubun: () => void;
   onClickButton: (event: MouseEvent<HTMLButtonElement>) => void;
@@ -42,23 +32,31 @@ export default function CodingUsQnADetailUI(props: ICodingUsQnaDetailUIProps) {
       <Label01 value="Stack" size="36px" weight="700" />
       <Blank height="28px" />
       <S.Tags>
-        <Tag01 value={props.question.stack} isShort={true} />
+        <Tag01
+          value={props?.question?.stacktag?.[0].tag || ""}
+          isShort={true}
+        />
         <Blank width="20px" />
-        {props.question.tags &&
-          props.question.tags.map((el) => (
-            <S.RowWrapper key={uuidv4()}>
-              <Tag02 value={el} size="24px" />
-              <Blank width="10px" />
-            </S.RowWrapper>
-          ))}
+        {props.question?.stacktag &&
+          props.question?.stacktag
+            .filter((_, idx) => idx > 0)
+            .map((el) => (
+              <S.RowWrapper key={uuidv4()}>
+                <Tag02 value={el.tag} size="24px" />
+                <Blank width="10px" />
+              </S.RowWrapper>
+            ))}
       </S.Tags>
       <Blank height="21px" />
       <QnAQuestionCard
         isQuestion={true}
-        writer={props.question.writer}
-        title={props.question.title}
-        contents={props.question.contents}
-        createdAt={props.question.createdAt}
+        title={props.question?.title}
+        contents={props.question?.contents}
+        like={props.question?.like}
+        createAt={props.question?.createAt}
+        nickname={props.question?.user.nickname}
+        dislike={props.question?.dislike}
+        tags={props.question?.stacktag?.map((el) => el.tag)}
         onClickBtn={props.onClickButton}
         onClickDelete={props.onClickDelete}
         editValue={props.editValue}
@@ -98,10 +96,13 @@ export default function CodingUsQnADetailUI(props: ICodingUsQnaDetailUIProps) {
         props.answers.map((el) => (
           <QnAAnswerCard
             key={uuidv4()}
-            writer={el.writer}
             title={el.title}
             contents={el.contents}
-            createdAt={el.createdAt}
+            like={el.like}
+            createAt={el.createAt}
+            nickname={el.nickname}
+            dislike={el.dislike}
+            tags={["JavaScript"]}
             onClickBtn={props.onClickButton}
             onClickDelete={props.onClickDelete}
             onClickEditSubmit={props.onClickEditSubmit}
