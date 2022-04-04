@@ -25,8 +25,6 @@ export default function CoachingUsCommentsPage(
   const commentsList = data?.fetchQuestionList;
   const totalAnswer = answerList?.coachAnsweredList;
 
-  console.log(totalAnswer);
-  console.log(commentsList);
   const onLoadMore = () => {
     if (commentsList && isActive) {
       setTotalComments([...commentsList?.slice(0, nextPage + 10)]);

@@ -19,8 +19,6 @@ export default function CodingUsBlogComment(props: IBlogCommentProps) {
     setCommentValue(event.currentTarget.value);
   };
   const onClickWriteSubmit = (_: MouseEvent<HTMLButtonElement>) => {
-    // 검증
-    console.log(commentValue);
   };
   const onClickDeleteComment = (id: string) => () => {};
   const onClickEditComment = (idx: number) => () => {

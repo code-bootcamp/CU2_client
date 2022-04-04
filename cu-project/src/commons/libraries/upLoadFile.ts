@@ -11,7 +11,6 @@
 //         const newAccessToken = result.restoreAccessToken;
 //         return newAccessToken;
 //       } catch (error) {
-//         if (error instanceof Error) console.log(error.message);
 //       }
 
 //   const extension = filename.split(".")[filename.split(".").length - 1];
@@ -21,14 +20,12 @@
 //       destination: newFileName,
 //     });
 
-//     console.log(result);
 //     return {
 //       _id: newFileName,
 //       url: "freeboard-gchoi/" + newFileName,
 //       size: Number(result[0].metadata.size),
 //     };
 //   } catch (err: any) {
-//     console.log(err.message);
 //   }
 // }
 export {}

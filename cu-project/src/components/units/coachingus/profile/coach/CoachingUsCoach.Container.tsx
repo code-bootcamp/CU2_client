@@ -26,9 +26,7 @@ export default function CoachingUsCoachPage(props) {
     },
   });
   const answerList = answerData?.coachAnsweredList;
-  // console.log(answerData);
   const comment = data?.fetchQuestionListPerCoach;
-  // console.log(comment);
 
   const columnList = props.coachColumnsList?.slice(0, 2);
 
@@ -36,7 +34,6 @@ export default function CoachingUsCoachPage(props) {
     const result = answerList?.filter(
       (answer) => answer?.question?.id === comment?.[0]?.id
     );
-    console.log(result);
     setAnswer(result);
   }, [answerData]);
 

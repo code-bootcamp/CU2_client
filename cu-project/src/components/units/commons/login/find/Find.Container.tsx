@@ -17,7 +17,6 @@ export default function Find(props: IFindProps) {
   const [myEmail, setMyEmail] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  console.log("userData", data);
   // const [email, setEmail] = useState("")
   // const [emailTextErr, setEmailTextErr] = useState(false)
 
@@ -77,7 +76,6 @@ export default function Find(props: IFindProps) {
 
   const onClickFind = async () => {
     try {
-      console.log(codeRef.current?.value);
       if (!codeRef.current?.value) {
         alert("인증번호입력");
         return;
@@ -114,7 +112,6 @@ export default function Find(props: IFindProps) {
 
   useEffect(() => {
     if (myEmail.length > 0) setIsModalOpen(true);
-    console.log(myEmail);
   }, [myEmail]);
 
   return (

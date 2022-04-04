@@ -14,7 +14,6 @@ export default function QuestionCard01UI(props: IWatingItemProps) {
   return (
     <S.Wrapper>
       <S.RowWrapper>
-        {console.log("st", props.data?.stacktag)}
         <Tag01 value={String(props.data?.stacktag?.length > 0 ? props.data?.stacktag?.[0].tag : "기타")} isShort={true} />
         <Blank width="20px" />
         {props.data?.stacktag

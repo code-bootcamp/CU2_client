@@ -12,13 +12,11 @@ export default function UserPoint() {
   const [createPoint] = useMutation(CREATE_POINT);
   const { data } = useQuery(FETCH_MY_USER);
 
-  console.log(data);
   const onClickModal = () => {
     setIsModal((prev) => !prev);
   };
 
   const onChangeAmount = (e) => {
-    console.log(e.target.value);
     setAmount(e.target.value);
   };
 
@@ -41,7 +39,6 @@ export default function UserPoint() {
       async (rsp) => {
         // callback
         if (rsp.success) {
-          console.log(rsp);
           const result = await createPoint({
             variables: { amount, impUid: rsp.imp_uid },
           });

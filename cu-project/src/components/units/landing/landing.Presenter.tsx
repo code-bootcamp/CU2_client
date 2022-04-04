@@ -47,7 +47,6 @@ export default function LandingUI() {
 
       let { scrollTop } = slideRef.current;
 
-      console.log(scrollTop);
 
       if (scrollTop === 0) {
         scrollUpRef.current?.click();

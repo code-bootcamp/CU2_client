@@ -16,7 +16,6 @@ export default function ColumnDetailPage() {
   const { y: scrollY } = useScroll();
 
   useEffect(() => {
-    console.log(scrollY, indexPositions[currentIndex], currentIndex);
     if (indexPositions.length < 1) {
       const hTags = [
         ...Array.from(document.getElementsByTagName("h1")),
@@ -26,14 +25,12 @@ export default function ColumnDetailPage() {
       if (hTags.length < 1) return;
       const scrollTops = getIndexFromMD(dummyMD).map((el) => {
         const tag = hTags.filter((tag) => el.includes(tag.innerText))[0];
-        console.log(tag.style);
         return Math.floor(tag.getBoundingClientRect().top - 100);
       });
       setIndexPositions(scrollTops);
     }
     if (indexPositions[currentIndex + 1] <= scrollY) {
       setCurrentIndex(currentIndex + 1);
-      console.log(indexPositions[currentIndex + 1], scrollY);
     } else if (indexPositions[currentIndex] > scrollY) {
       setCurrentIndex(currentIndex - 1);
     }

@@ -24,7 +24,6 @@ export default function CoachingUsCommentsPage() {
     const result = answerList?.filter(
       (answer) => answer?.question?.id === comment?.[0]?.id
     );
-    console.log(result);
     setAnswer(result);
   }, [answerData]);
 

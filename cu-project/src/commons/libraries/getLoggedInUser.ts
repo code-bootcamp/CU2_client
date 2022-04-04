@@ -34,9 +34,7 @@ export const getLoggenInUser = async (accessToken: string) => {
     );
     const result = await graphQLClient
       .request(FETCH_MY_USER)
-      .catch((el) => console.log(el));
     return result.fetchmyuser;
   } catch (error) {
-    if (error instanceof Error) console.log("getLoggenInUser", error.message);
   }
 };

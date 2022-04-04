@@ -41,7 +41,6 @@ export default function CodingUsBlog() {
     )
       return;
 
-    console.log("isOrderByPopular", isOrderByPopular);
     if (!blogListOrderByLike || !blogListOrderByCreatedAt) return;
     let currentList = isOrderByPopular
       ? [...blogListOrderByLike?.fetchotherBlogorderbylikeAll]

@@ -17,8 +17,6 @@ export default function CoachingUsColumnPage() {
   const [nextPage, setNextPage] = useState(10);
   const [isActive, setIsActive] = useState(true);
 
-  console.log(data);
-
   const { moveToPage } = useMoveToPage();
   const columnBestList = data?.fetchRecommendColumnList.slice(0, 3);
 

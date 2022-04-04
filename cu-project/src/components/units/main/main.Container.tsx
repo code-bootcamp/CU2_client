@@ -74,7 +74,6 @@ export default function Main(props: MainPageProps) {
       },
     ],
   };
-  console.log(columnData);
   return (
     <>
       <MainUI

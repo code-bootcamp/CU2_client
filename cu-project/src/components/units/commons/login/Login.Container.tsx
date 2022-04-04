@@ -47,7 +47,6 @@ export default function Login(props: ILoginProps) {
         },
       });
       const accessToken = result.data?.login;
-      console.log(accessToken);
 
       if (!accessToken) {
         alert("로그인 실패");

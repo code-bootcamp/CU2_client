@@ -11,7 +11,6 @@ import { useRouter } from "next/router";
 export default function CoachingUsCommentsUI(
   props: ICoachingUsCommentsUIProps
 ) {
-  console.log("zzz", props.totalAnswer);
   return (
     <S.Wrapper>
       <S.LeftSideBar>
