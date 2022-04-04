@@ -9,6 +9,8 @@ import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import { ICodingUsSidebarProps } from "../../../../../commons/types/types";
 import useStore from "../../../../../commons/store/store";
 import Router from "next/router";
+import { IUser } from "../../../../../commons/types/generated/types";
+import { getLoggenInUser } from "../../../../../commons/libraries/getLoggedInUser";
 
 export default function SidebarUserInfo(props: ICodingUsSidebarProps) {
   // const todayDiff =
@@ -20,6 +22,15 @@ export default function SidebarUserInfo(props: ICodingUsSidebarProps) {
   //     ? `+${props.totalRanking?.prev - props.totalRanking?.today}`
   //     : props.totalRanking?.prev - props.totalRanking?.today;
   const [interestList, setInterestList] = useState<string[]>([]);
+  const accessToken = useStore((state) => state.accessToken);
+  const [userInfo, setUserInfo] = useState<IUser>();
+  useEffect(() => {
+    const getUserInfo = async () => {
+      const userInfo = await getLoggenInUser(accessToken);
+      setUserInfo(userInfo);
+    };
+    getUserInfo()
+  }, []);
 useEffect(() => {
   if(!localStorage.getItem("interestList")) return;
   setInterestList(String(localStorage.getItem("interestList"))?.split(","))
@@ -28,7 +39,6 @@ useEffect(() => {
     userInfo: false,
     stack: false,
   });
-  const userInfo = useStore((state) => state.userInfo);
   const chgToggleState = (gubun: "userInfo" | "stack") => () => {
     const temp = { ...toggleState };
     temp[gubun] = !temp[gubun];

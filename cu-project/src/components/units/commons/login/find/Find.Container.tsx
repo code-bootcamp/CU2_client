@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, ChangeEvent, useRef, useState } from "react";
 import { IFindProps } from "../../../../../commons/types/types";
 import FindUI from "./Find.Presenter";
 import { FETCH_USER } from "./Find.Queries";

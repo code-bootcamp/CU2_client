@@ -11,7 +11,6 @@ import QnANewAnswerCard from "./newAnswer/NewAnswer";
 import QnAQuestionCard from "../../card/qnaQuestion/QnA.Question";
 import {
   IStack,
-  IStackComment,
 } from "../../../../../commons/types/generated/types";
 interface ICodingUsQnaDetailUIProps {
   question: IStack | undefined;
@@ -49,6 +48,7 @@ export default function CodingUsQnADetailUI(props: ICodingUsQnaDetailUIProps) {
       </S.Tags>
       <Blank height="21px" />
       <QnAQuestionCard
+        id={props.question?.id}
         isQuestion={true}
         title={props.question?.title}
         contents={props.question?.contents}
@@ -100,7 +100,7 @@ export default function CodingUsQnADetailUI(props: ICodingUsQnaDetailUIProps) {
             contents={el.contents}
             like={el.like}
             createAt={el.createAt}
-            nickname={el.nickname}
+            nickname={el.user.nickname}
             dislike={el.dislike}
             tags={["JavaScript"]}
             onClickBtn={props.onClickButton}

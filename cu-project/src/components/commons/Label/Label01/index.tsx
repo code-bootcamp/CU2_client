@@ -1,6 +1,7 @@
 import { MouseEvent, HTMLAttributes } from "react";
 interface ILabelProps {
   weight?: number | string;
+  width?: number | string;
   size?: string;
   color?: string;
   value: string;
@@ -8,6 +9,7 @@ interface ILabelProps {
   padding?: string;
   onClick?: (event: MouseEvent<HTMLDivElement>) => void;
   textAlign?: "left" | "right" | "center";
+  
 }
 
 export default function Label01(props: ILabelProps) {
@@ -21,7 +23,8 @@ export default function Label01(props: ILabelProps) {
         padding: props.padding ?? "0px 0px",
         textAlign: props.textAlign ?? "left",
         display: "table-cell",
-        verticalAlign: "middle"
+        verticalAlign: "middle",
+        width: props.width ?? "auto",
       }}
       onClick={props.onClick}
     >

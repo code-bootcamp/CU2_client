@@ -52,7 +52,7 @@ export default function CodingUsHistoryUI(props: IHistoryProps) {
   return (
     <S.HistoryWrapper>
       <Label01 size="24px" weight="700" value={props.title} padding="0px" />
-      <Blank height="29px" />
+      <Blank height="0px" />
       <S.HistoryItems>{printItems()}</S.HistoryItems>
     </S.HistoryWrapper>
   );

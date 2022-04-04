@@ -1,9 +1,11 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import {
   IMutation,
   IMutationCreateStackCommentArgs,
+  IMutationDeleteStackArgs,
+  IMutationUpdateStackArgs,
   IQuery,
   IQueryFetchStackOnebystackidArgs,
 } from "../../../../../commons/types/generated/types";
@@ -11,7 +13,9 @@ import CodingUsLayout from "../../layout/CodingUsLayout";
 import CodingUsQnADetailUI from "./QnADetail.Presenter";
 import {
   CREATE_STACK_COMMENT,
+  DELETE_STACK,
   FETCH_STACK_ONE_BY_STACK_ID,
+  UPDATE_STACK,
 } from "./QnADetail.Queries";
 
 export default function CodingUsQnADetail() {
@@ -26,6 +30,14 @@ export default function CodingUsQnADetail() {
     Pick<IMutation, "createStackComment">,
     IMutationCreateStackCommentArgs
   >(CREATE_STACK_COMMENT);
+  const [updateStack] = useMutation<
+    Pick<IMutation, "updateStack">,
+    IMutationUpdateStackArgs
+  >(UPDATE_STACK);
+  const [deleteStack] = useMutation<
+    Pick<IMutation, "deleteStack">,
+    IMutationDeleteStackArgs
+  >(DELETE_STACK);
   // const { data: answerDataList } = useQuery<
   //   Pick<IQuery, "fetchAllStackcomment">,
   //   IQueryFetchAllStackcommentArgs
@@ -38,21 +50,52 @@ export default function CodingUsQnADetail() {
   const [editValue, setEditValue] = useState("");
   const onClickButton = (event: MouseEvent<HTMLButtonElement>) => {};
 
+  useEffect(() => {
+    if (questionData?.fetchStackOnebystackid)
+      setEditValue(questionData?.fetchStackOnebystackid.contents);
+  }, [questionData]);
+
   const onClickDelete = (id: string) => async () => {
     // 삭제 확인
 
-    // const query =
-    //   gubun === "question" ? "deleteBlogQuestion" : "deleteBlogAnswer";
-
     try {
-      // const result = await query(variable: {id: id});
-      // 삭제 완료 msg
+      const result = await deleteStack({
+        variables: { stackid: String(router.query.stackId) },
+      });
+
+      if (!result.data?.deleteStack) {
+        alert("삭제 실패");
+        return;
+      }
+      alert("삭제 성공");
+      router.push("/codingus/question");
     } catch (err: any) {
       // 실패(err.message);
     }
   };
 
-  const onClickEditSubmit = (id: string) => async () => {};
+  const onClickEditSubmit = (id: string) => async () => {
+    try {
+      if (!questionData?.fetchStackOnebystackid || !editValue) {
+        alert("수정할 내용을 입력하세요.");
+        return;
+      }
+      const result = await updateStack({
+        variables: {
+          title: String(questionData?.fetchStackOnebystackid.title),
+          stackid: String(router.query.stackId),
+          contents: editValue,
+        },
+      });
+      if (result.data?.updateStack.id) {
+        alert("수정 실패");
+        return;
+      }
+      location.reload();
+    } catch (err: any) {
+      alert(err.message);
+    }
+  };
   const onClickSubmitAnswer = (contents: string) => async () => {
     try {
       const result = await crateStackComment({
@@ -70,7 +113,6 @@ export default function CodingUsQnADetail() {
       children={
         <CodingUsQnADetailUI
           question={questionData?.fetchStackOnebystackid}
-          // answers={answerDataList?.fetchAllStackcomment}
           answers={[
             {
               title: "개고숩니다.",

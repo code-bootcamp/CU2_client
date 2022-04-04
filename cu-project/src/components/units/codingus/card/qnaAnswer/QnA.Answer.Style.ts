@@ -42,6 +42,7 @@ export const Title = styled(TextArea)`
   font-weight: 700;
   font-size: 36px;
   line-height: 36px;
+  max-width: 90%;
   :hover {
     cursor: pointer;
   }

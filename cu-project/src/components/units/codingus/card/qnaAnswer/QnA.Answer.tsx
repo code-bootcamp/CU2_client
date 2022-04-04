@@ -9,7 +9,7 @@ import {
   AiOutlineLike,
   AiOutlineDislike,
 } from "react-icons/ai";
-import React, { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { RowWrapper } from "../../../coachingus/columns/detail/Columns.Style";
 import Color from "../../../../../commons/styles/color";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
@@ -69,10 +69,10 @@ export default function QnAQuestionCard(props: ICodingQuestionCardProps) {
           />
           <Blank width="20px" /> {props.title}
         </S.Title>
-        <Label01 value={props.writer} size="24px" weight="700" />
+        <Label01 value={props.nickname} size="24px" weight="700" />
       </S.RowWrapper>
       <Blank height="18px" />
-      <HorizontalLine margin={6}/>
+      <HorizontalLine margin={6} />
       <S.Date>{getYYYYMMDD(props.createAt)}</S.Date>
       <Blank height="28px" />
       {!isEdit ? (
@@ -150,13 +150,40 @@ export default function QnAQuestionCard(props: ICodingQuestionCardProps) {
             onChange={onChangeEditText}
             value={props.editValue}
           />
-          <S.Button
-            isGood={false}
-            style={{ border: `1px solid ${Color.main}` }}
-            onClick={props.onClickEditSubmit("props.id")}
-          >
-            <Label01 size="18px" weight="700" value="수정" color={Color.main} />
-          </S.Button>
+          <S.ButtonWrapper>
+            <S.Button
+              isGood={false}
+              style={{ border: `1px solid ${Color.medium}`, width: "173px" }}
+              onClick={() => {
+                setIsEdit((prev) => !prev);
+                props.setEditValue("");
+              }}
+            >
+              <Label01
+                size="18px"
+                weight="700"
+                value="취소"
+                color={Color.medium}
+                width={"100%"}
+                textAlign="center"
+              />
+            </S.Button>
+            <Blank width="16px" />
+            <S.Button
+              isGood={false}
+              style={{ border: `1px solid ${Color.main}`, width: "173px" }}
+              onClick={props.onClickEditSubmit("props.id")}
+            >
+              <Label01
+                size="18px"
+                weight="700"
+                value="수정"
+                color={Color.main}
+                width={"100%"}
+                textAlign="center"
+              />
+            </S.Button>
+          </S.ButtonWrapper>
         </>
       )}
     </S.Wrapper>

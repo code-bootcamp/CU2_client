@@ -17,7 +17,7 @@ import { Editor } from "@toast-ui/react-editor";
 
 
 import { RadioChangeEvent } from "antd";
-import { IBlog, IStack, IStackComment, IUser } from "./generated/types";
+import { IBlog, IStack, IUser } from "./generated/types";
 
 
 export interface ILayoutProps {
@@ -196,6 +196,7 @@ export interface ICodingUsCardProps {
 
 export interface ICodingQuestionCardProps {
   isQuestion?: boolean;
+  id?: string;
   width?: number;
   height?: number;
   tags: string[] | undefined;

@@ -19,6 +19,12 @@ export const Wrapper = styled.div`
   box-sizing: border-box;
   padding: 20px;
   border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  :hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  transition: 0.5s;
 `;
 
 export const UserInfoWrapper = styled(RowWrapper)`
@@ -72,7 +78,7 @@ export const BlogBody = styled.div`
 export const TagWrapper = styled(RowWrapper)``;
 
 export const Contents = styled.div`
-max-height: 96px;
+  height: 96px;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -80,12 +86,15 @@ max-height: 96px;
   overflow: hidden;
 `;
 export const ImageWrapper = styled.div`
-  width: 347px;
+  width: 100%;
   height: 204px;
 `;
 
 export const Image = styled.img`
-  max-width: 347px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  /* width: 347px; */
   max-height: 204px;
   overflow: hidden;
 `;
