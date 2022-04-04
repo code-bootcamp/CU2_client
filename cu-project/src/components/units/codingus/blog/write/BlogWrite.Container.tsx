@@ -11,6 +11,7 @@ import {
 } from "../../../../../commons/types/generated/types";
 import { useAuth } from "../../../../commons/hooks/useAuth";
 import { useRouter } from "next/router";
+import ScoreModal from "../../../../commons/Modal/ScoreModal";
 
 export default function CodingUsBlogWrite(props: ICodingUsBlogWriteProps) {
   useAuth();
@@ -22,12 +23,13 @@ export default function CodingUsBlogWrite(props: ICodingUsBlogWriteProps) {
     Pick<IMutation, "updateBlog">,
     IMutationUpdateBlogArgs
   >(UPDATE_BLOG);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const editorRef = useRef<Editor>(null);
   const [tags, setTags] = useState<string[]>([]);
   const [title, setTitle] = useState("");
   const [stack, setStack] = useState<string>("");
   const router = useRouter();
-
+  
   useEffect(() => {
     if (!props.data) return;
     setTags(props.data?.blogtag?.map((el) => el.tag) || []);
@@ -36,6 +38,8 @@ export default function CodingUsBlogWrite(props: ICodingUsBlogWriteProps) {
   }, [props.data]);
 
   const onClickSubmit = async (_: MouseEvent<HTMLButtonElement>) => {
+    // setIsModalVisible(true);
+    // return;
     const contents = editorRef.current?.getInstance().getMarkdown();
     if (!(contents && title)) {
       alert("필수 입력 항목 누락");
@@ -55,6 +59,7 @@ export default function CodingUsBlogWrite(props: ICodingUsBlogWriteProps) {
       };
       if (tags.length < 1) variables.blogtag = [""];
       const result = await createBlog({ variables });
+      
       if (result.errors) {
         alert("등록 실패");
         return;
@@ -100,6 +105,7 @@ export default function CodingUsBlogWrite(props: ICodingUsBlogWriteProps) {
     setStack(event.target.value);
   };
   return (
+    <>
     <CodingUsBlogWriteUI
       isEdit={props.isEdit || false}
       data={props.data}
@@ -115,5 +121,7 @@ export default function CodingUsBlogWrite(props: ICodingUsBlogWriteProps) {
       onChangeStack={onChangeStack}
       onClickEdit={onClickEdit}
     />
+    {isModalVisible && <ScoreModal router="/codingUs/blog" beforeScore={1233} currScore={1234}/>}
+    </>
   );
 }

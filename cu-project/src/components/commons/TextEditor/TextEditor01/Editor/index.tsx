@@ -57,7 +57,12 @@ export const Wrapper = styled.div`
     .tab-item {
       display: none;
     }
-  }
+    .ProseMirror {
+    font-size:20px;
+    }
+    .toastui-editor-contents {
+    font-size:20px;
+    }
 `;
 export default function EditorUI(props: ITextEditorUIProps) {
   const [uploadblogFile] = useMutation<

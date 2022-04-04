@@ -13,12 +13,43 @@ export const Wrapper = styled.div`
   height: : ${(props: ICardWrapperProps) => props.height};
   border-radius: 8px;
   background-color: #FFFFFF;
+
+  /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
+  transition: 0.5s;
+  :hover {
+    /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); */
+  }
+  &:hover {
+    img {
+      transform: scale(1.2);
+      transition: 0.5s;
+      z-index: 0;
+    }
+    ,
+    /* .header {
+      display: none;
+    } */
+  }
+`;
+
+export const Item = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 0px 10px;
+`;
+export const ImageWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
 `;
 
 export const Image = styled.img`
   width: 100%;
   height: 182px;
-  border: none;
+  /* border: none; */
+  background-color: ${(props: {imageUrl: string}) => props.imageUrl ? "white" : "black"};
+
 `;
 
 export const Contents = styled.div`
@@ -26,7 +57,7 @@ export const Contents = styled.div`
   font-weight: 700;
   font-size: 24px;
   line-height: 36px;
-  max-height: 72px;
+  height: 72px;
   overflow: hidden;
   text-overflow: ellipsis;
   /* white-space: nowrap; */
