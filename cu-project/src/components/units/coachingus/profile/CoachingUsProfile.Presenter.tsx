@@ -23,10 +23,15 @@ export default function CoachingUsProfileUI(props: ICoachingUsProfileUIProps) {
       </S.CoachSidebar>
       <S.CoachProfileBody>
         {props.component === "/" && (
-          <CoachingUsCoachPage setComponent={props.setComponent} />
+          <CoachingUsCoachPage
+            setComponent={props.setComponent}
+            coachColumnsList={props.coachColumnsList}
+          />
         )}
         {props.component === "comments" && <CoachingUsCommentsPage />}
-        {props.component === "columns" && <CoachingUsColumnPage />}
+        {props.component === "columns" && (
+          <CoachingUsColumnPage coachColumnsList={props.coachColumnsList} />
+        )}
       </S.CoachProfileBody>
     </S.Wrapper>
   );

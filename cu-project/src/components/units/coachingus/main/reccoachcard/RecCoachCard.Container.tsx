@@ -12,12 +12,16 @@ export default function RecCoachCardPage(props: ICoachingUsRecCoachCardProps) {
   const { data } = useQuery(FETCH_COACH_ORDER_LIST);
   const [newList, setNewList] = useState([]);
   // console.log(data);
-  useEffect(() => {
-    const result = data?.fetchUserOrderbyscore
-      .filter((el) => el.role === "COACH")
-      .slice(0, 3);
-    console.log("result", result);
 
+  const result = data?.fetchUserOrderbyscore
+    .filter((el) => el.role === "COACH")
+    .slice(0, 3);
+
+  useEffect(() => {
+    if (data) {
+      setNewList(result);
+    }
+    console.log(result);
     setTimeout(() => {
       setIsStart(false);
     }, 2200);

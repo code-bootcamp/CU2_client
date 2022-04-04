@@ -2,7 +2,7 @@ import { ICoachingUsRecCoachCardUIProps } from "../../../../../commons/types/typ
 import Blank from "../../../../commons/Blank";
 import * as S from "./RecCoachCard.Style";
 import getMoney from "../../../../../commons/libraries/getMoney";
-import { MdOutlineLocalParking } from "react-icons/md";
+import { FaSpeakap } from "react-icons/fa";
 import { IoPersonCircle } from "react-icons/io5";
 
 export default function RecCoachCardUI(props: ICoachingUsRecCoachCardUIProps) {
@@ -23,36 +23,34 @@ export default function RecCoachCardUI(props: ICoachingUsRecCoachCardUIProps) {
               <S.CoachProfile>
                 <S.RecommendCoachHeader>
                   <S.CoachTitle>
-                    <S.CoachCor>{coach.corName}</S.CoachCor>
+                    <S.CoachCor>{coach.coachProfile.orgName}</S.CoachCor>
                     <Blank height="10px" />
                     <S.CoachSubCor>
-                      <p>{coach.profile.name}&nbsp; </p> &nbsp;|&nbsp;
-                      프론트엔드 5년차
+                      <div>{coach.name}</div>
+                      <div>프론트엔드 5년차</div>
                     </S.CoachSubCor>
                   </S.CoachTitle>
                 </S.RecommendCoachHeader>
 
                 <S.RecommendCoachTags>
-                  {coach.profile.tags.map((tag, index) => (
+                  {coach.coachtag?.tag?.map((tag, index) => (
                     <S.CoachTag key={index}>{tag}</S.CoachTag>
                   ))}
                 </S.RecommendCoachTags>
                 <Blank height="20px" />
                 <S.RecommendCoachInfo>
                   <S.CoachInfoFollower>
-                    <MdOutlineLocalParking
+                    <FaSpeakap
                       style={{
-                        width: "2em",
-                        height: "2em",
-                        color: "white",
-                        background: "black",
+                        width: "2.5em",
+                        height: "2.5em",
+                        color: "black",
                         borderRadius: "100%",
-                        marginBottom: "2px",
-                        padding: "5px",
+                        // marginBottom: "2px",
                       }}
                     />
                     <Blank width="8px" />
-                    {getMoney(coach.profile.followers)}
+                    {getMoney(coach.score)}점
                   </S.CoachInfoFollower>
                   <Blank width="10px" />
                   <S.CoachInfoScore>
@@ -65,7 +63,7 @@ export default function RecCoachCardUI(props: ICoachingUsRecCoachCardUIProps) {
                       }}
                     />
                     <Blank width="2px" />
-                    {getMoney(coach.profile.score)}명
+                    {getMoney(39129)}명
                   </S.CoachInfoScore>
                 </S.RecommendCoachInfo>
               </S.CoachProfile>

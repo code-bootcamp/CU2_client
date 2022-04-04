@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import Blank from "../../../commons/Blank";
 import { BsFillTriangleFill } from "react-icons/bs";
 import CoachingUsProfileRate from "./CoachingUsProfileRate";
 import { useRouter } from "next/router";
+import { gql, useQuery } from "@apollo/client";
 
 const CoachCard = styled.div`
   width: 250px;
@@ -91,7 +92,7 @@ export const ActivityRanking = styled.div`
   animation: fromTop 2s linear both;
   @keyframes fromTop {
     100% {
-      height: 20px;
+      height: ${({ coachRank }) => (coachRank / 100) * 62 + "px"};
     }
     0% {
       height: 62px;
@@ -113,7 +114,7 @@ export const ActivityRanking2 = styled.div`
       height: 0px;
     }
     to {
-      height: 42px;
+      height: ${({ coachRank }) => 62 - (coachRank / 100) * 62 + "px"};
     }
   }
 `;
@@ -146,20 +147,72 @@ export const RateTextActive = styled.div`
   font-size: 11px;
   font-weight: lighter;
 `;
+
+const FETCH_COACH_USER = gql`
+  query fetchCoachUser($userId: String!) {
+    fetchCoachUser(userId: $userId) {
+      id
+      name
+      score
+      coachProfile {
+        orgName
+        orgType
+        job
+        department
+      }
+    }
+  }
+`;
+
+const FETCH_COACH_ORDER_LIST = gql`
+  query fetchUserOrderbyscore {
+    fetchUserOrderbyscore {
+      id
+      name
+      score
+      coachProfile {
+        orgName
+        orgType
+      }
+      role
+      coachtag {
+        tag
+      }
+    }
+  }
+`;
+
 function CoachingUsCoachCard(props) {
   const router = useRouter();
-  const coach = {
-    id: 0,
-    corName: "우아한 형제들",
-    subCorName: "직군직군",
-    profile: {
-      picture: "이미지! 입니다!",
-      name: "김태훈",
-      tags: ["IT", "대기업", "네카라쿠배"],
-      followers: 212,
-      score: 1213,
+  const { data } = useQuery(FETCH_COACH_USER, {
+    variables: {
+      userId: router.query.coachId,
     },
+  });
+  const { data: coachRankingList } = useQuery(FETCH_COACH_ORDER_LIST);
+
+  const [coachRank, setCoachRank] = useState(0);
+
+  const coachTotalList = coachRankingList?.fetchUserOrderbyscore.filter(
+    (el) => el.role === "COACH"
+  );
+
+  const getMyRanking = () => {
+    coachTotalList?.forEach((el, index) => {
+      if (el.id === router.query.coachId) {
+        console.log(index + 1);
+        setCoachRank(Math.ceil(((index + 1) / coachTotalList.length) * 100));
+      }
+    });
+
+    console.log(coachRank);
   };
+
+  const coach = data?.fetchCoachUser;
+
+  useEffect(() => {
+    getMyRanking();
+  });
   return (
     <CoachCard
       onClick={() => {
@@ -169,10 +222,10 @@ function CoachingUsCoachCard(props) {
     >
       <CardPicture></CardPicture>
       <CardContents>
-        <ContentsTitle>{coach.corName}</ContentsTitle>
+        <ContentsTitle>{coach?.coachProfile?.orgName}</ContentsTitle>
         <Blank height="5px" />
         <ContentsSubTitle>
-          <p>{coach.profile.name} </p> &nbsp;| 프론트엔드 2년차
+          <p>{coach?.name} </p> &nbsp;| {coach?.coachProfile.job}
         </ContentsSubTitle>
         <Blank height="15px" />
         <ContentsPersentage>
@@ -180,10 +233,10 @@ function CoachingUsCoachCard(props) {
             <RateText>
               답변률 <p>90%</p>
             </RateText>
-            <CoachingUsProfileRate />
+            <CoachingUsProfileRate coachRank={coachRank} />
           </AnswerRate>
           <ActivityRankingBox>
-            <ActivityRanking>
+            <ActivityRanking coachRank={coachRank}>
               <BsFillTriangleFill
                 style={{
                   width: "62px",
@@ -192,7 +245,7 @@ function CoachingUsCoachCard(props) {
                 }}
               />
             </ActivityRanking>
-            <ActivityRanking2>
+            <ActivityRanking2 coachRank={coachRank}>
               <BsFillTriangleFill
                 style={{
                   width: "62px",
@@ -202,13 +255,13 @@ function CoachingUsCoachCard(props) {
               />
             </ActivityRanking2>
             <RateTextRanking>
-              코치순위 <p>10%</p>
+              코치순위 <p>{coachRank}%</p>
             </RateTextRanking>
           </ActivityRankingBox>
 
           <Rantangle>
             <RateTextActive>
-              활동점수 <p>2132점</p>
+              활동점수 <p>{coach?.score}점</p>
             </RateTextActive>
           </Rantangle>
         </ContentsPersentage>
@@ -218,7 +271,9 @@ function CoachingUsCoachCard(props) {
           <ContentsFollowBtn
             onClick={(event) => {
               props.setComponent && props.setComponent("question");
-              router.push("/coachingus/coaches/0/question");
+              router.push(
+                `/coachingus/coaches/${router.query.coachId}/question`
+              );
               event.stopPropagation();
             }}
           >
