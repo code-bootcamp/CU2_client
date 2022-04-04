@@ -101,7 +101,7 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
               <p>
                 {props.rankData?.fetchUserOrderbyscore.map((el, idx) => {
                   return el.id === props.data?.fetchmyuser.id
-                    ? `${idx} 등 (${el.score} 점)`
+                    ? `${idx + 1} 등 (${el.score} 점)`
                     : "";
                 })}
               </p>

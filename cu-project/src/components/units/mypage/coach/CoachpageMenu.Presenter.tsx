@@ -5,42 +5,12 @@ import { Modal } from "antd";
 import "antd/dist/antd.css";
 import { FaCopyright } from "react-icons/fa";
 import { BiNews } from "react-icons/bi";
+import getMoney from "../../../../commons/libraries/getMoney";
 
 export default function CoachpageMenuUI(props: ICoachPageMenuUIProps) {
   return (
     <S.Web>
       <S.Wrapper>
-        {props.isModal && (
-          <Modal
-            visible={true}
-            onOk={props.onClickModal}
-            onCancel={props.onClickModal}
-            okText="출금하기"
-            cancelText="취소하기"
-            style={{ textAlign: "center", width: "100%" }}
-          >
-            <h1>CU2 포인트 출금</h1>
-            <select
-              // onChange={}
-              style={{ width: "80%", textAlign: "center", fontSize: "18px" }}
-            >
-              <option selected disabled>
-                CU Point 출금 금액을 선택해주세요.
-              </option>
-              <option value="5000">5,000 포인트</option>
-              <option value="10000">10,000 포인트</option>
-              <option value="20000">20,000 포인트</option>
-              <option value="30000">30,000 포인트</option>
-            </select>
-            <div>
-              <select>
-                <option>국민은행</option>
-                <option>카카오페이</option>
-              </select>
-              <input placeholder="계좌번호" />
-            </div>
-          </Modal>
-        )}
         <S.TopMenu>
           <S.MyPageButton onClick={props.onClickMove("/mypage/user")}>
             User Mypage
@@ -71,28 +41,16 @@ export default function CoachpageMenuUI(props: ICoachPageMenuUIProps) {
           <Blank height="20px" />
           <S.ProfileBody>
             <Blank height="20px" />
-            {/* <S.ProfileContents>
-              <span>팔로우</span>
-              <p onClick={props.onClickMove("/mypage/coach/follow")}>112</p>
-            </S.ProfileContents>
-            <Blank height="20px" />
-            <S.ProfileContents>
-              <span>팔로워</span>
-              <p onClick={props.onClickMove("/mypage/coach/follower")}>20</p>
-            </S.ProfileContents> */}
             <Blank height="20px" />
             <S.ProfileContents>
               <span>포인트</span>
               <div>
-                <S.ChargeButton onClick={props.onClickModal}>
-                  출금
-                </S.ChargeButton>
                 <S.ChargeButton
                   onClick={props.onClickMove("/mypage/coach/point")}
                 >
                   내역
                 </S.ChargeButton>
-                {props.data?.fetchCoachUser.point} 원
+                {getMoney(props.data?.fetchCoachUser.point)} 원
               </div>
             </S.ProfileContents>
             <Blank height="20px" />
@@ -101,7 +59,7 @@ export default function CoachpageMenuUI(props: ICoachPageMenuUIProps) {
               <p onClick={props.onClickMove("/mypage/coach/ranking")}>
                 {props.rankData?.fetchUserOrderbyscore.map((el, idx) => {
                   return el.id === props.data?.fetchCoachUser.id
-                    ? `${idx} 등 (${el.score} 점)`
+                    ? `${idx + 1} 등 (${el.score} 점)`
                     : "";
                 })}
               </p>
@@ -127,7 +85,7 @@ export default function CoachpageMenuUI(props: ICoachPageMenuUIProps) {
               </button>
               <Blank height="10px" />
               <button
-                onClick={props.onClickMove("/mypage/coach/portfolio/edit")}
+                onClick={props.onClickMove("/coachingus/coach-register/")}
               >
                 포트폴리오 추가/수정
               </button>

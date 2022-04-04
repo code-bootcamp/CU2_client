@@ -6,6 +6,7 @@ export const FETCH_MY_POINT_HISTORY = gql`
       id
       impUid
       amount
+      status
     }
   }
 `;
