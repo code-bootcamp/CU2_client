@@ -27,7 +27,7 @@ export default function CommentsUI(props) {
               <S.CommentsTitleLeft
                 onClick={() =>
                   router.push(
-                    `/coachingus/coaches/${comment.toCoach.id}/${comment.id}`
+                    `/coachingus/coaches/${comment?.toCoach?.id}/${comment?.id}`
                   )
                 }
               >

@@ -59,7 +59,7 @@ export default function CoachpageMenuUI(props: ICoachPageMenuUIProps) {
               <p onClick={props.onClickMove("/mypage/coach/ranking")}>
                 {props.rankData?.fetchUserOrderbyscore.map((el, idx) => {
                   return el.id === props.data?.fetchCoachUser.id
-                    ? `${idx} 등 (${el.score} 점)`
+                    ? `${idx + 1} 등 (${el.score} 점)`
                     : "";
                 })}
               </p>
@@ -85,7 +85,7 @@ export default function CoachpageMenuUI(props: ICoachPageMenuUIProps) {
               </button>
               <Blank height="10px" />
               <button
-                onClick={props.onClickMove("/coachingus/coach-register/edit")}
+                onClick={props.onClickMove("/coachingus/coach-register/")}
               >
                 포트폴리오 추가/수정
               </button>

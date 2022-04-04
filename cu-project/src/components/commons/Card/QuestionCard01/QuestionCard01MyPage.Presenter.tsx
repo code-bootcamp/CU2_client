@@ -14,16 +14,14 @@ export default function QuestionCard01MyPageUI(props: IWatingItemProps) {
       <S.RowWrapper>
         <Tag01 value={props.data?.stacktag[0].tag} isShort={true} />
         <Blank width="20px" />
-        {props.data?.contents.split("![contents]")[0].split(",") &&
-          props.data?.contents
-            .split("![contents]")[0]
-            .split(",")
-            .map((el, idx) => (
-              <S.TagWrapper key={idx}>
-                <Tag02 value={el} />
-                <Blank width="10px" />
-              </S.TagWrapper>
-            ))}
+        {props.data?.stacktag
+          .filter((el, idx) => idx > 0)
+          .map((el, idx) => (
+            <S.TagWrapper key={idx}>
+              <Tag02 value={el.tag} />
+              <Blank width="10px" />
+            </S.TagWrapper>
+          ))}
       </S.RowWrapper>
       <Blank height="17px" />
       <S.RowWrapper style={{ justifyContent: "space-between" }}>
