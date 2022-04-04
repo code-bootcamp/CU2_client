@@ -17,7 +17,7 @@ import { Editor } from "@toast-ui/react-editor";
 
 
 import { RadioChangeEvent } from "antd";
-import { IBlog, IStack, IStackComment, IUser } from "./generated/types";
+import { IBlog, IStack, IUser } from "./generated/types";
 
 
 export interface ILayoutProps {
@@ -67,6 +67,14 @@ export interface ISearchProps {}
 // #endregion
 
 // #region CodingUs
+
+export interface ICodingUsLandingUIProps {
+  corList: string[];
+  onChangeCheckBox: (event: MouseEvent<HTMLElement>) => void;
+  onClickStart: () => void;
+  interestList: (string | undefined)[];
+  setIsFavorites: (props: boolean) => void;
+}
 
 export interface ICodingUsSidebarProps {
   todayRanking: {
@@ -188,6 +196,7 @@ export interface ICodingUsCardProps {
 
 export interface ICodingQuestionCardProps {
   isQuestion?: boolean;
+  id?: string;
   width?: number;
   height?: number;
   tags: string[] | undefined;
@@ -259,7 +268,7 @@ export interface ICoachingUsLandingProps {
 }
 export interface ICoachingUsLandingUIProps {
   corList: string[];
-  onChangeCheckBox: (event: MouseEvent) => void;
+  onChangeCheckBox: (event: MouseEvent<HTMLElement>) => void;
   onClickStart: () => void;
   favorList: (string | undefined)[];
   setIsFavorites: (props: boolean) => void;

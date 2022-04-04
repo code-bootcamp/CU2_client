@@ -3,7 +3,6 @@ import Blank from "../../../../commons/Blank";
 import Tag02 from "../../../../commons/Tag/Tag02";
 import { AiOutlineLike } from "react-icons/ai";
 import Label01 from "../../../../commons/Label/Label01";
-import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import { IStack } from "../../../../../commons/types/generated/types";
 import {BsQuestionCircleFill} from "react-icons/bs";
 import { useRouter } from "next/router";
@@ -17,6 +16,7 @@ export default function QnACard(props: ICodingUsCardProps) {
   const router = useRouter();
   return (
     <S.Wrapper width={props.width ? `${props.width}px` : "590px"}>
+      <S.RowWrapper>
       <S.Title onClick={() => {router.push(`/codingus/question/${props.data.id}`)}}>
       <BsQuestionCircleFill
               style={{
@@ -24,11 +24,13 @@ export default function QnACard(props: ICodingUsCardProps) {
                 height: "25px",
                 width: "25px",
                 marginBottom: "4px",
+                alignItems:"center"
               }}
             />
-        <Blank width="10px" />
-        {props.data?.title}
+              <Blank width="10px" />
+        <p>{props.data?.title}</p>
       </S.Title>
+      </S.RowWrapper>
       <Blank height="13px" />
       <S.Contents onClick={() => {router.push(`/codingus/question/${props.data.id}`)}}>{props.data?.contents}</S.Contents>
       <Blank height="8px" />
@@ -44,7 +46,7 @@ export default function QnACard(props: ICodingUsCardProps) {
       <Blank height="30px" />
       <S.RowWrapper style={{ justifyContent: "space-between" }}>
         <S.Like>
-          <AiOutlineLike style={{ width: "25px", height: "25px" }} />
+          <AiOutlineLike style={{ minWidth: "25px", height: "25px", cursor: "pointer" }}/>
           <Blank width="8px" />
           <Label01 value={String(props.data.like)} size="18px" />
         </S.Like>

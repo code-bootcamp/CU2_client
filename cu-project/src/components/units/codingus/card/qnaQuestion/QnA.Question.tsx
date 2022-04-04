@@ -9,10 +9,7 @@ import {
   AiOutlineLike,
   AiOutlineDislike,
 } from "react-icons/ai";
-import {
-  ChangeEvent,
-  useState,
-} from "react";
+import { ChangeEvent, useState } from "react";
 import { RowWrapper } from "../../../coachingus/columns/detail/Columns.Style";
 import Color from "../../../../../commons/styles/color";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
@@ -25,13 +22,15 @@ export default function QnAQuestionCard(props: ICodingQuestionCardProps) {
     props.setEditValue(event.target.value);
   };
 
-  const {moveToPage} = useMoveToPage();
+  const { moveToPage } = useMoveToPage();
   return (
     <S.Wrapper
       width={"100%"}
       height={props.height ? `${props.height}px` : "350px"}
       isMine={true}
-      onClick ={()=>{moveToPage("/codingus/question/detail")}}
+      onClick={() => {
+        moveToPage("/codingus/question/detail");
+      }}
     >
       <Blank height="15px" />
       <S.MyButtonWrapper isMine={true}>
@@ -50,23 +49,21 @@ export default function QnAQuestionCard(props: ICodingQuestionCardProps) {
             value="삭제"
             size="16px"
             color={Color.medium}
-            onClick={props.onClickDelete(
-              "props.id"
-            )}
+            onClick={props.onClickDelete("props.id")}
           />
         </RowWrapper>
       </S.MyButtonWrapper>
       {true && <Blank height="10px" />}
       <S.RowWrapper>
         <S.Title>
-        <BsQuestionCircleFill
-              style={{
-                color: "#EA345A",
-                height: "35px",
-                width: "35px",
-                marginBottom: "4px",
-              }}
-            />
+          <BsQuestionCircleFill
+            style={{
+              color: "#EA345A",
+              height: "35px",
+              width: "35px",
+              marginBottom: "4px",
+            }}
+          />
           <Blank width="20px" /> {props.title}
         </S.Title>
         <Label01 value={props.nickname} size="24px" weight="700" />
@@ -146,19 +143,43 @@ export default function QnAQuestionCard(props: ICodingQuestionCardProps) {
       ) : (
         <>
           <S.CommentInput
-            defaultValue={props.contents}
             onChange={onChangeEditText}
-            value={props.editValue}
+            defaultValue={props.contents}
           />
-          <S.Button
-            isGood={false}
-            style={{ border: `1px solid ${Color.main}` }}
-            onClick={props.onClickEditSubmit(
-              "props.id"
-            )}
-          >
-            <Label01 size="18px" weight="700" value="수정" color={Color.main} />
-          </S.Button>
+          <S.ButtonWrapper>
+            <S.Button
+              isGood={false}
+              style={{ border: `1px solid ${Color.medium}`, width: "173px" }}
+              onClick={() => {
+                setIsEdit((prev) => !prev);
+                props.setEditValue("");
+              }}
+            >
+              <Label01
+                size="18px"
+                weight="700"
+                value="취소"
+                color={Color.medium}
+                width={"100%"}
+                textAlign="center"
+              />
+            </S.Button>
+            <Blank width="16px" />
+            <S.Button
+              isGood={false}
+              style={{ border: `1px solid ${Color.main}`, width: "173px" }}
+              onClick={props.onClickEditSubmit(props.id)}
+            >
+              <Label01
+                size="18px"
+                weight="700"
+                value="수정"
+                color={Color.main}
+                width={"100%"}
+                textAlign="center"
+              />
+            </S.Button>
+          </S.ButtonWrapper>
         </>
       )}
     </S.Wrapper>

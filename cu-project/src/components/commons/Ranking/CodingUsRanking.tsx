@@ -23,6 +23,7 @@ export default function CodingUsRanking(props: ICodingUsRankingProps) {
   }, [props.rankingInfos]);
 
   const calcMyRanking = () => {
+    if(!props.rankingInfos) return;
     for (let i = 0; i < props.rankingInfos.length; i++) {
       if (props.rankingInfos[i].id === props.myInfo?.id) return i + 1;
     }
@@ -52,7 +53,7 @@ export default function CodingUsRanking(props: ICodingUsRankingProps) {
                 isSelected={el === props.gubun}
                 onClick={props.onClickPeriodGubun(el)}
               >
-                {`${el} 랭킹`}
+                {`${el} 랭킹`}  
               </S.GubunLabel>
               <VerticalLine thickness={2} margin={16} />
             </div>

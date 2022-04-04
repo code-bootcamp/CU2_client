@@ -10,7 +10,7 @@ export const CodingUsUsBody = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 1440px;
+  max-width: 1200px;
 `;
 export const RowWrapper = styled.div`
   display: flex;

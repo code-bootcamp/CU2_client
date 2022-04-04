@@ -36,7 +36,7 @@ interface ICodingUsCardProps {
   onClickLike: (id: string) => () => void;
   onClickFollow: (id: string) => () => void;
 }
-export default function BlogMainCard(props: ICodingUsCardProps) {
+export default function BestUserCard(props: ICodingUsCardProps) {
   const accessToken = useStore((state) => state.accessToken);
   const router = useRouter();
   //   fetchBlogData
@@ -86,7 +86,7 @@ export default function BlogMainCard(props: ICodingUsCardProps) {
     >
       <S.UserInfoWrapper>
         <S.UserInfo>
-          <S.ProfileImage src={props.data.user.image} />
+          <S.ProfileImage />
           <Blank width="11px" />
           <S.UserDetail>
             <S.NameLabel>

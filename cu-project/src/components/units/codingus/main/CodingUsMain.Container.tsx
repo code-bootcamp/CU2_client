@@ -33,15 +33,17 @@ export default function CodingUsMain(props: ICodingUsMainProps) {
           }[] = [];
           let cnt = 0;
           for (let i = 0; i < 3; i++) {
+            if(i === 1)
+              console.log()
             if (cnt === 3) break;
-            for (let j = 0; j < data.fetchBlogAll.length; j++) {
+            for (let j = data.fetchBlogAll.length - 1; j >= 0; j--) {
               if (
                 data.fetchBlogAll[j]?.user?.nickname ===
                 data.fetchUserOrderbyscore[i].nickname
               ) {
                 temp.push({
-                  user: data.fetchUserOrderbyscore[j],
-                  blog: data.fetchBlogAll[i],
+                  user: data.fetchUserOrderbyscore[i],
+                  blog: data.fetchBlogAll[j],
                 });
                 break;
               }

@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
 export const CodingUsMain = styled.div`
   display: flex;
   flex-direction: column;
-  width: 1920px;
+  width: 1200px;
   @media screen and (max-width: 1200px) {
     width: 1200px;
   }

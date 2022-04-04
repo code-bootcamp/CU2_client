@@ -100,13 +100,14 @@ export default function BlogCard01(props: ICodingUsCardProps) {
       width={props.width ? `${props.width}px` : "285px"}
       height={props.height ? `${props.height}px` : "440px"}
     >
-      {console.log(splitMarkDown(props.data?.contents))}
+      <S.ImageWrapper isImage={getImagesFromMD(props.data?.contents).length > 0}>
       <S.Image
         src={getImagesFromMD(props.data?.contents)[0] ?? "/CU2_LOGO.png"}
         onClick={() => {
           router.push(`/codingus/blog/${props.data.id}`);
         }}
       />
+      </S.ImageWrapper>
       <S.Body>
         <Blank height="18px" />
         <S.StackWrapper>
@@ -133,7 +134,7 @@ export default function BlogCard01(props: ICodingUsCardProps) {
         </S.Contents>
       </S.Body>
       <Blank height="18px" />
-      <S.RowWrapper style={{ justifyContent: "space-between" }}>
+      <S.RowWrapper style={{ justifyContent: "space-between", padding: "0px 5px" }}>
         <S.Writer>{props.data?.user.nickname}</S.Writer>
         <Blank width="23px" />
         <Label01
@@ -144,7 +145,7 @@ export default function BlogCard01(props: ICodingUsCardProps) {
         />
       </S.RowWrapper>
       <HorizontalLine margin={10} />
-      <S.RowWrapper>
+      <S.RowWrapper style={{padding: "0px 5px"}}>
         <S.GoodBad>
           {likeInfo.isLike ? 
         <AiFillLike style={{width: "25px", height: "25px"}}onClick={onClickLikeBtn}/>

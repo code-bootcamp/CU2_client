@@ -14,6 +14,7 @@ export const SortGubun = styled(RowWrapper)``;
 
 export const TopWrapper  = styled(RowWrapper)`
   justify-content: space-between;
+  width: 100%;
 `;
 
 

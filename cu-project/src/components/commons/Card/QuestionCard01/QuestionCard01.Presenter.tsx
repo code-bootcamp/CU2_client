@@ -14,7 +14,8 @@ export default function QuestionCard01UI(props: IWatingItemProps) {
   return (
     <S.Wrapper>
       <S.RowWrapper>
-        <Tag01 value={String(props.data?.stacktag?.[0].tag)} isShort={true} />
+        {console.log("st", props.data?.stacktag)}
+        <Tag01 value={String(props.data?.stacktag?.length > 0 ? props.data?.stacktag?.[0].tag : "기타")} isShort={true} />
         <Blank width="20px" />
         {props.data?.stacktag
           ?.filter((_, idx) => idx > 0)
@@ -36,7 +37,13 @@ export default function QuestionCard01UI(props: IWatingItemProps) {
           weight="200"
         />
         {props.isAnswered && (
-          <S.AnswerBtn onClick={() => {router.push(`/codingus/question/${props.data.id}`)}}>답변하기</S.AnswerBtn>
+          <S.AnswerBtn
+            onClick={() => {
+              router.push(`/codingus/question/${props.data.id}`);
+            }}
+          >
+            답변하기
+          </S.AnswerBtn>
         )}
       </S.RowWrapper>
       <Blank height="17px" />

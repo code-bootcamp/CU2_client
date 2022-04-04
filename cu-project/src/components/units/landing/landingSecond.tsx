@@ -32,7 +32,7 @@ const Wrapper = styled.div`
 
 const Logo = styled.img`
   opacity: 0;
-  animation: ${({ isPresent }) => isPresent && "fadeIn 3s forwards 0.5s"};
+  animation: ${(props: { isPresent: boolean }) => props.isPresent && "fadeIn 3s forwards 0.5s"};
   @keyframes fadeIn {
     0% {
       opacity: 0;
@@ -49,7 +49,7 @@ const Motto = styled.div`
   opacity: 0;
   line-height: 32px;
   color: ${Color.medium};
-  animation: ${({ isPresent }) => isPresent && "fadeIn 3s forwards 0.5s"};
+  animation: ${(props: { isPresent: boolean }) => props.isPresent && "fadeIn 3s forwards 0.5s"};
   @keyframes fadeIn {
     0% {
       opacity: 0;
