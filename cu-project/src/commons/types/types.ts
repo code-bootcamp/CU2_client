@@ -68,6 +68,14 @@ export interface ISearchProps {}
 
 // #region CodingUs
 
+export interface ICodingUsLandingUIProps {
+  corList: string[];
+  onChangeCheckBox: (event: MouseEvent<HTMLElement>) => void;
+  onClickStart: () => void;
+  interestList: (string | undefined)[];
+  setIsFavorites: (props: boolean) => void;
+}
+
 export interface ICodingUsSidebarProps {
   todayRanking: {
     prev: number;
@@ -259,7 +267,7 @@ export interface ICoachingUsLandingProps {
 }
 export interface ICoachingUsLandingUIProps {
   corList: string[];
-  onChangeCheckBox: (event: MouseEvent) => void;
+  onChangeCheckBox: (event: MouseEvent<HTMLElement>) => void;
   onClickStart: () => void;
   favorList: (string | undefined)[];
   setIsFavorites: (props: boolean) => void;

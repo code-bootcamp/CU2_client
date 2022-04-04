@@ -2,23 +2,28 @@ import Label01 from "../../../../commons/Label/Label01";
 import * as S from "./style";
 import Blank from "../../../../commons/Blank";
 import { v4 as uuidv4 } from "uuid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PointIcon from "../../../../commons/Icon/Icon01/PointIcon";
 import DropDownIcon from "../../../../commons/Icon/DropDownIcon";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import { ICodingUsSidebarProps } from "../../../../../commons/types/types";
 import useStore from "../../../../../commons/store/store";
+import Router from "next/router";
 
 export default function SidebarUserInfo(props: ICodingUsSidebarProps) {
-  const todayDiff =
-    props.todayRanking?.prev - props.todayRanking?.today > 0
-      ? `+${props.todayRanking?.prev - props.todayRanking?.today}`
-      : props.todayRanking?.prev - props.todayRanking?.today;
-  const totalDiff =
-    props.totalRanking?.prev - props.totalRanking?.today > 0
-      ? `+${props.totalRanking?.prev - props.totalRanking?.today}`
-      : props.totalRanking?.prev - props.totalRanking?.today;
-
+  // const todayDiff =
+  //   props.todayRanking?.prev - props.todayRanking?.today > 0
+  //     ? `+${props.todayRanking?.prev - props.todayRanking?.today}`
+  //     : props.todayRanking?.prev - props.todayRanking?.today;
+  // const totalDiff =
+  //   props.totalRanking?.prev - props.totalRanking?.today > 0
+  //     ? `+${props.totalRanking?.prev - props.totalRanking?.today}`
+  //     : props.totalRanking?.prev - props.totalRanking?.today;
+  const [interestList, setInterestList] = useState<string[]>([]);
+useEffect(() => {
+  if(!localStorage.getItem("interestList")) return;
+  setInterestList(String(localStorage.getItem("interestList"))?.split(","))
+}, [])
   const [toggleState, setToggleState] = useState({
     userInfo: false,
     stack: false,
@@ -61,28 +66,29 @@ export default function SidebarUserInfo(props: ICodingUsSidebarProps) {
               <DropDownIcon isUp={toggleState.userInfo || false} />
             </S.Toggle>
           )}
+          {console.log(userInfo)}
           {userInfo && toggleState.userInfo && (
             <div>
-              <Blank height="24px" />
+              <Blank height="12px" />
               <S.Item>
-                <S.StackLabel>{`상위 ${props.todayPercent}%`}</S.StackLabel>
+                <S.StackLabel>{`상위 ${5}%`}</S.StackLabel>
                 <S.StackLabel>오늘활동</S.StackLabel>
               </S.Item>
-              <Blank height="24px" />
+              <Blank height="12px" />
               <S.Item>
-                <S.StackLabel>{`${props.todayPoint}p`}</S.StackLabel>
+                <S.StackLabel>{`${32}p`}</S.StackLabel>
                 <S.StackLabel>획득한 점수</S.StackLabel>
               </S.Item>
-              <Blank height="24px" />
+              <Blank height="12px" />
               <S.Item>
-                <S.StackLabel>{`${props.todayRanking?.today}위(${todayDiff}위)`}</S.StackLabel>
+                <S.StackLabel>{`${22}위`}</S.StackLabel>
                 <S.StackLabel>오늘 순위</S.StackLabel>
               </S.Item>
-              <Blank height="24px" />
-              <S.Item>
+              <Blank height="12px" />
+              {/* <S.Item>
                 <S.StackLabel>{`${props.totalRanking?.today}위(${totalDiff}위)`}</S.StackLabel>
                 <S.StackLabel>전체 순위</S.StackLabel>
-              </S.Item>
+              </S.Item> */}
             </div>
           )}
           <Blank height="12px" />
@@ -91,16 +97,18 @@ export default function SidebarUserInfo(props: ICodingUsSidebarProps) {
             <DropDownIcon isUp={toggleState.stack || false} />
           </S.Toggle>
           {toggleState.stack &&
-            props.stacks?.map((el) => (
+            interestList.map((el) => (
               <div key={uuidv4()}>
-                <Blank height="24px" />
+                <Blank height="12px" />
                 <S.StackLabel>{el}</S.StackLabel>
               </div>
             ))}
           {toggleState.stack && (
             <div>
-              <Blank height="24px" />
-              <S.StackLabel>관심 스택 추가하기</S.StackLabel>
+              <Blank height="12px" />
+              <S.StackLabel onClick={() => { 
+                Router.push("/codingus")
+              }}>관심 스택 추가하기</S.StackLabel>
             </div>
           )}
         </S.UserInfoBody>

@@ -39,7 +39,10 @@ export const MyRanking = styled.div`
 export const UserInfo = styled(RowWrapper)``;
 export const UserImage = styled.img``;
 
-export const UserDetail = styled.div``;
+export const UserDetail = styled.div`
+  display:flex;
+  flex-direction: column;
+`;
 export const PointWrapper = styled(RowWrapper)`
 `;
 

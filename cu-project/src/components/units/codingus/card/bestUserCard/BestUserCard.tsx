@@ -86,7 +86,7 @@ export default function BlogMainCard(props: ICodingUsCardProps) {
     >
       <S.UserInfoWrapper>
         <S.UserInfo>
-          <S.ProfileImage src={props.data.user.image} />
+          <S.ProfileImage />
           <Blank width="11px" />
           <S.UserDetail>
             <S.NameLabel>

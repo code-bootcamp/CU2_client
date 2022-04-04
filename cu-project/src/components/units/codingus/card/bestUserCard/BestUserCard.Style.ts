@@ -29,10 +29,12 @@ export const UserInfo = styled(RowWrapper)``;
 export const UserDetail = styled.div``;
 export const ProfileImage = styled.img`
   object-fit: contain;
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   overflow: hidden;
+  background-color: gray;
+  /* padding: 2px; */
 `;
 export const NameLabel = styled.div`
   font-weight: 700;

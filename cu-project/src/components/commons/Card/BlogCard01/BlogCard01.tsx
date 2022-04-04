@@ -100,7 +100,6 @@ export default function BlogCard01(props: ICodingUsCardProps) {
       width={props.width ? `${props.width}px` : "285px"}
       height={props.height ? `${props.height}px` : "440px"}
     >
-      {console.log(splitMarkDown(props.data?.contents))}
       <S.Image
         src={getImagesFromMD(props.data?.contents)[0] ?? "/CU2_LOGO.png"}
         onClick={() => {

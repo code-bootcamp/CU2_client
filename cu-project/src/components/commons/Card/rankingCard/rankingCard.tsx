@@ -91,7 +91,7 @@ export default function RankingCard(props: ICogindUsRankingProps) {
               weight="700"
             />
             <Label01
-              value={`Lv.${String(Math.floor((props.data?.score ?? 0) / 10))}`}
+              value={`Lv.${String(Math.floor((props.data?.score ?? 0) / 100))}`}
               weight="400"
               size="24px"
               color=" #C4C4C4"

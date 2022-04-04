@@ -37,6 +37,7 @@ export const Title = styled.div`
   font-weight: 700;
   font-size: 18px;
   line-height: 25px;
+  overflow: hidden;
   :hover{
     cursor: pointer;
   }
