@@ -23,7 +23,9 @@ export const AddSideBar = styled.div`
   justify-content: center;
 `;
 
-export const CoachQuestionWrapper = styled.div``;
+export const CoachQuestionWrapper = styled.div`
+  padding-bottom: 50px;
+`;
 
 export const CoachQuestionTitle = styled.div`
   font-size: 24px;
@@ -84,10 +86,24 @@ export const CategoryIntroduceBtn = styled.button`
   font-weight: 200;
   border-radius: 10px;
   padding: 8px 20px;
-  color: ${({ isCategory }) => (!isCategory ? "white" : "black")};
-  border: ${({ isCategory }) => (!isCategory ? "none" : "1px solid #c4c4c4")};
-  background-color: ${({ isCategory }) => (!isCategory ? "#ea345a" : "white")};
+  color: ${({ isCategory }) => (!isCategory ? "black" : "white")};
+  border: ${({ isCategory }) => (!isCategory ? "1px solid #c4c4c4" : "none")};
+  background-color: ${({ isCategory }) => (!isCategory ? "white" : "#ea345a")};
 `;
+
+export const CategoryIntroduceBtn2 = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 200;
+  border-radius: 10px;
+  padding: 8px 20px;
+  color: ${({ isCategory }) => (!isCategory ? "black" : "white")};
+  border: ${({ isCategory }) => (!isCategory ? "1px solid #c4c4c4" : "none")};
+  background-color: ${({ isCategory }) => (!isCategory ? "white" : "#ea345a")};
+`;
+
 export const CategoryPortfolioBtn = styled.button`
   display: flex;
   justify-content: center;

@@ -22,7 +22,7 @@ export default function CoachingUsQuestionUI(
         <S.CoachQuestionTitle>코치에게 질문하기</S.CoachQuestionTitle>
         <Blank height="30px" />
         <S.CoachQuestionSubTitle>
-          <p>myname님, 고민이 있나요?</p>
+          <p>{props.data?.fetchmyuser?.nickname}님, 고민이 있나요?</p>
           <Blank height="10px" />
           <p>커리어, 직무 고민에 대한 해답을 코치님에게 직접 들어보세요!</p>
         </S.CoachQuestionSubTitle>
@@ -43,48 +43,38 @@ export default function CoachingUsQuestionUI(
         <S.ContainerQuestionBody>
           <S.QuestionCategory>
             <S.CategoryIntroduceBtn
-              isCategory={props.isCategory}
-              onClick={() => props.setIsCategory(false)}
+              isCategory={props.isCategory === "RESUME"}
+              onClick={() => props.setIsCategory("RESUME")}
             >
               자기소개서
             </S.CategoryIntroduceBtn>
             <Blank width="25px" />
-            <S.CategoryPortfolioBtn
-              isCategory={props.isCategory}
-              onClick={() => props.setIsCategory(true)}
+            <S.CategoryIntroduceBtn2
+              isCategory={props.isCategory === "PORTFORLIO"}
+              onClick={() => props.setIsCategory("PORTFORLIO")}
             >
               포트폴리오
-            </S.CategoryPortfolioBtn>
+            </S.CategoryIntroduceBtn2>
           </S.QuestionCategory>
           <Blank height="50px" />
           <S.QuestionTitle
+            value={props.title}
+            onChange={props.onChangeTitle}
             type="text"
             placeholder="제목을 작성해주세요."
           ></S.QuestionTitle>
           <Blank height="50px" />
-          <S.QuestionContents placeholder="질문을 작성해주세요."></S.QuestionContents>
+          <S.QuestionContents
+            value={props.contents}
+            onChange={props.onChangeContents}
+            placeholder="질문을 작성해주세요."
+          ></S.QuestionContents>
           <Blank height="50px" />
 
-          <S.QuestionFilesBox>
-            <S.FileTag>파일첨부</S.FileTag>
-            <S.FileInput defaultValue={props.fileName} />
-            <AiOutlinePicture
-              onClick={props.onClickRef}
-              style={{
-                height: "35px",
-                width: "35px",
-                marginLeft: "10px",
-                cursor: "pointer",
-              }}
-            />
-          </S.QuestionFilesBox>
-          <S.QuestionFilesF
-            type="file"
-            onChange={props.onChangeFile}
-            ref={props.fileRef}
-          ></S.QuestionFilesF>
           <Blank height="50px" />
-          <S.QuestionBtn>작성하기</S.QuestionBtn>
+          <S.QuestionBtn onClick={props.onClickCreateQuestion}>
+            작성하기
+          </S.QuestionBtn>
         </S.ContainerQuestionBody>
       </S.CoachQuestionWrapper>
     </S.Wrapper>
