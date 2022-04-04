@@ -12,5 +12,11 @@ export default function ColumnsCardPage(props: ICoachingUsColumnsCardProps) {
   const columnList = data?.fetchRecommendColumnList;
   console.log("columnList", columnList);
 
-  return <ColumnsCardUI columnList={columnList} moveToPage={moveToPage} />;
+  return (
+    <ColumnsCardUI
+      main={props.main}
+      columnList={columnList}
+      moveToPage={moveToPage}
+    />
+  );
 }

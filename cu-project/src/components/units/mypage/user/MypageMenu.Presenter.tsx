@@ -70,7 +70,7 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
               <span>주스택</span>
               <S.MainStack>{props.mainstack?.fetchmainstack}</S.MainStack>
             </S.ProfileContents>
-            <Blank height="20px" />
+            {/* <Blank height="20px" />
             <S.ProfileContents>
               <span>팔로우</span>
               <p onClick={props.onClickMove("/mypage/user/follow")}>112</p>
@@ -79,7 +79,7 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
             <S.ProfileContents>
               <span>팔로워</span>
               <p onClick={props.onClickMove("/mypage/user/follower")}>20</p>
-            </S.ProfileContents>
+            </S.ProfileContents> */}
             <Blank height="20px" />
             <S.ProfileContents>
               <span>포인트</span>
