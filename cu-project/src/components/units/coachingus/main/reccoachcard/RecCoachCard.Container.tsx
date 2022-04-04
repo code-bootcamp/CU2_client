@@ -21,7 +21,7 @@ export default function RecCoachCardPage(props: ICoachingUsRecCoachCardProps) {
     if (data) {
       setNewList(result);
     }
-    console.log(result);
+    console.log("result", result);
     setTimeout(() => {
       setIsStart(false);
     }, 2200);

@@ -57,6 +57,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     cache: new InMemoryCache(),
   });
 
+
   // useEffect(() => {
   //   getAccessToken().then((newAccessToken) => {
   //     setAccessToken(newAccessToken);

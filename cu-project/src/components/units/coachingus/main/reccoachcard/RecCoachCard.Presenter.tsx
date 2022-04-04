@@ -27,7 +27,7 @@ export default function RecCoachCardUI(props: ICoachingUsRecCoachCardUIProps) {
                     <Blank height="10px" />
                     <S.CoachSubCor>
                       <div>{coach.name}</div>
-                      <div>프론트엔드 5년차</div>
+                      <div>{coach.coachProfile?.department}</div>
                     </S.CoachSubCor>
                   </S.CoachTitle>
                 </S.RecommendCoachHeader>
