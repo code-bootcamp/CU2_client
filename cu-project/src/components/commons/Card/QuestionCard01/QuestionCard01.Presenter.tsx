@@ -14,8 +14,7 @@ export default function QuestionCard01UI(props: IWatingItemProps) {
   return (
     <S.Wrapper>
       <S.RowWrapper>
-        {console.log(props.data)}
-        <Tag01 value={String(props.data?.stacktag[0].tag)} isShort={true} />
+        <Tag01 value={String(props.data?.stacktag?.[0].tag)} isShort={true} />
         <Blank width="20px" />
         {props.data?.stacktag
           ?.filter((_, idx) => idx > 0)
@@ -31,7 +30,7 @@ export default function QuestionCard01UI(props: IWatingItemProps) {
         <S.Title>{props.data.title}</S.Title>
         <Label01
           value={getShortDateString(
-            props.data.createAt ?? "2022-02-07T14:42:53.532Z"
+            props.data.createAt ?? "2022-04-03T14:42:53.532Z"
           )}
           size="24px"
           weight="200"

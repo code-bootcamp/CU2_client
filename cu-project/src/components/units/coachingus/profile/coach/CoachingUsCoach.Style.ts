@@ -92,12 +92,29 @@ export const CoachColumn = styled.div`
   font-weight: 400;
 `;
 
+export const ContainerColumnsListNoBody = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 900px;
+  height: 200px;
+`;
 export const ContainerColumnsListBody = styled.div`
   display: flex;
   justify-content: space-between;
   width: 1000px;
 `;
 
+export const ColumnsNoList = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 800px;
+  height: 100%;
+  border-radius: 15px;
+  color: black;
+  font-size: 18px;
+  border: 1px solid #c4c4c4;
+`;
 export const ColumnsList = styled.div`
   display: flex;
   flex-direction: column;
@@ -173,6 +190,34 @@ export const ListMoreBtn = styled.div`
   position: relative;
   right: 140px;
   bottom: -50px;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background-color: white;
+  color: black;
+  font-size: 18px;
+  border: 1px solid black;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  :hover {
+    background-color: black;
+    color: white;
+  }
+
+  p {
+    font-size: 28px;
+  }
+`;
+export const ListNoMoreBtn = styled.div`
+  position: relative;
+  top: 50px;
+  right: 50px;
   width: 100px;
   height: 100px;
   border-radius: 100%;

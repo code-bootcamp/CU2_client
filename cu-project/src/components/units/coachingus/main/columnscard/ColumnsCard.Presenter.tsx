@@ -12,7 +12,7 @@ export default function ColumnsCardUI(props: ICoachingUsColumnsCardUIProps) {
       <S.ColumnsListSubTitle>코치들의 칼럼을 읽어보세요!</S.ColumnsListSubTitle>
       <Blank height="20px" />
       <S.ContainerColumnsListBody>
-        {props.columnList?.map((column) => (
+        {props.columnList?.slice(0, 3)?.map((column) => (
           <S.ColumnsList
             key={column.id}
             onClick={props.moveToPage(

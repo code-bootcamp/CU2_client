@@ -36,7 +36,6 @@ export default function CodingUsBlogWrite(props: ICodingUsBlogWriteProps) {
   }, [props.data]);
 
   const onClickSubmit = async (_: MouseEvent<HTMLButtonElement>) => {
-    console.log("a");
     const contents = editorRef.current?.getInstance().getMarkdown();
     if (!(contents && title)) {
       alert("필수 입력 항목 누락");

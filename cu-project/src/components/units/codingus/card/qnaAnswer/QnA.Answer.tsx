@@ -72,8 +72,8 @@ export default function QnAQuestionCard(props: ICodingQuestionCardProps) {
         <Label01 value={props.writer} size="24px" weight="700" />
       </S.RowWrapper>
       <Blank height="18px" />
-      <HorizontalLine margin={6} />
-      <S.Date>{getYYYYMMDD(props.createdAt)}</S.Date>
+      <HorizontalLine margin={6}/>
+      <S.Date>{getYYYYMMDD(props.createAt)}</S.Date>
       <Blank height="28px" />
       {!isEdit ? (
         <>
@@ -106,7 +106,7 @@ export default function QnAQuestionCard(props: ICodingQuestionCardProps) {
               <Label01
                 size="18px"
                 weight="700"
-                value={String(props.goodCnt ?? 0)}
+                value={String(props.like ?? 0)}
                 color={Color.main}
               />
             </S.Button>
@@ -137,7 +137,7 @@ export default function QnAQuestionCard(props: ICodingQuestionCardProps) {
               <Label01
                 size="18px"
                 weight="700"
-                value={String(props.goodCnt ?? 0)}
+                value={String(props.dislike ?? 0)}
                 color={Color.medium}
               />
             </S.Button>

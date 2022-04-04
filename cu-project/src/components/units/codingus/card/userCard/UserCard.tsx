@@ -56,7 +56,6 @@ export default function UserCard(props: ICodingUsCardProps) {
         <S.FollowBtn
           isFollowed={props.isFollowed}
           onClick={() => {
-            console.log("팔로우 버튼 클릭!!");
           }}
         >
           팔로우

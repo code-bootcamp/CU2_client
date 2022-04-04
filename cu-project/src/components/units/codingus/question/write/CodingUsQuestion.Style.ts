@@ -7,25 +7,19 @@ export const Wrapper = styled.div`
   padding-top: 100px;
   display: flex;
 `;
-
-// coach card 영역
-export const CoachSidebar = styled.div`
-  min-height: 100vh;
-  min-width: 500px;
+export const RowRrapper = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
+  width: 100%;
 `;
+
 export const AddSideBar = styled.div`
   width: 300px;
   display: flex;
   justify-content: center;
 `;
 
-export const CoachQuestionWrapper = styled.div`
-  padding-bottom: 50px;
-`;
+export const CoachQuestionWrapper = styled.div``;
 
 export const CoachQuestionTitle = styled.div`
   font-size: 24px;
@@ -86,24 +80,13 @@ export const CategoryIntroduceBtn = styled.button`
   font-weight: 200;
   border-radius: 10px;
   padding: 8px 20px;
-  color: ${({ isCategory }) => (!isCategory ? "black" : "white")};
-  border: ${({ isCategory }) => (!isCategory ? "1px solid #c4c4c4" : "none")};
-  background-color: ${({ isCategory }) => (!isCategory ? "white" : "#ea345a")};
+  color: ${(props: { isCategory: boolean }) =>
+    !props.isCategory ? "white" : "black"};
+  border: ${(props: { isCategory: boolean }) =>
+    !props.isCategory ? "none" : "1px solid #c4c4c4"};
+  background-color: ${(props: { isCategory: boolean }) =>
+    !props.isCategory ? "#ea345a" : "white"};
 `;
-
-export const CategoryIntroduceBtn2 = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
-  font-weight: 200;
-  border-radius: 10px;
-  padding: 8px 20px;
-  color: ${({ isCategory }) => (!isCategory ? "black" : "white")};
-  border: ${({ isCategory }) => (!isCategory ? "1px solid #c4c4c4" : "none")};
-  background-color: ${({ isCategory }) => (!isCategory ? "white" : "#ea345a")};
-`;
-
 export const CategoryPortfolioBtn = styled.button`
   display: flex;
   justify-content: center;
@@ -113,9 +96,9 @@ export const CategoryPortfolioBtn = styled.button`
   font-weight: 200;
   border-radius: 10px;
   padding: 8px 20px;
-  color: ${({ isCategory }) => (isCategory ? "white" : "black")};
-  border: ${({ isCategory }) => (isCategory ? "none" : "1px solid #c4c4c4")};
-  background-color: ${({ isCategory }) => (isCategory ? "#ea345a" : "white")};
+  color: ${(props: {isCategory: boolean}) => (props.isCategory ? "white" : "black")};
+  border: ${(props: {isCategory: boolean}) => (props.isCategory ? "none" : "1px solid #c4c4c4")};
+  background-color: ${(props: {isCategory: boolean}) => (props.isCategory ? "#ea345a" : "white")};
 `;
 
 export const QuestionTitle = styled.input`
@@ -125,6 +108,7 @@ export const QuestionTitle = styled.input`
   ::placeholder {
     color: #c4c4c4;
   }
+  width: inherit;
 `;
 export const QuestionContents = styled.textarea`
   resize: none;
@@ -172,4 +156,35 @@ export const QuestionBtn = styled.button`
   :hover {
     background-color: black;
   }
+`;
+export const TagBox = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 5px 0;
+`;
+
+
+
+export const TagInput = styled.input`
+  display: ${(props: {isFull: boolean}) => (props.isFull ? "none" : "flex")};
+  height: 35px;
+  padding-left: 5px;
+  margin-left: 5px;
+  border: none;
+  :focus {
+    outline: none;
+    border: none;
+  }
+`;
+
+export const TagItem = styled.div`
+  margin: 0 5px 5px 5px;
+  color: white;
+  font-weight: normal;
+  background: #ea345a;
+  padding: 5px 15px;
+  border-radius: 12px;
+
+  cursor: pointer;
 `;

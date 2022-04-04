@@ -63,7 +63,7 @@ export const Wrapper = styled.div`
   }
   @keyframes right {
     100% {
-      transform: rotate(-150deg);
+      transform: rotate(-170deg);
     }
   }
   @keyframes left {
@@ -73,9 +73,9 @@ export const Wrapper = styled.div`
   }
 `;
 
-export default function CoachingUsProfileRate() {
+export default function CoachingUsProfileRate(props) {
   return (
-    <Wrapper>
+    <Wrapper coachRank={props.coachRank}>
       <div className="circular">
         <div className="inner"></div>
         <div className="circle">

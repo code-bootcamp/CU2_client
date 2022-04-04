@@ -8,7 +8,7 @@ import Color from "../../../../../commons/styles/color";
 import { getShortDateString } from "../../../../../commons/libraries/dateUtils";
 import { AiFillLike, AiOutlineLike, AiOutlineComment } from "react-icons/ai";
 import { useRouter } from "next/router";
-import { getImagesFromMD } from "../../../../../commons/libraries/mdUtils";
+import { getImagesFromMD, getTextFromMD } from "../../../../../commons/libraries/mdUtils";
 import {
   IBlog,
   IQuery,
@@ -121,10 +121,10 @@ export default function BlogMainCard(props: ICodingUsCardProps) {
           </S.TagWrapper>
           <Label01 value={props.data.blog.title} size="18px" weight="700" />
           <Blank height="10px" />
-          <S.Contents>{props.data.blog.contents}</S.Contents>
+          <S.Contents>{getTextFromMD(props.data.blog.contents)}</S.Contents>
           <Blank height="30px" />
           <S.ImageWrapper>
-            <S.Image src={getImagesFromMD(props.data.blog.contents ?? "")[0]} />
+            <S.Image src={getImagesFromMD(props.data.blog.contents)[0]} />
           </S.ImageWrapper>
         </S.BlogBody>
         <Blank height="15px" />
