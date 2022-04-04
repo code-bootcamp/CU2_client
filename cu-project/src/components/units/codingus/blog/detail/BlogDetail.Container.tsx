@@ -1,23 +1,44 @@
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { getIndexFromMD } from "../../../../../commons/libraries/mdUtils";
-import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
+import {
+  IMutation,
+  IMutationDeleteBlogArgs,
+  IQuery,
+  IQueryFetchblogoneArgs,
+} from "../../../../../commons/types/generated/types";
 import { useScroll } from "../../../../commons/hooks/useScroll";
-import { dummyMD } from "../dummy";
 import CodingUsBlogDetailUI from "./BlogDetail.Presenter";
+import { DELETE_BLOG, FETCH_BLOG_ONE } from "./BlogDetail.Queries";
 
 export default function CodingUsBlogDetail() {
-  const { moveToPage } = useMoveToPage();
   const router = useRouter();
   const [indexPositions, setIndexPositions] = useState<number[]>([]);
   const [currentIndex, setCurrentIndex] = useState(-1);
-  // const {data: fetchBlogData} = useQuery<Pick<IQuery,"fetchBlog">,IQueryFetchBlogArgs>(FETCH_BLOG, {variables: {blogId: router.query.blogId}})
-  // const {data: fetchBlogData} = useQuery(FETCH_BLOG, {variables: {blogId: router.query.blogId}})
-  const onClickDelete = () => {
-    // 삭제 확인
+  const {data: fetchBlogData} = useQuery<Pick<IQuery,"fetchblogone">,IQueryFetchblogoneArgs>(FETCH_BLOG_ONE, {variables: {blogid: String(router.query.blogId)}})
+  const [deleteBlog] = useMutation<
+    Pick<IMutation, "deleteBlog">,
+    IMutationDeleteBlogArgs
+  >(DELETE_BLOG);
+  const onClickDelete = async () => {
+    try {
+      // 삭제확인
+      const result = await deleteBlog({
+        variables: { blogid: String(router.query.blogId) },
+      });
+      if (!result) {
+        alert("삭제 실패");
+        return;
+      }
+      alert("삭제 성공");
+      router.push("/codingus/blog");
+    } catch (err: any) {
+      alert(err.message);
+    }
   };
-  const onClickUpdate = () => {
-    moveToPage(`/codingus/blog/${"blogId자리입니다~~~~"}/update`);
+  const onClickEdit = () => {
+    router.push(`/codingus/blog/${router.query.blogId}/edit`);
   };
   const { y: scrollY } = useScroll();
 
@@ -29,41 +50,32 @@ export default function CodingUsBlogDetail() {
         ...Array.from(document.getElementsByTagName("h3")),
       ];
       if (hTags.length < 1) return;
-      const scrollTops = getIndexFromMD(dummyMD).map(
-        (el) =>{
-          const tag = hTags
-            .filter((tag) => el.includes(tag.innerText))[0];
-            console.log(tag.style);
-            return Math.floor(tag.getBoundingClientRect().top - 100);
+      const scrollTops = getIndexFromMD(String(fetchBlogData?.fetchblogone.contents)).map(
+        (el) => {
+          const tag = hTags.filter((tag) => el.includes(tag.innerText))[0];
+          console.log(tag.style);
+          return Math.floor(tag.getBoundingClientRect().top - 100);
         }
       );
       setIndexPositions(scrollTops);
     }
     if (indexPositions[currentIndex + 1] <= scrollY) {
       setCurrentIndex(currentIndex + 1);
-      console.log(indexPositions[currentIndex +1], scrollY)
-    }
-    else if (indexPositions[currentIndex] > scrollY) {
+      console.log(indexPositions[currentIndex + 1], scrollY);
+    } else if (indexPositions[currentIndex] > scrollY) {
       setCurrentIndex(currentIndex - 1);
     }
-  }, [scrollY,currentIndex]);
+  }, [scrollY, currentIndex]);
   return (
     <CodingUsBlogDetailUI
-      contents={dummyMD}
-      writer={"CodingMaster"}
-      title={"Zustand - 상태 관리 라이브러리"}
-      createdAt="2022-02-07T14:42:53.532Z"
-      tags={["JavaScript", "React", "Zustand"]}
-
-      // fetchBlogData={fetchBlogData}
-      // index={getIndexFromMD(fetchBlogData.contents)}
-      // isPicked={true}
-
+      data={fetchBlogData?.fetchblogone}
+      index={getIndexFromMD(fetchBlogData?.fetchblogone?.contents || "")}
+      // isPicked={fetchBlogData.isLiked}
       currentIndex={currentIndex}
       indexPositions={indexPositions}
       setCurrentIndex={setCurrentIndex}
       onClickDelete={onClickDelete}
-      onClickUpdate={onClickUpdate}
+      onClickEdit={onClickEdit}
     />
   );
 }

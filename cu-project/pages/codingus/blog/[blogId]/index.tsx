@@ -1,5 +1,4 @@
-// import CodingUsBlogDetail from "../../../../src/components/units/codingus/blog/detail/BlogDetail.Container";
-import CodingUsBlogDetail from "../../../../src/components/units/codingus/blog/detail/BlogDetail.ContainerAPI";
+import CodingUsBlogDetail from "../../../../src/components/units/codingus/blog/detail/BlogDetail.Container";
 
 export default function CodingUsBlogDetailPage() {
   return (

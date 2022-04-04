@@ -38,3 +38,25 @@ export const FETCH_BLOG_ALL = gql`
     }
   }
 `;
+
+export const FETCH_BLOG_ONE = gql`
+  query fetchblogone($blogid: String!){
+    fetchblogone(blogid: $blogid){
+      id
+      title
+      contents
+      user {
+        nickname
+      }
+      like
+      dislike
+      blogtag {
+        tag
+      }
+      blogcategorytag {
+        tag
+      }
+      createAt
+    }
+  }
+`;
