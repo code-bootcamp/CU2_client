@@ -78,17 +78,6 @@ export default function CodingUsBlogUI(props: ICodingUsBlogUIProps) {
             useWindow={false}
           >
             <S.CardWrapper>
-<<<<<<< HEAD
-              {props.blogList?.map((el) => (
-                <BlogCard01 key={uuidV4()} data={el.blog} isLike={el.isLike} />
-              ))}
-            </S.CardWrapper>
-          </InfiniteScroll>
-        </S.FollowingWrapper>
-      </S.CodingUsBlogBody>
-      <WriteBtn page="blog" />
-    </S.CodingUsBlog>
-=======
              {props.blogList && props.blogList.sort((a, b)=> a.blog.like - b.blog.like).filter((_,idx)=> idx < 4).map((el, idx) => (
                 <BlogShortCard
                   key={uuidV4()}
@@ -134,6 +123,5 @@ export default function CodingUsBlogUI(props: ICodingUsBlogUIProps) {
         </S.CodingUsBlogBody>
         <WriteBtn page="blog"/>
       </S.CodingUsBlog>
->>>>>>> 16c1281720b813c61ec3a67429aacbd2c168aa99
   );
 }

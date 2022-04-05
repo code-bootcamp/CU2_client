@@ -13,7 +13,7 @@ export default function AnswerPresenter(props) {
           <S.CommentsTitleLeft>
             <S.TitlePicture></S.TitlePicture>
             <Blank width="10px" />
-            <p>{props.answer?.name} coach</p>
+            <p>김태훈 coach</p>
           </S.CommentsTitleLeft>
           <S.CommentsTitleRight>
             <S.CommentsInfo>

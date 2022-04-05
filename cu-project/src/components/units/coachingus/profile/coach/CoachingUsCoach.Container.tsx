@@ -90,7 +90,7 @@ export default function CoachingUsCoachPage(props) {
   return (
     <CoachingUsCoachUI
       moveToPage={moveToPage}
-      columnList={columnList}
+      columnList={columns}
       comment={comment}
       setComponent={props.setComponent}
       router={router}

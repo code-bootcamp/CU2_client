@@ -72,7 +72,7 @@ export const Wrapper = styled.div`
   @keyframes left {
     100% {
       transform: ${({ answerRate }) =>
-        answerRate > 50
+        answerRate >= 50
           ? `rotate(-180deg)`
           : `rotate(${-(answerRate / 100) * 180}deg)`};
     }
