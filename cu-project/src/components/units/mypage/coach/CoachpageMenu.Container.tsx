@@ -11,13 +11,12 @@ import CoachpageMenuUI from "./CoachpageMenu.Presenter";
 
 export default function CoachpageMenu() {
   const router = useRouter();
-  const [isModal, setIsModal] = useState(false);
   const { data: userData } = useQuery(FETCH_MY_USER);
   const { data: rankData } = useQuery(FETCH_USER_ORDER_BY_SCORE);
   const { data } = useQuery(FETCH_COACH_USER, {
     variables: { userId: userData?.fetchmyuser.id },
   });
-  useAuth();
+  // useAuth();
 
   const onClickModal = () => {
     setIsModal((prev) => !prev);
@@ -32,7 +31,6 @@ export default function CoachpageMenu() {
       data={data}
       userData={userData}
       rankData={rankData}
-      isModal={isModal}
       onClickMove={onClickMove}
       onClickModal={onClickModal}
     />

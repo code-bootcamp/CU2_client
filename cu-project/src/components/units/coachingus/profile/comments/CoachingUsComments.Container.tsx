@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import useCoachRate from "../../../../../commons/store/coachRate";
 import CoachingUsCommentsUI from "./CoachingUsComments.Presenter";
 import {
   FETCH_ANSWER,
@@ -9,6 +10,7 @@ import {
 
 export default function CoachingUsCommentsPage() {
   const router = useRouter();
+
   const [answer, setAnswer] = useState([]);
   const { data: answerData } = useQuery(FETCH_ANSWER);
   const { data } = useQuery(FETCH_COACH_COMMENTS, {
@@ -21,11 +23,12 @@ export default function CoachingUsCommentsPage() {
   const comment = data?.fetchQuestionListPerCoach;
 
   useEffect(() => {
-    const result = answerList?.filter(
-      (answer) => answer?.question?.id === comment?.[0]?.id
+    const commentListMap = comment?.map((el) => el.id);
+    const result = answerList?.filter((answer) =>
+      commentListMap?.includes(answer?.question?.id)
     );
     setAnswer(result);
-  }, [answerData]);
+  }, [answerData, data]);
 
   return (
     <CoachingUsCommentsUI

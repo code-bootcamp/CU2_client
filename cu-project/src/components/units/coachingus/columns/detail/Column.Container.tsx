@@ -35,6 +35,7 @@ export default function ColumnDetailPage() {
       setCurrentIndex(currentIndex - 1);
     }
   }, [scrollY, currentIndex]);
+
   return (
     <ColumnUI
       contents={dummyMD}

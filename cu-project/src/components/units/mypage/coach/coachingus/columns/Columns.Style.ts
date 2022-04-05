@@ -27,3 +27,8 @@ export const BlogHeader = styled.div`
     flex-direction: column;
   }
 `;
+
+export const ColumnsBox = styled.div`
+  width: 200px;
+  flex-wrap: wrap;
+`;

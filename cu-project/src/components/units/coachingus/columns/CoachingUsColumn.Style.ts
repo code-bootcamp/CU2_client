@@ -56,6 +56,7 @@ export const ColumnsList = styled.div`
   height: fit-content;
   padding: 0;
   overflow: hidden;
+  box-shadow: 0 3px 15px 0 rgb(0 0 0 / 16%);
   cursor: pointer;
 
   :hover {
@@ -65,12 +66,14 @@ export const ColumnsList = styled.div`
 `;
 
 export const ColumnPicture = styled.div`
+  background-image: url(${({ imgCover }) => imgCover});
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 200px;
-  background-color: #c4c4c4;
+  background-color: white;
 `;
 export const ColumnText = styled.div`
   display: flex;
@@ -119,9 +122,9 @@ export const ColumnShortenContents = styled.div`
 // body columns 영역
 export const ContainerColumnsBody = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   width: 1000px;
+  flex-wrap: wrap;
 `;
 
 export const ColumnList = styled.div`

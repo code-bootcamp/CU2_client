@@ -1,8 +1,12 @@
+import { useRouter } from "next/router";
 import { AiFillPlusCircle } from "react-icons/ai";
 import InfiniteScroll from "react-infinite-scroller";
 import Blank from "../../../commons/Blank";
+import BlogCard01 from "../../../commons/Card/BlogCard01/BlogCard01";
 import CoachingUsSidebar from "../sidebar/CoachingUsSidebar.Container";
+import { v4 as uuidV4 } from "uuid";
 import * as S from "./CoachingUsColumn.Style";
+import BlogCard02 from "../../codingus/card/blogCard/BlogCard02/BlogCard02";
 
 export default function CoachingUsColumnUI(props) {
   return (
@@ -15,12 +19,14 @@ export default function CoachingUsColumnUI(props) {
           Weekly Best Columns
           <Blank height="30px" />
           <S.ContainerColumnsListBody>
-            {props.columnBestList?.map((column) => (
+            {props.columns?.map((column, index) => (
               <S.ColumnsList
                 key={column.id}
-                onClick={props.moveToPage(`/coachingus/coaches/0/columns/0`)}
+                onClick={props.moveToPage(
+                  `/coachingus/coaches/876cbaa9-b954-46e7-b6a3-b7e5f7cb0e7b/columns/0`
+                )}
               >
-                <S.ColumnPicture></S.ColumnPicture>
+                <S.ColumnPicture imgCover={props.imgUrl[index]} />
 
                 <S.ColumnText>
                   <S.ColumnTitle>
@@ -43,7 +49,8 @@ export default function CoachingUsColumnUI(props) {
                   </S.ColumnContents>
                   <Blank height="5px" />
                   <S.ColumnFooter>
-                    <div>{column.user.name}</div>2일전
+                    <div>{column.name}</div>
+                    {column.createdAt}
                   </S.ColumnFooter>
                 </S.ColumnText>
               </S.ColumnsList>
@@ -64,7 +71,19 @@ export default function CoachingUsColumnUI(props) {
             // useWindow={true}
           >
             <S.ContainerColumnsBody>
-              {props.totalColumn?.map((column) => (
+              {props.blogList?.map((el, index) => (
+                <div
+                  style={{ height: "500px", padding: "0 40px 0 0" }}
+                  key={index}
+                >
+                  <BlogCard01
+                    key={uuidV4()}
+                    data={el.blog}
+                    isLike={el.isLike}
+                  />
+                </div>
+              ))}
+              {/* {props.totalColumn?.map((column) => (
                 <S.ColumnList
                   key={column.id}
                   onClick={props.moveToPage(`/coachingus/columns/${column.id}`)}
@@ -96,7 +115,7 @@ export default function CoachingUsColumnUI(props) {
                     </S.ColumnFooter>
                   </S.ColumnText>
                 </S.ColumnList>
-              ))}
+              ))} */}
             </S.ContainerColumnsBody>
           </InfiniteScroll>
           {props.isCoach && (
@@ -112,3 +131,53 @@ export default function CoachingUsColumnUI(props) {
     </S.Wrapper>
   );
 }
+
+export const CoachingUsColumnUICoachPage = (props) => {
+  const router = useRouter();
+  return (
+    <S.ContainerColumnsListBody>
+      <div
+        style={{
+          width: "90%",
+          display: "flex",
+          flexWrap: "wrap",
+        }}
+      >
+        {props.data?.fetchMyColumn.map((el) => (
+          <S.ColumnsList
+            key={el.id}
+            style={{ width: "200px", margin: "20px 20px 0 0" }}
+            onClick={() => router.push(`/coachingus/coaches/0/columns/0`)}
+          >
+            <S.ColumnPicture></S.ColumnPicture>
+
+            <S.ColumnText>
+              <S.ColumnTitle>
+                {el.title.length > 25 ? (
+                  <S.ColumnShortenTitle>
+                    {el.title.slice(0, 25) + "..."}
+                  </S.ColumnShortenTitle>
+                ) : (
+                  <S.ColumnTitle>{el.title}</S.ColumnTitle>
+                )}
+              </S.ColumnTitle>
+              <S.ColumnContents>
+                {el.contents.length > 30 ? (
+                  <S.ColumnShortenContents>
+                    {el.contents.slice(0, 30) + "..."}
+                  </S.ColumnShortenContents>
+                ) : (
+                  <S.ColumnContents>{el.contents}</S.ColumnContents>
+                )}
+              </S.ColumnContents>
+              <Blank height="5px" />
+              <S.ColumnFooter>
+                <div>{el.user.name}</div>2일전
+              </S.ColumnFooter>
+            </S.ColumnText>
+          </S.ColumnsList>
+        ))}
+      </div>
+    </S.ContainerColumnsListBody>
+  );
+};
