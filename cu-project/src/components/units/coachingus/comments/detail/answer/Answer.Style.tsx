@@ -32,10 +32,11 @@ export const CommentsTitleLeft = styled.div`
   cursor: pointer;
 `;
 export const TitlePicture = styled.div`
+  background-image: url("https://storage.googleapis.com/cucutoo-dev-bucket/TaeHoon.jpeg");
+  background-size: cover;
   border-radius: 100%;
   height: 35px;
   width: 35px;
-  background: gray;
 `;
 
 export const CommentsTitleRight = styled.div`
