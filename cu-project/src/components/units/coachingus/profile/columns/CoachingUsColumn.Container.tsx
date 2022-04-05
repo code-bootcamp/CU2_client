@@ -6,6 +6,5 @@ export default function CoachingUsColumnPage(props) {
 
   const columnList = props.coachColumnsList;
 
-  console.log(props.coachColumnsList);
   return <CoachingUsColumnUI columnList={columnList} moveToPage={moveToPage} />;
 }

@@ -49,20 +49,6 @@ export default function CodingUsRanking(props: ICodingUsRankingProps) {
             return { ranking: idx + 1, data: el };
           })
       );
-      console.log(props.rankingInfos
-        .map((el) => {
-          return {
-            ...el,
-            score:
-              Math.random() > 0.5
-                ? el.score + Math.floor(Math.random() * 100)
-                : el.score - Math.floor(Math.random() * 100),
-          };
-        })
-        .sort((a, b) => a.score - b.score)
-        .map((el, idx) => {
-          return { ranking: idx + 1, data: el };
-        }))
     }
   }, [props.rankingInfos]);
 

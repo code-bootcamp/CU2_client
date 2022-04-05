@@ -72,7 +72,7 @@ export default function MainUI(props: MainPageUIProps) {
         <S.ServiceBody>
           <S.SliderContentBox {...props.responsiveSettings}>
             {props.blogData?.fetchotherBlogorderbylikeAll
-              .filter((el, index) => index < 8)
+              .filter((el, index) => index < 8 && el.title !== "제목")
               .map((el) => (
                 <div key={el.id}>
                   <BlogCard01 data={el} />
@@ -197,7 +197,6 @@ export default function MainUI(props: MainPageUIProps) {
             flexWrap: "wrap",
           }}
         >
-          {console.log(props.columnData)}
           {props.columnData?.fetchHighHitColumnList
             .filter((el: IStack, index: number) => index < 4)
             .map((el) => (

@@ -76,7 +76,6 @@ Please enter the verification code "
             disabled={!props.isToken}
             ref={props.codeRef}
             onChange={() => {
-              console.log(props.codeRef);
             }}
           />
           <Blank height="20px" />

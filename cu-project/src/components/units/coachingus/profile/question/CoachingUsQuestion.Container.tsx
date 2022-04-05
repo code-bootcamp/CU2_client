@@ -14,7 +14,6 @@ export default function CoachingUsQuestion(props: ICoachingUsQuestionProps) {
 
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
-  console.log(title, contents);
   const { data } = useQuery(FETCH_MY_USER);
   const [createCoachQuestion] = useMutation(CREATE_COACH_QUESTION);
 

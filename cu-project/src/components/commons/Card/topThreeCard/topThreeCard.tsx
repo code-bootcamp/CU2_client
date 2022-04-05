@@ -1,9 +1,7 @@
 import * as S from "./topThreeCard.Style";
-import { Avatar } from "antd";
 import Label01 from "../../Label/Label01";
 import Blank from "../../Blank";
 import { IUser } from "../../../../commons/types/generated/types";
-import React from "react";
 import { BsFillPersonFill } from "react-icons/bs";
 import { RestUserPicture } from "../rankingCard/rankingCard.Style";
 interface ICodingUsCardProps {

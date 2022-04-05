@@ -53,7 +53,6 @@ export default function CodingUsBlogDetail() {
       const scrollTops = getIndexFromMD(String(fetchBlogData?.fetchblogone.contents)).map(
         (el) => {
           const tag = hTags.filter((tag) => el.includes(tag.innerText))[0];
-          console.log(tag.style);
           return Math.floor(tag.getBoundingClientRect().top - 100);
         }
       );
@@ -61,7 +60,6 @@ export default function CodingUsBlogDetail() {
     }
     if (indexPositions[currentIndex + 1] <= scrollY) {
       setCurrentIndex(currentIndex + 1);
-      console.log(indexPositions[currentIndex + 1], scrollY);
     } else if (indexPositions[currentIndex] > scrollY) {
       setCurrentIndex(currentIndex - 1);
     }

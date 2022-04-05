@@ -15,7 +15,6 @@ interface ITextEditorProps {
   isEdit?: boolean;
 }
 export default function TextEditor01(props: ITextEditorProps) {
-  console.log(props);
   return (
     <div style={{ height: props.height, width: props.width }}>
       <EditorUI editorRef={props.editorRef} isEdit={props.isEdit} data={props.data}/>

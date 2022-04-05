@@ -5,7 +5,6 @@ import MypageMenu from "../MypageMenu.Container";
 import * as S from "./UserUpdate.Style";
 
 export default function UserUpdateUI(props: IUserUpdateUI) {
-  console.log(props.userData);
   return (
     <S.AllWrapper>
       <S.Web>

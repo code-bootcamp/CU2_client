@@ -76,7 +76,6 @@ useEffect(() => {
               <DropDownIcon isUp={toggleState.userInfo || false} />
             </S.Toggle>
           )}
-          {console.log(userInfo)}
           {userInfo && toggleState.userInfo && (
             <div>
               <Blank height="12px" />

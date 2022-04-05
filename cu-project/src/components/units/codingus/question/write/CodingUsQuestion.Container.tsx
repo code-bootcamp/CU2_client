@@ -71,7 +71,6 @@ export default function CodingUsQuestion() {
     }
 
     if (e.key === "Backspace" && e.currentTarget.value === "") {
-      console.log(e.currentTarget.id);
       return setTags(tags.filter((_, i) => i + 1 !== tags.length));
     } else {
       if (tags.length > 2) {

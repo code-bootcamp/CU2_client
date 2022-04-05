@@ -63,7 +63,6 @@ export default function CoachingUsCoachPage() {
         setMyRanking(index + 1);
       }
     });
-    console.log("myList", myList);
   };
 
   useEffect(() => {

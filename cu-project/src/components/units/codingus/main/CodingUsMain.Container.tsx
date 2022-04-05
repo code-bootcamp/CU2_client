@@ -34,7 +34,6 @@ export default function CodingUsMain(props: ICodingUsMainProps) {
           let cnt = 0;
           for (let i = 0; i < 3; i++) {
             if(i === 1)
-              console.log()
             if (cnt === 3) break;
             for (let j = data.fetchBlogAll.length - 1; j >= 0; j--) {
               if (

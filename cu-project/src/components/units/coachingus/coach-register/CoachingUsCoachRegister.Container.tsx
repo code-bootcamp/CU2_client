@@ -39,7 +39,6 @@ export default function CoachingUsCoachRegisterPage() {
     }
 
     if (e.key === "Backspace" && e.currentTarget.value === "") {
-      console.log(e.currentTarget.id);
       return setTags(tags.filter((_, i) => i + 1 !== tags.length));
     } else {
       if (tags.length > 1) {
@@ -110,9 +109,7 @@ export default function CoachingUsCoachRegisterPage() {
         },
         stacktag: tags,
       };
-      console.log("히히");
       const result = await createCoachProfile({ variables });
-      console.log(result.data);
       router.push("/mypage/coach/portfolio/");
 
       if (!result.data) {
@@ -121,8 +118,6 @@ export default function CoachingUsCoachRegisterPage() {
       }
     }
   };
-
-  console.log(isCoach);
 
   return (
     <CoachingUsCoachRegisterUI

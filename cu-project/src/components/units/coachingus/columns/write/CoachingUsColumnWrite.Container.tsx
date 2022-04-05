@@ -11,9 +11,7 @@ export default function CoachingUsColumnWrite(props: ICodingUsBlogWriteProps) {
   const { moveToPage } = useMoveToPage();
 
   const onClickSubmit = (_: MouseEvent<HTMLButtonElement>) => {
-    console.log("a");
     const value = editorRef.current?.getInstance().getMarkdown();
-    console.log(value);
     if (!value?.length) {
       alert("내용을 입력해주세요");
       return;

@@ -50,7 +50,6 @@ interface IInputProps {
 export default function Input01(props: IInputProps) {
   const onKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.currentTarget.value.length < 1) return;
-    console.log(event.code);
     if (event.code === "Enter") {
       const newTag = event.currentTarget.value;
       if (props.tags.length < 5) {

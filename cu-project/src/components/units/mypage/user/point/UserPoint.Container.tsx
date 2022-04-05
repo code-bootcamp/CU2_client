@@ -22,7 +22,6 @@ export default function UserPoint() {
   };
 
   const onChangeAmount = (e) => {
-    console.log(e.target.value);
     setAmount(e.target.value);
   };
 
@@ -45,7 +44,6 @@ export default function UserPoint() {
       async (rsp) => {
         // callback
         if (rsp.success) {
-          console.log(rsp);
           const result = await createPoint({
             variables: { amount, impUid: rsp.imp_uid },
           });

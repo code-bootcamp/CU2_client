@@ -6,7 +6,6 @@ import { FETCH_BLOG_LIKE } from "./Likeposts.Queries";
 
 export default function UserLikePosts() {
   const { data } = useQuery(FETCH_BLOG_LIKE);
-  console.log(data);
 
   return <UserLikePostsUI data={data} />;
 }

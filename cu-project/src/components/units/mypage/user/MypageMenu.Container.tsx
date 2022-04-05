@@ -29,7 +29,6 @@ export default function MypageMenu() {
   };
 
   const onChangeAmount = (e) => {
-    console.log(e);
     setAmount(e.target.value);
   };
 
@@ -53,7 +52,6 @@ export default function MypageMenu() {
       async (rsp) => {
         // callback
         if (rsp.success) {
-          console.log(rsp);
           const result = await createPoint({
             variables: { amount, impUid: rsp.imp_uid },
           });

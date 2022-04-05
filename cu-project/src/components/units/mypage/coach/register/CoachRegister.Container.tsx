@@ -31,8 +31,6 @@ export default function CoachRegister(props) {
         /* 태그를 클릭 이벤트 관련 로직 */
         $HashWrapInner.addEventListener("click", () => {
           $HashWrapOuter?.removeChild($HashWrapInner);
-          console.log($HashWrapInner.innerHTML);
-          console.log(hashArr);
           setHashArr(
             hashArr.filter(
               (el) =>
@@ -44,7 +42,6 @@ export default function CoachRegister(props) {
 
         /* enter 키 코드 :13 */
         if (e.keyCode === 13 && e.target.value.trim() !== "") {
-          // console.log("Enter Key 입력됨!", e.target.value);
           $HashWrapInner.innerHTML = "#" + e.target.value;
           $HashWrapOuter?.appendChild($HashWrapInner);
           setHashArr((hashArr) => [...hashArr, hashtag]);
