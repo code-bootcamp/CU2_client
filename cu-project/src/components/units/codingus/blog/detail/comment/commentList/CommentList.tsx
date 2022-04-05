@@ -8,6 +8,9 @@ import Blank from "../../../../../../commons/Blank";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import HorizontalLine from "../../../../../../commons/Line/HorizontalLine";
 import Button02 from "../../../../../../commons/Button/Button02";
+import React from "react";
+import { BsFillPersonFill } from "react-icons/bs";
+import { RestUserPicture } from "../../../../../../commons/Card/rankingCard/rankingCard.Style";
 interface IBlogCommentListProps {
   commentList: ICodingUsCommentsProps[];
   onLoadMore: () => void;
@@ -31,7 +34,9 @@ export default function CommentList(props: IBlogCommentListProps) {
             <S.Comment key={uuidv4()}>
               <S.CommentHeader>
                 <S.UserInfo>
-                  <S.UserImage src={el.user.image ?? ""} />
+                <RestUserPicture>
+          <BsFillPersonFill style={{width: "40px", height: "40px"}}/>
+        </RestUserPicture>
                   <Blank width="20px" />
                   <S.UserDetail>
                     <Label01 value={el.user.name} size="16px" />
@@ -49,7 +54,7 @@ export default function CommentList(props: IBlogCommentListProps) {
                     {el.likeCnt}
                   </S.LikeButton>
                   <Blank height="5px" />
-                  <S.MyButtonWrapper>
+                 {el.user.name ==="김재민" && <S.MyButtonWrapper>
                     <S.MyButton
                       isMyComment={true}
                       onClick={props.onClickEditComment(idx)}
@@ -63,7 +68,7 @@ export default function CommentList(props: IBlogCommentListProps) {
                     >
                       삭제
                     </S.MyButton>
-                  </S.MyButtonWrapper>
+                  </S.MyButtonWrapper>}
                 </S.ButtonWrapper>
               </S.CommentHeader>
               <Blank height="20px" />

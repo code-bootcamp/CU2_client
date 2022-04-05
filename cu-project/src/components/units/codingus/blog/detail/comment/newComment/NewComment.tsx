@@ -15,7 +15,7 @@ export default function NewComment(props: INewCommentProps) {
   return (
     <S.Wrapper>
       <Label01
-        value={`${props.commentCnt}개의 댓글`}
+        value={`${4}개의 댓글`}
         weight="700"
         size="24px"
       />

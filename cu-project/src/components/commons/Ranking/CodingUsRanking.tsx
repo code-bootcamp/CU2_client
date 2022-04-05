@@ -27,9 +27,7 @@ export default function CodingUsRanking(props: ICodingUsRankingProps) {
         return {
           ...el,
           score:
-            Math.random() > 0.5
-              ? el.score + Math.floor(Math.random() * 100)
-              : el.score - Math.floor(Math.random() * 100),
+              el.score - Math.floor(Math.random() * 5),
         };
       });
       setCurrRanking(tempCurrent);
@@ -38,10 +36,8 @@ export default function CodingUsRanking(props: ICodingUsRankingProps) {
           .map((el) => {
             return {
               ...el,
-              score:
-                Math.random() > 0.5
-                  ? el.score + Math.floor(Math.random() * 100)
-                  : el.score - Math.floor(Math.random() * 100),
+              score:el.score + Math.floor(Math.random() * 5)
+                  
             };
           })
           .sort((a, b) => b.score - a.score)

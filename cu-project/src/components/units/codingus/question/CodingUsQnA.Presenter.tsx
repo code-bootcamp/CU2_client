@@ -22,8 +22,8 @@ export default function CodingUsQnAUI(props: ICodingUsQnAUIProps) {
           }}
           title="My Stack History"
         ></CodingUsHistory>
-        <Blank height="57px" />
-        <S.BannerWrapper />
+        {/* <Blank height="57px" /> */}
+        {/* <S.BannerWrapper /> */}
         <Blank height="97px" />
         <Label01 value={"Q&A CodingUs"} weight="700" size="27px" />
         <Blank height="16px" />
