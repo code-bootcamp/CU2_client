@@ -16,10 +16,12 @@ export const TagWrapper = styled.div`
 `;
 
 export const Title = styled.div`
-  width: 50%;
+  width: 60%;
   font-weight: 700;
   font-size: 24px;
   line-height: 36px;
+  height:36px;
+  overflow: hidden;
 `;
 
 export const AnswerBtn = styled.button`
@@ -29,10 +31,14 @@ export const AnswerBtn = styled.button`
   font-weight: 700;
   font-size: 24px;
   line-height: 28px;
-  background: ${Color.main};
   border-radius: 8px;
   border: none;
+  transition: all 0.2s ease-in-out;
+  /* background-color: red; */
+  background: ${Color.main};
+  animation: showing2 0.2s linear;
   :hover {
     cursor: pointer;
+    background-color: ${Color.sub}
   }
 `;

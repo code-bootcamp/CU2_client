@@ -8,44 +8,48 @@ import Color from "../../../../commons/styles/color";
 import { Avatar } from "antd";
 import { useRouter } from "next/router";
 import { ICogindUsRankingProps } from "../../../../commons/types/types";
-
+import { BsFillPersonFill } from "react-icons/bs";
+import React from "react";
+import { RestCoachPicture } from "../../../units/coachingus/coaches/CoachingUsCoaches.Style";
 
 export default function RankingCard(props: ICogindUsRankingProps) {
   // 랭킹 비교 기능 미구현... ㅠㅠ.... api가 없어요 ㅠㅠㅠ........
-  // const getRankingDiff = () => {
-  //   if (
-  //     !props.data?.prevInfo?.ranking ||
-  //     !props.data?.currInfo?.ranking ||
-  //     props.data?.prevInfo?.ranking === props.data?.currInfo?.ranking
-  //   )
-  //     return <S.RankingDiff> - </S.RankingDiff>;
-  //   const diff = props.data?.prevInfo?.ranking - props.data?.currInfo?.ranking;
-  //   const isUp =
-  //     props.data?.prevInfo?.ranking - props.data?.currInfo?.ranking > 0;
+  const getRankingDiff = () => {
+    if (
+      !props.prevData!.ranking ||
+      !props.ranking ||
+      props.prevData!.ranking === props.ranking ||
+      props.data!.score  < 100
+    )
+      return <S.RankingDiff> - </S.RankingDiff>;
+    const diff = props.prevData!.ranking - props.ranking;
+    const isUp =
+      props.prevData!.ranking < props.ranking ;
 
-  //   return (
-  //     <S.RankingDiff style={{ color: isUp ? "red" : "blue" }}>{`${
-  //       isUp ? "▲" : "▼"
-  //     } ${Math.abs(diff)}`}</S.RankingDiff>
-  //   );
-  // };
+    return (
+      <S.RankingDiff style={{ color: isUp ? "red" : "blue" }}>{`${
+        isUp ? "▲" : "▼"
+      } ${Math.abs(diff)}`}</S.RankingDiff>
+    );
+  };
   // 얘도 미구현 ..... 서비스 발표 후 api 추가 예정......
-  // const getPointDiff = () => {
-  //   if (
-  //     !props.data?.prevInfo?.point ||
-  //     !props.data?.currInfo?.point ||
-  //     props.data?.prevInfo?.point === props.data?.currInfo?.point
-  //   )
-  //     return <S.PointDiff> - </S.PointDiff>;
-  //   const diff = props.data?.prevInfo?.point - props.data?.currInfo?.point;
-  //   const isUp = props.data?.prevInfo?.point - props.data?.currInfo?.point > 0;
+  const getPointDiff = () => {
+    if (
+      !props.prevData!.data!.score! ||
+      !props.data?.score ||
+      props.prevData!.data!.score! === props.data?.score ||
+      props.data!.score  < 100
+    )
+      return <S.PointDiff> - </S.PointDiff>;
+    const diff =  props.data?.score - props.prevData!.data!.score!;
+    const isUp = props.prevData!.data!.score! > props.data?.score ;
 
-  //   return (
-  //     <S.PointDiff style={{ color: isUp ? "red" : "blue" }}>{`${
-  //       isUp ? "+" : "-"
-  //     } ${Math.abs(diff)}`}</S.PointDiff>
-  //   );
-  // };
+    return (
+      <S.PointDiff style={{ color: isUp ? "red" : "blue" }}>{`${
+        isUp ? "+" : "-"
+      } ${Math.abs(diff)}`}</S.PointDiff>
+    );
+  };
   const router = useRouter();
   return (
     <S.Wrapper
@@ -55,7 +59,7 @@ export default function RankingCard(props: ICogindUsRankingProps) {
       <S.RowWrapper>
         <S.RankingWrapper>
           <S.CurrentRanking>{props.ranking}</S.CurrentRanking>
-          {/* {getRankingDiff()} */}
+          {getRankingDiff()}
         </S.RankingWrapper>
         <Blank width="40px" />
         <S.MyRanking isMyRanking={props.isMyRanking}>
@@ -72,17 +76,9 @@ export default function RankingCard(props: ICogindUsRankingProps) {
         </S.MyRanking>
         <Blank width="40px" />
         <S.UserInfo>
-          <Avatar
-            style={{
-              backgroundColor: "#C4C4C4",
-              borderRadius: "50%",
-              padding: "5px",
-              width: "50px",
-              height: "50px",
-              objectFit: "cover",
-              backgroundSize: "cover",
-            }}
-          />
+        <S.RestUserPicture>
+          <BsFillPersonFill style={{width: "40px", height: "40px"}}/>
+        </S.RestUserPicture>
           <Blank width="50px" />
           <S.UserDetail>
             <Label01
@@ -102,12 +98,12 @@ export default function RankingCard(props: ICogindUsRankingProps) {
       <S.RowWrapper>
         <S.PointWrapper>
           <Label01
-            value={`${String(props.data?.score)}점`}
+            value={`${props.data!.score  > 100 ? String(props.data?.score) : "0"}점`}
             weight="700"
             size="24px"
           />
           <Blank width="10px" />
-          {/* {getPointDiff()} */}
+          {getPointDiff()}
         </S.PointWrapper>
         <Blank width="80px" />
         {props.isMyRanking ? (

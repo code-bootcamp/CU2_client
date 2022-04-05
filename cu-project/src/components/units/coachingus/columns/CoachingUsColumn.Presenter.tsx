@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { AiFillPlusCircle } from "react-icons/ai";
 import InfiniteScroll from "react-infinite-scroller";
 import Blank from "../../../commons/Blank";
@@ -130,3 +131,53 @@ export default function CoachingUsColumnUI(props) {
     </S.Wrapper>
   );
 }
+
+export const CoachingUsColumnUICoachPage = (props) => {
+  const router = useRouter();
+  return (
+    <S.ContainerColumnsListBody>
+      <div
+        style={{
+          width: "90%",
+          display: "flex",
+          flexWrap: "wrap",
+        }}
+      >
+        {props.data?.fetchMyColumn.map((el) => (
+          <S.ColumnsList
+            key={el.id}
+            style={{ width: "200px", margin: "20px 20px 0 0" }}
+            onClick={() => router.push(`/coachingus/coaches/0/columns/0`)}
+          >
+            <S.ColumnPicture></S.ColumnPicture>
+
+            <S.ColumnText>
+              <S.ColumnTitle>
+                {el.title.length > 25 ? (
+                  <S.ColumnShortenTitle>
+                    {el.title.slice(0, 25) + "..."}
+                  </S.ColumnShortenTitle>
+                ) : (
+                  <S.ColumnTitle>{el.title}</S.ColumnTitle>
+                )}
+              </S.ColumnTitle>
+              <S.ColumnContents>
+                {el.contents.length > 30 ? (
+                  <S.ColumnShortenContents>
+                    {el.contents.slice(0, 30) + "..."}
+                  </S.ColumnShortenContents>
+                ) : (
+                  <S.ColumnContents>{el.contents}</S.ColumnContents>
+                )}
+              </S.ColumnContents>
+              <Blank height="5px" />
+              <S.ColumnFooter>
+                <div>{el.user.name}</div>2일전
+              </S.ColumnFooter>
+            </S.ColumnText>
+          </S.ColumnsList>
+        ))}
+      </div>
+    </S.ContainerColumnsListBody>
+  );
+};

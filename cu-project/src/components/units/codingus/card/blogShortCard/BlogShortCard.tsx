@@ -19,11 +19,17 @@ export default function BlogShortCard(props: ICodingUsCardProps) {
       height={props.height ? `${props.height}px` : "327px"}
       onClick={() =>{router.push("/codingus/blog/detail")}}
     >
+      {/* <S.Item> */}
     <Tag01 isShort={true} value={props.stacks ? props.stacks[0] : ""} />
+      {/* </S.Item> */}
       <Blank height="18px" />
-      <S.Image src={props.image ?? "https://source.unsplash.com/random"} />
+      <S.ImageWrapper>
+      <S.Image src={props.image || "/CU2_LOGO.png"}  imageUrl={props.image}/>
+      </S.ImageWrapper>
       <Blank height="19px" />
+      {/* <S.Item> */}
       <S.Contents>{props.title}</S.Contents>
+      {/* </S.Item> */}
     </S.Wrapper>
   );
 }
