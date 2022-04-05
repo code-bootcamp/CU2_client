@@ -7,13 +7,16 @@ export default function CoachingUsCoachUI(props) {
     <>
       <S.CoachIntro>
         <S.CoachIntroTitle>멘토소개</S.CoachIntroTitle>
-        <S.CoachIntroContents>
-          {props.coachData?.fetchCoachUser.coachProfile.profileTitle ||
+        <Blank height="30px" />
+        {props.imgUrl.map((_, index) => (
+          <S.CoachIntroContents imgCover={props.imgUrl[index]} key={index}>
+            {/* {props.coachData?.fetchCoachUser.coachProfile.profileTitle ||
             "멘토 소개글이 없습니다."}
         </S.CoachIntroContents>
         <S.CoachIntroContents>
-          {props.coachData?.fetchCoachUser.coachProfile.profileContents}
-        </S.CoachIntroContents>
+          {props.coachData?.fetchCoachUser.coachProfile.profileContents} */}
+          </S.CoachIntroContents>
+        ))}
       </S.CoachIntro>
       <Blank height="100px" />
       <S.CoachComments
@@ -68,20 +71,22 @@ export default function CoachingUsCoachUI(props) {
           </S.ContainerColumnsListNoBody>
         ) : (
           <S.ContainerColumnsListBody>
-            {props.columnList?.map((column) => (
+            {props.columns?.map((column, index) => (
               <S.ColumnsList
                 key={column.id}
                 onClick={props.moveToPage(
                   `/coachingus/coaches/${props.router.query.coachId}/columns/${column.id}`
                 )}
               >
-                <S.ColumnPicture>{column.picture}</S.ColumnPicture>
+                <S.ColumnPicture
+                  imgCover={props.colImg[index]}
+                ></S.ColumnPicture>
 
                 <S.ColumnText>
                   <S.ColumnTitle>
                     {column.title.length > 25 ? (
                       <S.ColumnShortenTitle>
-                        {column.title.slice(0, 25) + "..."}
+                        {column.title.slice(0, 40) + "..."}
                       </S.ColumnShortenTitle>
                     ) : (
                       <S.ColumnTitle>{column.title}</S.ColumnTitle>
@@ -90,7 +95,7 @@ export default function CoachingUsCoachUI(props) {
                   <S.ColumnContents>
                     {column.contents.length > 30 ? (
                       <S.ColumnShortenContents>
-                        {column.contents.slice(0, 30) + "..."}
+                        {column.contents.slice(0, 60) + "..."}
                       </S.ColumnShortenContents>
                     ) : (
                       <S.ColumnContents>{column.contents}</S.ColumnContents>
@@ -98,7 +103,7 @@ export default function CoachingUsCoachUI(props) {
                   </S.ColumnContents>
                   <Blank height="5px" />
                   <S.ColumnFooter>
-                    <div>김태훈</div>2일전
+                    <div>김태훈</div>1일전
                   </S.ColumnFooter>
                 </S.ColumnText>
               </S.ColumnsList>

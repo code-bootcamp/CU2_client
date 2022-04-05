@@ -10,6 +10,7 @@ import { v4 as uuidV4 } from "uuid";
 import Blank from "../../../../commons/Blank";
 import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
+import BlogCard01 from "../../../../commons/Card/BlogCard01/BlogCard01";
 
 const Wrapper = styled.div`
   width: 75%;
@@ -17,6 +18,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 50px;
 `;
 
 const SearchHead = styled.h1`
@@ -48,9 +50,10 @@ export const RowWrapper = styled.div`
 `;
 
 export const CardWrapper = styled(RowWrapper)`
-  justify-content: space-between;
+  display: flex;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  width: 100%;
+  width: 1000px;
 `;
 
 const FETCH_BLOG_SEARCH = gql`
@@ -77,10 +80,10 @@ export default function SearchBlog() {
     ICodingUsBlogCardProps[]
   >(new Array(10).fill(dummy));
 
-  const onLoadMore = () => {
-    const temp = [...sortedBlogList];
-    setSortedBlogList([...temp, ...new Array(10).fill(dummy)]);
-  };
+  // const onLoadMore = () => {
+  //   const temp = [...sortedBlogList];
+  //   setSortedBlogList([...temp, ...new Array(10).fill(dummy)]);
+  // };
 
   const { data, refetch } = useQuery(FETCH_BLOG_SEARCH, {
     variables: { search: router.query.keyword },
@@ -88,25 +91,23 @@ export default function SearchBlog() {
 
   useEffect(() => {
     refetch({ search: router.query.keyword });
-    console.log(data);
-  }, []);
+    console.log("data", data);
+  }, [data]);
 
   return (
     <Wrapper>
       <SearchHead>CodingUs Blog</SearchHead>
       <Blank height="30px" />
-      <InfiniteScroll
-        pageStart={0}
-        loadMore={onLoadMore}
-        hasMore={true || false}
-        useWindow={true}
-      >
-        <CardWrapper>
-          {sortedBlogList?.map((el: ICodingUsBlogCardProps) => (
-            <BlogCard key={uuidV4()} blogData={el} />
-          ))}
-        </CardWrapper>
-      </InfiniteScroll>
+      <CardWrapper>
+        {data?.fetchBlogSearch?.map((el: ICodingUsBlogCardProps, index) => (
+          <div
+            key={index}
+            style={{ marginRight: "40px", marginBottom: "40px" }}
+          >
+            <BlogCard01 key={uuidV4()} data={el} isLike={el.isLike} />
+          </div>
+        ))}
+      </CardWrapper>
     </Wrapper>
   );
 }

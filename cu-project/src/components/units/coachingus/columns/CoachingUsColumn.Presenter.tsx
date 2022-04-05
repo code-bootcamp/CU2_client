@@ -18,14 +18,14 @@ export default function CoachingUsColumnUI(props) {
           Weekly Best Columns
           <Blank height="30px" />
           <S.ContainerColumnsListBody>
-            {props.columnBestList?.map((column) => (
+            {props.columns?.map((column, index) => (
               <S.ColumnsList
                 key={column.id}
                 onClick={props.moveToPage(
                   `/coachingus/coaches/876cbaa9-b954-46e7-b6a3-b7e5f7cb0e7b/columns/0`
                 )}
               >
-                <S.ColumnPicture></S.ColumnPicture>
+                <S.ColumnPicture imgCover={props.imgUrl[index]} />
 
                 <S.ColumnText>
                   <S.ColumnTitle>
@@ -48,7 +48,8 @@ export default function CoachingUsColumnUI(props) {
                   </S.ColumnContents>
                   <Blank height="5px" />
                   <S.ColumnFooter>
-                    <div>{column.user.name}</div>2일전
+                    <div>{column.name}</div>
+                    {column.createdAt}
                   </S.ColumnFooter>
                 </S.ColumnText>
               </S.ColumnsList>

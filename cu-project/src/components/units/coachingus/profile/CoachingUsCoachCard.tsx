@@ -32,6 +32,9 @@ const LoadingCard = styled.div`
 `;
 
 const CardPicture = styled.div`
+  background-image: url("https://storage.googleapis.com/cucutoo-dev-bucket/TaeHoon.jpeg");
+  background-size: cover;
+
   width: 100%;
   height: 200px;
   border-radius: 15px 15px 0 0;
@@ -207,7 +210,7 @@ const FETCH_COACH_ORDER_LIST = gql`
 function CoachingUsCoachCard(props) {
   const router = useRouter();
   const answerRate = useCoachRate((state) => state.answerRate);
-  console.log(answerRate);
+
   const { data } = useQuery(FETCH_COACH_USER, {
     variables: {
       userId: router.query.coachId,
@@ -302,7 +305,8 @@ function CoachingUsCoachCard(props) {
 
           <Rantangle>
             <RateTextActive>
-              활동점수 <p>{coach?.score}점</p>
+              활동점수 <p>1,322점</p>
+              {/* 활동점수 <p>{coach?.score}점</p> */}
             </RateTextActive>
           </Rantangle>
         </ContentsPersentage>
