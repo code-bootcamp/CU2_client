@@ -84,7 +84,10 @@ export const ImageBox = styled.div`
   display: flex;
 `;
 export const CoachPicture = styled.div`
-  background-color: #c4c4c4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f6f5f5;
   height: 100px;
   width: 100px;
   border-radius: 100%;
@@ -149,9 +152,12 @@ export const ProfileBox = styled.div`
 `;
 export const IsUpDown = styled.div``;
 export const RestCoachPicture = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 50px;
   height: 50px;
-  background-color: #c4c4c4;
+  background-color: #f6f5f5;
   border-radius: 100%;
 `;
 export const RestCoachText = styled.div`

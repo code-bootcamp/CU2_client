@@ -17,7 +17,7 @@ export default function AnswerWritePresenter(props) {
       </S.CoachSidebar>
       <S.CoachAnswerWrapper>
         <S.CoachQuestionSubTitle>
-          <p>{props.data?.fetchmyuser?.nickname}님, 고민이 있나요?</p>
+          <p>김태훈님님, 고민이 있나요?</p>
           <Blank height="10px" />
           <p>커리어, 직무 고민에 대한 해답을 코치님에게 직접 들어보세요!</p>
         </S.CoachQuestionSubTitle>

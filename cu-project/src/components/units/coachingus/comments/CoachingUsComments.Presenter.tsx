@@ -115,11 +115,9 @@ export default function CoachingUsCommentsUI(
                     />
                     <Blank width="10px" />
                     Good{" "}
-                    {props.totalAnswer?.map((answer) => {
-                      if (comment.id === answer.question.id) {
-                        return <>{answer.likecount || 0}</>;
-                      }
-                    })[0] || <>0</>}
+                    {props.totalAnswer?.filter(
+                      (answer) => comment.id === answer.question.id
+                    )[0]?.likecount || 0}
                   </S.ContentsInfoLikes>
                   <Blank width="30px" />
                   <S.ContentsInfoDislikes>
@@ -131,11 +129,9 @@ export default function CoachingUsCommentsUI(
                     />
                     <Blank width="10px" />
                     Bad{" "}
-                    {props.totalAnswer?.map((answer) => {
-                      if (comment.id === answer.question.id) {
-                        return <>{answer.dislikecount || 0}</>;
-                      }
-                    })[0] || <>0</>}
+                    {props.totalAnswer?.filter(
+                      (answer) => comment.id === answer.question.id
+                    )[0]?.dislikecount || 0}
                   </S.ContentsInfoDislikes>
                 </S.ContentsInfo>
               </S.CommentsContents>

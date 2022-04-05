@@ -10,13 +10,19 @@ export default function ColumnsCardPage(props: ICoachingUsColumnsCardProps) {
   const { moveToPage } = useMoveToPage();
 
   const columnList = data?.fetchRecommendColumnList;
-  console.log("columnList", columnList);
+
+  const imgUrl = [
+    "https://storage.googleapis.com/cucutoo-dev-bucket/gql.png",
+    "https://storage.googleapis.com/cucutoo-dev-bucket/program1.jpeg",
+    "https://storage.googleapis.com/cucutoo-dev-bucket/react.jpeg",
+  ];
 
   return (
     <ColumnsCardUI
       main={props.main}
       columnList={columnList}
       moveToPage={moveToPage}
+      imgUrl={imgUrl}
     />
   );
 }

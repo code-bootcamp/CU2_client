@@ -1,4 +1,5 @@
 import { AiFillTrophy } from "react-icons/ai";
+import { BsFillPersonFill } from "react-icons/bs";
 import { MdExpandMore } from "react-icons/md";
 import Blank from "../../../commons/Blank";
 import CoachingUsSidebar from "../sidebar/CoachingUsSidebar.Container";
@@ -26,7 +27,9 @@ export default function CoachingUsCoachUI(props) {
                 <S.MyText>내 순위</S.MyText>
               </S.TrophyBox>
               <S.ProfileBox>
-                <S.RestCoachPicture></S.RestCoachPicture>
+                <S.RestCoachPicture>
+                  <BsFillPersonFill style={{ width: "40px", height: "40px" }} />
+                </S.RestCoachPicture>
                 <Blank width="20px" />
                 <S.RestCoachText>
                   <p>{props.myList?.name}</p>
@@ -60,7 +63,11 @@ export default function CoachingUsCoachUI(props) {
                     <img src={props.medal[index]} />
                   </S.ImageBox>
 
-                  <S.CoachPicture></S.CoachPicture>
+                  <S.CoachPicture>
+                    <BsFillPersonFill
+                      style={{ width: "80px", height: "80px" }}
+                    />
+                  </S.CoachPicture>
                   <Blank height="15px" />
                   <S.CoachName>{best.name}</S.CoachName>
                   <Blank height="5px" />
@@ -81,7 +88,11 @@ export default function CoachingUsCoachUI(props) {
                   </S.RankingNum>
                   {/* <Blank width="150px" /> */}
                   <S.ProfileBox>
-                    <S.RestCoachPicture></S.RestCoachPicture>
+                    <S.RestCoachPicture>
+                      <BsFillPersonFill
+                        style={{ width: "40px", height: "40px" }}
+                      />
+                    </S.RestCoachPicture>
                     <Blank width="20px" />
                     <S.RestCoachText isMyInfo={best.id === props.myList?.id}>
                       <p>{best.name}</p>

@@ -24,12 +24,12 @@ export const LeftSideBar = styled.div`
 
 export const CommentsBody = styled.div`
   min-width: 800px;
-  padding: 0 0 50px 0;
   & > p {
     font-size: 24px;
     font-weight: 400;
   }
   padding: 0 0 50px 0px;
+  margin-left: 50px;
 `;
 
 // body 영역

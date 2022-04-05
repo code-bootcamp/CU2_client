@@ -23,7 +23,7 @@ export default function CommentPage(props: ICoachingUsCommentsProps) {
   });
   const [likeBtn] = useMutation(LIKE_TOGGLE);
   const [dislikeBtn] = useMutation(DISLIKE_TOGGLE);
-  console.log(router.query.commentsId);
+
   const { data: answerData } = useQuery(FETCH_ANSWER);
   const { data: myData } = useQuery(FETCH_MY_USER);
 

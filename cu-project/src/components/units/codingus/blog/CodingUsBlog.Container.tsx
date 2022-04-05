@@ -36,17 +36,17 @@ export default function CodingUsBlog() {
     const page = isChanged ? 0 : currentPage;
 
     if (
-      !isChanged && blogList.length ===
-      blogListOrderByCreatedAt?.fetchotherBlogorderbycreateAt.length
+      !isChanged &&
+      blogList.length ===
+        blogListOrderByCreatedAt?.fetchotherBlogorderbycreateAt.length
     )
       return;
 
-    console.log("isOrderByPopular", isOrderByPopular);
     if (!blogListOrderByLike || !blogListOrderByCreatedAt) return;
     let currentList = isOrderByPopular
       ? [...blogListOrderByLike?.fetchotherBlogorderbylikeAll]
       : [...blogListOrderByCreatedAt?.fetchotherBlogorderbycreateAt];
-      currentList = currentList!.filter((_, idx) => idx < (page + 1) * 8);
+    currentList = currentList!.filter((_, idx) => idx < (page + 1) * 8);
 
     const result = currentList.map((blog) => {
       return {

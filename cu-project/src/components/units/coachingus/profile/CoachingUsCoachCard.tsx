@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
-import styled from "@emotion/styled";
-import Blank from "../../../commons/Blank";
-import { BsFillTriangleFill } from "react-icons/bs";
-import CoachingUsProfileRate from "./CoachingUsProfileRate";
-import { useRouter } from "next/router";
 import { gql, useQuery } from "@apollo/client";
+import styled from "@emotion/styled";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import { BsFillTriangleFill } from "react-icons/bs";
+import useCoachRate from "../../../../commons/store/coachRate";
+import Blank from "../../../commons/Blank";
 import { useAuthCoach } from "../../../commons/hooks/useAuthCoach";
-import { FETCH_ANSWER } from "./coach/CoachingUsCoach.Queries";
+import CoachingUsProfileRate from "./CoachingUsProfileRate";
 import { FETCH_MY_USER } from "./question/CoachingUsQuestion.Queries";
-import Loading from "../../../commons/Loading/Loading";
 
 const CoachCard = styled.div`
   width: 250px;
@@ -33,6 +32,9 @@ const LoadingCard = styled.div`
 `;
 
 const CardPicture = styled.div`
+  background-image: url("https://storage.googleapis.com/cucutoo-dev-bucket/TaeHoon.jpeg");
+  background-size: cover;
+
   width: 100%;
   height: 200px;
   border-radius: 15px 15px 0 0;
@@ -207,6 +209,8 @@ const FETCH_COACH_ORDER_LIST = gql`
 
 function CoachingUsCoachCard(props) {
   const router = useRouter();
+  const answerRate = useCoachRate((state) => state.answerRate);
+
   const { data } = useQuery(FETCH_COACH_USER, {
     variables: {
       userId: router.query.coachId,
@@ -271,9 +275,9 @@ function CoachingUsCoachCard(props) {
         <ContentsPersentage>
           <AnswerRate>
             <RateText>
-              답변률 <p>90%</p>
+              답변률 <p>{answerRate}%</p>
             </RateText>
-            <CoachingUsProfileRate coachRank={coachRank} />
+            <CoachingUsProfileRate answerRate={answerRate} />
           </AnswerRate>
           <ActivityRankingBox>
             <ActivityRanking coachRank={coachRank}>
@@ -301,7 +305,8 @@ function CoachingUsCoachCard(props) {
 
           <Rantangle>
             <RateTextActive>
-              활동점수 <p>{coach?.score}점</p>
+              활동점수 <p>1,322점</p>
+              {/* 활동점수 <p>{coach?.score}점</p> */}
             </RateTextActive>
           </Rantangle>
         </ContentsPersentage>

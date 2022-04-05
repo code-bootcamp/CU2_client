@@ -11,7 +11,13 @@ export default function RecCoachCardPage(props: ICoachingUsRecCoachCardProps) {
   const [isStart, setIsStart] = useState(true);
   const { data } = useQuery(FETCH_COACH_ORDER_LIST);
   const [newList, setNewList] = useState([]);
-  // console.log(data);
+  const rank = [3912, 4143, 1232];
+
+  const imgUrl = [
+    "https://storage.googleapis.com/cucutoo-dev-bucket/seol.jpeg",
+    "https://storage.googleapis.com/cucutoo-dev-bucket/son.JPG",
+    "https://storage.googleapis.com/cucutoo-dev-bucket/TaeHoon.jpeg",
+  ];
 
   const result = data?.fetchUserOrderbyscore
     .filter((el) => el.role === "COACH")
@@ -21,7 +27,6 @@ export default function RecCoachCardPage(props: ICoachingUsRecCoachCardProps) {
     if (data) {
       setNewList(result);
     }
-    console.log("result", result);
     setTimeout(() => {
       setIsStart(false);
     }, 2200);
@@ -32,6 +37,8 @@ export default function RecCoachCardPage(props: ICoachingUsRecCoachCardProps) {
       recommendCoachList={newList}
       isStart={isStart}
       moveToPage={moveToPage}
+      imgUrl={imgUrl}
+      rank={rank}
     />
   );
 }
