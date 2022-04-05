@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const AllWrapper = styled.div`
-  margin: 100px 360px 0;
+  margin: 100px 12.5% 0;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -45,7 +45,7 @@ export const InfoBox = styled.div`
     width: 30%;
   }
   & input {
-    width: 40%;
+    width: 70%;
     height: 40px;
     border: 1px solid #bdbdbd;
     border-radius: 10px;

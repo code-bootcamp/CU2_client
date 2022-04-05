@@ -1,9 +1,12 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import useStore from "../../../../../commons/store/store";
 import UserPointUI from "./UserPoint.Presenter";
-import { CREATE_POINT, FETCH_MY_USER } from "./UserPoint.Queries";
+import {
+  CREATE_POINT,
+  FETCH_MY_POINT_HISTORY,
+  FETCH_MY_USER,
+} from "./UserPoint.Queries";
 
 export default function UserPoint() {
   const router = useRouter();
@@ -11,6 +14,8 @@ export default function UserPoint() {
   const [amount, setAmount] = useState(5000);
   const [createPoint] = useMutation(CREATE_POINT);
   const { data } = useQuery(FETCH_MY_USER);
+  const { data: pointData } = useQuery(FETCH_MY_POINT_HISTORY);
+  console.log(pointData);
 
   const onClickModal = () => {
     setIsModal((prev) => !prev);
@@ -53,6 +58,7 @@ export default function UserPoint() {
   return (
     <UserPointUI
       isModal={isModal}
+      pointData={pointData}
       onClickModal={onClickModal}
       onClickOkBtn={onClickOkBtn}
       onChangeAmount={onChangeAmount}

@@ -3,7 +3,6 @@ import MypageMenu from "../MypageMenu.Container";
 import * as S from "./UserPoint.Style";
 import { Modal } from "antd";
 import "antd/dist/antd.css";
-import { MyPageButton } from "../../../../commons/Mypage/MypageButton";
 import { UserPageNav } from "../../../../commons/Mypage/MypageNav";
 import { IUserPointUI } from "../../../../../commons/types/types";
 import Script from "next/script";
@@ -50,24 +49,20 @@ export default function UserPointUI(props: IUserPointUI) {
             </Modal>
           )}
           <UserPageNav menu={"포인트 충전내역"} />
-
           <Blank height="30px" />
-
           <S.ChargeBox>
-            <span>전체내역</span> | <span>충전내역</span> |{" "}
-            <span>구매내역</span> | <span>판매내역</span>
             <S.Row>
-              <S.ColumnHeaderBasic>충전일</S.ColumnHeaderBasic>
+              <S.ColumnHeaderBasic>결제 상태</S.ColumnHeaderBasic>
               <S.ColumnHeaderTitle>결제ID</S.ColumnHeaderTitle>
-              <S.ColumnHeaderBasic>충전/구매 내역</S.ColumnHeaderBasic>
-              <S.ColumnHeaderBasic>충전 후 잔액</S.ColumnHeaderBasic>
+              <S.ColumnHeaderBasic>충전 금액</S.ColumnHeaderBasic>
             </S.Row>
-            <S.Row>
-              <S.ColumnBasic>충전일 내용</S.ColumnBasic>
-              <S.ColumnTitle>결제ID 내용</S.ColumnTitle>
-              <S.ColumnBasic>충전 내역 내용</S.ColumnBasic>
-              <S.ColumnBasic>충전 후 잔액 내용</S.ColumnBasic>
-            </S.Row>
+            {props.pointData?.fetchMyPointHistory.map((el) => (
+              <S.Row key={el.id}>
+                <S.ColumnBasic>{el.status}</S.ColumnBasic>
+                <S.ColumnTitle>{el.impUid}</S.ColumnTitle>
+                <S.ColumnBasic>{el.amount}</S.ColumnBasic>
+              </S.Row>
+            ))}
           </S.ChargeBox>
           <Blank height="30px" />
           <S.Box>
