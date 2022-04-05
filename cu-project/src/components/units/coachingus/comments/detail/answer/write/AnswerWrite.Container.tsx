@@ -31,9 +31,7 @@ export default function AnswerWriteComponent(props) {
       });
 
       if (result) {
-        router.push(
-          `/coachingus/coaches/${router.query.coachId}/${router.query.commentsId}`
-        );
+        router.push(`/coachingus/coaches/${router.query.coachId}`);
       }
     } catch (err) {
       console.dir(err);

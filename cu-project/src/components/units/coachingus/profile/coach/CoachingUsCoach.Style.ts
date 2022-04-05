@@ -6,6 +6,10 @@ export const CoachIntroTitle = styled.div`
   font-weight: normal;
 `;
 export const CoachIntroContents = styled.div`
+  background-image: url(${({ imgCover }) => imgCover});
+  background-size: cover;
+  width: 100%;
+  height: 500px;
   font-size: 16px;
   font-weight: 300;
 `;
@@ -140,6 +144,8 @@ export const ColumnsList = styled.div`
 `;
 
 export const ColumnPicture = styled.div`
+  background-image: url(${({ imgCover }) => imgCover});
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;

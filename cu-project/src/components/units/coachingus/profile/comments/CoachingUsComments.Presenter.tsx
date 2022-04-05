@@ -3,6 +3,7 @@ import Blank from "../../../../commons/Blank";
 import * as S from "./CoachingUsComments.Style";
 
 export default function CoachingUsCommentsUI(props) {
+  console.log(props.answer);
   return (
     <S.CoachCommentsWrapper>
       <S.CoachCommentsTitle>Coach Comments</S.CoachCommentsTitle>
@@ -37,14 +38,15 @@ export default function CoachingUsCommentsUI(props) {
                   좋아요{" "}
                   {
                     props.answer?.filter(
-                      (el) => el.question.id === comment.id
+                      (el) => el?.question?.id === comment.id
                     )[0]?.likecount
                   }
                 </S.CommentsInfoLikes>
               </S.CommentsInfo>
             </S.WrapperLeft>
-            {props.answer?.filter((el) => el.question.id === comment.id)[0] !==
-              undefined && <S.WrapperRight>답변완료</S.WrapperRight>}
+            {props.answer?.filter(
+              (el) => el?.question?.id === comment.id
+            )[0] !== undefined && <S.WrapperRight>답변완료</S.WrapperRight>}
           </S.commentWrapper>
         ))}
       </S.CoachCommentsContents>

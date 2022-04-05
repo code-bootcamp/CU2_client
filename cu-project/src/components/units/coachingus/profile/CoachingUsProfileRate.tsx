@@ -63,19 +63,25 @@ export const Wrapper = styled.div`
   }
   @keyframes right {
     100% {
-      transform: rotate(-170deg);
+      transform: ${({ answerRate }) =>
+        answerRate > 50
+          ? `rotate(${(-answerRate / 100) * 180}deg)`
+          : `rotate(0deg)`};
     }
   }
   @keyframes left {
     100% {
-      transform: rotate(-180deg);
+      transform: ${({ answerRate }) =>
+        answerRate > 50
+          ? `rotate(-180deg)`
+          : `rotate(${-(answerRate / 100) * 180}deg)`};
     }
   }
 `;
 
 export default function CoachingUsProfileRate(props) {
   return (
-    <Wrapper coachRank={props.coachRank}>
+    <Wrapper answerRate={props.answerRate}>
       <div className="circular">
         <div className="inner"></div>
         <div className="circle">

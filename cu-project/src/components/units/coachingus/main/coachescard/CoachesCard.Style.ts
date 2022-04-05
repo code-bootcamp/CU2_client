@@ -83,6 +83,8 @@ export const CoachFollowBtn = styled.button`
   border-radius: 15px;
 `;
 export const CoachListPicture = styled.div`
+  background-image: url(${({ imgCover }) => imgCover});
+  background-size: cover;
   width: 150px;
   height: 150px;
   border-radius: 100%;
@@ -123,9 +125,11 @@ export const CoachListInfo = styled.div`
 `;
 export const CoachInfoFollower = styled.div`
   display: flex;
+  align-items: center;
 `;
 export const CoachInfoScore = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 export const MoreCoachesListBtn = styled.div`

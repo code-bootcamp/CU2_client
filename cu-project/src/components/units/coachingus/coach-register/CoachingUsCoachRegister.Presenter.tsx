@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Blank from "../../../commons/Blank";
-import ConfirmModal from "../../../commons/Modal/ConfirmModal";
+import ConfirmModal from "../../../commons/Modal/ConfirmModal/ConfirmModal";
 import * as S from "./CoachingUsCoachRegister.Style";
 
 export default function CoachingUsCoachRegisterUI(props) {
