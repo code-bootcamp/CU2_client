@@ -1,4 +1,7 @@
-import { ICoachingUsLandingUIProps, ICodingUsLandingUIProps } from "../../../../commons/types/types";
+import {
+  ICoachingUsLandingUIProps,
+  ICodingUsLandingUIProps,
+} from "../../../../commons/types/types";
 import Blank from "../../../commons/Blank";
 import * as S from "./CodingUsLanding.Style";
 import { AiOutlineArrowRight } from "react-icons/ai";
@@ -6,6 +9,7 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import "antd/dist/antd.css";
 
 export default function CoachingUsLandingUI(props: ICodingUsLandingUIProps) {
+  console.log(props)
   return (
     <S.Wrapper>
       <S.LandingBody>
@@ -13,18 +17,19 @@ export default function CoachingUsLandingUI(props: ICodingUsLandingUIProps) {
         <Blank height="20px" />
         <S.Container>
           <S.CategoryBox>
-            {props.corList.map((cor, index) => (
+            {props.corList && props.corList.map((cor, index) => (
               <S.CorporationContatiner
                 key={index}
-                id={cor}
+                id={cor.name}
                 onClick={props.onChangeCheckBox}
-                isInterestList={props.interestList.includes(cor)}
+                isInterestList={props.interestList.includes(cor.name)}
               >
-                <S.CorPicture />
+                <S.CorPicture src={cor.url} />
 
                 <S.CorporationContatinerFooter>
-                  <S.CorTitle>{cor}</S.CorTitle>
-                  <S.CorSubTitle>{cor} 설명글입니다.</S.CorSubTitle>
+                  <S.CorTitle>{cor.name}</S.CorTitle>
+                  <S.CorSubTitle></S.CorSubTitle>
+                  {/* <S.CorSubTitle>{cor} 설명글입니다.</S.CorSubTitle> */}
                 </S.CorporationContatinerFooter>
               </S.CorporationContatiner>
             ))}

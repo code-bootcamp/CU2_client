@@ -4,26 +4,70 @@ import CoachingUsLandingUI from "./CodingUsLanding.Presenter";
 
 export default function CoachingUsLanding(props: ICoachingUsLandingProps) {
   const corList = [
-    "Python",
-    "C",
-    "Java",
-    "C++",
-    "C#",
-    "JavaScript",
-    "SQL",
-    "R",
-    "Go",
-    "Swift",
-    "Ruby",
-    "Git",
-    "Objective-C",
-    "CSS",
-    "HTML",
-    "React.js",
-    "Vue.js",
-    "Node.js",
-    "Express",
-    "Spring",
+    {
+      name: "Python",
+      url: "https://storage.googleapis.com/cucutoo-dev-bucket/stack/Python-PNG-File.png",
+    },
+    // {
+    //   name: "C",
+    //   url: "https://storage.googleapis.com/cucutoo-dev-bucket/stack/C.png",
+    // },
+    {
+      name: "Java",
+      url: "https://storage.googleapis.com/cucutoo-dev-bucket/stack/java.png",
+    },
+    {
+      name: "C++",
+      url: "https://storage.googleapis.com/cucutoo-dev-bucket/stack/cpp.png",
+    },
+    {
+      name: "C#",
+      url: "https://storage.googleapis.com/cucutoo-dev-bucket/stack/cs.png",
+    },
+    {
+      name: "JavaScript",
+      url: "https://storage.googleapis.com/cucutoo-dev-bucket/stack/JavaScript.png",
+    },
+    {
+      name: "SQL",
+      url: "https://storage.googleapis.com/cucutoo-dev-bucket/stack/SQL.png",
+    },
+    {
+      name: "R",
+      url: "https://storage.googleapis.com/cucutoo-dev-bucket/stack/r.png",
+    },
+    // {
+    //   name: "Go",
+    //   url: "https://storage.googleapis.com/cucutoo-dev-bucket/stack/go.png",
+    // },
+    // {
+    //   name: "Swift",
+    //   url: "https://storage.googleapis.com/cucutoo-dev-bucket/stack/Swift.png",
+    // },
+    // {
+    //   name: "Ruby",
+    //   url: "https://storage.googleapis.com/cucutoo-dev-bucket/stack/ruby.png",
+    // },
+    {
+      name: "Git",
+      url: "https://storage.googleapis.com/cucutoo-dev-bucket/stack/git.png",
+    },
+    {
+      name: "React.js",
+      url: "https://storage.googleapis.com/cucutoo-dev-bucket/stack/React-icon.svg.png",
+    },
+    {
+      name: "Vue.js",
+      url: "https://storage.googleapis.com/cucutoo-dev-bucket/stack/Vue.png",
+    },
+    {
+      name: "Node.js",
+      url: "https://storage.googleapis.com/cucutoo-dev-bucket/stack/nodejs.png",
+    },
+    {
+      name: "Express",
+      url: "https://storage.googleapis.com/cucutoo-dev-bucket/stack/Expressjs.png",
+    },
   ];
   const [interestList, setInterestList] = useState<(string | undefined)[]>([]);
 

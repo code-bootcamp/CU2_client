@@ -74,11 +74,12 @@ export const CorSubTitle = styled.div`
   font-size: 14px;
   font-weight: lighter;
 `;
-export const CorPicture = styled.div`
-  width: 100%;
-  height: 100%;
+export const CorPicture = styled.img`
+  width: 220px;
+  height: 146px;
   border-radius: 15px 15px 0 0;
   background-color: #c4c4c4;
+  background-color: white;
 `;
 
 export const CorporationContatinerFooter = styled.div`

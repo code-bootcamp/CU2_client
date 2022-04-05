@@ -69,7 +69,7 @@ export interface ISearchProps {}
 // #region CodingUs
 
 export interface ICodingUsLandingUIProps {
-  corList: string[];
+  corList: {name: string, url: string}[];
   onChangeCheckBox: (event: MouseEvent<HTMLElement>) => void;
   onClickStart: () => void;
   interestList: (string | undefined)[];

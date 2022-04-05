@@ -53,7 +53,7 @@ export default function CommentList(props: IBlogCommentListProps) {
                     )}
                     {el.likeCnt}
                   </S.LikeButton>
-                  <Blank height="5px" />
+                  <Blank height="5px" />x
                  {el.user.name ==="김재민" && <S.MyButtonWrapper>
                     <S.MyButton
                       isMyComment={true}
