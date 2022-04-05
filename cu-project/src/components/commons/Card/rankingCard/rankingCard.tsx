@@ -5,12 +5,9 @@ import Label01 from "../../Label/Label01";
 import Blank from "../../Blank";
 import { AiFillTrophy } from "react-icons/ai";
 import Color from "../../../../commons/styles/color";
-import { Avatar } from "antd";
 import { useRouter } from "next/router";
 import { ICogindUsRankingProps } from "../../../../commons/types/types";
 import { BsFillPersonFill } from "react-icons/bs";
-import React from "react";
-import { RestCoachPicture } from "../../../units/coachingus/coaches/CoachingUsCoaches.Style";
 
 export default function RankingCard(props: ICogindUsRankingProps) {
   // 랭킹 비교 기능 미구현... ㅠㅠ.... api가 없어요 ㅠㅠㅠ........
@@ -59,7 +56,7 @@ export default function RankingCard(props: ICogindUsRankingProps) {
       <S.RowWrapper>
         <S.RankingWrapper>
           <S.CurrentRanking>{props.ranking}</S.CurrentRanking>
-          {getRankingDiff()}
+          {!props.isMyRanking && getRankingDiff()}
         </S.RankingWrapper>
         <Blank width="40px" />
         <S.MyRanking isMyRanking={props.isMyRanking}>
@@ -103,7 +100,7 @@ export default function RankingCard(props: ICogindUsRankingProps) {
             size="24px"
           />
           <Blank width="10px" />
-          {getPointDiff()}
+          {!props.isMyRanking && getPointDiff()}
         </S.PointWrapper>
         <Blank width="80px" />
         {props.isMyRanking ? (

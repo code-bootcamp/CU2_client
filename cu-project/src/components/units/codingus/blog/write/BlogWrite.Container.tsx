@@ -29,7 +29,7 @@ export default function CodingUsBlogWrite(props: ICodingUsBlogWriteProps) {
   const [title, setTitle] = useState("");
   const [stack, setStack] = useState<string>("");
   const router = useRouter();
-  
+  const [boardId, setBoardId] = useState("")
   useEffect(() => {
     if (!props.data) return;
     setTags(props.data?.blogtag?.map((el) => el.tag) || []);
@@ -38,9 +38,9 @@ export default function CodingUsBlogWrite(props: ICodingUsBlogWriteProps) {
   }, [props.data]);
 
   const onClickSubmit = async (_: MouseEvent<HTMLButtonElement>) => {
-    // setIsModalVisible(true);
-    // return;
+   
     const contents = editorRef.current?.getInstance().getMarkdown();
+    const page = ""
     if (!(contents && title)) {
       alert("필수 입력 항목 누락");
       return;
@@ -64,6 +64,9 @@ export default function CodingUsBlogWrite(props: ICodingUsBlogWriteProps) {
         alert("등록 실패");
         return;
       }
+      setBoardId(String(result.data?.createBlog.id));
+      setIsModalVisible(true);
+      return;
       router.push(`/codingus/blog/${result.data?.createBlog.id}`);
     } catch (error: any) {
       alert(error.message);
@@ -121,7 +124,7 @@ export default function CodingUsBlogWrite(props: ICodingUsBlogWriteProps) {
       onChangeStack={onChangeStack}
       onClickEdit={onClickEdit}
     />
-    {isModalVisible && <ScoreModal router="/codingUs/blog" beforeScore={1233} currScore={1234}/>}
+    {isModalVisible && <ScoreModal router={`/codingus/blog/${boardId}`} beforeScore={1233} currScore={1234}/>}
     </>
   );
 }

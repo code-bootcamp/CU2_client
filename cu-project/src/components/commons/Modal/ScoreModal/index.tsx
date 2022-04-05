@@ -13,7 +13,7 @@ export default function ScoreModal(props: IScoreModalProps) {
   useEffect(()=>{
     setTimeout(() => {
       router.push(props.router);
-    }, 3000);
+    }, 1500);
   },[])
   return (
     <>
@@ -23,8 +23,9 @@ export default function ScoreModal(props: IScoreModalProps) {
       <S.PointModal>
         <S.Logo src="/CU2_LOGO.png" />
         <Blank height="50px" />
-        <S.ModalText>{props.beforeScore}(<p>+{props.currScore - props.beforeScore}</p>)</S.ModalText>
-        <S.ModalText>{props.currScore}</S.ModalText>
+        <S.ModalText>{"등록이 완료되었습니다."}</S.ModalText>
+        <Blank height="50px"/>
+        <S.ModalText>나의 점수 {props.beforeScore}(<p>+{1}</p>)</S.ModalText>
         <Blank height="20px" />
         <S.ModalSubText>
           <p>{props.subText}</p>

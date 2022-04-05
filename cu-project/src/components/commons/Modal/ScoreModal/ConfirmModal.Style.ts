@@ -20,7 +20,7 @@ export const PointModal = styled.div`
   left: 40%;
   top: 20%;
   width: 350px;
-  height: 450px;
+  height: 350px;
   opacity: none;
   background: white;
   z-index: 11;
