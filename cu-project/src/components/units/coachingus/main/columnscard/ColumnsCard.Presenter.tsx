@@ -16,9 +16,10 @@ export default function ColumnsCardUI(props: ICoachingUsColumnsCardUIProps) {
           <S.ColumnsList
             key={column.id}
             onClick={props.moveToPage(
-              `/coachingus/coaches/${column?.user.coachProfile.id}/columns/${column?.id}`
+              `/coachingus/coaches/${column?.id}/columns/${column?.id}`
             )}
           >
+            {/* `/coachingus/coaches/${column?.user.coachProfile.id}/columns/${column?.id}` */}
             <S.ColumnPicture imgCover={props.imgUrl[index]} />
             <Blank height="10px" />
             <S.ColumnText>

@@ -47,7 +47,6 @@ export default function LandingUI() {
 
       let { scrollTop } = slideRef.current;
 
-
       if (scrollTop === 0) {
         scrollUpRef.current?.click();
       }
@@ -91,8 +90,8 @@ export default function LandingUI() {
           <ThirdPage />
           <FourthPage />
           <FifthPage />
-          <SixthPage />
-          <SevenPage />
+          {/* <SixthPage />
+          <SevenPage /> */}
         </Slide>
       </S.Outer>
     </S.Wrapper>
