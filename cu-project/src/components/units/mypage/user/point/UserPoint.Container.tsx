@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import UserPointUI from "./UserPoint.Presenter";
 import {
   CREATE_POINT,
@@ -21,8 +21,8 @@ export default function UserPoint() {
     setIsModal((prev) => !prev);
   };
 
-  const onChangeAmount = (e) => {
-    setAmount(e.target.value);
+  const onChangeAmount = (e: ChangeEvent<HTMLSelectElement>) => {
+    setAmount(Number(e.target.value));
   };
 
   const onClickOkBtn = () => {

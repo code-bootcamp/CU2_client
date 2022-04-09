@@ -15,10 +15,8 @@ import React, {
 } from "react";
 import { Editor } from "@toast-ui/react-editor";
 
-
 import { RadioChangeEvent } from "antd";
 import { IBlog, IStack, IUser } from "./generated/types";
-
 
 export interface ILayoutProps {
   children: ReactChild;
@@ -224,8 +222,8 @@ export interface ICodingUsQuestionUIProps {
     title: string;
     contents: string;
   };
-  onChangeTags: (e: KeyboardEvent<HTMLInputElement>) => void
-  onClickDeleteTags: (event: any) => void
+  onChangeTags: (e: KeyboardEvent<HTMLInputElement>) => void;
+  onClickDeleteTags: (event: any) => void;
   tags: string[];
 }
 export interface ICodingUsRankProps {}
@@ -250,14 +248,14 @@ export interface ICodingUsRankUIProps {
   // gubun: string;
   // onClickPeriodGubun: (gubun: string) => () => void;
 }
-export interface ICodingUsRankingProps{
+export interface ICodingUsRankingProps {
   rankingInfos: IUser[];
-    myInfo: IUser | null;
-  }
+  myInfo: IUser | null;
+}
 export interface ICogindUsRankingProps {
   height?: number;
   data?: IUser;
-  prevData?: {ranking: number, data:IUser};
+  prevData?: { ranking: number; data: IUser };
   ranking: number;
   isMyRanking: boolean;
 }
@@ -376,6 +374,7 @@ export interface IMyPageMenuUIProps {
   };
   data: {
     fetchmyuser: {
+      id: string;
       role: string;
       nickname: string;
       point: number;
@@ -383,9 +382,20 @@ export interface IMyPageMenuUIProps {
       score: number;
     };
   };
+  rankData: {
+    fetchUserOrderbyscore: [
+      {
+        id: string;
+        score: number;
+      }
+    ];
+  };
+
   isModal: boolean;
+  onChangeAmount: (event: ChangeEvent<HTMLSelectElement>) => void;
   onClickModal: () => void;
   onClickMove: (path: string) => () => void;
+  onClickOkBtn: () => void;
 }
 
 export interface IUserQuestionsUI {
@@ -458,7 +468,19 @@ export interface IUserUpdateUI {
 }
 
 export interface IUserPointUI {
+  pointData: {
+    fetchMyPointHistory: [
+      {
+        id: string;
+        status: string;
+        impUid: string;
+        amount: number;
+      }
+    ];
+  };
   isModal: boolean;
+  onChangeAmount: (event: ChangeEvent<HTMLSelectElement>) => void;
+  onClickOkBtn: () => void;
   onClickModal: () => void;
 }
 

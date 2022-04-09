@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useAuth } from "../../../commons/hooks/useAuth";
 import {
   FETCH_MAINSTACK,
@@ -14,7 +14,7 @@ export default function MypageMenu() {
   useAuth();
   const [isModal, setIsModal] = useState(false);
   const router = useRouter();
-  const [amount, setAmount] = useState(2000);
+  const [amount, setAmount] = useState(0);
   const { data } = useQuery(FETCH_MY_USER);
   const { data: mainstack } = useQuery(FETCH_MAINSTACK);
   const { data: rankData } = useQuery(FETCH_USER_ORDER_BY_SCORE);
@@ -28,8 +28,8 @@ export default function MypageMenu() {
     router.push(`/${path}`);
   };
 
-  const onChangeAmount = (e) => {
-    setAmount(e.target.value);
+  const onChangeAmount = (e: ChangeEvent<HTMLSelectElement>) => {
+    setAmount(Number(e.target.value));
   };
 
   const onClickOkBtn = () => {
@@ -50,6 +50,7 @@ export default function MypageMenu() {
         // m_redirect_url: 모바일 결제시 돌아갈 주소!
       },
       async (rsp) => {
+        console.log(rsp);
         // callback
         if (rsp.success) {
           const result = await createPoint({
