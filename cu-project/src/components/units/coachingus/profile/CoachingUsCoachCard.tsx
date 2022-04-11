@@ -275,7 +275,7 @@ function CoachingUsCoachCard(props) {
         <ContentsPersentage>
           <AnswerRate>
             <RateText>
-              답변률 <p>{answerRate}%</p>
+              답변률 <p>{isNaN(answerRate) ? 0 : answerRate}%</p>
             </RateText>
             <CoachingUsProfileRate answerRate={answerRate} />
           </AnswerRate>
@@ -305,7 +305,7 @@ function CoachingUsCoachCard(props) {
 
           <Rantangle>
             <RateTextActive>
-              활동점수 <p>1,322점</p>
+              활동점수 <p>{coach?.score}점</p>
               {/* 활동점수 <p>{coach?.score}점</p> */}
             </RateTextActive>
           </Rantangle>

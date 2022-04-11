@@ -1,8 +1,8 @@
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import AnswerWritePresenter from "./AnswerWrite.Presenter";
-import { CREATE_ANSWER } from "./AnswerWrite.Queries";
+import { CREATE_ANSWER, FETCH_QUESTION } from "./AnswerWrite.Queries";
 
 export default function AnswerWriteComponent(props) {
   const router = useRouter();
@@ -10,6 +10,9 @@ export default function AnswerWriteComponent(props) {
   const [contents, setContents] = useState("");
 
   const [createAnswer] = useMutation(CREATE_ANSWER);
+  const { data } = useQuery(FETCH_QUESTION, {
+    variables: { questionId: String(router.query.commentsId) },
+  });
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
@@ -44,6 +47,7 @@ export default function AnswerWriteComponent(props) {
       onChangeContents={onChangeContents}
       title={title}
       contents={contents}
+      data={data}
       onClickCreateAnswer={onClickCreateAnswer}
     />
   );

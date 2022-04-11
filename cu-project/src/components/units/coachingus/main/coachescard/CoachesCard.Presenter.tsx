@@ -31,13 +31,18 @@ export default function CoachesCardUI(props: ICoachingUsCoachesCardUIProps) {
               <S.CoachFollowBtn>Follow</S.CoachFollowBtn>
             </S.CoachListHeader>
             <Blank height="10px" />
-            <S.CoachListPicture imgCover={props.imgUrl[index]} />
+            <S.CoachListPicture />
             <Blank height="10px" />
             <S.CoachListPosition>
               {coach.coachProfile?.orgType}
             </S.CoachListPosition>
             <S.CoachListName>
-              {coach.name} &nbsp; <div>coach</div>
+              {coach.name?.length > 10 ? (
+                <>{coach.name.slice(0, 10)}...</>
+              ) : (
+                coach.name
+              )}{" "}
+              &nbsp; <div>coach</div>
             </S.CoachListName>
             {coach.coachtag?.tag && (
               <S.CoachListTags>

@@ -27,12 +27,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   const { accessToken, setAccessToken } = useStore((state) => state);
   const uploadLink = createUploadLink({
     uri: process.env.NEXT_PUBLIC_GRAPHQL_URL,
-    headers: {authorization: `Bearer ${accessToken}`},
+    headers: { authorization: `Bearer ${accessToken}` },
     credentials: "include",
   });
 
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {
-    console.log("asd");
     if (graphQLErrors) {
       for (const err of graphQLErrors) {
         if (err.extensions.code === "UNAUTHENTICATED") {
@@ -55,7 +54,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
     cache: new InMemoryCache(),
   });
-
 
   // useEffect(() => {
   //   getAccessToken().then((newAccessToken) => {

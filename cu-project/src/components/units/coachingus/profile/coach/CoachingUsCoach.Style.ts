@@ -9,7 +9,7 @@ export const CoachIntroContents = styled.div`
   background-image: url(${({ imgCover }) => imgCover});
   background-size: cover;
   width: 100%;
-  height: 500px;
+  height: fit-content;
   font-size: 16px;
   font-weight: 300;
 `;
