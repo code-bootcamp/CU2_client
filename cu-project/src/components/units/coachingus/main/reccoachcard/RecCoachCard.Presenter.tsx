@@ -18,7 +18,7 @@ export default function RecCoachCardUI(props: ICoachingUsRecCoachCardUIProps) {
             isStart={props.isStart}
             onClick={props.moveToPage(`/coachingus/coaches/${coach.id}`)}
           >
-            <S.RecommendCoachPicture imgCover={props.imgUrl[index]} />
+            <S.RecommendCoachPicture />
             <S.ProfileWapper>
               <S.CoachProfile>
                 <S.RecommendCoachHeader>
@@ -50,10 +50,7 @@ export default function RecCoachCardUI(props: ICoachingUsRecCoachCardUIProps) {
                       }}
                     />
                     <Blank width="8px" />
-                    {getMoney(
-                      props.rank[index] - Math.ceil(Math.random() * 100)
-                    )}
-                    점
+                    {getMoney(coach?.score)}점
                   </S.CoachInfoFollower>
                   <Blank width="10px" />
                   <S.CoachInfoScore>
@@ -67,7 +64,7 @@ export default function RecCoachCardUI(props: ICoachingUsRecCoachCardUIProps) {
                       }}
                     />
                     <Blank width="2px" />
-                    {getMoney(props.rank[index])}명
+                    {getMoney(coach?.score)}명
                   </S.CoachInfoScore>
                 </S.RecommendCoachInfo>
               </S.CoachProfile>

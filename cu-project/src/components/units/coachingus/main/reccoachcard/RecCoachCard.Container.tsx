@@ -14,12 +14,6 @@ export default function RecCoachCardPage(props: ICoachingUsRecCoachCardProps) {
 
   const rank = [3912, 4143, 1232];
 
-  const imgUrl = [
-    "https://storage.googleapis.com/cucutoo-dev-bucket/TaeHoon.jpeg",
-    "https://storage.googleapis.com/cucutoo-dev-bucket/seol.jpeg",
-    "https://storage.googleapis.com/cucutoo-dev-bucket/son.JPG",
-  ];
-
   const result = data?.fetchUserOrderbyscore
     .filter((el) => el.role === "COACH")
     .slice(0, 3);
@@ -38,7 +32,6 @@ export default function RecCoachCardPage(props: ICoachingUsRecCoachCardProps) {
       recommendCoachList={newList}
       isStart={isStart}
       moveToPage={moveToPage}
-      imgUrl={imgUrl}
       rank={rank}
     />
   );
