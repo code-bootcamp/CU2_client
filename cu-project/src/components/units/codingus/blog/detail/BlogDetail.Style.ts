@@ -15,10 +15,10 @@ export const Wrapper = styled.div`
 export const BlogDetailBody = styled.div`
   display: flex;
   flex-direction: column;
-  width: 70%;
-  @media screen and (max-width: 1440px) {
+  width: 1200px;
+  /* @media screen and (max-width: 1440px) {
     width: 1440px;
-  }
+  } */
 `;
 
 export const RowWrapper = styled.div`

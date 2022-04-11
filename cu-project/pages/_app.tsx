@@ -11,10 +11,9 @@ import { Global } from "@emotion/react";
 import { onError } from "@apollo/client/link/error";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 import Layout from "../src/components/commons/layout";
-import { createContext, Dispatch, SetStateAction, useEffect } from "react";
+import { createContext, Dispatch, SetStateAction } from "react";
 import { getAccessToken } from "../src/commons/libraries/getAccessToken";
 import useStore from "../src/commons/store/store";
-import { getLoggenInUser } from "../src/commons/libraries/getLoggedInUser";
 
 // app.tsx 타입 추가
 interface IGlobalContext {
@@ -25,15 +24,15 @@ interface IGlobalContext {
 export const GlobalContext = createContext<IGlobalContext>({});
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const setUserInfo = useStore((state) => state.setUserInfo);
   const { accessToken, setAccessToken } = useStore((state) => state);
   const uploadLink = createUploadLink({
     uri: process.env.NEXT_PUBLIC_GRAPHQL_URL,
-    headers: accessToken && { authorization: `Bearer ${accessToken}` },
+    headers: {authorization: `Bearer ${accessToken}`},
     credentials: "include",
   });
 
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+    console.log("asd");
     if (graphQLErrors) {
       for (const err of graphQLErrors) {
         if (err.extensions.code === "UNAUTHENTICATED") {

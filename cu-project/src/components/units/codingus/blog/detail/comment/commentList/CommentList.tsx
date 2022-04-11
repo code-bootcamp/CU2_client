@@ -1,18 +1,19 @@
 import * as S from "./style";
 import InfiniteScroll from "react-infinite-scroller";
-import { ICodingUsCommentsProps } from "../../../../../../../commons/types/types";
 import Label01 from "../../../../../../commons/Label/Label01";
 import { v4 as uuidv4 } from "uuid";
 import { getTimeDiff } from "../../../../../../../commons/libraries/dateUtils";
 import Blank from "../../../../../../commons/Blank";
-import { AiFillLike, AiOutlineLike } from "react-icons/ai";
+// import { AiFillLike, AiOutlineLike } from "react-icons/ai";
+import { AiFillLike } from "react-icons/ai";
 import HorizontalLine from "../../../../../../commons/Line/HorizontalLine";
 import Button02 from "../../../../../../commons/Button/Button02";
-import React from "react";
 import { BsFillPersonFill } from "react-icons/bs";
 import { RestUserPicture } from "../../../../../../commons/Card/rankingCard/rankingCard.Style";
+import { IBlogComment } from "../../../../../../../commons/types/generated/types";
+import useStore from "../../../../../../../commons/store/store";
 interface IBlogCommentListProps {
-  commentList: ICodingUsCommentsProps[];
+  commentList: IBlogComment[];
   onLoadMore: () => void;
   onClickDeleteComment: (id: string) => () => void;
   onClickEditComment: (idx: number) => () => void;
@@ -21,6 +22,7 @@ interface IBlogCommentListProps {
 }
 
 export default function CommentList(props: IBlogCommentListProps) {
+  const userInfo =  useStore(state => state.userInfo);
   return (
     <S.Wrapper>
       <InfiniteScroll
@@ -29,7 +31,7 @@ export default function CommentList(props: IBlogCommentListProps) {
         hasMore={true || false}
         useWindow={false}
       >
-        {props.commentList.map((el, idx) => (
+        {props.commentList && props.commentList.map((el, idx) => (
           <div key={uuidv4()}>
             <S.Comment key={uuidv4()}>
               <S.CommentHeader>
@@ -39,22 +41,24 @@ export default function CommentList(props: IBlogCommentListProps) {
         </RestUserPicture>
                   <Blank width="20px" />
                   <S.UserDetail>
-                    <Label01 value={el.user.name} size="16px" />
+                    <Label01 value={el.user.nickname} size="16px" />
                     <Blank height="5px" />
-                    <Label01 value={getTimeDiff(el.cretedAt)} size="16px" />
+                    {/* <Label01 value={getTimeDiff(el.cretedAt)} size="16px" /> */}
+                    <Label01 value={getTimeDiff("2022-04-11")} size="16px" />
                   </S.UserDetail>
                 </S.UserInfo>
                 <S.ButtonWrapper>
                   <S.LikeButton>
-                    {el.isLiked ? (
+                    {/* {true ? (
                       <AiFillLike style={{ marginRight: "10px" }} />
-                    ) : (
-                      <AiOutlineLike style={{ marginRight: "10px" }} />
-                    )}
-                    {el.likeCnt}
+                      ) : (
+                        <AiOutlineLike style={{ marginRight: "10px" }} />
+                        )} */}
+                        <AiFillLike style={{ marginRight: "10px" }} />
+                    {el.like}
                   </S.LikeButton>
                   <Blank height="5px" />
-                 {el.user.name ==="김재민" && <S.MyButtonWrapper>
+                 {userInfo?.id === el.user.id && <S.MyButtonWrapper>
                     <S.MyButton
                       isMyComment={true}
                       onClick={props.onClickEditComment(idx)}
