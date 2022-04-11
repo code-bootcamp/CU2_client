@@ -11,18 +11,12 @@ export default function CoachesCardPage(props: ICoachingUsCoachesCardProps) {
   const { moveToPage } = useMoveToPage();
 
   const coachesList = data?.fetchCoachUserList.slice(0, 3);
-  const imgUrl = [
-    "https://storage.googleapis.com/cucutoo-dev-bucket/geon.JPG",
-    "https://storage.googleapis.com/cucutoo-dev-bucket/nam.jpeg",
-    "https://storage.googleapis.com/cucutoo-dev-bucket/jin.png",
-  ];
 
   return (
     <CoachesCardUI
       main={props.main}
       coachesList={coachesList}
       moveToPage={moveToPage}
-      imgUrl={imgUrl}
     />
   );
 }

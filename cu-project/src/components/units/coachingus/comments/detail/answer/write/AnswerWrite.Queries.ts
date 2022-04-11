@@ -15,3 +15,13 @@ export const CREATE_ANSWER = gql`
     }
   }
 `;
+
+export const FETCH_QUESTION = gql`
+  query fetchQuestion($questionId: String!) {
+    fetchQuestion(questionId: $questionId) {
+      fromUser {
+        name
+      }
+    }
+  }
+`;

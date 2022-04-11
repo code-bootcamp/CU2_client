@@ -18,15 +18,15 @@ export default function CoachingUsCoachUI(props) {
         </S.CoachIntroContents>
       </S.CoachIntro>
       <Blank height="100px" />
-      <S.CoachComments
-        onClick={props.moveToPage(
-          `/coachingus/coaches/${props.router.query.coachId}/${props.comment?.[0]?.id}`
-        )}
-      >
+      <S.CoachComments>
         Coach Comments
         <Blank height="20px" />
-        {props.comment.length ? (
-          <S.CommentsBody>
+        {props.comment?.length ? (
+          <S.CommentsBody
+            onClick={props.moveToPage(
+              `/coachingus/coaches/${props.router.query.coachId}/${props.comment?.[0]?.id}`
+            )}
+          >
             <S.CommentsTitle>
               <BsQuestionCircleFill
                 style={{
