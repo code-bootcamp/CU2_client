@@ -8,15 +8,14 @@ export default function CoachingUsCoachUI(props) {
       <S.CoachIntro>
         <S.CoachIntroTitle>멘토소개</S.CoachIntroTitle>
         <Blank height="30px" />
-        {props.imgUrl.map((_, index) => (
-          <S.CoachIntroContents imgCover={props.imgUrl[index]} key={index}>
-            {/* {props.coachData?.fetchCoachUser.coachProfile.profileTitle ||
-            "멘토 소개글이 없습니다."}
+
+        <S.CoachIntroContents>
+          {props.coachData?.fetchCoachUser.coachProfile.profileTitle ||
+            "아직 멘토 소개글이 없습니다."}
         </S.CoachIntroContents>
         <S.CoachIntroContents>
-          {props.coachData?.fetchCoachUser.coachProfile.profileContents} */}
-          </S.CoachIntroContents>
-        ))}
+          {props.coachData?.fetchCoachUser.coachProfile.profileContents}
+        </S.CoachIntroContents>
       </S.CoachIntro>
       <Blank height="100px" />
       <S.CoachComments
@@ -26,40 +25,46 @@ export default function CoachingUsCoachUI(props) {
       >
         Coach Comments
         <Blank height="20px" />
-        <S.CommentsBody>
-          <S.CommentsTitle>
-            <BsQuestionCircleFill
-              style={{
-                color: "#EA345A",
-                height: "25px",
-                width: "25px",
-                marginBottom: "4px",
+        {props.comment.length ? (
+          <S.CommentsBody>
+            <S.CommentsTitle>
+              <BsQuestionCircleFill
+                style={{
+                  color: "#EA345A",
+                  height: "25px",
+                  width: "25px",
+                  marginBottom: "4px",
+                }}
+              />{" "}
+              <Blank width="10px" />
+              {props.comment?.[0]?.title} <Blank width="10px" />
+              <p>{props.comment?.[0]?.fromUser.name}님의 질문입니다</p>
+            </S.CommentsTitle>
+            <Blank height="10px" />
+            <S.CommentsContents>
+              {props.comment?.[0]?.contents}
+            </S.CommentsContents>
+            <Blank height="20px" />
+            <S.CommentsInfo>
+              <S.CommentsInfoLikes>
+                좋아요 {props.answer?.[0]?.likecount}
+              </S.CommentsInfoLikes>
+              <Blank width="20px" />
+            </S.CommentsInfo>
+            <S.MoreBtn
+              onClick={(event) => {
+                event.stopPropagation();
+                props.setComponent(`comments`);
               }}
-            />{" "}
-            <Blank width="10px" />
-            {props.comment?.[0]?.title} <Blank width="10px" />
-            <p>{props.comment?.[0]?.fromUser.name}님의 질문입니다</p>
-          </S.CommentsTitle>
-          <Blank height="10px" />
-          <S.CommentsContents>
-            {props.comment?.[0]?.contents}
-          </S.CommentsContents>
-          <Blank height="20px" />
-          <S.CommentsInfo>
-            <S.CommentsInfoLikes>
-              좋아요 {props.answer?.[0]?.likecount}
-            </S.CommentsInfoLikes>
-            <Blank width="20px" />
-          </S.CommentsInfo>
-          <S.MoreBtn
-            onClick={(event) => {
-              event.stopPropagation();
-              props.setComponent(`comments`);
-            }}
-          >
-            <p>{">"}</p>더보기
-          </S.MoreBtn>
-        </S.CommentsBody>
+            >
+              <p>{">"}</p>더보기
+            </S.MoreBtn>
+          </S.CommentsBody>
+        ) : (
+          <S.ContainerColumnsListNoBody>
+            <S.ColumnsNoList> 아직 Comments가 없습니다.</S.ColumnsNoList>
+          </S.ContainerColumnsListNoBody>
+        )}
       </S.CoachComments>
       <Blank height="100px" />
       <S.CoachColumn>
@@ -71,7 +76,7 @@ export default function CoachingUsCoachUI(props) {
           </S.ContainerColumnsListNoBody>
         ) : (
           <S.ContainerColumnsListBody>
-            {props.columns?.map((column, index) => (
+            {props.columnList?.map((column, index) => (
               <S.ColumnsList
                 key={column.id}
                 onClick={props.moveToPage(
