@@ -1,88 +1,90 @@
-import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
+import { useMutation, useQuery } from "@apollo/client";
+import { useRef, useState } from "react";
+import {
+  IMutation,
+  IMutationCreateBlogCommentArgs,
+  IMutationDeleteBlogCommentArgs,
+  IQuery,
+  IQueryFetchBlogCommentorderbycreateArgs,
+} from "../../../../../../commons/types/generated/types";
 import CodingUsBlogCommentUI from "./BlogComment.Presenter";
-interface IBlogCommentProps {}
-
-const commentList = new Array(1).fill(0).map((el) => {
-  return {
-    id: "asd",
-    user: { name: "작성자", image: "https://source.unsplash.com/random" },
-    cretedAt: "2022-02-07T14:42:53.532Z",
-    isLiked: true,
-    likeCnt: 22,
-    contents:
-      "댓글 내용입니다댓글 내용입니다댓글 내용입니다댓글 내용입니다댓글 내용입니다댓글 내용입니다댓글 내용입니다댓글 내용입니다댓글 내용입니다댓글 내용입니다",
-  };
-});
-
-const dummyComments =  [{
-  id: "김재민",
-  user: { name: "김재민", image: "" },
-  cretedAt: "2022-04-05T10:42:53.532Z",
-  isLiked: false,
-  likeCnt: 0,
-  contents:
-  "좋은 정보 감사합니다",
-},
-{
-  id: "asd",
-  user: { name: "김태훈", image: "" },
-  cretedAt: "2022-04-05T11:42:53.532Z",
-  isLiked: false,
-  likeCnt: 3,
-  contents:
-  "하하하하하하하하하하",
-},
-{
-  id: "asd",
-  user: { name: "최건", image: "" },
-  cretedAt: "2022-04-03T11:42:53.532Z",
-  isLiked: false,
-  likeCnt: 1,
-  contents:
-  "너무 좋아요",
-},
-{
-  id: "최건",
-  user: { name: "최건", image: "" },
-  cretedAt: "2022-04-02T14:42:53.532Z",
-  isLiked: false,
-  likeCnt: 0,
-  contents:
-  "저도 zustand 공부할래요",
-}]
+import {
+  CREATE_BLOG_COMMENT,
+  DELETE_BLOG_COMMENT,
+  FETCH_BLOG_COMMENT_ORDERBY_CREATE,
+} from "./BlogComment.Queries";
+interface IBlogCommentProps {
+  blogId: string;
+}
 
 export default function CodingUsBlogComment(props: IBlogCommentProps) {
+  const { data: commentList } = useQuery<
+    Pick<IQuery, "fetchBlogCommentorderbycreate">,
+    IQueryFetchBlogCommentorderbycreateArgs
+  >(FETCH_BLOG_COMMENT_ORDERBY_CREATE, { variables: { blogid: props.blogId } });
+  const [createBlogComment] = useMutation<
+    Pick<IMutation, "createBlogComment">,
+    IMutationCreateBlogCommentArgs
+  >(CREATE_BLOG_COMMENT);
+  const [deleteBlogComment] = useMutation<
+    Pick<IMutation, "deleteBlogComment">,
+    IMutationDeleteBlogCommentArgs
+  >(DELETE_BLOG_COMMENT);
 
-  const [commentValue, setCommentValue] = useState("");
-  const onChangeNewComment = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setCommentValue(event.currentTarget.value);
+  const commentRef = useRef<HTMLTextAreaElement>(null);
+  const onClickWriteSubmit = async () => {
+    try {
+      if (!commentRef.current?.value) {
+        alert("댓글 내용을 입력해주세요");
+        return;
+      }
+      const result = await createBlogComment({
+        variables: {
+          blogid: props.blogId,
+          contents: commentRef.current?.value,
+        },
+      });
+      if (!result.data?.createBlogComment.id) {
+        alert("등록 실패");
+        return;
+      }
+      location.reload();
+    } catch (err: any) {
+      alert("등록 실패");
+    }
   };
-  const onClickWriteSubmit = (_: MouseEvent<HTMLButtonElement>) => {
+  const onClickDeleteComment = (id: string) => async () => {
+    try {
+      const result = await deleteBlogComment({
+        variables: { blogcommentid: id },
+      });
+      if (!result.data?.deleteBlogComment) {
+        alert("삭제 실패");
+        return;
+      }
+      location.reload();
+    } catch (error) {}
   };
-  const onClickDeleteComment = (id: string) => () => {};
   const onClickEditComment = (idx: number) => () => {
     setIsEdits(isEdits.map((el, index) => idx === index));
   };
   const onClickEditSubmit = (id: string) => () => {};
   const onLoadMore = () => {};
-  const commentCnt = 10;
   const [isEdits, setIsEdits] = useState<boolean[]>([]);
 
-  // eslint-disable-next-line no-undef
-  useEffect(() => {
-    setIsEdits([...new Array(commentList.length).fill(false)]);
-  }, []);
+  // useEffect(() => {
+  //   setIsEdits([...new Array(commentList.length).fill(false)]);
+  // }, []);
 
   return (
     <CodingUsBlogCommentUI
       newCommentProps={{
-        onChangeNewComment: onChangeNewComment,
         onClickSubmit: onClickWriteSubmit,
-        value: commentValue,
-        commentCnt: commentCnt,
+        commentRef: commentRef,
+        commentCnt: commentList?.fetchBlogCommentorderbycreate.length ?? 0,
       }}
       commentListProps={{
-        commentList: dummyComments,
+        commentList: commentList?.fetchBlogCommentorderbycreate!,
         onClickDeleteComment: onClickDeleteComment,
         onClickEditComment: onClickEditComment,
         onLoadMore: onLoadMore,

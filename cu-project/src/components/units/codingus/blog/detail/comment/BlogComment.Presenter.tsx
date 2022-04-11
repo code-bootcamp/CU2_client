@@ -1,5 +1,5 @@
-import { ChangeEvent, MouseEvent } from "react";
-import { ICodingUsCommentsProps } from "../../../../../../commons/types/types";
+import { RefObject } from "react";
+import { IBlogComment } from "../../../../../../commons/types/generated/types";
 import Blank from "../../../../../commons/Blank";
 import * as S from "./BlogComment.Style";
 import CommentList from "./commentList/CommentList";
@@ -8,12 +8,11 @@ import NewComment from "./newComment/NewComment";
 interface ICodingUsBlogCommentProps {
   newCommentProps: {
     commentCnt: number;
-    onChangeNewComment: (event: ChangeEvent<HTMLTextAreaElement>) => void;
-    value: string;
-    onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
+    commentRef: RefObject<HTMLTextAreaElement>;
+    onClickSubmit: () => void;
   };
   commentListProps: {
-    commentList: ICodingUsCommentsProps[];
+    commentList: IBlogComment[];
     onClickDeleteComment: (id: string) => () => void;
     onClickEditComment: (idx: number) => () => void;
     onClickSubmit: (id: string) => () => void;

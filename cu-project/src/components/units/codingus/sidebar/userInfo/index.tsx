@@ -11,6 +11,7 @@ import useStore from "../../../../../commons/store/store";
 import Router from "next/router";
 import { IUser } from "../../../../../commons/types/generated/types";
 import { getLoggenInUser } from "../../../../../commons/libraries/getLoggedInUser";
+import { useGetUserInfo } from "../../../../commons/hooks/useGetUserInfo";
 
 export default function SidebarUserInfo(props: ICodingUsSidebarProps) {
   // const todayDiff =
@@ -21,6 +22,7 @@ export default function SidebarUserInfo(props: ICodingUsSidebarProps) {
   //   props.totalRanking?.prev - props.totalRanking?.today > 0
   //     ? `+${props.totalRanking?.prev - props.totalRanking?.today}`
   //     : props.totalRanking?.prev - props.totalRanking?.today;
+  useGetUserInfo();
   const [interestList, setInterestList] = useState<string[]>([]);
   const accessToken = useStore((state) => state.accessToken);
   const [userInfo, setUserInfo] = useState<IUser>();

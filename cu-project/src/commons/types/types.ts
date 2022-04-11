@@ -160,14 +160,6 @@ export interface ICodingUsBlogDetailUIProps {
   setCurrentIndex: Dispatch<SetStateAction<number>>;
 }
 
-export interface ICodingUsCommentsProps {
-  id: string;
-  user: { name: string; image: string };
-  cretedAt: string;
-  isLiked: boolean;
-  likeCnt: number;
-  contents: string;
-}
 
 export interface ICodingUsQnAProps {}
 export interface ICodingUsQnAUIProps {
