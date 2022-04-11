@@ -398,6 +398,14 @@ export interface IMyPageMenuUIProps {
   onClickOkBtn: () => void;
 }
 
+export interface IUpdatePasswordUI {
+  data: IUser;
+  onClickLogin: () => void;
+  onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeNewPassword: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeCheckNewPassword: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+
 export interface IUserQuestionsUI {
   data: {
     fetchmyStack: [

@@ -1,7 +1,6 @@
 import { IMyPageMenuUIProps } from "../../../../commons/types/types";
 import Blank from "../../../commons/Blank";
 import * as S from "./MypageMenu.Style";
-import { Modal } from "antd";
 import "antd/dist/antd.css";
 import { BsFillPencilFill } from "react-icons/bs";
 import { AiFillLike, AiFillQuestionCircle } from "react-icons/ai";
@@ -12,30 +11,6 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
   return (
     <S.Web>
       <S.Wrapper>
-        {props.isModal && (
-          <Modal
-            visible={true}
-            onOk={props.onClickOkBtn}
-            onCancel={props.onClickModal}
-            okText="충전하기"
-            cancelText="취소하기"
-            style={{ textAlign: "center", width: "100%" }}
-          >
-            <h1>CU2 포인트 충전</h1>
-            <select
-              onChange={props.onChangeAmount}
-              style={{ width: "80%", textAlign: "center", fontSize: "18px" }}
-            >
-              <option selected disabled>
-                CU Point 충전 금액을 선택해주세요.
-              </option>
-              <option defaultValue={5000}>5,000 포인트</option>
-              <option value={10000}>10,000 포인트</option>
-              <option value={20000}>20,000 포인트</option>
-              <option value={30000}>30,000 포인트</option>
-            </select>
-          </Modal>
-        )}
         <S.TopMenu>
           <S.MyPageButton
             isSelect={true}
@@ -68,7 +43,11 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
           <S.ProfileBody>
             <S.ProfileContents>
               <span>주스택</span>
-              <S.MainStack>{props.mainstack?.fetchmainstack}</S.MainStack>
+              <S.MainStack>
+                {props.mainstack?.fetchmainstack === "no"
+                  ? "활동 없음"
+                  : props.mainstack?.fetchmainstack}
+              </S.MainStack>
             </S.ProfileContents>
             {/* <Blank height="20px" />
             <S.ProfileContents>
@@ -84,7 +63,9 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
             <S.ProfileContents>
               <span>포인트</span>
               <div>
-                <S.ChargeButton onClick={props.onClickModal}>
+                <S.ChargeButton
+                  onClick={props.onClickMove("/mypage/user/point")}
+                >
                   충전
                 </S.ChargeButton>
                 <S.ChargeButton
