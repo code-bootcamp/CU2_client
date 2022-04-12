@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Color from "../../../../commons/styles/color";
 import { breakPoints } from "../../../../commons/styles/media";
 
 type Iprops = {
@@ -127,5 +128,6 @@ export const MenuButton = styled.div`
   display: flex;
   :hover {
     cursor: pointer;
+    color: ${Color.main};
   }
 `;
