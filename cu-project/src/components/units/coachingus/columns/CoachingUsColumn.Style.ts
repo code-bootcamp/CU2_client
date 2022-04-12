@@ -131,7 +131,8 @@ export const ColumnList = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
   width: 240px;
   margin: 0px 0px 50px 0;
   height: fit-content;
@@ -151,7 +152,7 @@ export const ColumnsPicture = styled.img`
   align-items: center;
   width: 100%;
   height: 180px;
-  background-color: #c4c4c4;
+  background-color: #f6f5f5;
 `;
 
 export const WriteBtn = styled.div`

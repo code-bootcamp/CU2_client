@@ -4,7 +4,6 @@ import {
   getImagesFromMD,
   getTextFromMD,
 } from "../../../../commons/libraries/mdUtils";
-import { IBlog } from "../../../../commons/types/generated/types";
 import { useAuthCoach } from "../../../commons/hooks/useAuthCoach";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import CoachingUsColumnUI from "./CoachingUsColumn.Presenter";
@@ -17,13 +16,9 @@ export default function CoachingUsColumnPage() {
   const { isCoach } = useAuthCoach();
   const { data } = useQuery(FETCH_RECOMMEND_COLUMN_LIST);
   const [columnProps, setColumnProps] = useState([]);
+  const [bestColumnProps, setBestColumnProps] = useState([]);
   const { data: totalColumns } = useQuery(FETCH_COLUMN_LIST);
 
-  const [isOrderByPopular, setIsOrderByPopular] = useState(true);
-  const [blogList, setBlogList] = useState<{ blog: IBlog; isLike: boolean }[]>(
-    []
-  );
-  const [bestColumnProps, setBestColumnProps] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
 
   const [totalColumn, setTotalColumn] = useState([]);
@@ -37,6 +32,13 @@ export default function CoachingUsColumnPage() {
     if (columnList) {
       setTotalColumn([...columnList?.slice(0, 10)]);
     }
+    const bestColumnListEdit = columnBestList?.map((el) => {
+      return {
+        plainText: getTextFromMD(el.contents),
+        firstImg: getImagesFromMD(el.contents)[0],
+      };
+    });
+
     const columnListEdit = columnList?.map((el) => {
       return {
         plainText: getTextFromMD(el.contents),
@@ -44,17 +46,15 @@ export default function CoachingUsColumnPage() {
       };
     });
 
+    setBestColumnProps(bestColumnListEdit);
     setColumnProps(columnListEdit);
-    console.log("columnProps", columnProps);
-  }, [totalColumns]);
+  }, [totalColumns, data]);
 
   return (
     <CoachingUsColumnUI
       columnBestList={columnBestList}
       moveToPage={moveToPage}
       totalColumn={totalColumn}
-      blogList={blogList}
-      isOrderByPopular={isOrderByPopular}
       isCoach={isCoach}
       bestColumnProps={bestColumnProps}
       columnProps={columnProps}

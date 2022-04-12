@@ -23,7 +23,7 @@ export default function CoachingUsColumnUI(props) {
               <S.ColumnsList
                 key={column.id}
                 onClick={props.moveToPage(
-                  `/coachingus/coaches/876cbaa9-b954-46e7-b6a3-b7e5f7cb0e7b/columns/0`
+                  `/coachingus/coaches/${column.user.id}/columns/${column.id}`
                 )}
               >
                 <S.ColumnPicture
@@ -45,7 +45,7 @@ export default function CoachingUsColumnUI(props) {
                   <S.ColumnContents>
                     {props.bestColumnProps?.[index]?.plainText?.length > 30 ? (
                       <S.ColumnShortenContents>
-                        {props.bestColumnProps?.[index]?.plainText.slice(
+                        {props.bestColumnProps?.[index]?.plainText?.slice(
                           0,
                           60
                         ) + "..."}
@@ -58,7 +58,7 @@ export default function CoachingUsColumnUI(props) {
                   </S.ColumnContents>
                   <Blank height="5px" />
                   <S.ColumnFooter>
-                    <div>{column.name}</div>
+                    <div>{column.user.name}</div>
                     {column.createdAt}
                   </S.ColumnFooter>
                 </S.ColumnText>
@@ -74,7 +74,7 @@ export default function CoachingUsColumnUI(props) {
           <Blank height="30px" />
           <InfiniteScroll
             pageStart={0}
-            loadMore={props.onLoadMore}
+            // loadMore={props.onLoadMore}
             // hasMore={props.isActive}
             hasMore={true || false}
             // useWindow={true}
@@ -83,7 +83,9 @@ export default function CoachingUsColumnUI(props) {
               {props.totalColumn?.map((column, index) => (
                 <S.ColumnList
                   key={column.id}
-                  onClick={props.moveToPage(`/coachingus/columns/${column.id}`)}
+                  onClick={props.moveToPage(
+                    `/coachingus/coaches/${column.user.id}/columns/${column.id}`
+                  )}
                 >
                   <S.ColumnsPicture
                     src={`${
