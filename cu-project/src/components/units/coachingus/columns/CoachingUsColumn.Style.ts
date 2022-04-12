@@ -65,9 +65,7 @@ export const ColumnsList = styled.div`
   }
 `;
 
-export const ColumnPicture = styled.div`
-  background-image: url(${({ imgCover }) => imgCover});
-  background-size: cover;
+export const ColumnPicture = styled.img`
   display: flex;
   justify-content: center;
   align-items: center;

@@ -69,11 +69,6 @@ export default function CoachingUsCoachPage(props) {
     setAnswerRate(Math.ceil((newResult?.length / comment?.length) * 100));
   }, [answerData, coachData]);
 
-  const colImg = [
-    "https://storage.googleapis.com/cucutoo-dev-bucket/native.png",
-    "https://storage.googleapis.com/cucutoo-dev-bucket/react-query.png",
-  ];
-
   if (isLoading) {
     return <></>;
   }
@@ -87,7 +82,6 @@ export default function CoachingUsCoachPage(props) {
       router={router}
       answer={answer}
       coachData={coachData}
-      colImg={colImg}
       columns={columnList}
       columnProps={columnProps}
     />
