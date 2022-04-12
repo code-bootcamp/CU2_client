@@ -22,8 +22,8 @@ export const FETCH_BLOG = gql`
 `;
 
 export const DELETE_BLOG = gql`
-  mutation deletBoard($blogid: String!) {
-    deletBoard(blogid: $blogid)
+  mutation deleteBlog($blogid: String!) {
+    deleteBlog(blogid: $blogid)
   }
 `;
 

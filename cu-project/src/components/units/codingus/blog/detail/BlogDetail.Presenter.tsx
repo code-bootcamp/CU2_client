@@ -31,7 +31,7 @@ export default function CodingUsBlogDetailUI(
                 size="16px"
               />
             </S.RowWrapper>
-            {props.data?.user?.nickname !== "로그인한 유저" && (
+            {props.data?.user?.nickname === props.loggedInUser?.nickname && (
               <S.RowWrapper>
                 <S.BtnLabel onClick ={props.onClickEdit}>수정</S.BtnLabel>
                 <Blank width="8px" />
@@ -50,7 +50,7 @@ export default function CodingUsBlogDetailUI(
           </S.RowWrapper>
           <Blank height="55px" />
           <TextViewer01 width={"100%"} height={"100%"} value={props?.data?.contents || ""} />
-        <CodingUsBlogComment  blogId ={String(props.data?.id)}/>
+        <CodingUsBlogComment  blogId ={String(props.data?.id)} loggedInUser = {props.loggedInUser}/>
         </S.BlogDetailBody>
         <BlogDetailIndex
           index={props.index}
