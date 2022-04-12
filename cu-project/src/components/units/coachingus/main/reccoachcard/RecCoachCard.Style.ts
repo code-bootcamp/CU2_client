@@ -120,7 +120,7 @@ export const CoachSubCor = styled.div`
   width: 100%;
 
   font-weight: lighter;
-  & > div:first-child {
+  & > div:first-of-type {
     font-size: 16px;
     font-weight: 400;
   }
