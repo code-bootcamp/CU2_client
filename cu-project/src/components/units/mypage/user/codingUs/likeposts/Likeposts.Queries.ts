@@ -9,11 +9,8 @@ export const FETCH_BLOG_LIKE = gql`
       like
       createAt
       updatedat
-      blogtag {
-        tag
-      }
-      blogcategorytag {
-        tag
+      user {
+        nickname
       }
     }
   }

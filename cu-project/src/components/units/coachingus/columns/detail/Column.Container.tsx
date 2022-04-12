@@ -1,14 +1,21 @@
+import { useQuery } from "@apollo/client";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { getIndexFromMD } from "../../../../../commons/libraries/mdUtils";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import { useScroll } from "../../../../commons/hooks/useScroll";
 import { dummyMD } from "../../../codingus/blog/dummy";
 import ColumnUI from "./Column.Presenter";
+import { FETCH_DETAIL_COLUMN } from "./Column.Queries";
 
 export default function ColumnDetailPage() {
+  const router = useRouter();
   const { moveToPage } = useMoveToPage();
   const [indexPositions, setIndexPositions] = useState<number[]>([]);
   const [currentIndex, setCurrentIndex] = useState(-1);
+  const { data } = useQuery(FETCH_DETAIL_COLUMN, {
+    variables: { columnId: String(router.query.columnId) },
+  });
 
   const onClickUpdate = () => {
     moveToPage(`/codingus/blog/${"blogId자리입니다~~~~"}/update`);
@@ -35,14 +42,14 @@ export default function ColumnDetailPage() {
       setCurrentIndex(currentIndex - 1);
     }
   }, [scrollY, currentIndex]);
+  const contents = data?.fetchDetailColumn?.contents;
 
   return (
     <ColumnUI
-      contents={dummyMD}
-      writer={"CodingMaster"}
-      title={"Zustand - 상태 관리 라이브러리"}
+      contents={contents}
+      writer={data?.fetchDetailColumn?.user.name}
+      title={data?.fetchDetailColumn?.title}
       createdAt="2022-02-07T14:42:53.532Z"
-      tags={["JavaScript", "React", "Zustand"]}
       index={getIndexFromMD(dummyMD)}
       currentIndex={currentIndex}
       indexPositions={indexPositions}

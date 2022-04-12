@@ -11,3 +11,13 @@ export const CREATE_COLUMN = gql`
     }
   }
 `;
+
+export const PLUSUSERSCORE = gql`
+  mutation plususerscore($score: Float!) {
+    plususerscore(score: $score) {
+      id
+      email
+      name
+    }
+  }
+`;

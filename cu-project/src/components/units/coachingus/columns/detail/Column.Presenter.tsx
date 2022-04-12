@@ -17,7 +17,6 @@ interface ICodingUsBlogDetailUIProps {
   title: string;
   writer: string;
   createdAt: string;
-  tags: string[];
   isPicked?: boolean;
   onClickDelete: () => void;
   onClickUpdate: () => void;
@@ -64,14 +63,7 @@ export default function ColumnUI(props: ICodingUsBlogDetailUIProps) {
               )}
             </S.RowWrapper>
             <Blank height="12px" />
-            <S.RowWrapper>
-              {props.tags.map((el) => (
-                <div key={uuidv4()} style={{ display: "flex" }}>
-                  <Tag03 value={el} />
-                  <Blank width="10px" />
-                </div>
-              ))}
-            </S.RowWrapper>
+
             <Blank height="55px" />
             <TextViewer01
               width={"100%"}

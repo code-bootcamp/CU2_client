@@ -1,8 +1,8 @@
 export function splitMarkDown(mdString: string) {
-  const splitArr = mdString.split(/!\[([-_.]?[0-9a-zA-Z])*\]\(/);
+  const splitArr = mdString?.split(/!\[([-_.]?[0-9a-zA-Z])*\]\(/);
   const gubunArr = [];
   let cnt = 0;
-  for (let i = 0; i < splitArr.length; i++) {
+  for (let i = 0; i < splitArr?.length; i++) {
     if (!splitArr[i]) continue;
     if (splitArr[i].startsWith("https")) {
       gubunArr.push({
@@ -55,11 +55,16 @@ export const getImagesFromMD = (mdString: string) => {
 };
 
 export const getTextFromMD = (mdString: string) => {
-  let text = mdString
-  while(text.indexOf("\n") >=0 || text.indexOf("#") >= 0 || text.indexOf("*")>= 0 || text.indexOf("`")>= 0){
-  	text = text.replace(/\n+|#+|\*|`/,"");
+  let text = mdString;
+  while (
+    text.indexOf("\n") >= 0 ||
+    text.indexOf("#") >= 0 ||
+    text.indexOf("*") >= 0 ||
+    text.indexOf("`") >= 0
+  ) {
+    text = text.replace(/\n+|#+|\*|`/, "");
   }
   const splitArr = splitMarkDown(text);
   if(splitArr.filter(el => el.gubun === "text").length < 1) return "";
   return splitArr.filter(el => el.gubun === "text")[0].value.trimStart() ?? "";
-}
+};

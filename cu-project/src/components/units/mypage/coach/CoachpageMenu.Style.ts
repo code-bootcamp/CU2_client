@@ -133,5 +133,6 @@ export const MenuButton = styled.div`
     props.isCurrent ? "700" : "400"};
   :hover {
     cursor: pointer;
+    color: ${Color.sub};
   }
 `;
