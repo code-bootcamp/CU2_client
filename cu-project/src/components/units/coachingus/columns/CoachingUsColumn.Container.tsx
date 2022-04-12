@@ -16,7 +16,7 @@ import {
 export default function CoachingUsColumnPage() {
   const { isCoach } = useAuthCoach();
   const { data } = useQuery(FETCH_RECOMMEND_COLUMN_LIST);
-
+  const [columnProps, setColumnProps] = useState([]);
   const { data: totalColumns } = useQuery(FETCH_COLUMN_LIST);
 
   const [isOrderByPopular, setIsOrderByPopular] = useState(true);
@@ -37,18 +37,16 @@ export default function CoachingUsColumnPage() {
     if (columnList) {
       setTotalColumn([...columnList?.slice(0, 10)]);
     }
-  }, [totalColumns]);
-
-  useEffect(() => {
-    const columnListEdit = columnBestList?.map((el) => {
+    const columnListEdit = columnList?.map((el) => {
       return {
         plainText: getTextFromMD(el.contents),
         firstImg: getImagesFromMD(el.contents)[0],
       };
     });
 
-    setBestColumnProps(columnListEdit);
-  }, [data]);
+    setColumnProps(columnListEdit);
+    console.log("columnProps", columnProps);
+  }, [totalColumns]);
 
   return (
     <CoachingUsColumnUI
@@ -59,6 +57,7 @@ export default function CoachingUsColumnPage() {
       isOrderByPopular={isOrderByPopular}
       isCoach={isCoach}
       bestColumnProps={bestColumnProps}
+      columnProps={columnProps}
     />
   );
 }

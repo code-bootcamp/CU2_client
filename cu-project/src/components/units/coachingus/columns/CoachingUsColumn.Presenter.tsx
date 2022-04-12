@@ -80,24 +80,16 @@ export default function CoachingUsColumnUI(props) {
             // useWindow={true}
           >
             <S.ContainerColumnsBody>
-              {props.blogList?.map((el, index) => (
-                <div
-                  style={{ height: "500px", padding: "0 40px 0 0" }}
-                  key={index}
-                >
-                  <BlogCard01
-                    key={uuidV4()}
-                    data={el.blog}
-                    isLike={el.isLike}
-                  />
-                </div>
-              ))}
-              {/* {props.totalColumn?.map((column) => (
+              {props.totalColumn?.map((column, index) => (
                 <S.ColumnList
                   key={column.id}
                   onClick={props.moveToPage(`/coachingus/columns/${column.id}`)}
                 >
-                  <S.ColumnsPicture></S.ColumnsPicture>
+                  <S.ColumnsPicture
+                    src={`${
+                      props.columnProps?.[index]?.firstImg || "/CU2_LOGO.png"
+                    }`}
+                  />
 
                   <S.ColumnText>
                     <S.ColumnTitle>
@@ -110,21 +102,24 @@ export default function CoachingUsColumnUI(props) {
                       )}
                     </S.ColumnTitle>
                     <S.ColumnContents>
-                      {column.contents.length > 30 ? (
+                      {props.columnProps?.[index]?.plainText?.length > 30 ? (
                         <S.ColumnShortenContents>
-                          {column.contents.slice(0, 30) + "..."}
+                          {props.columnProps?.[index]?.plainText.slice(0, 30) +
+                            "..."}
                         </S.ColumnShortenContents>
                       ) : (
-                        <S.ColumnContents>{column.contents}</S.ColumnContents>
+                        <S.ColumnContents>
+                          {props.columnProps?.[index]?.plainText}
+                        </S.ColumnContents>
                       )}
                     </S.ColumnContents>
                     <Blank height="5px" />
                     <S.ColumnFooter>
-                      <div>{column.user.name}</div>2일전
+                      <div>{column.user.name}</div>
                     </S.ColumnFooter>
                   </S.ColumnText>
                 </S.ColumnList>
-              ))} */}
+              ))}
             </S.ContainerColumnsBody>
           </InfiniteScroll>
           {props.isCoach && (

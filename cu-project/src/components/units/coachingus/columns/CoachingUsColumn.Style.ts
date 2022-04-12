@@ -120,9 +120,10 @@ export const ColumnShortenContents = styled.div`
 // body columns 영역
 export const ContainerColumnsBody = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   width: 1000px;
   flex-wrap: wrap;
+  gap: 10px;
 `;
 
 export const ColumnList = styled.div`
@@ -144,7 +145,7 @@ export const ColumnList = styled.div`
   }
 `;
 
-export const ColumnsPicture = styled.div`
+export const ColumnsPicture = styled.img`
   display: flex;
   justify-content: center;
   align-items: center;

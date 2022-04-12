@@ -48,6 +48,7 @@ export default function CoachingUsCoachPage(props) {
         firstImg: getImagesFromMD(el.contents)[0],
       };
     });
+
     console.log("columnListEdit", columnListEdit);
     setColumnProps(columnListEdit);
 
