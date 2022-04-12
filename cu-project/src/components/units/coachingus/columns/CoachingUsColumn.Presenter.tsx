@@ -19,14 +19,18 @@ export default function CoachingUsColumnUI(props) {
           Weekly Best Columns
           <Blank height="30px" />
           <S.ContainerColumnsListBody>
-            {props.columns?.map((column, index) => (
+            {props.columnBestList?.map((column, index) => (
               <S.ColumnsList
                 key={column.id}
                 onClick={props.moveToPage(
                   `/coachingus/coaches/876cbaa9-b954-46e7-b6a3-b7e5f7cb0e7b/columns/0`
                 )}
               >
-                <S.ColumnPicture imgCover={props.imgUrl[index]} />
+                <S.ColumnPicture
+                  src={`${
+                    props.bestColumnProps?.[index]?.firstImg || "/CU2_LOGO.png"
+                  }`}
+                />
 
                 <S.ColumnText>
                   <S.ColumnTitle>
@@ -39,12 +43,17 @@ export default function CoachingUsColumnUI(props) {
                     )}
                   </S.ColumnTitle>
                   <S.ColumnContents>
-                    {column.contents.length > 30 ? (
+                    {props.bestColumnProps?.[index]?.plainText?.length > 30 ? (
                       <S.ColumnShortenContents>
-                        {column.contents.slice(0, 30) + "..."}
+                        {props.bestColumnProps?.[index]?.plainText.slice(
+                          0,
+                          60
+                        ) + "..."}
                       </S.ColumnShortenContents>
                     ) : (
-                      <S.ColumnContents>{column.contents}</S.ColumnContents>
+                      <S.ColumnContents>
+                        {props.bestColumnProps?.[index]?.plainText}
+                      </S.ColumnContents>
                     )}
                   </S.ColumnContents>
                   <Blank height="5px" />
