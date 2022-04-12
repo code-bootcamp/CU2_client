@@ -4,7 +4,6 @@ import {
   getImagesFromMD,
   getTextFromMD,
 } from "../../../../commons/libraries/mdUtils";
-import { IBlog } from "../../../../commons/types/generated/types";
 import { useAuthCoach } from "../../../commons/hooks/useAuthCoach";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import CoachingUsColumnUI from "./CoachingUsColumn.Presenter";
@@ -16,14 +15,10 @@ import {
 export default function CoachingUsColumnPage() {
   const { isCoach } = useAuthCoach();
   const { data } = useQuery(FETCH_RECOMMEND_COLUMN_LIST);
-
+  const [columnProps, setColumnProps] = useState([]);
+  const [bestColumnProps, setBestColumnProps] = useState([]);
   const { data: totalColumns } = useQuery(FETCH_COLUMN_LIST);
 
-  const [isOrderByPopular, setIsOrderByPopular] = useState(true);
-  const [blogList, setBlogList] = useState<{ blog: IBlog; isLike: boolean }[]>(
-    []
-  );
-  const [bestColumnProps, setBestColumnProps] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
 
   const [totalColumn, setTotalColumn] = useState([]);
@@ -37,28 +32,32 @@ export default function CoachingUsColumnPage() {
     if (columnList) {
       setTotalColumn([...columnList?.slice(0, 10)]);
     }
-  }, [totalColumns]);
-
-  useEffect(() => {
-    const columnListEdit = columnBestList?.map((el) => {
+    const bestColumnListEdit = columnBestList?.map((el) => {
       return {
         plainText: getTextFromMD(el.contents),
         firstImg: getImagesFromMD(el.contents)[0],
       };
     });
 
-    setBestColumnProps(columnListEdit);
-  }, [data]);
+    const columnListEdit = columnList?.map((el) => {
+      return {
+        plainText: getTextFromMD(el.contents),
+        firstImg: getImagesFromMD(el.contents)[0],
+      };
+    });
+
+    setBestColumnProps(bestColumnListEdit);
+    setColumnProps(columnListEdit);
+  }, [totalColumns, data]);
 
   return (
     <CoachingUsColumnUI
       columnBestList={columnBestList}
       moveToPage={moveToPage}
       totalColumn={totalColumn}
-      blogList={blogList}
-      isOrderByPopular={isOrderByPopular}
       isCoach={isCoach}
       bestColumnProps={bestColumnProps}
+      columnProps={columnProps}
     />
   );
 }
