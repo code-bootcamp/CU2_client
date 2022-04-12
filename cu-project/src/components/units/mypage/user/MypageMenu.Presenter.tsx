@@ -101,10 +101,10 @@ export default function MypageMenuUI(props: IMyPageMenuUIProps) {
             </S.ProfileContents>
             <Blank height="30px" />
             <S.UserInfoEditBox>
-              <button onClick={props.onClickMove("/mypage/user/follower")}>
+              {/* <button onClick={props.onClickMove("/mypage/user/follower")}>
                 관심 카테고리 수정
               </button>
-              <Blank height="10px" />
+              <Blank height="10px" /> */}
               <button onClick={props.onClickMove("/mypage/user/update")}>
                 회원 정보 수정
               </button>
