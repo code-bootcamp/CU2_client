@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { getTimeDiff } from "../../../../../commons/libraries/dateUtils";
 import { ICoachingUsColumnsCardUIProps } from "../../../../../commons/types/types";
 import Blank from "../../../../commons/Blank";
 import * as S from "./ColumnsCard.Style";
@@ -20,7 +21,11 @@ export default function ColumnsCardUI(props: ICoachingUsColumnsCardUIProps) {
             )}
           >
             {/* `/coachingus/coaches/${column?.user.coachProfile.id}/columns/${column?.id}` */}
-            <S.ColumnPicture imgCover={props.imgUrl[index]} />
+            <S.ColumnPicture
+              src={`${
+                props.bestColumnProps?.[index]?.firstImg || "/CU2_LOGO.png"
+              }`}
+            />
             <Blank height="10px" />
             <S.ColumnText>
               <S.ColumnTitle>
@@ -33,16 +38,21 @@ export default function ColumnsCardUI(props: ICoachingUsColumnsCardUIProps) {
                 )}
               </S.ColumnTitle>
               <S.ColumnContents>
-                {column.contents.length > 30 ? (
+                {props.bestColumnProps?.[index]?.plainText?.length > 30 ? (
                   <S.ColumnShortenContents>
-                    {column.contents.slice(0, 30) + "..."}
+                    {props.bestColumnProps?.[index]?.plainText?.slice(0, 60) +
+                      "..."}
                   </S.ColumnShortenContents>
                 ) : (
-                  <S.ColumnContents>{column.contents}</S.ColumnContents>
+                  <S.ColumnContents>
+                    {props.bestColumnProps?.[index]?.plainText}
+                  </S.ColumnContents>
                 )}
               </S.ColumnContents>
               <Blank height="5px" />
-              <S.ColumnFooter>김태훈 coach | 2일전</S.ColumnFooter>
+              <S.ColumnFooter>
+                {column.user.name} coach | {getTimeDiff(column.createdAt)}
+              </S.ColumnFooter>
             </S.ColumnText>
           </S.ColumnsList>
         ))}

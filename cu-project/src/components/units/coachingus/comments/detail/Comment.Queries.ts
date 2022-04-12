@@ -5,6 +5,7 @@ export const FETCH_QUESTION = gql`
     fetchQuestion(questionId: $questionId) {
       id
       title
+      createdAt
       fromUser {
         id
         nickname
@@ -31,6 +32,7 @@ export const FETCH_ANSWER = gql`
       title
       contents
       amount
+      createdAt
       question {
         id
         toCoach {

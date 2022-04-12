@@ -4,6 +4,7 @@ import * as S from "./Answer.Style";
 import { BiDislike, BiLike } from "react-icons/bi";
 import { SiAnsible } from "react-icons/si";
 import { MdLockOpen, MdOutlineQuestionAnswer } from "react-icons/md";
+import { getTimeDiff } from "../../../../../../commons/libraries/dateUtils";
 
 export default function AnswerPresenter(props) {
   return (
@@ -91,7 +92,7 @@ export default function AnswerPresenter(props) {
           </S.ContentsInfo>
         </S.CommentsContents>
       </S.CommentsContainer>
-      <p>2022-03-12</p>
+      <p>{getTimeDiff(props.answer[0]?.createdAt)}</p>
       {props.isModalOpen && (
         <>
           <S.ModalWrapper

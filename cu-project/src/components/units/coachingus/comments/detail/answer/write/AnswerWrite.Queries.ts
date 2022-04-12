@@ -11,6 +11,7 @@ export const CREATE_ANSWER = gql`
     ) {
       id
       title
+      createdAt
       contents
     }
   }
@@ -19,6 +20,7 @@ export const CREATE_ANSWER = gql`
 export const FETCH_QUESTION = gql`
   query fetchQuestion($questionId: String!) {
     fetchQuestion(questionId: $questionId) {
+      createdAt
       fromUser {
         name
       }

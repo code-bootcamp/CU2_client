@@ -9,6 +9,7 @@ export const FETCH_RECOMMEND_COLUMN_LIST = gql`
       hits
       likecount
       dislikecount
+      createdAt
       user {
         id
         name
@@ -29,6 +30,7 @@ export const FETCH_COLUMN_LIST = gql`
       hits
       likecount
       dislikecount
+      createdAt
       user {
         id
         name

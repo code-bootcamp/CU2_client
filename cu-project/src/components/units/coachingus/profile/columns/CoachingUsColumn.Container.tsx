@@ -15,8 +15,8 @@ export default function CoachingUsColumnPage(props) {
   useEffect(() => {
     const columnListEdit = columnList?.map((el) => {
       return {
-        plainText: getTextFromMD(el.contents),
-        firstImg: getImagesFromMD(el.contents)[0],
+        plainText: getTextFromMD(el?.contents),
+        firstImg: getImagesFromMD(el?.contents)[0],
       };
     });
 

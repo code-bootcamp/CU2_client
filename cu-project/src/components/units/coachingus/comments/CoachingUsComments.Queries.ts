@@ -5,6 +5,7 @@ export const FETCH_COMMENTS = gql`
     fetchQuestionList {
       id
       title
+      createdAt
       fromUser {
         id
         nickname
@@ -31,6 +32,7 @@ export const FETCH_ANSWER = gql`
       title
       contents
       amount
+      createdAt
       question {
         id
       }

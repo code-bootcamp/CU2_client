@@ -7,6 +7,10 @@ import CoachingUsSidebar from "../sidebar/CoachingUsSidebar.Container";
 import { v4 as uuidV4 } from "uuid";
 import * as S from "./CoachingUsColumn.Style";
 import BlogCard02 from "../../codingus/card/blogCard/BlogCard02/BlogCard02";
+import {
+  calcTimeDiff,
+  getTimeDiff,
+} from "../../../../commons/libraries/dateUtils";
 
 export default function CoachingUsColumnUI(props) {
   return (
@@ -59,7 +63,7 @@ export default function CoachingUsColumnUI(props) {
                   <Blank height="5px" />
                   <S.ColumnFooter>
                     <div>{column.user.name}</div>
-                    {column.createdAt}
+                    {getTimeDiff(column.createdAt)}
                   </S.ColumnFooter>
                 </S.ColumnText>
               </S.ColumnsList>
@@ -118,6 +122,7 @@ export default function CoachingUsColumnUI(props) {
                     <Blank height="5px" />
                     <S.ColumnFooter>
                       <div>{column.user.name}</div>
+                      {getTimeDiff(column.createdAt)}
                     </S.ColumnFooter>
                   </S.ColumnText>
                 </S.ColumnList>
