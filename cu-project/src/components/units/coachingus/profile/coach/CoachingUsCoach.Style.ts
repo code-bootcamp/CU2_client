@@ -5,6 +5,7 @@ export const CoachIntroTitle = styled.div`
   font-size: 21px;
   font-weight: normal;
 `;
+
 export const CoachIntroContents = styled.div`
   background-image: url(${({ imgCover }) => imgCover});
   background-size: cover;

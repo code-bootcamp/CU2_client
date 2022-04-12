@@ -84,7 +84,9 @@ export default function CoachingUsCoachUI(props) {
                 )}
               >
                 <S.ColumnPicture
-                  imgCover={props.colImg[index]}
+                  imgCover={
+                    props.columnProps?.[index].firstImg || "/CU2_LOGO.png"
+                  }
                 ></S.ColumnPicture>
 
                 <S.ColumnText>
@@ -98,12 +100,15 @@ export default function CoachingUsCoachUI(props) {
                     )}
                   </S.ColumnTitle>
                   <S.ColumnContents>
-                    {column.contents.length > 30 ? (
+                    {props.columnProps?.[index].plainText.length > 30 ? (
                       <S.ColumnShortenContents>
-                        {column.contents.slice(0, 60) + "..."}
+                        {props.columnProps?.[index].plainText.slice(0, 60) +
+                          "..."}
                       </S.ColumnShortenContents>
                     ) : (
-                      <S.ColumnContents>{column.contents}</S.ColumnContents>
+                      <S.ColumnContents>
+                        {props.columnProps?.[index].plainText}
+                      </S.ColumnContents>
                     )}
                   </S.ColumnContents>
                   <Blank height="5px" />
