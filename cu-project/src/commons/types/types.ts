@@ -159,7 +159,6 @@ export interface ICodingUsBlogDetailUIProps {
   loggedInUser: IUser | undefined;
 }
 
-
 export interface ICodingUsQnAProps {}
 export interface ICodingUsQnAUIProps {
   isMyQuestion: boolean;
@@ -351,16 +350,16 @@ export interface IMyPageProps {}
 export interface IMyPageUIProps {}
 
 export interface IUserBlogUIProps {
-  data: {
-    fetchmyBlog: {
-      title: string;
-      contents: string;
-      like: number;
-      createAt: number;
-    };
+  data?: {
+    fetchmyBlog: IBlog[];
   };
 }
 
+export interface IUserLikePostsUIProps {
+  data?: {
+    fetchBloglike: IBlog[];
+  };
+}
 export interface IMyPageMenuUIProps {
   mainstack: {
     fetchmainstack: {};
