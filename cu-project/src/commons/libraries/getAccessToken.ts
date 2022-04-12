@@ -1,5 +1,4 @@
 import { gql, GraphQLClient } from "graphql-request";
-import useStore from "../store/store";
 
 const RESTORE_ACCESS_TOKEN = gql`
   mutation resotreAccessToken {

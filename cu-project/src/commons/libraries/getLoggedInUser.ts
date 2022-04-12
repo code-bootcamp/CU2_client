@@ -1,5 +1,4 @@
 import { gql, GraphQLClient } from "graphql-request";
-import { IQuery } from "../types/generated/types";
 
 const FETCH_MY_USER = gql`
   query fetchmyuser {
@@ -20,6 +19,7 @@ const FETCH_MY_USER = gql`
 `;
 
 export const getLoggenInUser = async (accessToken: string) => {
+  if(!accessToken) return;
   try {
     const graphQLClient = new GraphQLClient(
       process.env.NEXT_PUBLIC_GRAPHQL_URL!,
@@ -33,7 +33,7 @@ export const getLoggenInUser = async (accessToken: string) => {
       }
     );
     const result = await graphQLClient
-      .request(FETCH_MY_USER)
+      .request(FETCH_MY_USER).catch();
     return result.fetchmyuser;
   } catch (error) {
   }
