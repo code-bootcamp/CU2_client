@@ -60,5 +60,6 @@ export const getTextFromMD = (mdString: string) => {
   	text = text.replace(/\n+|#+|\*|`/,"");
   }
   const splitArr = splitMarkDown(text);
+  if(splitArr.filter(el => el.gubun === "text").length < 1) return "";
   return splitArr.filter(el => el.gubun === "text")[0].value.trimStart() ?? "";
 }

@@ -4,8 +4,8 @@ import Label01 from "../../../../../../commons/Label/Label01";
 import { v4 as uuidv4 } from "uuid";
 import { getTimeDiff } from "../../../../../../../commons/libraries/dateUtils";
 import Blank from "../../../../../../commons/Blank";
-// import { AiFillLike, AiOutlineLike } from "react-icons/ai";
-import { AiFillLike } from "react-icons/ai";
+import { AiFillLike, AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
+// import { AiFillLike } from "react-icons/ai";
 import HorizontalLine from "../../../../../../commons/Line/HorizontalLine";
 import Button02 from "../../../../../../commons/Button/Button02";
 import { BsFillPersonFill } from "react-icons/bs";
@@ -56,13 +56,15 @@ export default function CommentList(props: IBlogCommentListProps) {
                   </S.UserInfo>
                   <S.ButtonWrapper>
                     <S.LikeButton>
-                      {/* {true ? (
-                      <AiFillLike style={{ marginRight: "10px" }} />
+                      {true ? (
+                        <AiFillLike style={{ marginRight: "10px", cursor: "pointer"}} />
                       ) : (
-                        <AiOutlineLike style={{ marginRight: "10px" }} />
-                        )} */}
-                      <AiFillLike style={{ marginRight: "10px" }} />
+                        <AiOutlineLike style={{ marginRight: "10px", cursor: "pointer"}} />
+                      )}
                       {el.like}
+                      <Blank width="16px" />
+                      <AiOutlineDislike style={{ marginRight: "10px", cursor: "pointer"}} />
+                      {el.dislike}
                     </S.LikeButton>
                     <Blank height="5px" />
                     {console.log(props, el)}
@@ -89,7 +91,10 @@ export default function CommentList(props: IBlogCommentListProps) {
                 <S.CommentBody>
                   {props.isEdits[idx] ? (
                     <S.CommentInputWrapper>
-                      <S.CommentInput  defaultValue={el.contents} ref={props.editCommentRef}/>
+                      <S.CommentInput
+                        defaultValue={el.contents}
+                        ref={props.editCommentRef}
+                      />
                       <Button02
                         value="수정"
                         onClick={props.onClickSubmit(el.id)}

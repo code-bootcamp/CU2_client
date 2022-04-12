@@ -110,11 +110,6 @@ export default function CodingUsBlogComment(props: IBlogCommentProps) {
     location.reload();
   };
   const onLoadMore = () => {};
-
-  // useEffect(() => {
-  //   setIsEdits([...new Array(commentList.length).fill(false)]);
-  // }, []);
-
   return (
     <CodingUsBlogCommentUI
       newCommentProps={{

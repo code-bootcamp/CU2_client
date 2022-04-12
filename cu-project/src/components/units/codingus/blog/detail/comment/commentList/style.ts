@@ -38,7 +38,7 @@ export const ButtonWrapper = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-export const LikeButton = styled.div``;
+export const LikeButton = styled(RowWrapper)``;
 
 export const MyButtonWrapper = styled(RowWrapper)``;
 
