@@ -119,12 +119,13 @@ export default function EditorUI(props: ITextEditorUIProps) {
               callback: HookCallback
             ) => {
               try {
+                console.log(file);
                 const result = await uploadblogFile({
                   variables: { files: [file] },
                 });
                 if (!result) throw new Error("이미지 등록 실패");
                 const url = `https://storage.googleapis.com/cu2project-backend/${String(
-                  result?.data?.uploadblogFile[0]
+                  encodeURI(String(result?.data?.uploadblogFile[0]))
                 )}`;
                 callback(url);
               } catch (err: any) {

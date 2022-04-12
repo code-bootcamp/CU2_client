@@ -156,6 +156,7 @@ export interface ICodingUsBlogDetailUIProps {
   currentIndex: number;
   indexPositions?: number[];
   setCurrentIndex: Dispatch<SetStateAction<number>>;
+  loggedInUser: IUser | undefined;
 }
 
 
