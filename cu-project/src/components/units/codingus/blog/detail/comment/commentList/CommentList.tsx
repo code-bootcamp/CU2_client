@@ -10,8 +10,7 @@ import HorizontalLine from "../../../../../../commons/Line/HorizontalLine";
 import Button02 from "../../../../../../commons/Button/Button02";
 import { BsFillPersonFill } from "react-icons/bs";
 import { RestUserPicture } from "../../../../../../commons/Card/rankingCard/rankingCard.Style";
-import { IBlogComment } from "../../../../../../../commons/types/generated/types";
-import useStore from "../../../../../../../commons/store/store";
+import { IBlogComment, IUser } from "../../../../../../../commons/types/generated/types";
 interface IBlogCommentListProps {
   commentList: IBlogComment[];
   onLoadMore: () => void;
@@ -19,10 +18,10 @@ interface IBlogCommentListProps {
   onClickEditComment: (idx: number) => () => void;
   onClickSubmit: (id: string) => () => void;
   isEdits: boolean[];
+  loggedInUser: IUser;
 }
 
 export default function CommentList(props: IBlogCommentListProps) {
-  const userInfo =  useStore(state => state.userInfo);
   return (
     <S.Wrapper>
       <InfiniteScroll
@@ -58,7 +57,8 @@ export default function CommentList(props: IBlogCommentListProps) {
                     {el.like}
                   </S.LikeButton>
                   <Blank height="5px" />
-                 {userInfo?.id === el.user.id && <S.MyButtonWrapper>
+                 {console.log(props, el)}
+                 {props.loggedInUser?.nickname === el.user.nickname && <S.MyButtonWrapper>
                     <S.MyButton
                       isMyComment={true}
                       onClick={props.onClickEditComment(idx)}

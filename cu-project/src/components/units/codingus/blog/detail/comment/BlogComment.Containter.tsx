@@ -6,6 +6,7 @@ import {
   IMutationDeleteBlogCommentArgs,
   IQuery,
   IQueryFetchBlogCommentorderbycreateArgs,
+  IUser,
 } from "../../../../../../commons/types/generated/types";
 import CodingUsBlogCommentUI from "./BlogComment.Presenter";
 import {
@@ -15,6 +16,7 @@ import {
 } from "./BlogComment.Queries";
 interface IBlogCommentProps {
   blogId: string;
+  loggedInUser: IUser;
 }
 
 export default function CodingUsBlogComment(props: IBlogCommentProps) {
@@ -90,6 +92,7 @@ export default function CodingUsBlogComment(props: IBlogCommentProps) {
         onLoadMore: onLoadMore,
         onClickSubmit: onClickEditSubmit,
         isEdits: isEdits,
+        loggedInUser: props.loggedInUser
       }}
     />
   );

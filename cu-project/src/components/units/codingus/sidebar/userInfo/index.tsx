@@ -22,21 +22,22 @@ export default function SidebarUserInfo(props: ICodingUsSidebarProps) {
   //   props.totalRanking?.prev - props.totalRanking?.today > 0
   //     ? `+${props.totalRanking?.prev - props.totalRanking?.today}`
   //     : props.totalRanking?.prev - props.totalRanking?.today;
-  useGetUserInfo();
   const [interestList, setInterestList] = useState<string[]>([]);
   const accessToken = useStore((state) => state.accessToken);
   const [userInfo, setUserInfo] = useState<IUser>();
+  useGetUserInfo();
   useEffect(() => {
+    if (!accessToken) return;
     const getUserInfo = async () => {
       const userInfo = await getLoggenInUser(accessToken);
       setUserInfo(userInfo);
     };
-    getUserInfo()
+    getUserInfo();
+  }, [accessToken]);
+  useEffect(() => {
+    if (!localStorage.getItem("interestList")) return;
+    setInterestList(String(localStorage.getItem("interestList"))?.split(","));
   }, []);
-useEffect(() => {
-  if(!localStorage.getItem("interestList")) return;
-  setInterestList(String(localStorage.getItem("interestList"))?.split(","))
-}, [])
   const [toggleState, setToggleState] = useState({
     userInfo: false,
     stack: false,
@@ -48,7 +49,7 @@ useEffect(() => {
   };
   const { moveToPage } = useMoveToPage();
   return (
-    <div style={{width: "180px"}}>
+    <div style={{ width: "180px" }}>
       <S.Title>내 정보</S.Title>
       <Blank height="30px" />
       <S.Wrapper>
@@ -117,9 +118,13 @@ useEffect(() => {
           {toggleState.stack && (
             <div>
               <Blank height="12px" />
-              <S.StackLabel onClick={() => { 
-                Router.push("/codingus")
-              }}>관심 스택 추가하기</S.StackLabel>
+              <S.StackLabel
+                onClick={() => {
+                  Router.push("/codingus");
+                }}
+              >
+                관심 스택 추가하기
+              </S.StackLabel>
             </div>
           )}
         </S.UserInfoBody>

@@ -1,18 +1,36 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { getLoggenInUser } from "../../../../../commons/libraries/getLoggedInUser";
 import { getIndexFromMD } from "../../../../../commons/libraries/mdUtils";
+import useStore from "../../../../../commons/store/store";
 import {
   IMutation,
   IMutationDeleteBlogArgs,
   IQuery,
   IQueryFetchblogoneArgs,
+  IUser,
 } from "../../../../../commons/types/generated/types";
+import { useGetUserInfo } from "../../../../commons/hooks/useGetUserInfo";
 import { useScroll } from "../../../../commons/hooks/useScroll";
 import CodingUsBlogDetailUI from "./BlogDetail.Presenter";
 import { DELETE_BLOG, FETCH_BLOG_ONE } from "./BlogDetail.Queries";
 
 export default function CodingUsBlogDetail() {
+
+  const accessToken = useStore((state) => state.accessToken);
+
+  const [userInfo, setUserInfo] = useState<IUser>();
+  useGetUserInfo();
+  useEffect(() => {
+    if (!accessToken) return;
+    const getUserInfo = async () => {
+      const userInfo = await getLoggenInUser(accessToken);
+      setUserInfo(userInfo);
+    };
+    getUserInfo();
+  }, [accessToken]);
+
   const router = useRouter();
   const [indexPositions, setIndexPositions] = useState<number[]>([]);
   const [currentIndex, setCurrentIndex] = useState(-1);
@@ -74,6 +92,7 @@ export default function CodingUsBlogDetail() {
       setCurrentIndex={setCurrentIndex}
       onClickDelete={onClickDelete}
       onClickEdit={onClickEdit}
+      loggedInUser={userInfo}
     />
   );
 }

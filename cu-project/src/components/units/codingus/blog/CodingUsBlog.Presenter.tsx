@@ -29,7 +29,7 @@ export default function CodingUsBlogUI(props: ICodingUsBlogUIProps) {
           <Label01 value="팔로잉" padding="0px" weight="700" size="36px" />
           <Blank height="32px" />
           <S.CardWrapper>
-            {false ? (
+            {true ? (
               new Array(4)
                 .fill(0)
                 .map((_, idx) => (

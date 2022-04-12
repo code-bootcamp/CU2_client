@@ -2,7 +2,7 @@ import { gql, useLazyQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { getAccessToken } from "../../../commons/libraries/getAccessToken";
 import useStore from "../../../commons/store/store";
-import { IQuery } from "../../../commons/types/generated/types";
+import { IQuery, IUser } from "../../../commons/types/generated/types";
 
 const FETCH_MY_USER = gql`
   query fetchmyuser {
@@ -24,21 +24,24 @@ export function useGetUserInfo() {
     (state) => state
   );
   const [isLogin, setIsLogin] = useState(false);
-
-  const [fetchmyuser, { data }] =
+  const [fetchmyuser] =
     useLazyQuery<Pick<IQuery, "fetchmyuser">>(FETCH_MY_USER);
 
   useEffect(() => {
     async function Auth() {
+      let newAccessToken = "";
       if (!accessToken) {
-        const newAccessToken = await getAccessToken();
+        newAccessToken = await getAccessToken();
         setAccessToken(newAccessToken);
-        if (newAccessToken) {
-          setIsLogin(true);
-          await fetchmyuser();
-          if (data) setUserInfo(data.fetchmyuser);
-        }
       }
+
+      // if (newAccessToken || accessToken) {
+      //   setIsLogin(true);
+      //   const result = await fetchmyuser({
+      //     context: { headers: { authorization: `Bearer ${newAccessToken}`}},
+      //   });
+      //   if (result.data?.fetchmyuser) {setUserInfo(result.data?.fetchmyuser);}
+      // }
     }
 
     Auth();

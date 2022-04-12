@@ -1,5 +1,5 @@
 import { RefObject } from "react";
-import { IBlogComment } from "../../../../../../commons/types/generated/types";
+import { IBlogComment, IUser } from "../../../../../../commons/types/generated/types";
 import Blank from "../../../../../commons/Blank";
 import * as S from "./BlogComment.Style";
 import CommentList from "./commentList/CommentList";
@@ -18,6 +18,7 @@ interface ICodingUsBlogCommentProps {
     onClickSubmit: (id: string) => () => void;
     onLoadMore: () => void;
     isEdits: boolean[];
+    loggedInUser: IUser;
   };
 }
 
