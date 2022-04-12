@@ -20,9 +20,9 @@ export const ColumnsList = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
   width: 360px;
-
+  border-radius: 15px;
   height: fit-content;
   padding: 0;
   margin-top: 50px;
@@ -35,13 +35,13 @@ export const ColumnsList = styled.div`
   }
 `;
 
-export const ColumnPicture = styled.div`
+export const ColumnPicture = styled.img`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 200px;
-  background-color: #c4c4c4;
+  background-color: #f6f5f5;
 `;
 export const ColumnText = styled.div`
   display: flex;
@@ -50,7 +50,7 @@ export const ColumnText = styled.div`
   justify-content: space-between;
   height: 140px;
   width: 100%;
-  /* background: red; */
+  padding: 10px;
 `;
 export const ColumnTitle = styled.div`
   display: flex;

@@ -137,22 +137,21 @@ export const ColumnsList = styled.div`
   padding: 0;
   overflow: hidden;
   cursor: pointer;
-
+  border-radius: 15px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
   :hover {
     background-color: #ea345a;
     color: white;
   }
 `;
 
-export const ColumnPicture = styled.div`
-  background-image: url(${({ imgCover }) => imgCover});
-  background-size: cover;
+export const ColumnPicture = styled.img`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 200px;
-  background-color: #c4c4c4;
+  background-color: #f6f5f5;
 `;
 export const ColumnText = styled.div`
   display: flex;

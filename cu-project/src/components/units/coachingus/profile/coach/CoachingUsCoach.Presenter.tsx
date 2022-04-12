@@ -84,9 +84,9 @@ export default function CoachingUsCoachUI(props) {
                 )}
               >
                 <S.ColumnPicture
-                  imgCover={
-                    props.columnProps?.[index].firstImg || "/CU2_LOGO.png"
-                  }
+                  src={`${
+                    props.columnProps?.[index]?.firstImg || "/CU2_LOGO.png"
+                  }`}
                 ></S.ColumnPicture>
 
                 <S.ColumnText>
@@ -113,7 +113,7 @@ export default function CoachingUsCoachUI(props) {
                   </S.ColumnContents>
                   <Blank height="5px" />
                   <S.ColumnFooter>
-                    <div>김태훈</div>1일전
+                    <div>{column.user.name}</div>
                   </S.ColumnFooter>
                 </S.ColumnText>
               </S.ColumnsList>
