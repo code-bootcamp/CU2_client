@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import "antd/dist/antd.css";
+import { useRouter } from "next/router";
 import { MainPageProps } from "../../../commons/types/types";
-import { useMoveToPage } from "../../commons/hooks/useMoveToPage";
 import MainUI from "./main.Presenter";
 import {
   FETCH_COACH_USER_LIST,
@@ -13,7 +13,7 @@ import {
 } from "./main.Queries";
 
 export default function Main(props: MainPageProps) {
-  const { moveToPage } = useMoveToPage();
+  const router = useRouter();
   const { data: blogData } = useQuery(FETCH_OTHER_BLOG_ORDER_BY_LIKE_ALL);
   const { data: stackData } = useQuery(FETCH_OTHER_STACK_ORDER_BY_LIKE);
   const { data: commentData } = useQuery(FETCH_QUESTION_LIST);
@@ -37,6 +37,16 @@ export default function Main(props: MainPageProps) {
       />
     );
   }
+
+  const onClickSearch = (event: { target: HTMLInputElement }) => {
+    router.push({
+      pathname: `/search/`,
+      query: {
+        category: "Total",
+        keyword: String(event.target.id),
+      },
+    });
+  };
 
   const responsiveSettings = {
     dots: false,
@@ -85,7 +95,7 @@ export default function Main(props: MainPageProps) {
         stackData={stackData}
         settings={settings}
         responsiveSettings={responsiveSettings}
-        moveToPage={moveToPage}
+        onClickSearch={onClickSearch}
       />
     </>
   );

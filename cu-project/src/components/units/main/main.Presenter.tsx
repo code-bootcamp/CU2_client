@@ -11,8 +11,10 @@ import BlogCard01 from "../../commons/Card/BlogCard01/BlogCard01";
 import { CommentsCard } from "../coachingus/comments/CoachingUsComments.Presenter";
 import { ColumnsCardMain } from "../coachingus/main/columnscard/ColumnsCard.Presenter";
 import CoachingUsCoachCardMyPage from "../coachingus/profile/CoachingUsCoachCardMyPage";
+import { useRouter } from "next/router";
 
 export default function MainUI(props: MainPageUIProps) {
+  const router = useRouter();
   return (
     <S.Wrapper>
       <S.SliderBox {...props.settings}>
@@ -32,7 +34,7 @@ export default function MainUI(props: MainPageUIProps) {
             <p>혼자 개발공부하기 어려운가요?</p>
             <h1>CodingUs에서 같이 공부해요!</h1>
           </S.CodingUsBannerTitle>
-          <S.CodingUsButton onClick={props.moveToPage("/codingus")}>
+          <S.CodingUsButton onClick={() => router.push("/codingus")}>
             자세히 보기 <AiOutlineArrowRight />
           </S.CodingUsButton>
         </S.CodingUsBannerDiv>
@@ -45,18 +47,36 @@ export default function MainUI(props: MainPageUIProps) {
           <BsSearch style={{ fontSize: "18px", cursor: "pointer" }} />
         </S.SearchBarArea>
         <S.TagsBox>
-          <S.Tag onClick={props.moveToPage("/search/html")}>#Html</S.Tag>
-          <S.Tag onClick={props.moveToPage("/search/css")}>#CSS</S.Tag>
-          <S.Tag onClick={props.moveToPage("/search/javascript")}>
+          <S.Tag onClick={props.onClickSearch} id="html">
+            #Html
+          </S.Tag>
+          <S.Tag onClick={props.onClickSearch} id="css">
+            #CSS
+          </S.Tag>
+          <S.Tag onClick={props.onClickSearch} id="javascript">
             #Javascript
           </S.Tag>
-          <S.Tag onClick={props.moveToPage("/search/Java")}>#Java</S.Tag>
-          <S.Tag onClick={props.moveToPage("/search/sql")}>#SQL</S.Tag>
-          <S.Tag onClick={props.moveToPage("/search/C")}>#C</S.Tag>
-          <S.Tag onClick={props.moveToPage("/search/react")}>#React</S.Tag>
-          <S.Tag onClick={props.moveToPage("/search/python")}>#Python</S.Tag>
-          <S.Tag onClick={props.moveToPage("/search/vue")}>#Vue</S.Tag>
-          <S.Tag onClick={props.moveToPage("/search/angular")}>#Angular</S.Tag>
+          <S.Tag onClick={props.onClickSearch} id="java">
+            #Java
+          </S.Tag>
+          <S.Tag onClick={props.onClickSearch} id="SQL">
+            #SQL
+          </S.Tag>
+          <S.Tag onClick={props.onClickSearch} id="c">
+            #C
+          </S.Tag>
+          <S.Tag onClick={props.onClickSearch} id="react">
+            #React
+          </S.Tag>
+          <S.Tag onClick={props.onClickSearch} id="python">
+            #Python
+          </S.Tag>
+          <S.Tag onClick={props.onClickSearch} id="vue">
+            #Vue
+          </S.Tag>
+          <S.Tag onClick={props.onClickSearch} id="angular">
+            #Angular
+          </S.Tag>
         </S.TagsBox>
       </S.SearchBox>
       <Blank height="100px" />
@@ -65,7 +85,7 @@ export default function MainUI(props: MainPageUIProps) {
         <S.ServiceSubHead>
           <p>블로그 쓰고 점수와 피드백을 받아봐요</p>
           <p
-            onClick={props.moveToPage("/codingus/blog")}
+            onClick={() => router.push("/codingus/blog")}
             style={{ cursor: "pointer" }}
           >{`전체보기 >`}</p>
         </S.ServiceSubHead>
@@ -87,7 +107,7 @@ export default function MainUI(props: MainPageUIProps) {
         <S.ServiceSubHead>
           <p>CodingUs들이 서로 물어보고 알려줘요!</p>
           <p
-            onClick={props.moveToPage("/codingus/question")}
+            onClick={() => router.push("/codingus/question")}
             style={{ cursor: "pointer" }}
           >{`전체보기 >`}</p>
         </S.ServiceSubHead>
@@ -116,7 +136,7 @@ export default function MainUI(props: MainPageUIProps) {
             <p>취업에 관한 모든 궁금증들</p>
             <h1>CoachingUs에서 코치들에게 물어보세요!</h1>
           </S.CodingUsBannerTitle>
-          <S.CodingUsButton onClick={props.moveToPage("/coachingus")}>
+          <S.CodingUsButton onClick={() => router.push("/coachingus")}>
             자세히 보기 <AiOutlineArrowRight />
           </S.CodingUsButton>
         </S.CodingUsBannerDiv>
@@ -127,7 +147,7 @@ export default function MainUI(props: MainPageUIProps) {
         <S.ServiceSubHead>
           <p>자기소개서와 포트폴리오, 취업에 관한 모든 것들 다 물어보세요</p>
           <p
-            onClick={props.moveToPage("/coachingus/coaches")}
+            onClick={() => router.push("/coachingus/coaches")}
             style={{ cursor: "pointer" }}
           >{`전체보기 >`}</p>
         </S.ServiceSubHead>
@@ -155,7 +175,7 @@ export default function MainUI(props: MainPageUIProps) {
         <S.ServiceSubHead>
           <p>양질의 피드백을 경험하세요</p>
           <p
-            onClick={props.moveToPage("/coachingus/comments")}
+            onClick={() => router.push("/coachingus/comments")}
             style={{ cursor: "pointer" }}
           >
             {" "}
@@ -174,7 +194,7 @@ export default function MainUI(props: MainPageUIProps) {
             .filter((el: IStack, index: number) => index < 4)
             .map((el) => (
               <div key={el.id} style={{ width: "calc(50% - 20px)" }}>
-                <CommentsCard data={el} />
+                <CommentsCard comment={el} />
               </div>
             ))}
         </div>
@@ -185,7 +205,7 @@ export default function MainUI(props: MainPageUIProps) {
         <S.ServiceSubHead>
           <p>전문성이 더 한 콘텐츠를 읽어보세요</p>
           <p
-            onClick={props.moveToPage("/coachingus/columns")}
+            onClick={() => router.push("/coachingus/columns")}
             style={{ cursor: "pointer" }}
           >{`전체보기 >`}</p>
         </S.ServiceSubHead>

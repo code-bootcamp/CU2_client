@@ -149,7 +149,7 @@ export const CommentsCard = (props) => {
   const router = useRouter();
   return (
     <>
-      <S.CommentsContainer key={index}>
+      <S.CommentsContainer>
         <S.CommentsTitle>
           <S.CommentsTitleLeft
             onClick={() =>
@@ -161,16 +161,19 @@ export const CommentsCard = (props) => {
             <S.TitlePicture></S.TitlePicture>
             <Blank width="10px" />
             <p>
-              {comment.toCoach.name} | {comment.toCoach.coachProfile.orgName}
+              {props.comment.toCoach.name} |{" "}
+              {props.comment.toCoach.coachProfile.orgName}
             </p>
           </S.CommentsTitleLeft>
-          <S.CommentsTitleRight>{comment.createdAt}</S.CommentsTitleRight>
+          <S.CommentsTitleRight>{props.comment.createdAt}</S.CommentsTitleRight>
         </S.CommentsTitle>
         <S.CommentsContents>
           <S.ContentsQuestion
-            onClick={props.moveToPage(
-              `/coachingus/coaches/${comment.toCoach.id}/${comment.id}`
-            )}
+            onClick={() =>
+              router.push(
+                `/coachingus/coaches/${props.comment.toCoach.id}/${props.comment.id}`
+              )
+            }
           >
             <S.QuestionIcon>
               <BsQuestionCircleFill
@@ -183,13 +186,15 @@ export const CommentsCard = (props) => {
               />
             </S.QuestionIcon>
             <Blank width="20px" />
-            <S.QuestionText>{comment.title}</S.QuestionText>
+            <S.QuestionText>{props.comment.title}</S.QuestionText>
           </S.ContentsQuestion>
           <Blank height="20px" />
           <S.ContentsAnwer
-            onClick={props.moveToPage(
-              `/coachingus/coaches/${comment.toCoach.id}/${comment.id}`
-            )}
+            onClick={() =>
+              router.push(
+                `/coachingus/coaches/${props.comment.toCoach.id}/${props.comment.id}`
+              )
+            }
           >
             {/* <S.QuestionIcon>
               <SiAnsible
@@ -204,7 +209,7 @@ export const CommentsCard = (props) => {
               />
             </S.QuestionIcon> */}
             <Blank width="20px" />
-            <S.QuestionText>{comment.contents}</S.QuestionText>
+            <S.QuestionText>{props.comment.contents}</S.QuestionText>
           </S.ContentsAnwer>
           {/* <Blank height="15px" />
           <S.ContentsInfo>
