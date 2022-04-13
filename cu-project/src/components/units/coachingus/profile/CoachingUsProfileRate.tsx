@@ -65,7 +65,7 @@ export const Wrapper = styled.div`
     100% {
       transform: ${({ answerRate }) =>
         answerRate > 50
-          ? `rotate(${(-answerRate / 100) * 180}deg)`
+          ? `rotate(${(-(answerRate - 50) / 50) * 180}deg)`
           : `rotate(0deg)`};
     }
   }
@@ -74,7 +74,7 @@ export const Wrapper = styled.div`
       transform: ${({ answerRate }) =>
         answerRate >= 50
           ? `rotate(-180deg)`
-          : `rotate(${-(answerRate / 100) * 180}deg)`};
+          : `rotate(${-(answerRate / 50) * 180}deg)`};
     }
   }
 `;
