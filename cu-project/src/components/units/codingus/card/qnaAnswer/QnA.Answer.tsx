@@ -9,18 +9,15 @@ import {
   AiOutlineLike,
   AiOutlineDislike,
 } from "react-icons/ai";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { RowWrapper } from "../../../coachingus/columns/detail/Columns.Style";
 import Color from "../../../../../commons/styles/color";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
-import { ICodingQuestionCardProps } from "../../../../../commons/types/types";
+import { ICodingUsAnswerCardProps } from "../../../../../commons/types/types";
 import { SiAnsible } from "react-icons/si";
 
-export default function QnAAnswerCard(props: ICodingQuestionCardProps) {
+export default function QnAAnswerCard(props: ICodingUsAnswerCardProps) {
   const [isEdit, setIsEdit] = useState(false);
-  const onChangeEditText = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    props.setEditValue(event.target.value);
-  };
   const { moveToPage } = useMoveToPage();
   return (
     <S.Wrapper
@@ -144,17 +141,12 @@ export default function QnAAnswerCard(props: ICodingQuestionCardProps) {
         <>
           <S.CommentInput
             defaultValue={props.data.contents}
-            onChange={onChangeEditText}
-            value={props.editValue}
+            ref={props.editCommentRef}
           />
           <S.ButtonWrapper>
             <S.Button
               isGood={false}
               style={{ border: `1px solid ${Color.medium}`, width: "173px" }}
-              onClick={() => {
-                setIsEdit((prev) => !prev);
-                props.setEditValue("");
-              }}
             >
               <Label01
                 size="18px"
@@ -169,7 +161,7 @@ export default function QnAAnswerCard(props: ICodingQuestionCardProps) {
             <S.Button
               isGood={false}
               style={{ border: `1px solid ${Color.main}`, width: "173px" }}
-              onClick={props.onClickEditSubmit("props.id")}
+              onClick={props.onClickEditAnswer(props.data.id)}
             >
               <Label01
                 size="18px"

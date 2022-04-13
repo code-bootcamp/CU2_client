@@ -44,7 +44,7 @@ export const DELETE_STACK = gql`
 export const FETCH_STACK_COMMENT_ORDERBY_CREATE = gql`
   query fetchStackCommentorderbycreate($stackid: String!) {
     fetchStackCommentorderbycreate(stackid: $stackid) {
-      # title
+      id
       contents
       user {
         nickname
@@ -59,7 +59,7 @@ export const FETCH_STACK_COMMENT_ORDERBY_CREATE = gql`
 export const FETCH_STACK_COMMENT_ORDERBY_LIKE = gql`
   query fetchStackCommentorderbylike($stackid: String!) {
     fetchStackCommentorderbylike(stackid: $stackid) {
-      # title
+      id
       contents
       user {
         nickname
@@ -71,3 +71,16 @@ export const FETCH_STACK_COMMENT_ORDERBY_LIKE = gql`
   }
 `;
 
+export const DELETE_STACK_COMMENT = gql`
+  mutation deleteStackComment($stackcommentid: String!) {
+    deleteStackComment(stackcommentid: $stackcommentid)
+  }
+`;
+
+export const UPDATE_STACK_COMMENT = gql`
+  mutation updateStackComment($stackcommentid: String!, $contents: String!) {
+    updateStackComment(stackcommentid: $stackcommentid, contents: $contents) {
+      id
+    }
+  }
+`;

@@ -196,9 +196,11 @@ export interface ICodingUsQnaDetailUIProps {
   setEditValue: Dispatch<SetStateAction<string>>;
   onClickEditSubmit: (id: string) => () => void;
   onClickSubmitAnswer: (content: string) => () => void;
+  editCommentRef: RefObject<HTMLTextAreaElement>;
+  onClickEditAnswer: (id: string)=>()=>void;
 }
 
-export interface ICodingQuestionCardProps {
+export interface ICodingUsAnswerCardProps {
   isQuestion?: boolean;
   id?: string;
   width?: number;
@@ -209,8 +211,11 @@ export interface ICodingQuestionCardProps {
   onClickEditSubmit: (id: string) => () => void;
   editValue: string;
   setEditValue: Dispatch<SetStateAction<string>>;
+  editCommentRef: RefObject<HTMLTextAreaElement>;
+  onClickEditAnswer: (id: string)=>()=>void;
 }
-export interface ICodingUsAnswerCardProps {
+
+export interface ICodingUsQuestionCardProps {
   isQuestion?: boolean;
   id?: string;
   width?: number;

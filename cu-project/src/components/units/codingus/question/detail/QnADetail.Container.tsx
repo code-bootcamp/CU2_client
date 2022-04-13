@@ -1,11 +1,13 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { MouseEvent, useEffect, useState } from "react";
+import { MouseEvent, useEffect, useRef, useState } from "react";
 import {
   IMutation,
   IMutationCreateStackCommentArgs,
   IMutationDeleteStackArgs,
+  IMutationDeleteStackCommentArgs,
   IMutationUpdateStackArgs,
+  IMutationUpdateStackCommentArgs,
   IQuery,
   IQueryFetchStackCommentorderbycreateArgs,
   IQueryFetchStackCommentorderbylikeArgs,
@@ -16,10 +18,12 @@ import CodingUsQnADetailUI from "./QnADetail.Presenter";
 import {
   CREATE_STACK_COMMENT,
   DELETE_STACK,
+  DELETE_STACK_COMMENT,
   FETCH_STACK_COMMENT_ORDERBY_CREATE,
   FETCH_STACK_COMMENT_ORDERBY_LIKE,
   FETCH_STACK_ONE_BY_STACK_ID,
   UPDATE_STACK,
+  UPDATE_STACK_COMMENT,
 } from "./QnADetail.Queries";
 
 export default function CodingUsQnADetail() {
@@ -55,7 +59,16 @@ export default function CodingUsQnADetail() {
   >(FETCH_STACK_COMMENT_ORDERBY_LIKE, {
     variables: { stackid: String(router.query.questionId) },
   });
+  const [deleteStackComment] = useMutation<
+    Pick<IMutation, "deleteStackComment">,
+    IMutationDeleteStackCommentArgs
+  >(DELETE_STACK_COMMENT);
+  const [updateStackComment] = useMutation<
+    Pick<IMutation, "updateStackComment">,
+    IMutationUpdateStackCommentArgs
+  >(UPDATE_STACK_COMMENT);
 
+  const editCommentRef = useRef<HTMLTextAreaElement>(null);
   const [isSortLike, setIsSortLike] = useState(false);
   const toggleSortGubun = () => {
     setIsSortLike((prev) => !prev);
@@ -71,10 +84,11 @@ export default function CodingUsQnADetail() {
   const onClickDelete =
     (gubun: "question" | "answer", id: string) => async () => {
       // 삭제 확인
+      console.log("aaa", id, gubun);
       try {
         if (gubun === "question") {
           const result = await deleteStack({
-            variables: { stackid: String(router.query.questionId) },
+            variables: { stackid: id },
           });
 
           if (!result.data?.deleteStack) {
@@ -83,6 +97,17 @@ export default function CodingUsQnADetail() {
           }
           alert("삭제 성공");
           router.push("/codingus/question");
+        } else {
+          const result = await deleteStackComment({
+            variables: { stackcommentid: id },
+          });
+
+          if (!result.data?.deleteStackComment) {
+            alert("삭제 실패");
+            return;
+          }
+          alert("삭제 성공");
+          location.reload();
         }
       } catch (err: any) {
         // 실패(err.message);
@@ -123,6 +148,27 @@ export default function CodingUsQnADetail() {
       location.reload();
     }
   };
+  const onClickEditAnswer = (id: string) => async () => {
+    try {
+      if (!editCommentRef.current?.value) {
+        console.log("수정할 내용을 입력해주세요");
+        return;
+      }
+      const result = await updateStackComment({
+        variables: {
+          stackcommentid: id,
+          contents: String(editCommentRef.current?.value),
+        },
+      });
+      if (!result.data?.updateStackComment.id) {
+        alert("수정 실패");
+        return;
+      }
+      location.reload();
+    } catch (err: any) {
+      alert(err.message);
+    }
+  };
   return (
     <CodingUsLayout
       children={
@@ -141,6 +187,8 @@ export default function CodingUsQnADetail() {
           editValue={editValue}
           setEditValue={setEditValue}
           onClickSubmitAnswer={onClickSubmitAnswer}
+          editCommentRef={editCommentRef}
+          onClickEditAnswer={onClickEditAnswer}
         />
       }
     ></CodingUsLayout>

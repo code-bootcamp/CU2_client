@@ -13,10 +13,10 @@ import { ChangeEvent, useState } from "react";
 import { RowWrapper } from "../../../coachingus/columns/detail/Columns.Style";
 import Color from "../../../../../commons/styles/color";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
-import { ICodingUsAnswerCardProps } from "../../../../../commons/types/types";
+import { ICodingUsQuestionCardProps } from "../../../../../commons/types/types";
 import { BsQuestionCircleFill } from "react-icons/bs";
 
-export default function QnAQuestionCard(props: ICodingUsAnswerCardProps) {
+export default function QnAQuestionCard(props: ICodingUsQuestionCardProps) {
   const [isEdit, setIsEdit] = useState(false);
   const onChangeEditText = (event: ChangeEvent<HTMLTextAreaElement>) => {
     props.setEditValue(event.target.value);

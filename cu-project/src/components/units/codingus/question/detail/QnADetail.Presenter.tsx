@@ -82,6 +82,8 @@ export default function CodingUsQnADetailUI(props: ICodingUsQnaDetailUIProps) {
             onClickEditSubmit={props.onClickEditSubmit}
             editValue={props.editValue}
             setEditValue={props.setEditValue}
+            editCommentRef={props.editCommentRef}
+            onClickEditAnswer={props.onClickEditAnswer}
           />
         ))}
     </S.QnADetail>
