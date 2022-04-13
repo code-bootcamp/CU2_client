@@ -20,11 +20,13 @@ export type IAnswer = {
   __typename?: 'Answer';
   amount?: Maybe<Scalars['Int']>;
   contents?: Maybe<Scalars['String']>;
+  createdAt: Scalars['DateTime'];
   dislikecount: Scalars['Int'];
   id: Scalars['String'];
   likecount: Scalars['Int'];
   question: IQuestion;
   title?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
 };
 
 export type IAnswerLike = {
@@ -63,9 +65,11 @@ export type IBlogComment = {
   __typename?: 'BlogComment';
   blog: IBlog;
   contents: Scalars['String'];
+  createAt: Scalars['DateTime'];
   dislike: Scalars['Int'];
   id: Scalars['String'];
   like: Scalars['Int'];
+  updatedAt: Scalars['DateTime'];
   user: IUser;
 };
 
@@ -87,6 +91,19 @@ export type IBlogLike = {
   user: IUser;
 };
 
+export type IBlogReturn = {
+  __typename?: 'BlogReturn';
+  blogcategorytag?: Maybe<Array<IBlogCategoryTag>>;
+  contents?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
+  like?: Maybe<Scalars['Int']>;
+  searchcontents: Scalars['String'];
+  status: Scalars['String'];
+  title?: Maybe<Scalars['String']>;
+  updatedat: Scalars['String'];
+  user?: Maybe<IUser>;
+};
+
 export type IBlogTag = {
   __typename?: 'BlogTag';
   blog: Array<IBlog>;
@@ -102,17 +119,19 @@ export enum IC_Like_Status {
 export type ICoachColumn = {
   __typename?: 'CoachColumn';
   contents: Scalars['String'];
+  createdAt: Scalars['DateTime'];
   dislikecount: Scalars['Int'];
   hits: Scalars['Int'];
   id: Scalars['String'];
   likecount: Scalars['Int'];
   title: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
   user: IUser;
 };
 
 export type ICoachProfile = {
   __typename?: 'CoachProfile';
-  answerInitAmount: Scalars['Int'];
+  answerInitAmount?: Maybe<Scalars['Int']>;
   department?: Maybe<Scalars['String']>;
   id: Scalars['String'];
   image?: Maybe<Scalars['String']>;
@@ -135,8 +154,10 @@ export type IColumnComment = {
   __typename?: 'ColumnComment';
   coachColumn: ICoachColumn;
   contents: Scalars['String'];
+  createdAt: Scalars['DateTime'];
   id: Scalars['String'];
   likecount: Scalars['Int'];
+  updatedAt: Scalars['DateTime'];
   user: IUser;
 };
 
@@ -157,7 +178,7 @@ export type ICreateAnswerInput = {
 };
 
 export type ICreateCoachProfileInput = {
-  answerInitAmount: Scalars['Int'];
+  answerInitAmount?: InputMaybe<Scalars['Int']>;
   department?: InputMaybe<Scalars['String']>;
   image?: InputMaybe<Scalars['String']>;
   job?: InputMaybe<Scalars['String']>;
@@ -174,9 +195,16 @@ export type ICreateColumnInput = {
 };
 
 export type ICreateQuestionInput = {
-  QType?: InputMaybe<Scalars['String']>;
   contents: Scalars['String'];
   title: Scalars['String'];
+};
+
+export type IFollow = {
+  __typename?: 'Follow';
+  deletdAt: Scalars['DateTime'];
+  follower?: Maybe<IUser>;
+  following?: Maybe<IUser>;
+  id: Scalars['String'];
 };
 
 export type IMainStack = {
@@ -230,6 +258,7 @@ export type IMutation = {
   createCoachQuestion: IQuestion;
   createColumn: ICoachColumn;
   createColumnComment: IColumnComment;
+  createFollow: IFollow;
   createPointTransaction: IPointTransaction;
   createStack: IStack;
   createStackComment: IStackComment;
@@ -244,7 +273,7 @@ export type IMutation = {
   deleteColumn: Scalars['Boolean'];
   deleteColumnComment: Scalars['Boolean'];
   deleteStack: Scalars['String'];
-  deleteStackComment: IStackComment;
+  deleteStackComment: Scalars['Boolean'];
   deleteUser: Scalars['Boolean'];
   deletemyBlog: Scalars['String'];
   deletemyBlogComment: Scalars['Boolean'];
@@ -390,6 +419,11 @@ export type IMutationCreateColumnArgs = {
 export type IMutationCreateColumnCommentArgs = {
   columnId: Scalars['String'];
   contents: Scalars['String'];
+};
+
+
+export type IMutationCreateFollowArgs = {
+  followUserId: Scalars['String'];
 };
 
 
@@ -632,6 +666,7 @@ export enum IPoint_Transaction_Status_Enum {
 export type IPointTransaction = {
   __typename?: 'PointTransaction';
   amount: Scalars['Int'];
+  createdAt: Scalars['DateTime'];
   id: Scalars['String'];
   impUid: Scalars['String'];
   status: IPoint_Transaction_Status_Enum;
@@ -647,13 +682,14 @@ export enum IQuestion_Field_Enum {
 export type IQuery = {
   __typename?: 'Query';
   coachAnsweredList: Array<IAnswer>;
+  coachAnsweredListonlycoach: Array<IAnswer>;
   fetchAllBlogcomment: Array<IBlogComment>;
-  fetchAllStackcomment: IStackComment;
+  fetchAllStackcommentAll: Array<IStackComment>;
   fetchAllUser: Array<IUser>;
   fetchBlogAll: Array<IBlog>;
   fetchBlogCommentorderbycreate: Array<IBlogComment>;
   fetchBlogCommentorderbylike: Array<IBlogComment>;
-  fetchBlogSearch: Array<IBlog>;
+  fetchBlogSearch: Array<IBlogReturn>;
   fetchBlogcommentlike: Array<IBlogComment>;
   fetchBloglike: Array<IBlog>;
   fetchCoachQuestionList: Array<IQuestion>;
@@ -663,6 +699,8 @@ export type IQuery = {
   fetchColumnList: Array<ICoachColumn>;
   fetchColumnListWhatILike: Array<IColumnLike>;
   fetchDetailColumn: ICoachColumn;
+  fetchFollower: Array<IFollow>;
+  fetchFollowing: Array<IFollow>;
   fetchHighHitColumnList: Array<ICoachColumn>;
   fetchHighHitColumnListArgs: Array<ICoachColumn>;
   fetchMyCoachInfo: IUser;
@@ -679,6 +717,9 @@ export type IQuery = {
   fetchRecommendColumnListArgs: Array<ICoachColumn>;
   fetchSearchedColumnList: Array<ICoachColumn>;
   fetchStackAll: Array<IStack>;
+  fetchStackCommentbyStackId: IStackComment;
+  fetchStackCommentorderbycreate: Array<IStackComment>;
+  fetchStackCommentorderbylike: Array<IStackComment>;
   fetchStackOnebystackid: IStack;
   fetchStackmylike: Array<IStack>;
   fetchUserOrderbyscore: Array<IUser>;
@@ -687,12 +728,17 @@ export type IQuery = {
   fetchisnicknameuser: Scalars['Boolean'];
   fetchmainstack: Scalars['String'];
   fetchmyBlog: Array<IBlog>;
+  fetchmyFollower: Array<IFollow>;
+  fetchmyFollowing: Array<IFollow>;
   fetchmyStack: Array<IStack>;
+  fetchmypointHistorybypage: Array<IPointTransaction>;
   fetchmyuser: IUser;
   fetchotherBlogorderbycreateAt: Array<IBlog>;
   fetchotherBlogorderbylikeAll: Array<IBlog>;
   fetchotherStackorderbycreateAt: Array<IStack>;
   fetchotherStackorderbylike: Array<IStack>;
+  fetchpointHistorybypage: Array<IPointTransaction>;
+  fetchstackbysearch: Array<IStack>;
   fetchuserbypage: Array<IUser>;
   goodEvalAnswerList: Array<IAnswer>;
   goodEvalAnswerListPerCoach: Array<IAnswer>;
@@ -706,7 +752,7 @@ export type IQueryFetchAllBlogcommentArgs = {
 };
 
 
-export type IQueryFetchAllStackcommentArgs = {
+export type IQueryFetchAllStackcommentAllArgs = {
   stackid: Scalars['String'];
 };
 
@@ -738,6 +784,16 @@ export type IQueryFetchColumnCommentListArgs = {
 
 export type IQueryFetchDetailColumnArgs = {
   columnId: Scalars['String'];
+};
+
+
+export type IQueryFetchFollowerArgs = {
+  userId: Scalars['String'];
+};
+
+
+export type IQueryFetchFollowingArgs = {
+  userId: Scalars['String'];
 };
 
 
@@ -773,6 +829,21 @@ export type IQueryFetchSearchedColumnListArgs = {
 };
 
 
+export type IQueryFetchStackCommentbyStackIdArgs = {
+  stackcommentid: Scalars['String'];
+};
+
+
+export type IQueryFetchStackCommentorderbycreateArgs = {
+  stackid: Scalars['String'];
+};
+
+
+export type IQueryFetchStackCommentorderbylikeArgs = {
+  stackid: Scalars['String'];
+};
+
+
 export type IQueryFetchStackOnebystackidArgs = {
   stackid: Scalars['String'];
 };
@@ -790,6 +861,23 @@ export type IQueryFetchblogoneArgs = {
 
 export type IQueryFetchisnicknameuserArgs = {
   nickname: Scalars['String'];
+};
+
+
+export type IQueryFetchmypointHistorybypageArgs = {
+  page: Scalars['Float'];
+  perpage: Scalars['Float'];
+};
+
+
+export type IQueryFetchpointHistorybypageArgs = {
+  page: Scalars['Float'];
+  perpage: Scalars['Float'];
+};
+
+
+export type IQueryFetchstackbysearchArgs = {
+  search: Scalars['String'];
 };
 
 
@@ -813,10 +901,13 @@ export type IQuestion = {
   __typename?: 'Question';
   QType: IQuestion_Field_Enum;
   contents?: Maybe<Scalars['String']>;
+  createdAt: Scalars['DateTime'];
   fromUser: IUser;
   id: Scalars['String'];
+  like: Scalars['Int'];
   title?: Maybe<Scalars['String']>;
   toCoach: IUser;
+  updatedAt: Scalars['DateTime'];
 };
 
 export enum IRole {
@@ -835,16 +926,18 @@ export type IStack = {
   stacktag?: Maybe<Array<IStackTag>>;
   title: Scalars['String'];
   updatedAt: Scalars['DateTime'];
-  user: IUser;
+  user?: Maybe<IUser>;
 };
 
 export type IStackComment = {
   __typename?: 'StackComment';
   contents: Scalars['String'];
+  createAt: Scalars['DateTime'];
   dislike: Scalars['Int'];
   id: Scalars['String'];
   like: Scalars['Int'];
   stack: IStack;
+  updatedAt: Scalars['DateTime'];
   user: IUser;
 };
 
@@ -871,7 +964,7 @@ export type IUpdateAnswerInput = {
 };
 
 export type IUpdateCoachInput = {
-  answerInitAmount: Scalars['Int'];
+  answerInitAmount?: InputMaybe<Scalars['Int']>;
   department?: InputMaybe<Scalars['String']>;
   image?: InputMaybe<Scalars['String']>;
   job?: InputMaybe<Scalars['String']>;
@@ -897,6 +990,8 @@ export type IUser = {
   coachtag?: Maybe<Array<ICoachTag>>;
   codeInterest?: Maybe<Scalars['String']>;
   email: Scalars['String'];
+  followernumber: Scalars['Int'];
+  followingnumber: Scalars['Int'];
   id: Scalars['String'];
   mainstack: IMainStack;
   name: Scalars['String'];

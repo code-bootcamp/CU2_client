@@ -16,7 +16,7 @@ import React, {
 import { Editor } from "@toast-ui/react-editor";
 
 import { RadioChangeEvent } from "antd";
-import { IBlog, IStack, IUser } from "./generated/types";
+import { IBlog, IStack, IStackComment, IUser } from "./generated/types";
 
 export interface ILayoutProps {
   children: ReactChild;
@@ -185,21 +185,40 @@ export interface ICodingUsCardProps {
   writer?: string;
 }
 
+export interface ICodingUsQnaDetailUIProps {
+  question: IStack | undefined;
+  answers: IStackComment[] | undefined;
+  isSortLike: boolean;
+  toggleSortGubun: () => void;
+  onClickButton: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickDelete: (gubun: "question" | "answer",id: string) => () => void;
+  editValue: string;
+  setEditValue: Dispatch<SetStateAction<string>>;
+  onClickEditSubmit: (id: string) => () => void;
+  onClickSubmitAnswer: (content: string) => () => void;
+}
+
 export interface ICodingQuestionCardProps {
   isQuestion?: boolean;
   id?: string;
   width?: number;
   height?: number;
-  tags: string[] | undefined;
-  nickname: string | undefined;
-  contents: string | undefined;
-  title: string | undefined;
-  like: number | undefined;
-  dislike: number | undefined;
-  createAt: string | undefined;
+  data: IStackComment
+  onClickBtn: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickDelete: (gubun: "question" | "answer",id: string) => () => void;
+  onClickEditSubmit: (id: string) => () => void;
+  editValue: string;
+  setEditValue: Dispatch<SetStateAction<string>>;
+}
+export interface ICodingUsAnswerCardProps {
+  isQuestion?: boolean;
+  id?: string;
+  width?: number;
+  height?: number;
+  data: IStack | undefined
   // data?: IStack | IStackComment;
   onClickBtn: (event: MouseEvent<HTMLButtonElement>) => void;
-  onClickDelete: (id: string) => () => void;
+  onClickDelete: (gubun: "question" | "answer",id: string) => () => void;
   onClickEditSubmit: (id: string) => () => void;
   editValue: string;
   setEditValue: Dispatch<SetStateAction<string>>;

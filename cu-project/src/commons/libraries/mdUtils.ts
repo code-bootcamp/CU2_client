@@ -55,11 +55,18 @@ export const getImagesFromMD = (mdString: string) => {
 };
 
 export const getTextFromMD = (mdString: string) => {
-  let text = mdString
-  while(text.indexOf("\n") >=0 || text.indexOf("#") >= 0 || text.indexOf("*")>= 0 || text.indexOf("`")>= 0){
-  	text = text.replace(/\n+|#+|\*|`/,"");
+  let text = mdString;
+  while (
+    text.indexOf("\n") >= 0 ||
+    text.indexOf("#") >= 0 ||
+    text.indexOf("*") >= 0 ||
+    text.indexOf("`") >= 0
+  ) {
+    text = text.replace(/\n+|#+|\*|`/, "");
   }
   const splitArr = splitMarkDown(text);
-  if(splitArr.filter(el => el.gubun === "text").length < 1) return "";
-  return splitArr.filter(el => el.gubun === "text")[0].value.trimStart() ?? "";
-}
+  if (splitArr.filter((el) => el.gubun === "text").length < 1) return "";
+  return (
+    splitArr.filter((el) => el.gubun === "text")[0].value.trimStart() ?? ""
+  );
+};

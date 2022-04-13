@@ -50,7 +50,7 @@ export default function QnACard(props: ICodingUsCardProps) {
           <Blank width="8px" />
           <Label01 value={String(props.data.like)} size="18px" />
         </S.Like>
-        <S.Writer>{props.data.user.nickname}</S.Writer>
+        <S.Writer>{props.data?.user?.nickname}</S.Writer>
       </S.RowWrapper>
     </S.Wrapper>
   );
