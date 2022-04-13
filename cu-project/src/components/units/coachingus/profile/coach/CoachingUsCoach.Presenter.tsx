@@ -1,5 +1,6 @@
 import React from "react";
 import { BsQuestionCircleFill } from "react-icons/bs";
+import { getTimeDiff } from "../../../../../commons/libraries/dateUtils";
 import Blank from "../../../../commons/Blank";
 import * as S from "./CoachingUsCoach.Style";
 export default function CoachingUsCoachUI(props) {
@@ -114,6 +115,7 @@ export default function CoachingUsCoachUI(props) {
                   <Blank height="5px" />
                   <S.ColumnFooter>
                     <div>{column.user.name}</div>
+                    {getTimeDiff(column.createdAt)}
                   </S.ColumnFooter>
                 </S.ColumnText>
               </S.ColumnsList>

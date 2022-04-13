@@ -9,8 +9,10 @@ export const FETCH_COLUMN_LIST = gql`
       hits
       likecount
       dislikecount
+      createdAt
       user {
         id
+        name
         coachProfile {
           orgName
           orgType

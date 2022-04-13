@@ -10,6 +10,7 @@ import CoachingUsSidebar from "../../sidebar/CoachingUsSidebar.Container";
 import * as S from "./Comment.Style";
 import AnswerComponent from "./answer/Answer.Container";
 import { AiOutlineFieldTime } from "react-icons/ai";
+import { getTimeDiff } from "../../../../../commons/libraries/dateUtils";
 
 export default function CommentUI(props) {
   return (
@@ -28,9 +29,13 @@ export default function CommentUI(props) {
         <Blank height="20px" />
         <S.CoachQuestionContainer>
           <S.QuestionName>
-            <p>{props.commentsList?.fromUser?.nickname}</p>님이 질문한
-            내용입니다
+            <div style={{ display: "flex" }}>
+              <p>{props.commentsList?.fromUser?.nickname}</p>님이 질문한
+              내용입니다
+            </div>
+            <div>{getTimeDiff(props.commentsList?.createdAt)}</div>
           </S.QuestionName>
+
           <S.QuestionContainer>
             <Blank height="20px" />
             <S.QuestionTitle>

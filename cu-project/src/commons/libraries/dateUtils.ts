@@ -27,11 +27,10 @@ export const getDateString = (dateTime: string | Date, separator?: string) => {
   const date = new Date(dateTime);
   let dateString = calcTimeDiff(date);
   if (!dateString) dateString = String(dateTime).split("T")[0];
-  if(separator) {
+  if (separator) {
     const newArr = dateString.split("");
     for (let i = 0; i < newArr.length; i++) {
-      if(newArr[i] === "-")
-      newArr[i] = separator;
+      if (newArr[i] === "-") newArr[i] = separator;
     }
     dateString = newArr.join("");
   }

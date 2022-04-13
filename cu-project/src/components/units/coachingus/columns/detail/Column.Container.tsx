@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { getIndexFromMD } from "../../../../../commons/libraries/mdUtils";
@@ -6,7 +6,11 @@ import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import { useScroll } from "../../../../commons/hooks/useScroll";
 import { dummyMD } from "../../../codingus/blog/dummy";
 import ColumnUI from "./Column.Presenter";
-import { FETCH_DETAIL_COLUMN } from "./Column.Queries";
+import {
+  DELETE_COLUMN,
+  FETCH_DETAIL_COLUMN,
+  FETCH_MY_USER,
+} from "./Column.Queries";
 
 export default function ColumnDetailPage() {
   const router = useRouter();
@@ -16,11 +20,28 @@ export default function ColumnDetailPage() {
   const { data } = useQuery(FETCH_DETAIL_COLUMN, {
     variables: { columnId: String(router.query.columnId) },
   });
+  const { data: myUserId } = useQuery(FETCH_MY_USER);
+  const myLoginUserId = myUserId?.fetchmyuser.id;
+
+  const [deleteColumn] = useMutation(DELETE_COLUMN);
 
   const onClickUpdate = () => {
     moveToPage(`/codingus/blog/${"blogId자리입니다~~~~"}/update`);
   };
   const { y: scrollY } = useScroll();
+
+  const deleteColumnBtn = async () => {
+    try {
+      await deleteColumn({
+        variables: {
+          columnId: String(router.query.columnId),
+        },
+      });
+      router.back();
+    } catch (e) {
+      alert(e);
+    }
+  };
 
   useEffect(() => {
     if (indexPositions.length < 1) {
@@ -49,13 +70,18 @@ export default function ColumnDetailPage() {
       contents={contents}
       writer={data?.fetchDetailColumn?.user.name}
       title={data?.fetchDetailColumn?.title}
-      createdAt="2022-02-07T14:42:53.532Z"
+      router={router}
+      userId={data?.fetchDetailColumn?.user.id}
+      columnId={data?.fetchDetailColumn?.id}
+      createdAt={data?.fetchDetailColumn?.createdAt}
       index={getIndexFromMD(dummyMD)}
       currentIndex={currentIndex}
       indexPositions={indexPositions}
       setCurrentIndex={setCurrentIndex}
       isPicked={true}
       onClickUpdate={onClickUpdate}
+      deleteColumnBtn={deleteColumnBtn}
+      myLoginUserId={myLoginUserId}
     />
   );
 }

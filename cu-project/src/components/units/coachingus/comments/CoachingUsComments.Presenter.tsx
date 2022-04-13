@@ -7,6 +7,7 @@ import CoachingUsSidebar from "../sidebar/CoachingUsSidebar.Container";
 import * as S from "./CoachingUsComments.Style";
 import InfiniteScroll from "react-infinite-scroller";
 import { useRouter } from "next/router";
+import { getTimeDiff } from "../../../../commons/libraries/dateUtils";
 
 export default function CoachingUsCommentsUI(
   props: ICoachingUsCommentsUIProps
@@ -37,7 +38,9 @@ export default function CoachingUsCommentsUI(
                   <h1>{comment.toCoach.name} coach </h1>
                   <p>님이 받은 질문</p>
                 </S.CommentsTitleLeft>
-                <S.CommentsTitleRight>{"22-03-14"}</S.CommentsTitleRight>
+                <S.CommentsTitleRight>
+                  {getTimeDiff(comment.createdAt)}
+                </S.CommentsTitleRight>
               </S.CommentsTitle>
               <S.CommentsContents>
                 <S.ContentsQuestion
@@ -161,7 +164,7 @@ export const CommentsCard = (props) => {
               {comment.toCoach.name} | {comment.toCoach.coachProfile.orgName}
             </p>
           </S.CommentsTitleLeft>
-          <S.CommentsTitleRight>{"22-03-14"}</S.CommentsTitleRight>
+          <S.CommentsTitleRight>{comment.createdAt}</S.CommentsTitleRight>
         </S.CommentsTitle>
         <S.CommentsContents>
           <S.ContentsQuestion

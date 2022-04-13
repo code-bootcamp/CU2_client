@@ -26,7 +26,6 @@ export default function CoachingUsColumnWriteUI(
           onChangeCapture={props.onChangeTitle}
         />
         <HorizontalLine margin={30} color="#DBDBDB" />
-        <TagInput tags={props.tags} setTags={props.setTags} />
         <Blank height="32px" />
         <TextEditor01
           width="100%"
@@ -43,7 +42,9 @@ export default function CoachingUsColumnWriteUI(
           <Button02
             value="완료"
             icon={AiOutlineEdit}
-            onClick={props.onClickSubmit}
+            onClick={
+              props.isEdit ? props.onClickSubmitEdit : props.onClickSubmit
+            }
           />
         </S.ButtonWrapper>
       </S.CoachingUsWrite>

@@ -61,6 +61,7 @@ export const FETCH_QUESTION_LIST = gql`
       id
       title
       contents
+      createdAt
       fromUser {
         nickname
       }

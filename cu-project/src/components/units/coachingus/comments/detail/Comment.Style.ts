@@ -105,6 +105,7 @@ export const CommentsContainer = styled.div`
 `;
 export const QuestionName = styled.div`
   display: flex;
+  justify-content: space-between;
   font-size: 16px;
   font-weight: 300;
   color: gray;
@@ -112,7 +113,7 @@ export const QuestionName = styled.div`
   border: 1px solid #bdbdbd;
   border-bottom: none;
   padding: 5px 20px;
-  & > p {
+  p {
     color: black;
     font-weight: 500;
   }
