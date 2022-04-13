@@ -6,24 +6,10 @@ import QnAAnswerCard from "../../card/qnaAnswer/QnA.Answer";
 import * as S from "./QnADetail.Style";
 import { v4 as uuidv4 } from "uuid";
 import VerticalLine from "../../../../commons/Line/VerticalLine";
-import { Dispatch, MouseEvent, SetStateAction } from "react";
 import QnANewAnswerCard from "./newAnswer/NewAnswer";
 import QnAQuestionCard from "../../card/qnaQuestion/QnA.Question";
-import {
-  IStack,
-} from "../../../../../commons/types/generated/types";
-interface ICodingUsQnaDetailUIProps {
-  question: IStack | undefined;
-  answers: any[];
-  isSortGood: boolean;
-  toggleSortGubun: () => void;
-  onClickButton: (event: MouseEvent<HTMLButtonElement>) => void;
-  onClickDelete: (id: string) => () => void;
-  editValue: string;
-  setEditValue: Dispatch<SetStateAction<string>>;
-  onClickEditSubmit: (id: string) => () => void;
-  onClickSubmitAnswer: (content: string) => () => void;
-}
+import { ICodingUsQnaDetailUIProps } from "../../../../../commons/types/types";
+
 
 export default function CodingUsQnADetailUI(props: ICodingUsQnaDetailUIProps) {
   return (
@@ -32,7 +18,7 @@ export default function CodingUsQnADetailUI(props: ICodingUsQnaDetailUIProps) {
       <Blank height="28px" />
       <S.Tags>
         <Tag01
-          value={props?.question?.stacktag?.[0].tag || ""}
+          value={props?.question?.stacktag?.[0]&& props?.question?.stacktag?.[0].tag || ""}
           isShort={true}
         />
         <Blank width="20px" />
@@ -50,13 +36,7 @@ export default function CodingUsQnADetailUI(props: ICodingUsQnaDetailUIProps) {
       <QnAQuestionCard
         id={props.question?.id}
         isQuestion={true}
-        title={props.question?.title}
-        contents={props.question?.contents}
-        like={props.question?.like}
-        createAt={props.question?.createAt}
-        nickname={props.question?.user.nickname}
-        dislike={props.question?.dislike}
-        tags={props.question?.stacktag?.map((el) => el.tag)}
+        data={props.question}
         onClickBtn={props.onClickButton}
         onClickDelete={props.onClickDelete}
         editValue={props.editValue}
@@ -74,18 +54,18 @@ export default function CodingUsQnADetailUI(props: ICodingUsQnaDetailUIProps) {
       <Blank height="24px" />
       <S.Gubun>
         <S.GubunLabel
-          isSelected={props.isSortGood}
+          isSelected={props.isSortLike}
           onClick={() => {
-            if (!props.isSortGood) props.toggleSortGubun();
+            if (!props.isSortLike) props.toggleSortGubun();
           }}
         >
           Good순
         </S.GubunLabel>
         <VerticalLine margin={20} />
         <S.GubunLabel
-          isSelected={!props.isSortGood}
+          isSelected={!props.isSortLike}
           onClick={() => {
-            if (props.isSortGood) props.toggleSortGubun();
+            if (props.isSortLike) props.toggleSortGubun();
           }}
         >
           최신순
@@ -95,19 +75,15 @@ export default function CodingUsQnADetailUI(props: ICodingUsQnaDetailUIProps) {
       {props.answers &&
         props.answers.map((el) => (
           <QnAAnswerCard
+            data={el}
             key={uuidv4()}
-            title={el.title}
-            contents={el.contents}
-            like={el.like}
-            createAt={el.createAt}
-            nickname={el.user.nickname}
-            dislike={el.dislike}
-            tags={["JavaScript"]}
             onClickBtn={props.onClickButton}
             onClickDelete={props.onClickDelete}
             onClickEditSubmit={props.onClickEditSubmit}
             editValue={props.editValue}
             setEditValue={props.setEditValue}
+            editCommentRef={props.editCommentRef}
+            onClickEditAnswer={props.onClickEditAnswer}
           />
         ))}
     </S.QnADetail>

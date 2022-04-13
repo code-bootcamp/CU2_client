@@ -190,21 +190,45 @@ export interface ICodingUsCardProps {
   writer?: string;
 }
 
-export interface ICodingQuestionCardProps {
+export interface ICodingUsQnaDetailUIProps {
+  question: IStack | undefined;
+  answers: IStackComment[] | undefined;
+  isSortLike: boolean;
+  toggleSortGubun: () => void;
+  onClickButton: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickDelete: (gubun: "question" | "answer",id: string) => () => void;
+  editValue: string;
+  setEditValue: Dispatch<SetStateAction<string>>;
+  onClickEditSubmit: (id: string) => () => void;
+  onClickSubmitAnswer: (content: string) => () => void;
+  editCommentRef: RefObject<HTMLTextAreaElement>;
+  onClickEditAnswer: (id: string)=>()=>void;
+}
+
+export interface ICodingUsAnswerCardProps {
   isQuestion?: boolean;
   id?: string;
   width?: number;
   height?: number;
-  tags: string[] | undefined;
-  nickname: string | undefined;
-  contents: string | undefined;
-  title: string | undefined;
-  like: number | undefined;
-  dislike: number | undefined;
-  createAt: string | undefined;
+  data: IStackComment
+  onClickBtn: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickDelete: (gubun: "question" | "answer",id: string) => () => void;
+  onClickEditSubmit: (id: string) => () => void;
+  editValue: string;
+  setEditValue: Dispatch<SetStateAction<string>>;
+  editCommentRef: RefObject<HTMLTextAreaElement>;
+  onClickEditAnswer: (id: string)=>()=>void;
+}
+
+export interface ICodingUsQuestionCardProps {
+  isQuestion?: boolean;
+  id?: string;
+  width?: number;
+  height?: number;
+  data: IStack | undefined
   // data?: IStack | IStackComment;
   onClickBtn: (event: MouseEvent<HTMLButtonElement>) => void;
-  onClickDelete: (id: string) => () => void;
+  onClickDelete: (gubun: "question" | "answer",id: string) => () => void;
   onClickEditSubmit: (id: string) => () => void;
   editValue: string;
   setEditValue: Dispatch<SetStateAction<string>>;

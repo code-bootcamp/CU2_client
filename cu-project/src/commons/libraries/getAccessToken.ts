@@ -15,7 +15,7 @@ export async function getAccessToken() {
       }
     );
     const result = await graphQLClient.request(RESTORE_ACCESS_TOKEN);
-    const newAccessToken = result.resotreAccessToken;
+    const newAccessToken = result.resotreAccessToken;                        
     return newAccessToken;
   } catch (error) {
     return "";

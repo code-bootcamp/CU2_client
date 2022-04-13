@@ -9,24 +9,20 @@ import {
   AiOutlineLike,
   AiOutlineDislike,
 } from "react-icons/ai";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { RowWrapper } from "../../../coachingus/columns/detail/Columns.Style";
 import Color from "../../../../../commons/styles/color";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
-import { ICodingQuestionCardProps } from "../../../../../commons/types/types";
+import { ICodingUsAnswerCardProps } from "../../../../../commons/types/types";
 import { SiAnsible } from "react-icons/si";
 
-export default function QnAQuestionCard(props: ICodingQuestionCardProps) {
+export default function QnAAnswerCard(props: ICodingUsAnswerCardProps) {
   const [isEdit, setIsEdit] = useState(false);
-  const onChangeEditText = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    props.setEditValue(event.target.value);
-  };
   const { moveToPage } = useMoveToPage();
   return (
     <S.Wrapper
       width={"100%"}
       height={props.height ? `${props.height}px` : "350px"}
-      // isMine={props.writer === "loginUser"}
       isMine={true}
       onClick={() => {
         moveToPage("/codingus/question/detail");
@@ -49,7 +45,7 @@ export default function QnAQuestionCard(props: ICodingQuestionCardProps) {
             value="삭제"
             size="16px"
             color={Color.medium}
-            onClick={props.onClickDelete("props.id")}
+            onClick={props.onClickDelete("answer", props.data?.id)}
           />
         </RowWrapper>
       </S.MyButtonWrapper>
@@ -67,17 +63,15 @@ export default function QnAQuestionCard(props: ICodingQuestionCardProps) {
               borderRadius: "100%",
             }}
           />
-          <Blank width="20px" /> {props.title}
         </S.Title>
-        <Label01 value={props.nickname} size="24px" weight="700" />
+        <Label01 value={props.data.user.nickname} size="24px" weight="700" />
       </S.RowWrapper>
       <Blank height="18px" />
-      <HorizontalLine margin={6} />
-      <S.Date>{getYYYYMMDD(props.createAt)}</S.Date>
+      <S.Date>{getYYYYMMDD(props.data.createAt)}</S.Date>
       <Blank height="28px" />
       {!isEdit ? (
         <>
-          <S.Contents>{props.contents}</S.Contents>
+          <S.Contents>{props.data.contents}</S.Contents>
           <Blank height="77px" />
           <S.ButtonWrapper>
             <S.Button
@@ -106,7 +100,7 @@ export default function QnAQuestionCard(props: ICodingQuestionCardProps) {
               <Label01
                 size="18px"
                 weight="700"
-                value={String(props.like ?? 0)}
+                value={String(props.data.like ?? 0)}
                 color={Color.main}
               />
             </S.Button>
@@ -137,7 +131,7 @@ export default function QnAQuestionCard(props: ICodingQuestionCardProps) {
               <Label01
                 size="18px"
                 weight="700"
-                value={String(props.dislike ?? 0)}
+                value={String(props.data.dislike ?? 0)}
                 color={Color.medium}
               />
             </S.Button>
@@ -146,18 +140,13 @@ export default function QnAQuestionCard(props: ICodingQuestionCardProps) {
       ) : (
         <>
           <S.CommentInput
-            defaultValue={props.contents}
-            onChange={onChangeEditText}
-            value={props.editValue}
+            defaultValue={props.data.contents}
+            ref={props.editCommentRef}
           />
           <S.ButtonWrapper>
             <S.Button
               isGood={false}
               style={{ border: `1px solid ${Color.medium}`, width: "173px" }}
-              onClick={() => {
-                setIsEdit((prev) => !prev);
-                props.setEditValue("");
-              }}
             >
               <Label01
                 size="18px"
@@ -172,7 +161,7 @@ export default function QnAQuestionCard(props: ICodingQuestionCardProps) {
             <S.Button
               isGood={false}
               style={{ border: `1px solid ${Color.main}`, width: "173px" }}
-              onClick={props.onClickEditSubmit("props.id")}
+              onClick={props.onClickEditAnswer(props.data.id)}
             >
               <Label01
                 size="18px"
