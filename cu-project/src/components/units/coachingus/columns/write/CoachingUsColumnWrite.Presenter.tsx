@@ -20,11 +20,19 @@ export default function CoachingUsColumnWriteUI(
         <CoachingUsSidebar />
       </S.LeftSideBar>
       <S.CoachingUsWrite>
-        <S.TitleInput placeholder="제목을 입력하세요" />
+        <S.TitleInput
+          value={props.title}
+          placeholder="제목을 입력하세요"
+          onChangeCapture={props.onChangeTitle}
+        />
         <HorizontalLine margin={30} color="#DBDBDB" />
-        <TagInput tags={props.tags} setTags={props.setTags} />
         <Blank height="32px" />
-        <TextEditor01 width="100%" height="100%" editorRef={props.editorRef} />
+        <TextEditor01
+          width="100%"
+          height="100%"
+          editorRef={props.editorRef}
+          data={props.data}
+        />
         <S.ButtonWrapper>
           <Button01
             value="나가기"
@@ -34,7 +42,9 @@ export default function CoachingUsColumnWriteUI(
           <Button02
             value="완료"
             icon={AiOutlineEdit}
-            onClick={props.onClickSubmit}
+            onClick={
+              props.isEdit ? props.onClickSubmitEdit : props.onClickSubmit
+            }
           />
         </S.ButtonWrapper>
       </S.CoachingUsWrite>

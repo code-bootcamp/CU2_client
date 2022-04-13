@@ -29,6 +29,7 @@ export const FETCH_COACH_COLUMNS = gql`
       contents
       likecount
       dislikecount
+      createdAt
       user {
         id
         name

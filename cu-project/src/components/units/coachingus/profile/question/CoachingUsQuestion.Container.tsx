@@ -33,7 +33,7 @@ export default function CoachingUsQuestion(props: ICoachingUsQuestionProps) {
         `/coachingus/coaches/${router.query.coachId}/${result?.data?.createCoachQuestion?.id}`
       );
     } catch (err) {
-      console.dir(err);
+      alert(err);
     }
   };
 

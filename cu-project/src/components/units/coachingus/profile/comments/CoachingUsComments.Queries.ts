@@ -6,6 +6,7 @@ export const FETCH_COACH_COMMENTS = gql`
       id
       title
       contents
+      createdAt
       toCoach {
         id
         name
@@ -25,6 +26,7 @@ export const FETCH_ANSWER = gql`
       title
       contents
       amount
+      createdAt
       question {
         id
         toCoach {

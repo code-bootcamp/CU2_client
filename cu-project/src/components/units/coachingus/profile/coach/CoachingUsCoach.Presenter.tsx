@@ -1,5 +1,6 @@
 import React from "react";
 import { BsQuestionCircleFill } from "react-icons/bs";
+import { getTimeDiff } from "../../../../../commons/libraries/dateUtils";
 import Blank from "../../../../commons/Blank";
 import * as S from "./CoachingUsCoach.Style";
 export default function CoachingUsCoachUI(props) {
@@ -84,7 +85,9 @@ export default function CoachingUsCoachUI(props) {
                 )}
               >
                 <S.ColumnPicture
-                  imgCover={props.colImg[index]}
+                  src={`${
+                    props.columnProps?.[index]?.firstImg || "/CU2_LOGO.png"
+                  }`}
                 ></S.ColumnPicture>
 
                 <S.ColumnText>
@@ -98,17 +101,21 @@ export default function CoachingUsCoachUI(props) {
                     )}
                   </S.ColumnTitle>
                   <S.ColumnContents>
-                    {column.contents.length > 30 ? (
+                    {props.columnProps?.[index].plainText.length > 30 ? (
                       <S.ColumnShortenContents>
-                        {column.contents.slice(0, 60) + "..."}
+                        {props.columnProps?.[index].plainText.slice(0, 60) +
+                          "..."}
                       </S.ColumnShortenContents>
                     ) : (
-                      <S.ColumnContents>{column.contents}</S.ColumnContents>
+                      <S.ColumnContents>
+                        {props.columnProps?.[index].plainText}
+                      </S.ColumnContents>
                     )}
                   </S.ColumnContents>
                   <Blank height="5px" />
                   <S.ColumnFooter>
-                    <div>김태훈</div>1일전
+                    <div>{column.user.name}</div>
+                    {getTimeDiff(column.createdAt)}
                   </S.ColumnFooter>
                 </S.ColumnText>
               </S.ColumnsList>

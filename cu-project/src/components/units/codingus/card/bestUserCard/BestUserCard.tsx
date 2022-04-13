@@ -8,7 +8,10 @@ import Color from "../../../../../commons/styles/color";
 import { getShortDateString } from "../../../../../commons/libraries/dateUtils";
 import { AiFillLike, AiOutlineLike, AiOutlineComment } from "react-icons/ai";
 import { useRouter } from "next/router";
-import { getImagesFromMD, getTextFromMD } from "../../../../../commons/libraries/mdUtils";
+import {
+  getImagesFromMD,
+  getTextFromMD,
+} from "../../../../../commons/libraries/mdUtils";
 import {
   IBlog,
   IQuery,

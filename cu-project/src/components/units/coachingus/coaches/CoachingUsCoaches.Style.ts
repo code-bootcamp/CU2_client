@@ -136,7 +136,7 @@ export const RankingNum = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  p:first-child {
+  p:first-of-type {
     font-size: 18px;
     font-weight: bolder;
   }
@@ -161,7 +161,7 @@ export const RestCoachPicture = styled.div`
   border-radius: 100%;
 `;
 export const RestCoachText = styled.div`
-  p:first-child {
+  p:first-of-type {
     font-size: 16px;
     color: ${({ isMyInfo }) => (isMyInfo ? "white" : "black")};
   }

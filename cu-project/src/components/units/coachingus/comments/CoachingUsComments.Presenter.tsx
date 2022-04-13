@@ -7,6 +7,7 @@ import CoachingUsSidebar from "../sidebar/CoachingUsSidebar.Container";
 import * as S from "./CoachingUsComments.Style";
 import InfiniteScroll from "react-infinite-scroller";
 import { useRouter } from "next/router";
+import { getTimeDiff } from "../../../../commons/libraries/dateUtils";
 
 export default function CoachingUsCommentsUI(
   props: ICoachingUsCommentsUIProps
@@ -37,7 +38,9 @@ export default function CoachingUsCommentsUI(
                   <h1>{comment.toCoach.name} coach </h1>
                   <p>님이 받은 질문</p>
                 </S.CommentsTitleLeft>
-                <S.CommentsTitleRight>{"22-03-14"}</S.CommentsTitleRight>
+                <S.CommentsTitleRight>
+                  {getTimeDiff(comment.createdAt)}
+                </S.CommentsTitleRight>
               </S.CommentsTitle>
               <S.CommentsContents>
                 <S.ContentsQuestion
@@ -146,7 +149,7 @@ export const CommentsCard = (props) => {
   const router = useRouter();
   return (
     <>
-      <S.CommentsContainer key={index}>
+      <S.CommentsContainer>
         <S.CommentsTitle>
           <S.CommentsTitleLeft
             onClick={() =>
@@ -158,16 +161,19 @@ export const CommentsCard = (props) => {
             <S.TitlePicture></S.TitlePicture>
             <Blank width="10px" />
             <p>
-              {comment.toCoach.name} | {comment.toCoach.coachProfile.orgName}
+              {props.comment.toCoach.name} |{" "}
+              {props.comment.toCoach.coachProfile.orgName}
             </p>
           </S.CommentsTitleLeft>
-          <S.CommentsTitleRight>{"22-03-14"}</S.CommentsTitleRight>
+          <S.CommentsTitleRight>{props.comment.createdAt}</S.CommentsTitleRight>
         </S.CommentsTitle>
         <S.CommentsContents>
           <S.ContentsQuestion
-            onClick={props.moveToPage(
-              `/coachingus/coaches/${comment.toCoach.id}/${comment.id}`
-            )}
+            onClick={() =>
+              router.push(
+                `/coachingus/coaches/${props.comment.toCoach.id}/${props.comment.id}`
+              )
+            }
           >
             <S.QuestionIcon>
               <BsQuestionCircleFill
@@ -180,13 +186,15 @@ export const CommentsCard = (props) => {
               />
             </S.QuestionIcon>
             <Blank width="20px" />
-            <S.QuestionText>{comment.title}</S.QuestionText>
+            <S.QuestionText>{props.comment.title}</S.QuestionText>
           </S.ContentsQuestion>
           <Blank height="20px" />
           <S.ContentsAnwer
-            onClick={props.moveToPage(
-              `/coachingus/coaches/${comment.toCoach.id}/${comment.id}`
-            )}
+            onClick={() =>
+              router.push(
+                `/coachingus/coaches/${props.comment.toCoach.id}/${props.comment.id}`
+              )
+            }
           >
             {/* <S.QuestionIcon>
               <SiAnsible
@@ -201,7 +209,7 @@ export const CommentsCard = (props) => {
               />
             </S.QuestionIcon> */}
             <Blank width="20px" />
-            <S.QuestionText>{comment.contents}</S.QuestionText>
+            <S.QuestionText>{props.comment.contents}</S.QuestionText>
           </S.ContentsAnwer>
           {/* <Blank height="15px" />
           <S.ContentsInfo>

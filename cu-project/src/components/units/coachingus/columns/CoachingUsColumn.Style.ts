@@ -65,9 +65,7 @@ export const ColumnsList = styled.div`
   }
 `;
 
-export const ColumnPicture = styled.div`
-  background-image: url(${({ imgCover }) => imgCover});
-  background-size: cover;
+export const ColumnPicture = styled.img`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -122,9 +120,10 @@ export const ColumnShortenContents = styled.div`
 // body columns 영역
 export const ContainerColumnsBody = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   width: 1000px;
   flex-wrap: wrap;
+  gap: 10px;
 `;
 
 export const ColumnList = styled.div`
@@ -132,7 +131,8 @@ export const ColumnList = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
   width: 240px;
   margin: 0px 0px 50px 0;
   height: fit-content;
@@ -146,13 +146,13 @@ export const ColumnList = styled.div`
   }
 `;
 
-export const ColumnsPicture = styled.div`
+export const ColumnsPicture = styled.img`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 180px;
-  background-color: #c4c4c4;
+  background-color: #f6f5f5;
 `;
 
 export const WriteBtn = styled.div`

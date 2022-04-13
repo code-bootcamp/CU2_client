@@ -17,7 +17,6 @@ interface ICodingUsBlogDetailUIProps {
   title: string;
   writer: string;
   createdAt: string;
-  tags: string[];
   isPicked?: boolean;
   onClickDelete: () => void;
   onClickUpdate: () => void;
@@ -55,23 +54,24 @@ export default function ColumnUI(props: ICodingUsBlogDetailUIProps) {
                   size="16px"
                 />
               </S.RowWrapper>
-              {props.writer !== "로그인한 유저" && (
+              {props.myLoginUserId === props.userId && (
                 <S.RowWrapper>
-                  <S.BtnLabel>수정</S.BtnLabel>
+                  <S.BtnLabel
+                    onClick={() =>
+                      props.router.push(
+                        `/coachingus/coaches/${props.userId}/columns/${props.columnId}/edit`
+                      )
+                    }
+                  >
+                    수정
+                  </S.BtnLabel>
                   <Blank width="8px" />
-                  <S.BtnLabel>삭제</S.BtnLabel>
+                  <S.BtnLabel onClick={props.deleteColumnBtn}>삭제</S.BtnLabel>
                 </S.RowWrapper>
               )}
             </S.RowWrapper>
             <Blank height="12px" />
-            <S.RowWrapper>
-              {props.tags.map((el) => (
-                <div key={uuidv4()} style={{ display: "flex" }}>
-                  <Tag03 value={el} />
-                  <Blank width="10px" />
-                </div>
-              ))}
-            </S.RowWrapper>
+
             <Blank height="55px" />
             <TextViewer01
               width={"100%"}

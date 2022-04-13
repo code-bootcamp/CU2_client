@@ -1,8 +1,8 @@
 export function splitMarkDown(mdString: string) {
-  const splitArr = mdString.split(/!\[([-_.]?[0-9a-zA-Z])*\]\(/);
+  const splitArr = mdString?.split(/!\[([-_.]?[0-9a-zA-Z])*\]\(/);
   const gubunArr = [];
   let cnt = 0;
-  for (let i = 0; i < splitArr.length; i++) {
+  for (let i = 0; i < splitArr?.length; i++) {
     if (!splitArr[i]) continue;
     if (splitArr[i].startsWith("https")) {
       gubunArr.push({

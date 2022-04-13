@@ -10,9 +10,9 @@ interface ICardWrapperProps {
 }
 export const Wrapper = styled.div`
   width: ${(props: ICardWrapperProps) => props.width};
-  height: : ${(props: ICardWrapperProps) => props.height};
+  height: ${(props: ICardWrapperProps) => props.height};
   border-radius: 8px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   margin-bottom: 40px;
 `;
 
@@ -30,7 +30,6 @@ export const Body = styled.div`
 
 export const StackWrapper = styled(RowWrapper)``;
 
-
 export const Title = styled.div`
   font-weight: 700;
   font-size: 24px;
@@ -39,7 +38,6 @@ export const Title = styled.div`
 
 export const FooterWrapper = styled(RowWrapper)`
   display: flex;
-  
 `;
 export const ButtonWrapper = styled(RowWrapper)`
   display: flex;
