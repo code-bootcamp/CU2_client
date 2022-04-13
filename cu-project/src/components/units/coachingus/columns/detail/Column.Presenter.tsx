@@ -54,9 +54,17 @@ export default function ColumnUI(props: ICodingUsBlogDetailUIProps) {
                   size="16px"
                 />
               </S.RowWrapper>
-              {props.writer !== "로그인한 유저" && (
+              {props.myLoginUserId === props.userId && (
                 <S.RowWrapper>
-                  <S.BtnLabel>수정</S.BtnLabel>
+                  <S.BtnLabel
+                    onClick={() =>
+                      props.router.push(
+                        `/coachingus/coaches/${props.userId}/columns/${props.columnId}/edit`
+                      )
+                    }
+                  >
+                    수정
+                  </S.BtnLabel>
                   <Blank width="8px" />
                   <S.BtnLabel onClick={props.deleteColumnBtn}>삭제</S.BtnLabel>
                 </S.RowWrapper>

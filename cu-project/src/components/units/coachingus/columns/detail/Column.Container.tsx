@@ -6,7 +6,11 @@ import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import { useScroll } from "../../../../commons/hooks/useScroll";
 import { dummyMD } from "../../../codingus/blog/dummy";
 import ColumnUI from "./Column.Presenter";
-import { DELETE_COLUMN, FETCH_DETAIL_COLUMN } from "./Column.Queries";
+import {
+  DELETE_COLUMN,
+  FETCH_DETAIL_COLUMN,
+  FETCH_MY_USER,
+} from "./Column.Queries";
 
 export default function ColumnDetailPage() {
   const router = useRouter();
@@ -16,6 +20,8 @@ export default function ColumnDetailPage() {
   const { data } = useQuery(FETCH_DETAIL_COLUMN, {
     variables: { columnId: String(router.query.columnId) },
   });
+  const { data: myUserId } = useQuery(FETCH_MY_USER);
+  const myLoginUserId = myUserId?.fetchmyuser.id;
 
   const [deleteColumn] = useMutation(DELETE_COLUMN);
 
@@ -64,7 +70,10 @@ export default function ColumnDetailPage() {
       contents={contents}
       writer={data?.fetchDetailColumn?.user.name}
       title={data?.fetchDetailColumn?.title}
-      createdAt="2022-02-07T14:42:53.532Z"
+      router={router}
+      userId={data?.fetchDetailColumn?.user.id}
+      columnId={data?.fetchDetailColumn?.id}
+      createdAt={data?.fetchDetailColumn?.createdAt}
       index={getIndexFromMD(dummyMD)}
       currentIndex={currentIndex}
       indexPositions={indexPositions}
@@ -72,9 +81,7 @@ export default function ColumnDetailPage() {
       isPicked={true}
       onClickUpdate={onClickUpdate}
       deleteColumnBtn={deleteColumnBtn}
+      myLoginUserId={myLoginUserId}
     />
   );
-}
-function useHistory() {
-  throw new Error("Function not implemented.");
 }

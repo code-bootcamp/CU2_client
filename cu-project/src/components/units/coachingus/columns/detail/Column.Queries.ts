@@ -9,7 +9,9 @@ export const FETCH_DETAIL_COLUMN = gql`
       hits
       likecount
       dislikecount
+      createdAt
       user {
+        id
         name
       }
     }
@@ -19,5 +21,13 @@ export const FETCH_DETAIL_COLUMN = gql`
 export const DELETE_COLUMN = gql`
   mutation deleteColumn($columnId: String!) {
     deleteColumn(columnId: $columnId)
+  }
+`;
+
+export const FETCH_MY_USER = gql`
+  query fetchmyuser {
+    fetchmyuser {
+      id
+    }
   }
 `;

@@ -42,7 +42,9 @@ export default function CoachingUsColumnWriteUI(
           <Button02
             value="완료"
             icon={AiOutlineEdit}
-            onClick={props.onClickSubmit}
+            onClick={
+              props.isEdit ? props.onClickSubmitEdit : props.onClickSubmit
+            }
           />
         </S.ButtonWrapper>
       </S.CoachingUsWrite>
