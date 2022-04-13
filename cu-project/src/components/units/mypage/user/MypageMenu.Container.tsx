@@ -49,11 +49,11 @@ export default function MypageMenu() {
         buyer_tel: data?.fetchmyuser.phonenumber,
         // m_redirect_url: 모바일 결제시 돌아갈 주소!
       },
-      async (rsp) => {
+      async (rsp: any) => {
         console.log(rsp);
         // callback
         if (rsp.success) {
-          const result = await createPoint({
+          await createPoint({
             variables: { amount, impUid: rsp.imp_uid },
           });
 

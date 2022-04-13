@@ -16,7 +16,13 @@ import React, {
 import { Editor } from "@toast-ui/react-editor";
 
 import { RadioChangeEvent } from "antd";
-import { IBlog, IStack, IUser } from "./generated/types";
+import {
+  IBlog,
+  IColumnComment,
+  IQueryFetchCoachUserArgs,
+  IStack,
+  IUser,
+} from "./generated/types";
 
 export interface ILayoutProps {
   children: ReactChild;
@@ -348,6 +354,13 @@ export interface ICoachingUsColumnWriteUIProps {
 // #region MyPage
 export interface IMyPageProps {}
 export interface IMyPageUIProps {}
+export interface IUpdatePasswordUIProps {
+  data: IUser;
+  onClickLogin: () => void;
+  onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeNewPassword: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeCheckNewPassword: (event: ChangeEvent<HTMLInputElement>) => void;
+}
 
 export interface IUserBlogUIProps {
   data?: {
@@ -492,40 +505,19 @@ export interface IUserRankingUI {
 // #region MainPage
 export interface MainPageProps {}
 export interface MainPageUIProps {
-  moveToPage: (page: string) => () => void;
   settings: {
     infinite: boolean;
     slidesToShow: number;
     slidesToScroll: number;
   };
-  blogSettings: {
-    infinite: boolean;
-    slidesToShow: number;
-    slidesToScroll: number;
-    arrows: boolean;
-    nextArrow: any;
-    prevArrow: any;
-  };
-  SampleNextArrow: any;
 
   responsiveSettings: {};
-  blogData: {
-    fetchotherBlogorderbylikeAll: {
-      id: string;
-      url: string;
-      blogcategorytag: {
-        tag: string;
-      };
-      title: string;
-      contents: string;
-      user: {
-        nickname: string;
-      };
-      createAt: string;
-      updatedat: string;
-      like: number;
-    };
-  };
+  blogData: IBlog;
+  coachData: IQueryFetchCoachUserArgs;
+  rankData: IUser;
+  columnData: {};
+  commentData: IColumnComment;
+  onClickSearch: (event: HTMLInputElement) => any;
   stackData: {
     fetchotherStackorderbylike: IStack[];
   };

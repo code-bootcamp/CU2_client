@@ -12,7 +12,7 @@ export default function QuestionCard01MyPageUI(props: IWatingItemProps) {
   return (
     <S.Wrapper>
       <S.RowWrapper>
-        <Tag01 value={props.data?.stacktag[0].tag} isShort={true} />
+        <Tag01 value={props.data?.stacktag[0]?.tag} isShort={true} />
         <Blank width="20px" />
         {props.data?.stacktag
           .filter((el, idx) => idx > 0)

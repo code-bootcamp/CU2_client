@@ -1,10 +1,11 @@
+import { IUpdatePasswordUIProps } from "../../../../../../commons/types/types";
 import Blank from "../../../../../commons/Blank";
 import { UserPageNav } from "../../../../../commons/Mypage/MypageNav";
 import MypageMenu from "../../MypageMenu.Container";
 
 import * as S from "./UpdatePassword.Style";
 
-export default function UpdatePasswordUI(props) {
+export default function UpdatePasswordUI(props: IUpdatePasswordUIProps) {
   return (
     <S.AllWrapper>
       <MypageMenu />
