@@ -58,7 +58,7 @@ export default function ColumnUI(props: ICodingUsBlogDetailUIProps) {
                 <S.RowWrapper>
                   <S.BtnLabel>수정</S.BtnLabel>
                   <Blank width="8px" />
-                  <S.BtnLabel>삭제</S.BtnLabel>
+                  <S.BtnLabel onClick={props.deleteColumnBtn}>삭제</S.BtnLabel>
                 </S.RowWrapper>
               )}
             </S.RowWrapper>

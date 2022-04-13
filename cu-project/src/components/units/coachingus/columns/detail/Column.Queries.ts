@@ -15,3 +15,9 @@ export const FETCH_DETAIL_COLUMN = gql`
     }
   }
 `;
+
+export const DELETE_COLUMN = gql`
+  mutation deleteColumn($columnId: String!) {
+    deleteColumn(columnId: $columnId)
+  }
+`;

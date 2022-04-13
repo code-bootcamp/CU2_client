@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { getIndexFromMD } from "../../../../../commons/libraries/mdUtils";
@@ -6,7 +6,7 @@ import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import { useScroll } from "../../../../commons/hooks/useScroll";
 import { dummyMD } from "../../../codingus/blog/dummy";
 import ColumnUI from "./Column.Presenter";
-import { FETCH_DETAIL_COLUMN } from "./Column.Queries";
+import { DELETE_COLUMN, FETCH_DETAIL_COLUMN } from "./Column.Queries";
 
 export default function ColumnDetailPage() {
   const router = useRouter();
@@ -17,10 +17,25 @@ export default function ColumnDetailPage() {
     variables: { columnId: String(router.query.columnId) },
   });
 
+  const [deleteColumn] = useMutation(DELETE_COLUMN);
+
   const onClickUpdate = () => {
     moveToPage(`/codingus/blog/${"blogId자리입니다~~~~"}/update`);
   };
   const { y: scrollY } = useScroll();
+
+  const deleteColumnBtn = async () => {
+    try {
+      await deleteColumn({
+        variables: {
+          columnId: String(router.query.columnId),
+        },
+      });
+      router.back();
+    } catch (e) {
+      alert(e);
+    }
+  };
 
   useEffect(() => {
     if (indexPositions.length < 1) {
@@ -56,6 +71,10 @@ export default function ColumnDetailPage() {
       setCurrentIndex={setCurrentIndex}
       isPicked={true}
       onClickUpdate={onClickUpdate}
+      deleteColumnBtn={deleteColumnBtn}
     />
   );
+}
+function useHistory() {
+  throw new Error("Function not implemented.");
 }

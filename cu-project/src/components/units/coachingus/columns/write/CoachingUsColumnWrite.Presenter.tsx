@@ -26,7 +26,6 @@ export default function CoachingUsColumnWriteUI(
           onChangeCapture={props.onChangeTitle}
         />
         <HorizontalLine margin={30} color="#DBDBDB" />
-        <TagInput tags={props.tags} setTags={props.setTags} />
         <Blank height="32px" />
         <TextEditor01
           width="100%"
