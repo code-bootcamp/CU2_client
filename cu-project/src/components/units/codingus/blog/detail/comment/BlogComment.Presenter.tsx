@@ -19,6 +19,7 @@ interface ICodingUsBlogCommentProps {
     onLoadMore: () => void;
     isEdits: boolean[];
     loggedInUser: IUser;
+    editCommentRef: RefObject<HTMLTextAreaElement>;
   };
 }
 

@@ -16,7 +16,13 @@ import React, {
 import { Editor } from "@toast-ui/react-editor";
 
 import { RadioChangeEvent } from "antd";
-import { IBlog, IStack, IUser } from "./generated/types";
+import {
+  IBlog,
+  IColumnComment,
+  IQueryFetchCoachUserArgs,
+  IStack,
+  IUser,
+} from "./generated/types";
 
 export interface ILayoutProps {
   children: ReactChild;
@@ -184,21 +190,45 @@ export interface ICodingUsCardProps {
   writer?: string;
 }
 
-export interface ICodingQuestionCardProps {
+export interface ICodingUsQnaDetailUIProps {
+  question: IStack | undefined;
+  answers: IStackComment[] | undefined;
+  isSortLike: boolean;
+  toggleSortGubun: () => void;
+  onClickButton: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickDelete: (gubun: "question" | "answer",id: string) => () => void;
+  editValue: string;
+  setEditValue: Dispatch<SetStateAction<string>>;
+  onClickEditSubmit: (id: string) => () => void;
+  onClickSubmitAnswer: (content: string) => () => void;
+  editCommentRef: RefObject<HTMLTextAreaElement>;
+  onClickEditAnswer: (id: string)=>()=>void;
+}
+
+export interface ICodingUsAnswerCardProps {
   isQuestion?: boolean;
   id?: string;
   width?: number;
   height?: number;
-  tags: string[] | undefined;
-  nickname: string | undefined;
-  contents: string | undefined;
-  title: string | undefined;
-  like: number | undefined;
-  dislike: number | undefined;
-  createAt: string | undefined;
+  data: IStackComment
+  onClickBtn: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickDelete: (gubun: "question" | "answer",id: string) => () => void;
+  onClickEditSubmit: (id: string) => () => void;
+  editValue: string;
+  setEditValue: Dispatch<SetStateAction<string>>;
+  editCommentRef: RefObject<HTMLTextAreaElement>;
+  onClickEditAnswer: (id: string)=>()=>void;
+}
+
+export interface ICodingUsQuestionCardProps {
+  isQuestion?: boolean;
+  id?: string;
+  width?: number;
+  height?: number;
+  data: IStack | undefined
   // data?: IStack | IStackComment;
   onClickBtn: (event: MouseEvent<HTMLButtonElement>) => void;
-  onClickDelete: (id: string) => () => void;
+  onClickDelete: (gubun: "question" | "answer",id: string) => () => void;
   onClickEditSubmit: (id: string) => () => void;
   editValue: string;
   setEditValue: Dispatch<SetStateAction<string>>;
@@ -348,6 +378,13 @@ export interface ICoachingUsColumnWriteUIProps {
 // #region MyPage
 export interface IMyPageProps {}
 export interface IMyPageUIProps {}
+export interface IUpdatePasswordUIProps {
+  data: IUser;
+  onClickLogin: () => void;
+  onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeNewPassword: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeCheckNewPassword: (event: ChangeEvent<HTMLInputElement>) => void;
+}
 
 export interface IUserBlogUIProps {
   data?: {
@@ -492,40 +529,19 @@ export interface IUserRankingUI {
 // #region MainPage
 export interface MainPageProps {}
 export interface MainPageUIProps {
-  moveToPage: (page: string) => () => void;
   settings: {
     infinite: boolean;
     slidesToShow: number;
     slidesToScroll: number;
   };
-  blogSettings: {
-    infinite: boolean;
-    slidesToShow: number;
-    slidesToScroll: number;
-    arrows: boolean;
-    nextArrow: any;
-    prevArrow: any;
-  };
-  SampleNextArrow: any;
 
   responsiveSettings: {};
-  blogData: {
-    fetchotherBlogorderbylikeAll: {
-      id: string;
-      url: string;
-      blogcategorytag: {
-        tag: string;
-      };
-      title: string;
-      contents: string;
-      user: {
-        nickname: string;
-      };
-      createAt: string;
-      updatedat: string;
-      like: number;
-    };
-  };
+  blogData: IBlog;
+  coachData: IQueryFetchCoachUserArgs;
+  rankData: IUser;
+  columnData: {};
+  commentData: IColumnComment;
+  onClickSearch: (event: HTMLInputElement) => any;
   stackData: {
     fetchotherStackorderbylike: IStack[];
   };

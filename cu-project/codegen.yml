@@ -1,4 +1,4 @@
-schema: https://backend.cucutoo.com/graphql
+schema: {process.env.NEXT_PUBLIC_GRAPHQL_URL}
 generates:
   ./src/commons/types/generated/types.ts:
     plugins:

@@ -58,7 +58,7 @@ export const SliderBanner = styled.div`
 `;
 
 export const CodingUsBanner = styled.div`
-  width: 100vw;
+  width: 100%;
   background-color: #f6f5f5;
   display: flex;
   justify-content: center;
@@ -145,6 +145,9 @@ export const Tag = styled.p`
   background-color: #f6f5f5;
   border: none;
   border-radius: 70px;
+  :hover {
+    cursor: pointer;
+  }
   @media ${breakPoints.tablet && breakPoints.mobile} {
     margin-right: 10px;
   }
