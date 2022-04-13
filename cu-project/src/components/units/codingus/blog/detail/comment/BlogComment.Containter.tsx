@@ -1,9 +1,10 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   IMutation,
   IMutationCreateBlogCommentArgs,
   IMutationDeleteBlogCommentArgs,
+  IMutationUpdateBlogCommentArgs,
   IQuery,
   IQueryFetchBlogCommentorderbycreateArgs,
   IUser,
@@ -13,6 +14,7 @@ import {
   CREATE_BLOG_COMMENT,
   DELETE_BLOG_COMMENT,
   FETCH_BLOG_COMMENT_ORDERBY_CREATE,
+  UPDATE_BLOG_COMMENT,
 } from "./BlogComment.Queries";
 interface IBlogCommentProps {
   blogId: string;
@@ -32,7 +34,11 @@ export default function CodingUsBlogComment(props: IBlogCommentProps) {
     Pick<IMutation, "deleteBlogComment">,
     IMutationDeleteBlogCommentArgs
   >(DELETE_BLOG_COMMENT);
-
+  const [updateBlogComment] = useMutation<
+    Pick<IMutation, "updateBlogComment">,
+    IMutationUpdateBlogCommentArgs
+  >(UPDATE_BLOG_COMMENT);
+  const editCommentRef = useRef<HTMLTextAreaElement>(null);
   const commentRef = useRef<HTMLTextAreaElement>(null);
   const onClickWriteSubmit = async () => {
     try {
@@ -67,17 +73,43 @@ export default function CodingUsBlogComment(props: IBlogCommentProps) {
       location.reload();
     } catch (error) {}
   };
-  const onClickEditComment = (idx: number) => () => {
-    setIsEdits(isEdits.map((el, index) => idx === index));
-  };
-  const onClickEditSubmit = (id: string) => () => {};
-  const onLoadMore = () => {};
   const [isEdits, setIsEdits] = useState<boolean[]>([]);
 
-  // useEffect(() => {
-  //   setIsEdits([...new Array(commentList.length).fill(false)]);
-  // }, []);
+  useEffect(() => {
+    if (
+      !commentList?.fetchBlogCommentorderbycreate.length ||
+      commentList?.fetchBlogCommentorderbycreate.length < 1
+    )
+      return;
+    setIsEdits(
+      new Array(commentList?.fetchBlogCommentorderbycreate.length).fill(false)
+    );
+  }, [commentList]);
+  const onClickEditComment = (idx: number) => () => {
+    setIsEdits([...isEdits.map((_, index) => idx === index)]);
+  };
+  const onClickEditSubmit = (id: string) => async () => {
+    if (
+      editCommentRef.current!.defaultValue === editCommentRef.current!.value ||
+      !editCommentRef.current!.value
+    ) {
+      alert("수정할 내용을 입력하세요");
+      return;
+    }
+    const variables: IMutationUpdateBlogCommentArgs = {
+      blogcommentid: id,
+      blogid: props.blogId,
+      contents: String(editCommentRef.current?.value),
+    };
 
+    const result = await updateBlogComment({ variables });
+    if (!result.data?.updateBlogComment.id) {
+      alert("수정 실패");
+      return;
+    }
+    location.reload();
+  };
+  const onLoadMore = () => {};
   return (
     <CodingUsBlogCommentUI
       newCommentProps={{
@@ -92,7 +124,8 @@ export default function CodingUsBlogComment(props: IBlogCommentProps) {
         onLoadMore: onLoadMore,
         onClickSubmit: onClickEditSubmit,
         isEdits: isEdits,
-        loggedInUser: props.loggedInUser
+        loggedInUser: props.loggedInUser,
+        editCommentRef: editCommentRef,
       }}
     />
   );

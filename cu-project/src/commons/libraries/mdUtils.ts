@@ -66,7 +66,6 @@ export const getTextFromMD = (mdString: string) => {
   }
   const splitArr = splitMarkDown(text);
 
-  return (
-    splitArr.filter((el) => el.gubun === "text")[0].value.trimStart() ?? ""
-  );
+  if(splitArr.filter(el => el.gubun === "text").length < 1) return "";
+  return splitArr.filter(el => el.gubun === "text")[0].value.trimStart() ?? "";
 };
