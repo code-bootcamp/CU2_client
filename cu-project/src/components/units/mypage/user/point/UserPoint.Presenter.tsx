@@ -8,6 +8,7 @@ import { IUserPointUI } from "../../../../../commons/types/types";
 import Script from "next/script";
 
 export default function UserPointUI(props: IUserPointUI) {
+  console.log(props);
   return (
     <div>
       <Script
@@ -56,13 +57,33 @@ export default function UserPointUI(props: IUserPointUI) {
               <S.ColumnHeaderTitle>결제ID</S.ColumnHeaderTitle>
               <S.ColumnHeaderBasic>충전 금액</S.ColumnHeaderBasic>
             </S.Row>
-            {props.pointData?.fetchMyPointHistory.map((el) => (
+            {props.pointData?.fetchmypointHistorybypage?.map((el) => (
               <S.Row key={el.id}>
                 <S.ColumnBasic>{el.status}</S.ColumnBasic>
                 <S.ColumnTitle>{el.impUid}</S.ColumnTitle>
                 <S.ColumnBasic>{el.amount}</S.ColumnBasic>
               </S.Row>
             ))}
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              {props.startPage === 0 || (
+                <span onClick={props.onClickPrevPage}>이전페이지</span>
+              )}
+              {new Array(10).fill(0).map(
+                (_, index) =>
+                  index + props.startPage <= props.lastPage && (
+                    <span
+                      key={index + props.startPage}
+                      onClick={props.onClickPage}
+                      id={String(index + props.startPage)}
+                    >
+                      {` ${index + props.startPage + 1} `}
+                    </span>
+                  )
+              )}
+              {props.startPage + 10 > props.lastPage || (
+                <span onClick={props.onClickNextPage}>다음페이지</span>
+              )}
+            </div>
           </S.ChargeBox>
           <Blank height="30px" />
           <S.Box>

@@ -19,9 +19,9 @@ export const FETCH_MY_USER = gql`
   }
 `;
 
-export const FETCH_MY_POINT_HISTORY = gql`
-  query fetchMyPointHistory {
-    fetchMyPointHistory {
+export const FETCH_MY_POINT_HISTORY_BY_PAGE = gql`
+  query fetchmypointHistorybypage($page: Float!, $perpage: Float!) {
+    fetchmypointHistorybypage(page: $page, perpage: $perpage) {
       id
       impUid
       amount
