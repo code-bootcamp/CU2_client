@@ -59,8 +59,6 @@ export const RecommendCoach = styled.div`
     }
   }
 
-  cursor: pointer;
-
   @media screen and (max-width: 1440px) {
     width: 390px;
     height: 285px;

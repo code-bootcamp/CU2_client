@@ -43,9 +43,7 @@ export default function ConfirmModal(props) {
           </>
         ) : (
           <S.BtnBox>
-            <S.ConfirmBtn onClick={() => router.push(props.router)}>
-              {props.btnText}
-            </S.ConfirmBtn>
+            <S.ConfirmBtn onClick={props.router}>{props.btnText}</S.ConfirmBtn>
           </S.BtnBox>
         )}
       </S.PointModal>

@@ -6,6 +6,7 @@ export const FETCH_COACH_ORDER_LIST = gql`
       id
       name
       score
+      followernumber
       coachProfile {
         orgName
         orgType
