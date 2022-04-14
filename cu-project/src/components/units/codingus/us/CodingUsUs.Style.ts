@@ -3,8 +3,8 @@ import Color from "../../../../commons/styles/color";
 
 export const CodingUsUs = styled.div`
   display: flex;
-  width: 100%;
-  /* max-width: 1200px; */
+  min-width: 1200px;
+  width: 1200px;
 `;
 export const CodingUsUsBody = styled.div`
   display: flex;

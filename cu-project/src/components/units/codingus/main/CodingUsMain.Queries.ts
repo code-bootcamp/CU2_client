@@ -71,3 +71,19 @@ export const FETCH_OTHER_STATE_ORDER_BY_LIKE = gql`
     }
   }
 `;
+
+export const FETCH_MY_FOLLOWING = gql`
+  query fetchmyFollowing {
+    fetchmyFollowing {
+      id
+    }
+  }
+`;
+
+export const CREATE_FOLLOW = gql`
+  mutation createFollow($followUserId: String!) {
+    createFollow(followUserId: $followUserId) {
+      id
+    }
+  }
+`;

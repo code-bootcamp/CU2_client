@@ -21,6 +21,7 @@ import {
   IColumnComment,
   IQueryFetchCoachUserArgs,
   IStack,
+  IStackComment,
   IUser,
 } from "./generated/types";
 
@@ -139,16 +140,22 @@ export interface ICodingUsBlogWriteUIProps {
 }
 export interface ICodingUsMainProps {}
 export interface ICodingUsMainUIProps {
-  moveToPage: (page: string) => void;
-  bestUserItems: { user: IUser; blog: IBlog }[];
-  blogRecommendItems: IBlog[];
+  bestUserItems:
+    | { user: IUser; blog: IBlog; isFollowed: Boolean }[]
+    | undefined;
+  blogRecommendItems: IBlog[] | undefined;
   bestQuestions: IStack[];
-  onClickItem: (id: string) => () => void;
-  onClickFollow: (id: string) => () => void;
-  onClickLike: (id: string) => () => void;
+  onClickMove: (path: string) => void;
+  onClickBestUserFollow: (targetId: string) => () => Promise<void>;
   data: {
     fetchUserOrderbyscore: IUser;
     fetchBlogAll: IBlog;
+  };
+  errModalVisible: Boolean;
+  errModalProps: {
+    mainText: string;
+    subText: string;
+    setModalVisible: Dispatch<SetStateAction<boolean>>;
   };
 }
 
@@ -196,13 +203,13 @@ export interface ICodingUsQnaDetailUIProps {
   isSortLike: boolean;
   toggleSortGubun: () => void;
   onClickButton: (event: MouseEvent<HTMLButtonElement>) => void;
-  onClickDelete: (gubun: "question" | "answer",id: string) => () => void;
+  onClickDelete: (gubun: "question" | "answer", id: string) => () => void;
   editValue: string;
   setEditValue: Dispatch<SetStateAction<string>>;
   onClickEditSubmit: (id: string) => () => void;
   onClickSubmitAnswer: (content: string) => () => void;
   editCommentRef: RefObject<HTMLTextAreaElement>;
-  onClickEditAnswer: (id: string)=>()=>void;
+  onClickEditAnswer: (id: string) => () => void;
 }
 
 export interface ICodingUsAnswerCardProps {
@@ -210,14 +217,14 @@ export interface ICodingUsAnswerCardProps {
   id?: string;
   width?: number;
   height?: number;
-  data: IStackComment
+  data: IStackComment;
   onClickBtn: (event: MouseEvent<HTMLButtonElement>) => void;
-  onClickDelete: (gubun: "question" | "answer",id: string) => () => void;
+  onClickDelete: (gubun: "question" | "answer", id: string) => () => void;
   onClickEditSubmit: (id: string) => () => void;
   editValue: string;
   setEditValue: Dispatch<SetStateAction<string>>;
   editCommentRef: RefObject<HTMLTextAreaElement>;
-  onClickEditAnswer: (id: string)=>()=>void;
+  onClickEditAnswer: (id: string) => () => void;
 }
 
 export interface ICodingUsQuestionCardProps {
@@ -225,10 +232,10 @@ export interface ICodingUsQuestionCardProps {
   id?: string;
   width?: number;
   height?: number;
-  data: IStack | undefined
+  data: IStack | undefined;
   // data?: IStack | IStackComment;
   onClickBtn: (event: MouseEvent<HTMLButtonElement>) => void;
-  onClickDelete: (gubun: "question" | "answer",id: string) => () => void;
+  onClickDelete: (gubun: "question" | "answer", id: string) => () => void;
   onClickEditSubmit: (id: string) => () => void;
   editValue: string;
   setEditValue: Dispatch<SetStateAction<string>>;

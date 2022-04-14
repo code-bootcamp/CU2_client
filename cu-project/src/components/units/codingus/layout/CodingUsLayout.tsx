@@ -6,6 +6,7 @@ export default function CodingUsLayout(props: ILayoutProps) {
     <S.Wrapper>
       <CodingUsSidebar />
       {props.children}
+      <div style={{width: "300px"}} />
     </S.Wrapper>
   );
 }
