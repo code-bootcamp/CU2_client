@@ -3,8 +3,10 @@ import Color from "../../../../commons/styles/color";
 
 export const CodingUsBlog = styled.div`
   display: flex;
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
+  min-width: 1200px;
+  width: 1200px;
   /* max-width: 1200px; */
 `;
 export const CodingUsBlogBody = styled.div`

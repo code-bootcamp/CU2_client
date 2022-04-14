@@ -16,10 +16,8 @@ export const Wrapper = styled.div`
 export const CodingUsMain = styled.div`
   display: flex;
   flex-direction: column;
+  min-width: 1200px;
   width: 1200px;
-  @media screen and (max-width: 1200px) {
-    width: 1200px;
-  }
 `;
 export const RowWrapper = styled.div`
   display: flex;
@@ -39,7 +37,6 @@ export const Label = styled.div`
     props.fontSize ? props.fontSize : "16px"};
   color: ${(props: ILabelProps) => (props.color ? props.color : "black")};
 `;
-
 export const SearchWrapper = styled(RowWrapper)`
   justify-content: space-between;
 `;

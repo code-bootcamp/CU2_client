@@ -20,7 +20,8 @@ export const RowWrapper = styled.div`
 
 export const CodingUsQnA = styled.div`
   display: flex;
-  width: 100%;
+  min-width: 1200px;
+  width: 1200px;
 `;
 
 export const WaitingWrapper = styled.div``;
