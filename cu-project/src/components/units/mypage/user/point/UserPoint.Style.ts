@@ -53,7 +53,8 @@ export const Row = styled.div`
 export const ChargeBox = styled.div`
   width: 90%;
   & span {
-    color: #dbdbdb;
+    /* color: #dbdbdb; */
+    font-size: 18px;
   }
 `;
 
