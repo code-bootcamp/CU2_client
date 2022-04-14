@@ -69,7 +69,12 @@ export default function RecCoachCardUI(props: ICoachingUsRecCoachCardUIProps) {
                 </S.RecommendCoachInfo>
               </S.CoachProfile>
               <S.ButtonWrapper>
-                <S.CoachFollowBtn>팔로우</S.CoachFollowBtn>
+                <S.CoachFollowBtn
+                  id={coach.id}
+                  onClick={props.onClickFollowBtn}
+                >
+                  팔로우
+                </S.CoachFollowBtn>
                 <S.CoachDetailBtn>코치페이지</S.CoachDetailBtn>
               </S.ButtonWrapper>
             </S.ProfileWapper>

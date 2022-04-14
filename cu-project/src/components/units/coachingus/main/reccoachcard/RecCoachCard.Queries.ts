@@ -19,3 +19,19 @@ export const FETCH_COACH_ORDER_LIST = gql`
     }
   }
 `;
+
+export const CREATE_FOLLOW = gql`
+  mutation createFollow($followUserId: String!) {
+    createFollow(followUserId: $followUserId) {
+      id
+      following {
+        id
+        name
+      }
+      follower {
+        id
+        name
+      }
+    }
+  }
+`;

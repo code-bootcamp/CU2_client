@@ -17,7 +17,7 @@ export default function ColumnsCardUI(props: ICoachingUsColumnsCardUIProps) {
           <S.ColumnsList
             key={column.id}
             onClick={props.moveToPage(
-              `/coachingus/coaches/${column?.id}/columns/${column?.id}`
+              `/coachingus/coaches/${column?.user.id}/columns/${column?.id}`
             )}
           >
             {/* `/coachingus/coaches/${column?.user.coachProfile.id}/columns/${column?.id}` */}
@@ -38,14 +38,14 @@ export default function ColumnsCardUI(props: ICoachingUsColumnsCardUIProps) {
                 )}
               </S.ColumnTitle>
               <S.ColumnContents>
-                {props.bestColumnProps?.[index]?.plainText?.length > 30 ? (
+                {props.columnProps?.[index]?.plainText?.length > 30 ? (
                   <S.ColumnShortenContents>
-                    {props.bestColumnProps?.[index]?.plainText?.slice(0, 60) +
+                    {props.columnProps?.[index]?.plainText?.slice(0, 60) +
                       "..."}
                   </S.ColumnShortenContents>
                 ) : (
                   <S.ColumnContents>
-                    {props.bestColumnProps?.[index]?.plainText}
+                    {props.columnProps?.[index]?.plainText}
                   </S.ColumnContents>
                 )}
               </S.ColumnContents>

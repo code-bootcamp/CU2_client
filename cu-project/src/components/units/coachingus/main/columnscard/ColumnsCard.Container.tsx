@@ -25,7 +25,8 @@ export default function ColumnsCardPage(props: ICoachingUsColumnsCardProps) {
       };
     });
     setColumnProps(columnListEdit);
-  }, []);
+    console.log(columnListEdit);
+  }, [data]);
 
   return (
     <ColumnsCardUI
