@@ -3,13 +3,14 @@ import {} from "../CoachingUsMain.Queries";
 import { ICoachingUsRecCoachCardProps } from "../../../../../commons/types/types";
 import { useEffect, useState } from "react";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
-import { FETCH_COACH_ORDER_LIST } from "./RecCoachCard.Queries";
-import { useQuery } from "@apollo/client";
+import { CREATE_FOLLOW, FETCH_COACH_ORDER_LIST } from "./RecCoachCard.Queries";
+import { useMutation, useQuery } from "@apollo/client";
 
 export default function RecCoachCardPage(props: ICoachingUsRecCoachCardProps) {
   const { moveToPage } = useMoveToPage();
   const [isStart, setIsStart] = useState(true);
   const { data } = useQuery(FETCH_COACH_ORDER_LIST);
+  const [following] = useMutation(CREATE_FOLLOW);
   const [newList, setNewList] = useState([]);
 
   const rank = [3912, 4143, 1232];
@@ -17,6 +18,20 @@ export default function RecCoachCardPage(props: ICoachingUsRecCoachCardProps) {
   const result = data?.fetchUserOrderbyscore
     .filter((el) => el.role === "COACH")
     .slice(0, 3);
+
+  const onClickFollowBtn = async (e) => {
+    try {
+      const result = await following({
+        variables: {
+          followUserId: e.target.id,
+        },
+      });
+
+      if (result) alert("팔로우가 성공적으로 됐습니다.");
+    } catch (e) {
+      alert(e);
+    }
+  };
 
   useEffect(() => {
     if (data) {
@@ -33,6 +48,7 @@ export default function RecCoachCardPage(props: ICoachingUsRecCoachCardProps) {
       isStart={isStart}
       moveToPage={moveToPage}
       rank={rank}
+      onClickFollowBtn={onClickFollowBtn}
     />
   );
 }
