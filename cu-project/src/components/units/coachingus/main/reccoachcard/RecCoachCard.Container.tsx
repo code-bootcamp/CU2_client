@@ -59,7 +59,7 @@ export default function RecCoachCardPage(props: ICoachingUsRecCoachCardProps) {
         <ConfirmModal
           router={() => setModalOpen(false)}
           btnText="돌아가기"
-          mainText="팔로우를 다시 해주세요."
+          mainText="팔로우가 되지 않았습니다."
           subText={errorMessage}
         />
       );
@@ -68,8 +68,11 @@ export default function RecCoachCardPage(props: ICoachingUsRecCoachCardProps) {
         <ConfirmModal
           router={() => router.push(`/coachingus/coaches/${coachId}`)}
           btnText="코치소개 보러가기"
-          mainText="해당 코치를 정상적으로 팔로우하셨습니다"
-          subText="코치의 프로필을 더 자세히 보고 싶으시다면 아래의 버튼을 눌러주세요"
+          mainText="코치를 팔로우하셨습니다."
+          list={[
+            "코치의 프로필을 더 자세히 보고 싶으시다면 ",
+            "아래의 버튼을 눌러주세요.",
+          ]}
         />
       );
     }

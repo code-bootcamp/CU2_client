@@ -6,6 +6,7 @@ export const FETCH_COACH_USER_LIST = gql`
       id
       name
       score
+      followernumber
       coachProfile {
         id
         orgName

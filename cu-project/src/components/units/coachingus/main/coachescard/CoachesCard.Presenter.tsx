@@ -77,7 +77,7 @@ export default function CoachesCardUI(props: ICoachingUsCoachesCardUIProps) {
                   }}
                 />
                 <Blank width="8px" />
-                {getMoney(coach?.score)}점
+                {getMoney(coach?.followernumber)}명
               </S.CoachInfoScore>
             </S.CoachListInfo>
           </S.CoachList>

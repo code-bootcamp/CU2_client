@@ -1,9 +1,11 @@
+import { useRouter } from "next/router";
 import { IFindUIProps } from "../../../../../commons/types/types";
 import Blank from "../../../../commons/Blank";
 import ConfirmModal from "../../../../commons/Modal/ConfirmModal/ConfirmModal";
 import * as S from "./Find.Style";
 
 export default function FindUI(props: IFindUIProps) {
+  const router = useRouter();
   return (
     <S.Wrapper>
       <S.Container>
@@ -103,7 +105,7 @@ export default function FindUI(props: IFindUIProps) {
       </S.Container>
       {props.isModalOpen && (
         <ConfirmModal
-          router="/login"
+          router={() => router.push("/login")}
           mainText="아래 아이디를 복사해주세요."
           list={props.myEmail}
           btnText="로그인 하러가기"
