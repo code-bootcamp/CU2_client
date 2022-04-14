@@ -5,12 +5,9 @@ import Blank from "../../Blank";
 import * as S from "./ConfirmModal.Style";
 
 export default function ConfirmModal(props) {
-  const router = useRouter();
   return (
     <>
-      <S.ModalWrapper
-        onClick={() => router.push(props.router)}
-      ></S.ModalWrapper>
+      <S.ModalWrapper onClick={props.router}></S.ModalWrapper>
       <S.PointModal>
         <S.Logo src="/CU2_LOGO.png" />
         <Blank height="50px" />
@@ -36,16 +33,12 @@ export default function ConfirmModal(props) {
               <S.ConfirmBtn onClick={props.yesBtn}>예</S.ConfirmBtn>
             </S.BtnBox>
             <S.BtnBox>
-              <S.ConfirmBtn onClick={() => router.push(props.router)}>
-                아니오
-              </S.ConfirmBtn>
+              <S.ConfirmBtn onClick={props.router}>아니오</S.ConfirmBtn>
             </S.BtnBox>
           </>
         ) : (
           <S.BtnBox>
-            <S.ConfirmBtn onClick={() => router.push(props.router)}>
-              {props.btnText}
-            </S.ConfirmBtn>
+            <S.ConfirmBtn onClick={props.router}>{props.btnText}</S.ConfirmBtn>
           </S.BtnBox>
         )}
       </S.PointModal>

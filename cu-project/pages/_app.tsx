@@ -11,7 +11,7 @@ import { Global } from "@emotion/react";
 import { onError } from "@apollo/client/link/error";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 import Layout from "../src/components/commons/layout";
-import { createContext, Dispatch, SetStateAction } from "react";
+import { createContext, Dispatch, SetStateAction, useEffect } from "react";
 import { getAccessToken } from "../src/commons/libraries/getAccessToken";
 import useStore from "../src/commons/store/store";
 
@@ -55,11 +55,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     cache: new InMemoryCache(),
   });
 
-  // useEffect(() => {
-  //   getAccessToken().then((newAccessToken) => {
-  //     setAccessToken(newAccessToken);
-  //   });
-  // }, [accessToken]);
+  useEffect(() => {
+    getAccessToken().then((newAccessToken) => {
+      setAccessToken(newAccessToken);
+    });
+  }, [accessToken]);
 
   return (
     <ApolloProvider client={client}>
