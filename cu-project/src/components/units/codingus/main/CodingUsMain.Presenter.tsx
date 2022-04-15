@@ -7,13 +7,15 @@ import BestUserCard from "../card/bestUserCard/BestUserCard.Container";
 import BlogCard from "../../../commons/Card/BlogCard01/BlogCard01";
 import QnACard from "../card/qnaCard/QnACard";
 import { IBlog, IUser } from "../../../../commons/types/generated/types";
+import ErrorModal from "../../../commons/Modal/ErrorModal/ErrorModal";
 export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
   return (
     <S.CodingUsMain>
-      {/* <S.SearchWrapper>
+      {props.errModalVisible && <ErrorModal {...props.errModalProps}/>}
+      <S.SearchWrapper>
         <S.SearchInput placeholder="검색"></S.SearchInput>
         <S.SearchBtn></S.SearchBtn>
-      </S.SearchWrapper> */}
+      </S.SearchWrapper>
       <Blank height="60px" />
       <CodingUsHistory
         historyData={{
@@ -33,29 +35,19 @@ export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
           <S.Label fontSize="24px" fontWeight="bold">
             우수 활동자를 소개합니다.
           </S.Label>
-          <S.Label
-            fontSize="18px"
-            fontWeight="300"
-            style={{ cursor: "pointer" }}
-            onClick={() => {
-              props.moveToPage("/codingus/ASD");
-            }}
-          >
-            {"더보기 >"}
-          </S.Label>
         </S.RowWrapper>
         <Blank height="24px" />
         <S.BestUserItemWrapper>
-          {props.bestUserItems?.map((el: {user: IUser, blog: IBlog}, idx: number) => (
-            <BestUserCard
-              key={uuidv4()}
-              data={el}
-              ranking={idx + 1}
-              onClickBlogItem={props.onClickItem}
-              onClickFollow={props.onClickFollow}
-              onClickLike={props.onClickLike}
-            />
-          ))}
+          {props.bestUserItems?.map(
+            (el: { user: IUser; blog: IBlog }, idx: number) => (
+              <BestUserCard
+                key={uuidv4()}
+                data={el}
+                ranking={idx + 1}
+                onClickBestUserFollow={props.onClickBestUserFollow}
+              />
+            )
+          )}
         </S.BestUserItemWrapper>
       </S.BestUserWrapper>
       <Blank height="179px" />
@@ -69,7 +61,7 @@ export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
             fontWeight="300"
             style={{ cursor: "pointer" }}
             onClick={() => {
-              props.moveToPage("/codingus/ASD");
+              props.onClickMove("/codingus/blog");
             }}
           >
             {"더보기 >"}
@@ -92,7 +84,7 @@ export default function CodingUsMainUI(props: ICodingUsMainUIProps) {
         </S.Label>
         <Blank height="17px" />
         <S.StackItemWrapper>
-          {props.bestQuestions?.map(el => (
+          {props.bestQuestions?.map((el) => (
             <QnACard key={uuidv4()} data={el} />
           ))}
         </S.StackItemWrapper>

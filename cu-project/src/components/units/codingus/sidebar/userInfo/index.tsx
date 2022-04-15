@@ -7,11 +7,7 @@ import PointIcon from "../../../../commons/Icon/Icon01/PointIcon";
 import DropDownIcon from "../../../../commons/Icon/DropDownIcon";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 import { ICodingUsSidebarProps } from "../../../../../commons/types/types";
-import useStore from "../../../../../commons/store/store";
 import Router from "next/router";
-import { IUser } from "../../../../../commons/types/generated/types";
-import { getLoggenInUser } from "../../../../../commons/libraries/getLoggedInUser";
-import { useGetUserInfo } from "../../../../commons/hooks/useGetUserInfo";
 
 export default function SidebarUserInfo(props: ICodingUsSidebarProps) {
   // const todayDiff =
@@ -23,17 +19,6 @@ export default function SidebarUserInfo(props: ICodingUsSidebarProps) {
   //     ? `+${props.totalRanking?.prev - props.totalRanking?.today}`
   //     : props.totalRanking?.prev - props.totalRanking?.today;
   const [interestList, setInterestList] = useState<string[]>([]);
-  const accessToken = useStore((state) => state.accessToken);
-  const [userInfo, setUserInfo] = useState<IUser>();
-  useGetUserInfo();
-  useEffect(() => {
-    if (!accessToken) return;
-    const getUserInfo = async () => {
-      const userInfo = await getLoggenInUser(accessToken);
-      setUserInfo(userInfo);
-    };
-    getUserInfo();
-  }, [accessToken]);
   useEffect(() => {
     if (!localStorage.getItem("interestList")) return;
     setInterestList(String(localStorage.getItem("interestList"))?.split(","));
@@ -54,16 +39,16 @@ export default function SidebarUserInfo(props: ICodingUsSidebarProps) {
       <Blank height="30px" />
       <S.Wrapper>
         <S.UserInfoHeader>
-          {userInfo ? (
+          {props.userInfo ? (
             <>
               <S.ProfileImage />
               <Blank width="10px" />
               <S.UserInfo>
-                <Label01 size="14px" weight="700" value={userInfo.nickname} />
+                <Label01 size="14px" weight="700" value={props.userInfo.nickname} />
                 <S.Point>
                   <PointIcon size={20} />
                   <Blank width="5px" />
-                  {userInfo.score}
+                  {props.userInfo.score}
                 </S.Point>
               </S.UserInfo>
             </>
@@ -71,15 +56,15 @@ export default function SidebarUserInfo(props: ICodingUsSidebarProps) {
             <S.LoginLabel onClick={moveToPage("/login")}>로그인</S.LoginLabel>
           )}
         </S.UserInfoHeader>
-        {userInfo && <Blank height="24px" />}
+        {props.userInfo && <Blank height="24px" />}
         <S.UserInfoBody>
-          {userInfo && (
+          {props.userInfo && (
             <S.Toggle onClick={chgToggleState("userInfo")}>
               {"나의 정보"}
               <DropDownIcon isUp={toggleState.userInfo || false} />
             </S.Toggle>
           )}
-          {userInfo && toggleState.userInfo && (
+          {props.userInfo && toggleState.userInfo && (
             <div>
               <Blank height="12px" />
               <S.Item>

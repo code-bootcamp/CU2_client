@@ -34,6 +34,7 @@ export const FETCH_BEST_USER_AND_BLOG = gql`
       id
       name
       nickname
+      url
     }
     fetchBlogAll {
       id

@@ -1,26 +1,55 @@
-import { useLazyQuery, useQuery } from "@apollo/client";
+import {
+  useLazyQuery,
+  useMutation,
+  useQuery,
+} from "@apollo/client";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { IBlog, IQuery, IUser } from "../../../../commons/types/generated/types";
-import { ICodingUsMainProps } from "../../../../commons/types/types";
-import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
+import useStore from "../../../../commons/store/store";
+import {
+  IBlog,
+  IMutation,
+  IMutationCreateFollowArgs,
+  IQuery,
+  IUser,
+} from "../../../../commons/types/generated/types";
 import CodingUsLayout from "../layout/CodingUsLayout";
 import CodingUsMainUI from "./CodingUsMain.Presenter";
-import { FETCH_BEST_USER_AND_BLOG, FETCH_BLOG_ALL, FETCH_OTHER_STATE_ORDER_BY_LIKE } from "./CodingUsMain.Queries";
+import {
+  CREATE_FOLLOW,
+  FETCH_BEST_USER_AND_BLOG,
+  FETCH_BLOG_ALL,
+  FETCH_OTHER_STATE_ORDER_BY_LIKE,
+} from "./CodingUsMain.Queries";
 
-
-export default function CodingUsMain(props: ICodingUsMainProps) {
+export default function CodingUsMain() {
+  const router = useRouter();
+  const accessToken = useStore((state) => state.accessToken);
   const [fetchBestUserAndBlog, { data }] = useLazyQuery(
     FETCH_BEST_USER_AND_BLOG
   );
-  const {data: questionData} = useQuery<Pick<IQuery,"fetchotherStackorderbylike">>(FETCH_OTHER_STATE_ORDER_BY_LIKE);
-  const {data: fetchBlogAllData} = useQuery<Pick<IQuery,"fetchBlogAll">>(FETCH_BLOG_ALL);
-  const { moveToPage } = useMoveToPage();
+  const { data: questionData } = useQuery<
+    Pick<IQuery, "fetchotherStackorderbylike">
+  >(FETCH_OTHER_STATE_ORDER_BY_LIKE);
+  const { data: fetchBlogAllData } =
+    useQuery<Pick<IQuery, "fetchBlogAll">>(FETCH_BLOG_ALL);
+  const [createFollow] = useMutation<
+    Pick<IMutation, "createFollow">,
+    IMutationCreateFollowArgs
+  >(CREATE_FOLLOW);
   const [bestUserItems, setBestUserItems] = useState<
     {
       user: IUser;
       blog: IBlog;
+      isFollowed: Boolean;
     }[]
   >([]);
+  const [errModalVisible, setErrModalVisible] = useState(false);
+  const [errModalProps, setErrModalProps] = useState({
+    mainText: "",
+    subText: "",
+    setModalVisible: setErrModalVisible,
+  });
   useEffect(() => {
     const getBestUserData = async () => {
       try {
@@ -30,29 +59,27 @@ export default function CodingUsMain(props: ICodingUsMainProps) {
           const temp: {
             user: IUser;
             blog: IBlog;
+            isFollowed: Boolean;
           }[] = [];
           let cnt = 0;
-          for (let i = 0; i < 3; i++) {
-            if(i === 1)
+          for (let i = 0; i < data?.fetchUserOrderbyscore?.length; i++) {
             if (cnt === 3) break;
-            for (let j = data.fetchBlogAll.length - 1; j >= 0; j--) {
-              if (
-                data.fetchBlogAll[j]?.user?.nickname ===
-                data.fetchUserOrderbyscore[i].nickname
-              ) {
-                temp.push({
-                  user: data.fetchUserOrderbyscore[i],
-                  blog: data.fetchBlogAll[j],
-                });
-                break;
-              }
+            if (
+              data.fetchBlogAll.filter(
+                (el: IBlog) => el.user.id === data.fetchUserOrderbyscore[i].id
+              )[0]
+            ) {
+              temp.push({
+                user: data.fetchUserOrderbyscore[i],
+                blog: data.fetchBlogAll.filter(
+                  (el: IBlog) => el.user.id === data.fetchUserOrderbyscore[i].id
+                )[0],
+                isFollowed: false,
+              });
+              cnt++;
             }
-            cnt++;
           }
           if (temp.length < 1) return;
-          // temp = temp.map((el) => {
-          //   return { ...el, blogtag: el.blog.blogtag.map((tag) => tag.tag) };
-          // });
           setBestUserItems(temp);
         }
       } catch (err: any) {
@@ -62,24 +89,49 @@ export default function CodingUsMain(props: ICodingUsMainProps) {
     getBestUserData();
   }, []);
 
-
-  const onClickItem = (id: string) => () => {};
-  const onClickFollow = (id: string) => () => {};
-  const onClickLike = (id: string) => () => {};
-  return (
-    <CodingUsLayout
-      children={
-        <CodingUsMainUI
-          moveToPage={moveToPage}
-          onClickItem={onClickItem}
-          onClickFollow={onClickFollow}
-          onClickLike={onClickLike}
-          bestUserItems={bestUserItems}
-          blogRecommendItems={fetchBlogAllData && fetchBlogAllData.fetchBlogAll?.filter((_,idx) => idx < 8)}
-          bestQuestions={questionData?.fetchotherStackorderbylike.filter((_, idx) => idx <6)!}
-          data={data}
-        />
+  const onClickBestUserFollow = (targetId: string) => async () => {
+    if (!targetId) return;
+    if (!accessToken) {
+      alert("로그인이 필요한 서비스입니다.");
+      router.push("/login");
+    }
+    try {
+      const result = await createFollow({
+        variables: { followUserId: targetId },
+      });
+      if (!result.data?.createFollow.id) {
+        alert("실패");
+        return;
       }
-    ></CodingUsLayout>
-  );
-}
+    } catch (err: any) {
+      setErrModalVisible(true);
+      setErrModalProps((prev) => {
+        return { ...prev, mainText: "알림", subText: err.message };
+      });
+    }
+  }
+    return (
+      <CodingUsLayout
+        children={
+          <CodingUsMainUI
+            bestUserItems={bestUserItems}
+            blogRecommendItems={fetchBlogAllData?.fetchBlogAll
+              ?.filter((_, idx) => idx < 8)
+              .sort((a, b) => b.like - a.like)}
+            bestQuestions={
+              questionData?.fetchotherStackorderbylike.filter(
+                (_, idx) => idx < 6
+              )!
+            }
+            onClickMove={(path: string) => {
+              router.push(path);
+            }}
+            data={data}
+            onClickBestUserFollow={onClickBestUserFollow}
+            errModalVisible={errModalVisible}
+            errModalProps={errModalProps}
+          />
+        }
+      ></CodingUsLayout>
+    );
+  };

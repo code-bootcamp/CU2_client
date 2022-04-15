@@ -87,7 +87,7 @@ export default function CodingUsRanking(props: ICodingUsRankingProps) {
         <RankingCard
           data={props.myInfo}
           isMyRanking={true}
-          ranking={calcMyRanking()}
+          ranking={calcMyRanking() || 0}
         />
       )}
       <Blank height="31px" />

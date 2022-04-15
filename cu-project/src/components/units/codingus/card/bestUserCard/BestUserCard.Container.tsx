@@ -38,7 +38,7 @@ export default function BestUserCard(props: ICodingUsCardProps) {
   const [commentCnt, setCommentCnt] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   const isFollowed = false;
-
+const userInfo = useStore(state => state.userInfo);
   useEffect(() => {
     try {
       const getCommentCnt = async () => {

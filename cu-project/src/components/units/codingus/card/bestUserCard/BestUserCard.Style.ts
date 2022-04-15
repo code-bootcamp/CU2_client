@@ -42,6 +42,15 @@ export const ProfileImage = styled.img`
   background-color: gray;
   /* padding: 2px; */
 `;
+export const NoImage = styled.div`
+  width: 48px;
+  height: 48px;
+  background-color: ${Color.medium};
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 export const NameLabel = styled.div`
   font-weight: 700;
   font-size: 16px;
