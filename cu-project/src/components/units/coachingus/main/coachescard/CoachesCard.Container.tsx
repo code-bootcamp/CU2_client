@@ -7,7 +7,6 @@ import { useQuery } from "@apollo/client";
 
 export default function CoachesCardPage(props: ICoachingUsCoachesCardProps) {
   const { data } = useQuery(FETCH_COACH_USER_LIST);
-
   const { moveToPage } = useMoveToPage();
 
   const coachesList = data?.fetchCoachUserList.slice(0, 3);
