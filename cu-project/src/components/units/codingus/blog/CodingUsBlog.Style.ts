@@ -69,6 +69,6 @@ export const GubunLabel = styled.div`
   color: ${(props: IGubunProps) => (props.isSelected ? "black" : Color.medium)};
   margin-right: 18px;
   :hover {
-    cursor: pointer;
+    cursor: ${(props: IGubunProps) => (props.isSelected ? "cursor": "pointer")};
   }
 `;
