@@ -111,8 +111,9 @@ export interface ICodingUsBlogCardProps {
   isLike: boolean;
 }
 export interface ICodingUsBlogUIProps {
+  followBlogList: IBlog[] | undefined;
   onLoadMore: () => void;
-  onToggleSortGubun: (_: MouseEvent<HTMLDivElement>) => void;
+  onToggleSortGubun: () => void;
   blogList: { blog: IBlog; isLike: boolean }[];
   isOrderByPopular: boolean;
 }

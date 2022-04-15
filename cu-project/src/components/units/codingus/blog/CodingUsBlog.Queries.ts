@@ -48,3 +48,11 @@ export const FETCH_BLOG_LIKE = gql`
     }
   }
 `;
+
+export const FETCH_MY_FOLLOWING = gql`
+  query fetchmyFollowing {
+    fetchmyFollowing {
+      id
+    }
+  }
+`;

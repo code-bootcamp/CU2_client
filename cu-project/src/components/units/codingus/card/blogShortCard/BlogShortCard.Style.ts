@@ -47,8 +47,8 @@ export const ImageWrapper = styled.div`
 export const Image = styled.img`
   width: 100%;
   height: 182px;
+  background-color: black;
   /* border: none; */
-  background-color: ${(props: {imageUrl: string}) => props.imageUrl ? "white" : "black"};
 
 `;
 
